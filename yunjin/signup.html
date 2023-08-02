@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="config.css">
+    <title>삐용</title>
+</head>
+<body class="flex flex-col items-center mt-8">
+    <!-- 로고 이미지 삽입 -->
+    <div class="flex items-center justify-center mb-10">
+        <img src="img/logo.png" alt="logo" class="w-8 h-8" />
+        <!-- 삐용 이미지 -->
+        <img src="img/삐용.png" alt="삐용" class="w-16 h-9 mt-1 ml-1" />
+    </div>
+    <div class="flex flex-col items-start">
+    
+        <!-- 회원가입 -->
+        <div class="flex items-start justify-start text-left text-black font-bold text-2xl">
+            회원가입
+        </div>
+        <!-- 이메일, 비밀번호, 비밀번호 재입력 inputbox -->
+        <!-- 이메일 인증 input-box -->
+        <div class="input-box mt-5 relative">
+            <label for="email" class="flex flex-col items-start block text-black-700 font-bold mb-2">이메일</label>
+            <input type="email" id="email" name="email" class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600" required />
+            <button id="authButton" type="button" class="absolute right-2 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-bold text-sm">인증</button>
+        </div>
+         <!-- 인증번호 발송 문구 -->
+        <div id="verificationMessage" class="text-sm text-black mt-1" style="display: none;">
+            <img src="img/인증번호.png" alt="인증번호" class="w-4 h-4 flex items-center mr-2">
+            <span>인증번호가 발송되었습니다.</span>
+        </div>
+
+        <!-- 인증번호 입력 input-box -->
+        <div id="verificationInput" class="input-box mt-5 relative" style="display: none;">
+            <label for="verificationCode" class="block text-black-700 font-bold mb-2">인증번호</label>
+            <input type="number" id="verificationCode" name="verificationCode" class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600" required />
+            <button id="verifyButton" type="button" class="absolute right-2 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-bold text-sm">확인</button>
+        </div>
+        <!-- 인증번호 확인 문구 -->
+        <div id="verificationConfirm" class="text-sm text-black mt-1" style="display: none;">
+            <div class="flex items-center">
+                <img src="img/인증번호.png" alt="인증번호" class="w-4 h-4 mr-2">
+                <span>인증번호가 확인되었습니다.</span>
+            </div>
+        </div>
+
+        <!-- 비밀번호 input-box -->
+        <div class="input-box mt-4">
+            <label for="password" class="block text-black-700 font-bold mb-2">비밀번호</label>
+            <input type="password" id="password" name="password" class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600" required />
+        </div>
+        <!-- 비밀번호 재입력 input-box -->
+        <div class="input-box mt-4">
+            <label for="repassword" class="block text-black-700 font-bold mb-2">비밀번호 재입력</label>
+            <input type="repassword" id="repassword" name="password" class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600 mb-8" required />
+        </div>
+
+        <!-- 닉네임 input-box -->
+        <div id="nicknameInput" class="input-box mt-4" style="display: none;">
+            <label for="nickname" class="block text-black-700 font-bold mb-2">닉네임</label>
+            <input type="text" id="nickname" name="nickname" class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600" required />
+        </div>
+
+        <!-- 지역 선택 dropdown -->
+        <div id="locationDropdown" class="input-box mt-4" style="display: none;">
+            <label for="location" class="block text-black-700 font-bold mb-2">지역 선택</label>
+            <select id="location" name="location" class="form-select w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600" required>
+                <option value="" disabled selected>지역을 선택하세요</option>
+                <option value="서울">서울특별시</option>
+                <option value="부산">부산</option>
+            </select>
+        </div>
+         <!-- 다음 버튼 -->
+        <button id="nextButton" class="bg-yellow-300 text-black font-bold py-2 px-4 rounded-md mt-20 w-80 h-11">
+            다음
+        </button>
+
+        <script>
+            const authButton = document.getElementById("authButton");
+            const verificationMessage = document.getElementById("verificationMessage");
+            const verificationInput = document.getElementById("verificationInput");
+            const verificationConfirm = document.getElementById("verificationConfirm");
+            const nicknameInput = document.getElementById("nicknameInput");
+            const locationDropdown = document.getElementById("locationDropdown");
+            const nextButton = document.getElementById("nextButton");
+            const heading = document.querySelector(".flex .items-start .text-left .text-black .font-bold .text-2xl");
+        
+            authButton.addEventListener("click", function () {
+                verificationMessage.style.display = "flex";
+                verificationInput.style.display = "block";
+                verificationConfirm.style.display = "none";
+            });
+        
+            verifyButton.addEventListener("click", function () {
+                verificationConfirm.style.display = "block";
+            });
+            
+    //다음 버튼
+    nextButton.addEventListener("click", function () {
+    const emailInput = document.getElementById("email");
+    const verificationMessage = document.getElementById("verificationMessage");
+    const verificationInput = document.getElementById("verificationInput");
+    const verificationConfirm = document.getElementById("verificationConfirm");
+    const passwordInput = document.getElementById("password");
+    const authButton = document.getElementById("authButton");
+    const verifyButton = document.getElementById("verifyButton");
+    const nextButton = document.getElementById("nextButton");
+    const heading = document.querySelector(".flex .items-start .text-left .text-black .font-bold .text-2xl");
+
+    //정보 사라지게 하기
+    emailInput.style.display = "none";
+    authButton.style.display = "none";
+    verificationMessage.style.display = "none";
+    verificationInput.style.display = "none";
+    verifyButton.style.display = "none";
+    verificationConfirm.style.display = "none";
+    passwordInput.style.display = "none";
+
+    // 닉네임, 지역 정보 보여주기
+    nicknameInput.style.display = "block";
+    locationDropdown.style.display = "block";
+
+    // 회원정보 입력 헤드, 버튼 이름 바꾸기
+    heading.textContent = "회원정보 입력";
+    nextButton.textContent = "회원가입 완료";
+});   
+</script>
+    </div>
+</html>
