@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <link rel="stylesheet" href="config.css">
+    <script src="./assets/config.js"></script>
+
+    <title>삐용</title>
+    <link rel="stylesheet" href="../css/config.css" />
+</head>
+
+<body>
+    <div class="relative content bg-g-50 border-white">
+        <nav class="bg-white border-gray-200">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-15">
+                <!-- 로고 이미지 삽입 -->
+                <div class="flex items-center justify-center">
+                <img src="img/logo.png" alt="logo" class="w-8 h-8" />
+                <!-- 삐용 이미지 -->
+                <img src="img/삐용.png" alt="삐용" class="w-16 h-9 mt-1 ml-1 mr-12" />
+                <div class="flex items-center justify-end text-end">
+                    <img src="img/알림.png"  class="w-6 h-6 mt-3 mr-3">
+                <div class="font-medium text-lg mt-1 mr-6">강윤진님</div>
+                <img src="img/햄버거바.png" alt="menu" class="w-6 h-5 mt-2">
+                </div>
+                </div>
+            </div>
+        </nav>
+
+    <!--메인 박스-->
+     <div class="flex items-center justify-center text-start">
+        <div class="bg-white border-gray-200 shadow-md h-44 w-80 mt-5 p-4 text-lg font-bold text-start">
+            <div class="flex items-center justify-between">
+                <div>경기도청 알림</div>
+                <div class="text-grey-600 font-medium text-sm ml-4">2023-07-23 오전 02:16</div>
+            </div>
+            <!--파란, 회색 버튼-->
+            <button class="w-14 h-7 bg-blue-300 rounded-full mr-3 text-sm font-medium text-white mb-1">호우</button>
+            <button class="w-14 h-7 bg-gray-600 mt-1 rounded-full text-sm font-medium text-white mb-1 ">예보</button>
+            <div class="flex items-start justify-center text-black font-medium text-base">
+                오늘 10시경 집중호우로 역곡천 산책로 침수발생. 하천변, 산책로 등은
+                출입을 금지합니다.
+            </div>
+           
+        </div>
+        
+    </div>
+  <!--댓글-->
+  <div><div class="flex items-center justify-start text-start">
+    <div class="font-medium text-lg mt-3 ml-7 mr-1">댓글</div>
+    <div class="font-bold  text-lg mt-3 mr-5">2</div>
+ </div>
+ <div class="flex items-center justify-center"><div class="input-box mt-2 relative ">
+     <input type="number" id="verificationCode" name="verificationCode" placeholder="재난관련 제보, 주의사항을 주변인과 나눠보세요." class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600" required />
+     <button id="verifyButton" type="button" class="absolute right-2 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-medium text-sm">입력</button>
+ </div>  </div>
+
+
+<!--댓글 박스-->
+<div class="flex items-center justify-center text-start">
+    <div class="h-28 w-80 mt-2 p-4 text-sm font-bold text-start">
+        <div class="flex items-center justify-start">
+            <div>인천광역시 부평구 삼산2동</div>
+            <div class="text-grey-600 font-medium text-sm ml-5">강***</div>
+        </div>
+       
+        <div class="flex items-start justify-center text-black font-medium text-base mt-2">
+           역천교 주변 여울교는 이미 잠겼어요. 주의하세요
+        </div> 
+        <div class="flex items-center justify-start">
+        <div class="font-medium text-xs mt-1 mr-12">2023-07-23 오전 02:16</div>
+        <!--도움돼요, 싫어요 버튼-->
+        <div class="font-light text-xs mt-1 mr-2" id="helpfulCount1">도움돼요 3 </div>
+        <div class="font-light text-xs mt-1" id="dislikeCount1">싫어요 0</div>
+        
+        </div> 
+    </div>
+</div>
+<!--밑줄-->
+<div class="w-80 h-px bg-gray-400 my-2 mt-5 ml-4"></div>
+
+<!--댓글 박스-->
+<div class="flex items-center justify-center text-start">
+    <div class="h-28 w-80 mt-2 p-4 text-sm font-bold text-start">
+        <div class="flex items-center justify-start">
+            <div>인천광역시 부평구 삼산2동</div>
+            <div class="text-grey-600 font-medium text-sm ml-5">강***</div>
+        </div>
+       
+        <div class="flex items-start justify-center text-black font-medium text-base">
+           역곡천 주변 명진다리도 넘치기 일보직전 입니다.
+        </div> 
+        <div class="flex items-center justify-start">
+        <div class="font-medium text-xs mt-1 mr-12">2023-07-23 오전 02:16</div>
+        <div class="font-light text-xs mt-1 mr-2" id="helpfulCount1">도움돼요 3</div>
+        <div class="font-light text-xs mt-1" id="dislikeCount1">싫어요 0</div>
+        
+        </div> 
+    </div>
+</div>
+<!--밑줄-->
+<div class="w-80 h-px bg-gray-400 my-2 mt-5 ml-4"></div>
+<script>
+    let helpfulCount1 = 0; // Initial count for "도움돼요" in the first comment box
+    let dislikeCount1 = 0; // Initial count for "싫어요" in the first comment box
+    let helpfulCount2 = 0; // Initial count for "도움돼요" in the second comment box
+    let dislikeCount2 = 0; // Initial count for "싫어요" in the second comment box
+
+    // Function to increment the "도움돼요" count in the first comment box
+    function incrementHelpful1() {
+        helpfulCount1++;
+        document.getElementById("helpfulCount1").textContent = `도움돼요 ${helpfulCount1}`;
+    }
+
+    // Function to increment the "싫어요" count in the first comment box
+    function incrementDislike1() {
+        dislikeCount1++;
+        document.getElementById("dislikeCount1").textContent = `싫어요 ${dislikeCount1}`;
+    }
+
+    // Function to increment the "도움돼요" count in the second comment box
+    function incrementHelpful2() {
+        helpfulCount2++;
+        document.getElementById("helpfulCount2").textContent = `도움돼요 ${helpfulCount2}`;
+    }
+
+    // Function to increment the "싫어요" count in the second comment box
+    function incrementDislike2() {
+        dislikeCount2++;
+        document.getElementById("dislikeCount2").textContent = `싫어요 ${dislikeCount2}`;
+    }
+
+    // Add event listeners to the buttons in each comment box
+    document.getElementById("helpfulButton1").addEventListener("click", incrementHelpful1);
+    document.getElementById("dislikeButton1").addEventListener("click", incrementDislike1);
+    document.getElementById("helpfulButton2").addEventListener("click", incrementHelpful2);
+    document.getElementById("dislikeButton2").addEventListener("click", incrementDislike2);
+    
+</script>
+</body>
+
+</html>
