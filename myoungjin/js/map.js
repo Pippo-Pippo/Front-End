@@ -24,3 +24,22 @@
     
     // 마커가 지도 위에 표시되도록 설정합니다
     marker.setMap(map);  
+
+
+    
+    // 마커 클릭 시 보여줄 정보창의 내용 HTML
+var content = '<div style="padding:10px;">마커를 클릭했습니다!</div>';
+
+// 마커를 클릭했을 때 정보창을 생성하고 지도에 표시하는 함수
+function showInfoWindow() {
+    var infowindow = new kakao.maps.InfoWindow({
+        content: content,
+        removable: true // 사용자가 정보창을 닫을 수 있도록 설정합니다.
+    });
+
+    // 마커를 클릭했을 때 정보창을 지도 위에 표시합니다.
+    infowindow.open(map, marker);
+}
+
+// 마커를 클릭하면 정보창을 표시하는 이벤트 리스너 등록
+kakao.maps.event.addListener(marker, 'click', showInfoWindow);
