@@ -30,3 +30,7 @@ input::placeholder {
   font-size: 11px; 
   font-weight: light;
 }
+#button {
+  width: 77px;
+  height : 78px;
+}
