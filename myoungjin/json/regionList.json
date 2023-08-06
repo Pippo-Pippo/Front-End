@@ -1,13 +1,55 @@
 {
-    "regionList" : [
-            {
-                    "region" : "SEOUL"
-            },
-            {
-                    "region" : "BUSAN"
-            },
-            {
-                    "region" : "DAEGU"
-            }
-    ]
+        "regionList": [
+                {
+                        "region": "SEOUL"
+                },
+                {
+                        "region": "BUSAN"
+                },
+                {
+                        "region": "DAEGU"
+                },
+                {
+                        "region": "INCHEON"
+                },
+                {
+                        "region": "GWANJU"
+                },
+                {
+                        "region": "DAEJEON"
+                },
+                {
+                        "region": " ULSAN"
+                },
+                {
+                        "region": "SEJONG"
+                },
+                {
+                        "region": "GYEONGGI"
+                },
+                {
+                        "region": "GANGWON"
+                },
+                {
+                        "region": "CHUNGCHEONGBUKDO"
+                },
+                {
+                        "region": "CHUNGCHEONGNAMDO"
+                },
+                {
+                        "region": "JEOLLABUKDO"
+                },
+                {
+                        "region": "JEOLLANAMDO"
+                },
+                {
+                        "region": "GYEONGSANGBUKDO"
+                },
+                {
+                        "region": "GYEONGSANGNAMDO"
+                },
+                {
+                        "region": "JEJU"
+                }
+        ]
 }
