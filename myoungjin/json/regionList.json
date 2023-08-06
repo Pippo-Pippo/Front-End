@@ -1,0 +1,13 @@
+{
+    "regionList" : [
+            {
+                    "region" : "SEOUL"
+            },
+            {
+                    "region" : "BUSAN"
+            },
+            {
+                    "region" : "DAEGU"
+            }
+    ]
+}

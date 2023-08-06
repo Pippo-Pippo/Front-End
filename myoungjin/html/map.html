@@ -17,7 +17,7 @@
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=122a12ac53dfd9ece5eb472180241e53"></script>
     <!--header-->
-    <div class="relative content bg-gray-50 border-white">
+    <div class="relative content bg-white border-white">
         <div class="bg-white border-gray-200 shadow">
             <nav>
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-15">
@@ -57,18 +57,28 @@
                 <div class="text-lg">주변 대피소를 확인해보세요.</div>
                 <div class="flex mb-2 mt-2">
                     
-                    <div class="h-8 bg-gray-600 item-center rounded-full text-xs px-4 p-2 text-white font-bold">전체</div>
-                    <div class="h-8 bg-yellow-600 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">지진/해일</div>
-                    <div class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">민방위</div>
+                    <button class="h-8 bg-gray-600 item-center rounded-full text-xs px-4 p-2 text-white font-bold">전체</button>
+                    <button class="h-8 bg-yellow-600 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">지진/해일</button>
+                    <button class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">민방위</button>
                 </div>
-                <div id="map" class="max-w-screen-xl h-screen"></div>
+        
+                <div id="map" class="max-w-screen-xl max-h-96"></div>
             </div>
+            <section id="modal">
+                <div><button id="close_btn"></button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 1L13 13M1 13L13 1L1 13Z" stroke="#3F3F46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <p>어쩌구 저쩌꾸</p>
+            </section>
         </div>
     </div>
 
 
     </div>
     <script src="../js/map.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </body>
 
 </html>
