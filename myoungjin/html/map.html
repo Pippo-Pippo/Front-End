@@ -17,8 +17,8 @@
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=122a12ac53dfd9ece5eb472180241e53"></script>
     <!--header-->
-    <div class="relative content bg-white border-white">
-        <div class="bg-white border-gray-200 shadow">
+    <div class="relative content bg-gray-50 border-white">
+        <div class="bg-white">
             <nav>
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-15">
                     <a href="#" class="flex items-center">
@@ -52,33 +52,49 @@
                 </div>
             </nav>
             <!--main-->
+            <div class="bg-gray-50">
             <div class="ml-5 mr-5 mb-5 mt-2">
                 <div class="font-bold text-2xl">인천광역시 부평구 삼산2동</div>
-                <div class="text-lg">주변 대피소를 확인해보세요.</div>
-                <div class="flex mb-2 mt-2">
-                    
-                    <button class="h-8 bg-gray-600 item-center rounded-full text-xs px-4 p-2 text-white font-bold">전체</button>
-                    <button class="h-8 bg-yellow-600 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">지진/해일</button>
-                    <button class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">민방위</button>
+                <div class="text-lg mt-1">주변 대피소를 확인해보세요.</div>
+                <div class="flex mb-2 mt-2 mb-1">
+
+                    <button
+                        class="h-8 bg-gray-600 item-center rounded-full text-xs px-4 p-2 text-white font-bold">전체</button>
+                    <button
+                        class="h-8 bg-yellow-600 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">지진/해일</button>
+                    <button
+                        class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">민방위</button>
                 </div>
-        
-                <div id="map" class="max-w-screen-xl max-h-96"></div>
+
+                <div id="map" style="width: 100%; height: 60vh;"></div>
             </div>
-            <section id="modal">
-                <div><button id="close_btn"></button>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 1L13 13M1 13L13 1L1 13Z" stroke="#3F3F46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+            <div id="modal" class="bg-white">
+                <div class="modal-window">
+                    <div class="close-area">
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
+                                fill="none">
+                                <path d="M1 1L13 13M1 13L13 1L1 13Z" stroke="#3F3F46" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div>보람아파트 지하주차장 대피소</div>
+                    <div><button
+                            class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">민방위
+                            대피시설</button></div>
+                    <div>
+                        <div><span>인천광역시 부평구 굴포로 158</span><button class="ml-2">복사</button></div>
+                    </div>
                 </div>
-                <p>어쩌구 저쩌꾸</p>
-            </section>
+            </div>
         </div>
-    </div>
+        </div>
 
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/map.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </body>
 
 </html>
