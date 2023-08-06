@@ -61,89 +61,31 @@
  </div>  </div>
 
 
-<!--댓글 박스-->
-<div class="flex items-center justify-center text-start">
-    <div class="h-28 w-80 mt-2 p-3 text-sm text-start">
-        <div class="flex items-center justify-start">
-            <div class="font-bold">인천광역시 부평구 삼산2동</div>
-            <div class="text-grey-600 font-medium text-sm ml-5">강***</div>
+
+ <!--댓글 박스-->
+ <div id = "comment">
+    <div class="flex items-center justify-center text-start">
+        <div class="h-28 w-80 mt-2 p-3 text-sm text-start">
+          <div class="flex items-center justify-start">
+            <div class="font-bold"></div>
+            <div class="text-grey-600 font-medium text-sm ml-5"></div>
+          </div>
+          <div class="flex items-start justify-center text-black text-base mt-2">
+            
+          </div>
+          <div class="flex items-center justify-start">
+            <div class="font-medium text-xs mt-1 mr-12"></div>
+            <!--도움돼요, 싫어요 버튼-->
+            <div class="font-light text-xs mt-1 mr-2" id="helpfulCount1"></div>
+            <div class="font-light text-xs mt-1" id="dislikeCount1"></div>
+          </div>
         </div>
-       
-        <div class="flex items-start justify-center text-black text-base mt-2">
-           역천교 주변 여울교는 이미 잠겼어요. 주의하세요
-        </div> 
-        <div class="flex items-center justify-start">
-        <div class="font-medium text-xs mt-1 mr-12">2023-07-23 오전 02:16</div>
-        <!--도움돼요, 싫어요 버튼-->
-        <div class="font-light text-xs mt-1 mr-2" id="helpfulCount1">도움돼요 3 </div>
-        <div class="font-light text-xs mt-1" id="dislikeCount1">싫어요 0</div>
-        
-        </div> 
-    </div>
-</div>
-<!--밑줄-->
-<div class="w-80 h-px bg-gray-400 my-2 mt-5 ml-4"></div>
-
-<!--댓글 박스-->
-<div class="flex items-center justify-center text-start">
-    <div class="h-28 w-80 mt-1 p-3 text-sm text-start">
-        <div class="flex items-center justify-start">
-            <div class="font-bold">인천광역시 부평구 삼산2동</div>
-            <div class="text-grey-600 font-medium text-sm ml-5">강***</div>
-        </div>
-       
-        <div class="flex items-start justify-center text-black text-base mt-2">
-           역천교 주변 명진다리도 넘치기 일보 직전입니다.
-        </div> 
-        <div class="flex items-center justify-start">
-        <div class="font-medium text-xs mt-1 mr-12">2023-07-23 오전 02:16</div>
-        <!--도움돼요, 싫어요 버튼-->
-        <div class="font-light text-xs mt-1 mr-2" id="helpfulCount1">도움돼요 3 </div>
-        <div class="font-light text-xs mt-1" id="dislikeCount1">싫어요 0</div>
-        
-        </div> 
-    </div>
-</div>
-</div>
-<!--밑줄-->
-<div class="w-80 h-px bg-gray-400 my-2 mt-5 ml-4"></div>
-<script>
-    let helpfulCount1 = 0; // Initial count for "도움돼요" in the first comment box
-    let dislikeCount1 = 0; // Initial count for "싫어요" in the first comment box
-    let helpfulCount2 = 0; // Initial count for "도움돼요" in the second comment box
-    let dislikeCount2 = 0; // Initial count for "싫어요" in the second comment box
-
-    // Function to increment the "도움돼요" count in the first comment box
-    function incrementHelpful1() {
-        helpfulCount1++;
-        document.getElementById("helpfulCount1").textContent = `도움돼요 ${helpfulCount1}`;
-    }
-
-    // Function to increment the "싫어요" count in the first comment box
-    function incrementDislike1() {
-        dislikeCount1++;
-        document.getElementById("dislikeCount1").textContent = `싫어요 ${dislikeCount1}`;
-    }
-
-    // Function to increment the "도움돼요" count in the second comment box
-    function incrementHelpful2() {
-        helpfulCount2++;
-        document.getElementById("helpfulCount2").textContent = `도움돼요 ${helpfulCount2}`;
-    }
-
-    // Function to increment the "싫어요" count in the second comment box
-    function incrementDislike2() {
-        dislikeCount2++;
-        document.getElementById("dislikeCount2").textContent = `싫어요 ${dislikeCount2}`;
-    }
-
-    // Add event listeners to the buttons in each comment box
-    document.getElementById("helpfulButton1").addEventListener("click", incrementHelpful1);
-    document.getElementById("dislikeButton1").addEventListener("click", incrementDislike1);
-    document.getElementById("helpfulButton2").addEventListener("click", incrementHelpful2);
-    document.getElementById("dislikeButton2").addEventListener("click", incrementDislike2);
-    
-</script>
+      </div>
+    <!--밑줄-->
+    <div class="w-80 h-px bg-gray-400 my-2 mt-5 ml-4"></div>
+ </div>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="js/mainDetail.js"></script>
 </body>
 
 </html>
