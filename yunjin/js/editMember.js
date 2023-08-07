@@ -24,10 +24,9 @@ function editMember() {
     const nicknameInput = document.getElementById("nickname");
     const locationSelect = document.getElementById("locationSelect");
     const regionDisplay = document.getElementById("regionDisplay");
-  
+    const idInput = document.getElementById("id");
+
     nicknameInput.value = nickname;
-  
-  
     regionDisplay.textContent = region || "지역을 선택하세요"; 
   
  
@@ -79,7 +78,7 @@ function editMember() {
     locationSelect.addEventListener("change", function () {
       regionDisplay.textContent = locationSelect.value;
     });
-  
+   idInput.value = data.email; 
     return '';
   }
   
