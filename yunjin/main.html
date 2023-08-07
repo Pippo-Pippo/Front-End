@@ -95,9 +95,9 @@
           </div>
         </div>
       </div>
-      <div class="flex items-center justify-center mt-3">
+      <div id="Button" class="flex items-center justify-center mt-3">
         <!--날씨 이미지-->
-        <div id="button" class ="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center mr-1">
+        <div id="weatherButton" class ="bg-white border-gray-200 shadow-md rounded-md block justify-center  w-20 h-20 items-center mr-1">
           <div class="flex justify-center items-center">
             <img
               class="flex justify-center items-center w-10 h-11 mb-3"
@@ -106,18 +106,19 @@
           </div>
           <p class="text-sm text-center">날씨</p>
         </div>
-        <!-- 지진 이미지 -->
-        <div id="button" class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1">
-            <div class="flex justify-center items-center">
-              <img
-                class="flex justify-center items-center w-10 h-11 mb-3"
-                src="../img/earthquake_icon.png"
-              />
-            </div>
-            <p class="text-sm text-center">지진/해일</p>
-          </div>
+     
+<!-- 지진/해일 버튼 -->
+<div id="earthquakeButton" class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1">
+  <div class="flex justify-center items-center">
+    <img
+      class="flex justify-center items-center w-10 h-11 mb-3"
+      src="../img/earthquake_icon.png"
+    />
+  </div>
+  <p class="text-sm text-center">지진/해일</p>
+</div>
         <!--민방위 이미지-->
-        <div id="button" class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1">
+        <div id="civilButton" class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1">
           <div class="flex justify-center items-center">
             <img
               class="flex justify-center items-center w-10 h-11 mb-3"
@@ -127,7 +128,7 @@
           <p class="text-sm text-center">민방위</p>
         </div>
         <!-- 실종자 이미지 -->
-        <div id="button" class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20">
+        <div id="lostButton" class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20">
           <div class="flex justify-center items-center">
             <img
               class="flex justify-center items-center w-10 h-11 mb-3"
@@ -137,8 +138,9 @@
           <p class="text-sm text-center">실종자</p>
         </div>
       </div>
+      
       <!--메인 박스-->
-      <div class="flex items-center justify-center text-start">
+      <div id = "main" class="ml-5 text-start">
         <div
           class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start"
         >
@@ -179,48 +181,7 @@
           </div>
         </div>
       </div>
-      <!--메인 박스-->
-      <div class="flex items-center justify-center text-start">
-        <div
-          class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start"
-        >
-          <div class="flex items-center justify-between">
-            <div>경기도청 알림</div>
-            <div class="text-grey-600 font-medium text-sm ml-4">
-              2023-07-23 오전 02:16
-            </div>
-          </div>
-          <!--파란, 회색 버튼-->
-          <button
-            class="w-14 h-7 bg-blue-300 rounded-full mr-1 text-sm font-medium text-white mb-1"
-          >
-            호우
-          </button>
-          <button
-            class="w-14 h-7 bg-gray-600 mt-1 rounded-full text-sm font-medium text-white mb-1"
-          >
-            예보
-          </button>
-          <div
-            class="flex items-start justify-center text-black font-medium text-base"
-          >
-            오늘 10시경 집중호우로 역곡천 산책로 침수발생. 하천변, 산책로 등은
-            출입을 금지합니다.
-          </div>
-          <div class="flex items-center justify-end text-end">
-            <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
-            <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-            <div class="font-medium text-bold mt-1 mr-5">5</div>
-            <button
-              id="authButton"
-              type="button"
-              class=" w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-            >
-              더보기
-            </button>
-          </div>
-        </div>
-      </div>
+     
           </div>
         </div>
       </div>
