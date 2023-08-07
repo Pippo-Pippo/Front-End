@@ -36,48 +36,69 @@
         </div>
 
         <!--회원정보-->
-        <div class="block text-black-700 font-bold mt-12">회원 정보</div>
-        <div class="w-80 h-px bg-gray-300 my-2"></div>
-          <!-- 닉네임 input-box -->
-          <div class="input-box mt-1 relative">
-            <label for="nickname" class="block text-black-700 font-bold mb-2">닉네임</label>
-            <input type="nickname" id="nickname" name="nickname" class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600" required />
-            <button id="change" type="button" class="absolute right-3 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-bold text-sm">변경</button>
-          </div>
+<div id="Member" class="block text-black-700 font-bold mt-12">회원 정보</div>
+<div class="w-80 h-px bg-gray-300 my-2"></div>
+<!-- 닉네임 input-box -->
+<div class="input-box mt-1 relative">
+  <label for="nickname" class="block text-black-700 font-bold mb-2">닉네임</label>
+  <input
+    type="nickname"
+    id="nickname"
+    name="nickname"
+    class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600"
+    required
+  />
+  <button
+    id="changeNickname"
+    type="button"
+    class="absolute right-3 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-bold text-sm"
+  >
+    변경
+  </button>
+</div>
 
-          <!-- 지역 선택 dropdown -->
-      <div id="locationDropdown" class="input-box mt-4">
-        <label for="location" class="block text-black-700 font-bold mb-2"
-          >지역 선택</label >
-          <div class =" flex items-center justify-end w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600"><select
-            id="location"
-            name="location"
-            class="form-select w-60 h-9 px-3 py-2 rounded-md border-none focus:outline-none "
-            required
-          >
-            <option value="" disabled selected>지역을 선택하세요</option>
-            <option value="강원특별자치도">강원특별자치도</option>
-            <option value="경기도">경기도</option>
-            <option value="광주광역시">광주광역시</option>
-            <option value="경상남도">경상남도</option>
-            <option value="경상북도">경상북도</option>
-            <option value="대구광역시">대구광역시</option>
-            <option value="대전광역시">대전광역시</option>
-            <option value="부산광역시">부산광역시</option>
-            <option value="서울특별시">서울특별시</option>
-            <option value="세종특별자치시">세종특별자치시</option>
-            <option value="인천광역시">인천광역시인천광역시</option>
-            <option value="울산광역시">울산광역시</option>
-            <option value="전라남도">전라남도</option>
-            <option value="전라북도">전라북도</option>
-            <option value="제주특별자치도">제주특별자치도</option>
-            <option value="충청남도">충청남도</option>
-            <option value="충청북도">충청북도</option>
-            
-          </select>
-          <button id="change" type="button" class="ml-8 items-end w-12 h-7 bg-gray-600 rounded-md text-white font-bold text-sm">변경</button></div>
-        
-      </div>  
+
+<!-- 지역 선택 dropdown -->
+<div id="location" class="input-box mt-4">
+  <label for="location" class="block text-black-700 font-bold mb-2">지역 선택</label>
+  <div
+    class="flex items-center justify-end w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600"
+  >
+  
+    <select
+      id="locationSelect"
+      name="location"
+      class="form-select w-60 h-9 px-3 py-2 rounded-md border-none focus:outline-none"
+      required
+    >
+    <option id="regionDisplay" value=""  selected>${memberData.region}</option>
+    <option value="강원특별자치도">강원특별자치도</option>
+    <option value="경기도">경기도</option>
+    <option value="광주광역시">광주광역시</option>
+    <option value="경상남도">경상남도</option>
+    <option value="경상북도">경상북도</option>
+    <option value="대구광역시">대구광역시</option>
+    <option value="대전광역시">대전광역시</option>
+    <option value="부산광역시">부산광역시</option>
+    <option value="서울특별시">서울특별시</option>
+    <option value="세종특별자치시">세종특별자치시</option>
+    <option value="인천광역시">인천광역시</option>
+    <option value="울산광역시">울산광역시</option>
+    <option value="전라남도">전라남도</option>
+    <option value="전라북도">전라북도</option>
+    <option value="제주특별자치도">제주특별자치도</option>
+    <option value="충청남도">충청남도</option>
+    <option value="충청북도">충청북도</option>
+    </select>
+    <button
+      id="changeRegion"
+      type="button"
+      class="ml-8 items-end w-12 h-7 bg-gray-600 rounded-md text-white font-bold text-sm"
+    >
+      변경
+    </button>
+  </div>
+</div>
          </div>
          <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
          <script src="js/editMember.js"></script>
