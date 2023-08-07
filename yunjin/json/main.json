@@ -11,54 +11,54 @@
 	],
 	"weather": [
 		{
-			"id": 12,
+			"id": 1,
 			"from": "경기도청",
-			"category": "RAIN HOT WIND",
-			"content": "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
+			"category": "RAIN",
+			"content": "비가 온다. 주륵주륵",
 			"time": "2023-07-23 오전 02:16",
 			"comment": 14
 		},
 		{
-			"id": 13,
+			"id": 2,
 			"from": "행정안전부",
 			"category": "SNOW",
-			"content": "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
+			"content": "곧 태풍이 온다는데 모르겠다",
 			"time": "2023-07-23 오전 02:16",
 			"comment": 16
 		}
 	],
 	"earthquake": [
 		{
-			"id": 12,
+			"id": 3,
 			"from": "경기도청",
-			"category": "RAIN HOT WIND",
-			"content": "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
+			"category": "EARTHQUAKE",
+			"content": "지진이래 도망쳐",
 			"time": "2023-07-23 오전 02:16",
 			"comment": 14
 		},
 		{
-			"id": 13,
+			"id": 4,
 			"from": "행정안전부",
-			"category": "SNOW",
-			"content": "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
+			"category": "EARTHQUAKE",
+			"content": "지진 실화인가요?",
 			"time": "2023-07-23 오전 02:16",
 			"comment": 16
 		}
 	],
 	"civil": [
 		{
-			"id": 12,
+			"id": 5,
 			"from": "경기도청",
-			"category": "RAIN HOT WIND",
-			"content": "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
+			"category": "CIVIL",
+			"content": "민방위 훈련이래여 꺄",
 			"time": "2023-07-23 오전 02:16",
-			"comment": 14
+			"comment": 9
 		},
 		{
-			"id": 13,
+			"id": 6,
 			"from": "행정안전부",
-			"category": "SNOW",
-			"content": "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
+			"category": "CIVIL",
+			"content": "충성 이리메르 갔다가 ",
 			"time": "2023-07-23 오전 02:16",
 			"comment": 16
 		}
@@ -67,16 +67,16 @@
 		{
 			"id": 12,
 			"from": "경기도청",
-			"category": "RAIN HOT WIND",
-			"content": "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
+			"category": "lost",
+			"content": "실종 아동을 찾습니다. ",
 			"time": "2023-07-23 오전 02:16",
 			"comment": 14
 		},
 		{
 			"id": 13,
 			"from": "행정안전부",
-			"category": "SNOW",
-			"content": "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
+			"category": "lost",
+			"content": "실종 어르신을 찾습니다.",
 			"time": "2023-07-23 오전 02:16",
 			"comment": 16
 		}
