@@ -44,8 +44,8 @@ $("#authButton").on("click", function (e) {
 
 
   $.ajax({
-    url: "http://ppiyoung/api/user/emailCheck", 
-    data: { "mail": $("input[name='email']").val() },
+    url: "https://ppiyong.shop/api/user/emailCheck", 
+    data: { "email": $("input[name='email']").val() },
     type: "POST",
     success: function (data) {
       
