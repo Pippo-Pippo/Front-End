@@ -25,79 +25,33 @@
 
       <div id="signup-wrap" class="block">
         <!-- 이메일, 비밀번호, 비밀번호 재입력 inputbox -->
-        <!-- 이메일 인증 input-box -->
         <div class="input-box mt-5 relative">
-          <label
-            for="email"
-            class="flex flex-col items-start block text-black-700 font-bold mb-2"
-            >이메일</label
-          >
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600"
-            required
-          />
-          <button
-            id="authButton"
-            type="button"
-            class="absolute right-2 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-bold text-sm"
-          >
-            인증
-          </button>
+          <label for="email" class="flex flex-col items-start block text-black-700 font-bold mb-2">이메일</label>
+          <input type="email" id="email" name="email" class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600" required />
+          <button id="authButton" type="button" class="absolute right-2 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-bold text-sm">인증</button>
         </div>
+        
         <!-- 인증번호 발송 문구 -->
-        <div
-          id="verificationMessage"
-          class="text-sm text-black mt-1"
-          style="display: none"
-        >
-          <img
-            src="img/인증번호.png"
-            alt="인증번호"
-            class="w-4 h-4 flex items-center mr-2"
-          />
+        <div id="verificationMessage" class="text-sm text-black mt-1" style="display: none">
+          <img src="img/인증번호.png" alt="인증번호" class="w-4 h-4 flex items-center mr-2" />
           <span>인증번호가 발송되었습니다.</span>
         </div>
-
+      
         <!-- 인증번호 입력 input-box -->
-        <div
-          id="verificationInput"
-          class="input-box mt-5 relative"
-          style="display: none"
-        >
-          <label
-            for="verificationCode"
-            class="block text-black-700 font-bold mb-2"
-            >인증번호</label
-          >
-          <input
-            type="number"
-            id="verificationCode"
-            name="verificationCode"
-            class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600"
-            required
-          />
-          <button
-            id="verifyButton"
-            type="button"
-            class="absolute right-2 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-bold text-sm"
-          >
-            확인
-          </button>
+        <div id="verificationInput" class="input-box mt-5 relative" style="display: none">
+          <label for="verificationCode" class="block text-black-700 font-bold mb-2">인증번호</label>
+          <input type="number" id="verificationCode" name="verificationCode" class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600" required />
+          <button id="verifyButton" type="button" class="absolute right-2 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-bold text-sm">확인</button>
         </div>
+        
         <!-- 인증번호 확인 문구 -->
-        <div
-          id="verificationConfirm"
-          class="text-sm text-black mt-1"
-          style="display: none"
-        >
+        <div id="verificationConfirm" class="text-sm text-black mt-1" style="display: none">
           <div class="flex items-center">
             <img src="img/인증번호.png" alt="인증번호" class="w-4 h-4 mr-2" />
             <span>인증번호가 확인되었습니다.</span>
           </div>
         </div>
+      </div>
 
         <!-- 비밀번호 input-box -->
         <div class="input-box mt-4">
