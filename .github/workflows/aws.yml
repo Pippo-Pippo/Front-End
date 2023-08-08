@@ -24,6 +24,6 @@ jobs:
         port: ${{ secrets.EC2_SSH_PORT }}
         timeout: 60s
         script: |
-          sudo cd /usr/share/nginx/html
+          cd /usr/share/nginx/html
           sudo git pull origin main
           
