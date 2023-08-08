@@ -67,33 +67,7 @@
         </div>
       </div>
 
-      <div class="my-checklists-container">
-        <div class="flex">
-          <div
-            class="bg-gray-600 w-12 h-12 rounded-full my-2 mr-2 flex justify-center items-center"
-          >
-            <p class="text-white text-2xl text-bold">A</p>
-          </div>
-
-          <div
-            class="bg-gray-300 w-12 h-12 rounded-full my-2 mr-2 flex justify-center items-center"
-          >
-            <p class="text-black text-2xl text-bold">B</p>
-          </div>
-
-          <div
-            class="bg-gray-300 w-12 h-12 rounded-full my-2 mr-2 flex justify-center items-center"
-          >
-            <p class="text-black text-2xl text-bold">C</p>
-          </div>
-
-          <div
-            class="bg-gray-300 w-12 h-12 rounded-full my-2 mr-2 flex justify-center items-center"
-          >
-            <p class="text-black text-2xl text-bold">+</p>
-          </div>
-        </div>
-      </div>
+      <div class="my-checklists-container flex"></div>
 
       <div class="my-checklist">
         <div
@@ -165,9 +139,14 @@
 
       <!--  수정사항 알림 div -->
       <div
-        class="hidden alert-message flex justify-center bg-yellow-100 py-2 px-3 rounded-full"
+        id="update-popup"
+        class="hidden flex fixed inset-0 items-center justify-center"
       >
-        <p class="text-xs font-bold">수정사항이 성공적으로 반영되었습니다.</p>
+        <div class="w-72 bg-yellow-100 py-2 px-3 rounded-full">
+          <p class="text-xs font-bold text-center">
+            수정사항이 성공적으로 반영되었습니다.
+          </p>
+        </div>
       </div>
     </div>
   </body>
