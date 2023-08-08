@@ -8,11 +8,8 @@ $(document).ready(function() {
 
     $.ajax({
       type: "POST",
-      url: "http://ppiyoung/api/user/login",
-      data: JSON.stringify({
-        'email': email,
-        'password': password,
-      }),
+      url: "https://ppiyong.shop/api/user/login",
+      data: { "email": $("input[name='email']").val() ,"password": $("input[name='password']").val()},
       contentType: "application/json", 
       dataType: "json", 
       success: function (response) {
@@ -25,9 +22,11 @@ $(document).ready(function() {
           alert('로그인 실패: 잘못된 이메일 또는 비밀번호입니다.');
         }
       },
-      error: function (xhr, status, error) {
-        console.error(xhr, status, error);
-        alert('서버 요청 실패: 서버에 문제가 발생하였습니다.');
+      error: function (req, status, err) {
+    
+        console.log(req);
+        alert("서버 요청에 실패.");
+       
       }
     });
   });
