@@ -36,13 +36,18 @@ body {
     margin-bottom: 5px;
     margin-left: 13px;
     flex-basis: 50%;
-    
 }
 #countryBox {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     max-width: 500px; 
+}
+
+#countryBox button:hover,
+#categoryBox button:hover
+{
+    background-color:#FDE047 ;
 }
 
 #countryBox div {
@@ -77,3 +82,5 @@ body {
     flex-basis: 50%;
     margin-bottom: 5px; 
 }
+
+
