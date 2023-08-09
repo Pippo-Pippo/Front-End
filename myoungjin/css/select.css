@@ -48,6 +48,7 @@ body {
 #categoryBox button:hover
 {
     background-color:#FDE047 ;
+    font-weight: bold;
 }
 
 #countryBox div {
