@@ -2,14 +2,14 @@
     {
             "name" : "빨리와대피소",
             "category" : "EARTHQUAKE",
-            "latitude" : 	126.9779692,
+            "latitude" : 126.9779692,
             "longitude" : 37.5664535,
             "address" : "서울특별시 빨리오길 145-3"
     },
     {
             "name" : "제발빨리와대피소",
             "category" : "CIVIL",
-            "latitude" : 	126.747272,
+            "latitude" : 126.747272,
             "longitude" : 37.737621,
             "address" : "서울특별시 제발빨리오길 145-3"
     } ]
