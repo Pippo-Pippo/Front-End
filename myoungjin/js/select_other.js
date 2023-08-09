@@ -1,6 +1,4 @@
-var select_regionList=[];
-var select_categoryList=[];
-
+var select_regionList = [];
 $.getJSON("../json/regionList.json", function (data) {
 
     const length = data.regionList.length;
@@ -26,34 +24,30 @@ $.getJSON("../json/regionList.json", function (data) {
     }
 });
 
-//클릭한 지역 리스트에 담는 함수
+function reset(){
+    select_regionList=[];
+    click_btn.style.backgroundColor = "#F4F4F5";
+    click_btn.style.fontWeight = "400";
+
+
+}
 function select_region(click_id) {
-        //지역선택
+        if(select_regionList==0){
         click_btn = document.getElementById(click_id);
         console.log(click_id);
         select_regionList.push(click_id);
         console.log(select_regionList);
         click_btn.style.backgroundColor = "#FDE047";
-        click_btn.style.fontWeight = "700"
-}
-function select_category(click_id) {
-    //지역선택
-    click_btn = document.getElementById(click_id);
-    console.log(click_id);
-    select_categoryList.push(click_id);
-    console.log(select_categoryList);
-    click_btn.style.backgroundColor = "#FDE047";
-    click_btn.style.fontWeight = "700"
-}
+        click_btn.style.fontWeight = "700";
+        $('#toastMsg').show();
+        }
+        else if(select_regionList>2){
+        reset(click_id);
+        }
 
+    //선택한 값 보내주기 
 
-//선택한 지역, 카테고리 보내는 함수
-function put(){
-    select_regionList=[];
-    select_categoryList=[];
-    document.getElementsByClassName("category_btn").style.backgroundColor="#F4F4F5";
-    document.getElementsByClassName("category_btn").style.fontWeight="400";
-        // $.ajax({
+    // $.ajax({
     //     type: "PUT",
     //     url: `http://page.ppiyong.shop/api/notification/region`,
     //     contentType: "application/json",
@@ -74,8 +68,8 @@ function put(){
     //     },
     // });
 
-
 }
-    
+
+//두번누르면 취소되는 기능 ??
 
 
