@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "deploy" ]
 
 jobs:
   deploy: 
@@ -25,5 +25,5 @@ jobs:
         timeout: 60s
         script: |
           cd /usr/share/nginx/html
-          sudo git pull origin main
+          sudo git pull origin deploy
           
