@@ -150,7 +150,7 @@ function renderDeleteButton() {
     .addClass("delete-btn ml-auto")
     .append(
       $("<img>").attr({
-        src: "../../img/delete_icon.svg",
+        src: "./img/svg/delete_icon.svg",
         width: "18",
         height: "18",
       })
