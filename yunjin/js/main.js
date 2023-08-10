@@ -5,7 +5,7 @@ $(document).ready(function () {
 
   function noticeRolling() {
     move += height;
-    $(".news-list").animate({ "top": -move }, 600, function () {
+    $(".news-list").animate({ top: -move }, 600, function () {
       if (move >= $(".news-list li").length * height) {
         $(this).css("top", 0);
         move = 0;
@@ -24,7 +24,7 @@ $(document).ready(function () {
   });
 
   //json (뉴스)
-   function loadnews() {
+  function loadnews() {
     return fetch("json/main.json")
       .then((response) => response.json())
       .then((json) => json.news)
@@ -42,7 +42,6 @@ $(document).ready(function () {
     console.log(news);
     const container = document.getElementById("news-item");
     container.innerHTML = news.map((item) => createHTMLString(item)).join("");
-  
   }
 
   function createHTMLString(news) {
@@ -65,7 +64,6 @@ function loadWeather() {
     });
 }
 
-
 document.getElementById("weatherButton").addEventListener("click", function () {
   loadWeather().then((weatherData) => {
     filteredWeatherData = weatherData.filter((item) => {
@@ -87,7 +85,6 @@ function displayWeather(weather) {
   console.log(weather);
   const container = document.getElementById("main");
   container.innerHTML = weather.map((item) => createHTMLString(item)).join("");
- 
 }
 
 function createHTMLString(weather) {
@@ -134,14 +131,16 @@ function loadEarthquake() {
     });
 }
 
-document.getElementById("earthquakeButton").addEventListener("click", function () {
-  loadEarthquake().then((earthquakeData) => {
-    const filteredEarthquakeData = earthquakeData.filter((item) => {
-      return item.category === "EARTHQUAKE" || item.category === "TSUNAMI";
+document
+  .getElementById("earthquakeButton")
+  .addEventListener("click", function () {
+    loadEarthquake().then((earthquakeData) => {
+      const filteredEarthquakeData = earthquakeData.filter((item) => {
+        return item.category === "EARTHQUAKE" || item.category === "TSUNAMI";
+      });
+      displayEarthquake(filteredEarthquakeData);
     });
-    displayEarthquake(filteredEarthquakeData);
   });
-});
 
 loadEarthquake().then((earthquakeData) => {
   displayEarthquake(earthquakeData);
@@ -149,7 +148,9 @@ loadEarthquake().then((earthquakeData) => {
 
 function displayEarthquake(earthquakeData) {
   const container = document.getElementById("main");
-  container.innerHTML = earthquakeData.map((item) => createHTMLString(item)).join("");
+  container.innerHTML = earthquakeData
+    .map((item) => createHTMLString(item))
+    .join("");
 }
 
 function createHTMLString(earthquake) {
@@ -189,9 +190,7 @@ function createHTMLString(earthquake) {
 document.getElementById("civilButton").addEventListener("click", function () {
   loadcivil().then((civilData) => {
     const filteredcivilData = civilData.filter((item) => {
-      return (
-        item.category === "CIVIL" 
-      );
+      return item.category === "CIVIL";
     });
     displayCivil(civilData);
   });
@@ -213,7 +212,9 @@ function loadcivil() {
 
 function displayCivil(civilData) {
   const container = document.getElementById("main");
-  container.innerHTML = civilData.map((item) => createHTMLString(item)).join("");
+  container.innerHTML = civilData
+    .map((item) => createHTMLString(item))
+    .join("");
 }
 
 function createHTMLString(civil) {
@@ -252,9 +253,7 @@ function createHTMLString(civil) {
 document.getElementById("lostButton").addEventListener("click", function () {
   loadlost().then((lostData) => {
     const filteredlostData = lostData.filter((item) => {
-      return (
-        item.category === "LOST" 
-      );
+      return item.category === "LOST";
     });
     displaylost(lostData);
   });

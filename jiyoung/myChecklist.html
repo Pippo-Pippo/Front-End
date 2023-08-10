@@ -77,17 +77,24 @@
             <div class="checklist-title">
               <div class="flex justify-between">
                 <p
-                  contenteditable="false"
                   id="checklist-title-text"
                   class="font-bold px-4 py-2 text-lg"
-                >
-                  체크리스트 A
-                </p>
+                ></p>
                 <button
+                  id="checklist-share-button"
+                  onclick="handleShare()"
                   type="button"
-                  class="m-1.5 px-2.5 py-1 text-white bg-gray-600 hover:bg-gray-100 rounded-lg border border-gray-200 text-sm font-medium hover:text-gray-900"
+                  class="m-1.5 px-2.5 py-1 text-white text-center bg-gray-600 rounded-lg border border-gray-200 text-sm font-medium"
                 >
-                  <p class="text-center">공유하기</p>
+                  공유하기
+                </button>
+                <button
+                  id="checklist-delete-button"
+                  onclick="handleDelete()"
+                  type="button"
+                  class="hidden m-1.5 px-2.5 py-1 text-white text-center bg-red-500 rounded-lg border border-gray-200 text-sm font-medium"
+                >
+                  삭제
                 </button>
               </div>
               <div class="bg-gray-100 h-0.5"></div>
