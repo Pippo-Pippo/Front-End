@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="config.css" />
+    <link rel="stylesheet" href="../css/config.css" />
     <title>삐용</title>
   </head>
   <body class="flex flex-col items-center mt-8">
     <!-- 로고 이미지 삽입 -->
     <div class="flex items-center justify-center mb-10">
-      <img src="img/logo.png" alt="logo" class="w-8 h-8" />
-      <!-- 삐용 이미지 -->
-      <img src="img/삐용.png" alt="삐용" class="w-16 h-9 mt-1 ml-1" />
+      <a href="#" class="flex items-center">
+        <img src="../img/logo.png" class="w-24 h-9 mr-3" />
+      </a>
     </div>
     <div class="flex flex-col items-start">
       <!-- 회원가입 -->
@@ -33,7 +33,7 @@
         
         <!-- 인증번호 발송 문구 -->
         <div id="verificationMessage" class="text-sm text-black mt-1" style="display: none">
-          <img src="img/인증번호.png" alt="인증번호" class="w-4 h-4 flex items-center mr-2" />
+          <img src="../img/svg/check_icon.svg" alt="인증번호" class="w-4 h-4 flex items-center mr-2" />
           <span>인증번호가 발송되었습니다.</span>
         </div>
       
@@ -47,7 +47,7 @@
         <!-- 인증번호 확인 문구 -->
         <div id="verificationConfirm" class="text-sm text-black mt-1" style="display: none">
           <div class="flex items-center">
-            <img src="img/인증번호.png" alt="인증번호" class="w-4 h-4 mr-2" />
+            <img src="../img/svg/check_icon.svg" alt="인증번호" class="w-4 h-4 mr-2" />
             <span>인증번호가 확인되었습니다.</span>
           </div>
         </div>
@@ -206,7 +206,7 @@
       });
     </script>
      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-     <script src="js/signup.js"></script>
+     <script src="../js/signup.js"></script>
   </body>
 </html>
 
