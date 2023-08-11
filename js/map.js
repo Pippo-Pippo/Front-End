@@ -40,7 +40,7 @@ if (navigator.geolocation) {
 
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker(locPosition) {
-    var image = '../img/location.svg';
+    var image = '/img/svg/location.svg';
     var markerImage = new kakao.maps.MarkerImage(image, imageSize, imageOption);
     // 마커를 생성합니다
     var marker = new kakao.maps.Marker({
@@ -57,10 +57,10 @@ function displayMarker(locPosition) {
 //마커 생성
 var imageRed = '../img/red_marker.svg', // 마커이미지의 주소입니다
     imageYellow = '../img/yellow_marker.svg',
-    imageSize = new kakao.maps.Size(40,50), // 마커이미지의 크기입니다
+    imageSize = new kakao.maps.Size(40, 50), // 마커이미지의 크기입니다
     imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-//목업데이터 불러오기
+// 목업데이터 불러오기
 $.getJSON("../json/map.json", function (data) {
     $.each(data, function (index, item) {
         var name = item.name,
@@ -153,6 +153,7 @@ $.getJSON("../json/map.json", function (data) {
 //     url: `http://page.ppiyong.shop/api/shelter`,
 //     contentType: "application/json",
 //     success: function (data) {
+//         console.log("통신실패");
 //         $.each(data, function (index, item) {
 //             var name = item.name,
 //                 category = item.category,
@@ -237,7 +238,16 @@ $.getJSON("../json/map.json", function (data) {
 
 //     },
 //     error: function (request, status, error) {
-//         alert(message);
+//         alert(
+//         "code:" +
+//             request.status +
+//             "\n" +
+//             "message:" +
+//             request.responseText +
+//             "\n" +
+//             "error:" +
+//             error
+//         );
 //     },
 // });
 
