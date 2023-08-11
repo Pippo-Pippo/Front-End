@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
 
 
     <title>삐용</title>
@@ -52,7 +53,7 @@
                 </div>
             </nav>
             <!--main-->
-            <div class="bg-gray-50">
+            <div class="bg-gray-50" id="main">
                 <div class="ml-5 mr-5 mb-5 mt-2">
                     <div class="address">
                     <div class="font-bold text-2xl">인천광역시 부평구 삼산2동</div>
@@ -73,8 +74,9 @@
                 <!-- <div id="modal" class="bg-white" style="display:none;"> -->
                 <div id="modal" class="bg-white">
                     <!-- <div class="modal-window"> -->
-                        <div class="close-area">
-                            <button>
+                        <div class="content_map">
+                        <div class="ml-auto">
+                            <button onclick="out()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
                                     fill="none">
                                     <path d="M1 1L13 13M1 13L13 1L1 13Z" stroke="#3F3F46" stroke-width="2"
@@ -82,14 +84,14 @@
                                 </svg>
                             </button>
                         </div>
-                        <div class="content">
-                            <div>보람아파트 지하주차장 대피소</div>
+                        
+                            <!-- <div>보람아파트 지하주차장 대피소</div>
                             <div><button
                                     class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">민방위
                                     대피시설</button></div>
                             <div>
                                 <div><span>인천광역시 부평구 굴포로 158</span><button class="ml-2">복사</button></div>
-                            </div>
+                            </div> -->
                         </div>
                     <!-- </div> -->
                 </div>
