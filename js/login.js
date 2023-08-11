@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: "POST",
-      url: "https://ppiyong.shop/api/user/login",
+      url: "https://page.ppiyong.shop/user/login",
       data: { "email": $("input[name='email']").val() ,"password": $("input[name='password']").val()},
       contentType: "application/json", 
       dataType: "json", 
