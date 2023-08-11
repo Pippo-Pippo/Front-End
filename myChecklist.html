@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-    <script src="./js/myChecklist.js"></script>
+    <script src="./js/refactoring.js"></script>
 
     <title>main</title>
     <link rel="stylesheet" href="../css/config.css" />
@@ -77,17 +77,17 @@
             <div class="checklist-title">
               <div class="flex justify-between">
                 <p
-                  contenteditable="false"
                   id="checklist-title-text"
                   class="font-bold px-4 py-2 text-lg"
                 >
                   체크리스트 A
                 </p>
                 <button
+                  id="delete-checklist"
                   type="button"
-                  class="m-1.5 px-2.5 py-1 text-white bg-gray-600 hover:bg-gray-100 rounded-lg border border-gray-200 text-sm font-medium hover:text-gray-900"
+                  class="m-1.5 px-2.5 py-1 text-white bg-red-500 rounded-lg border border-gray-200 text-sm font-medium"
                 >
-                  <p class="text-center">공유하기</p>
+                  <p class="text-center">삭제하기</p>
                 </button>
               </div>
               <div class="bg-gray-100 h-0.5"></div>
@@ -97,7 +97,7 @@
           </div>
 
           <div class="checklist-footer">
-            <div class="hidden checklist-input mt-2 mb-2 relative">
+            <div class="checklist-input mt-2 mb-2 relative">
               <input
                 id="checklist-input"
                 placeholder="체크리스트를 추가해보세요."
@@ -117,35 +117,13 @@
 
             <div class="flex justify-center items-center">
               <button
-                onclick="getEditMode()"
-                id="edit-btn"
                 type="button"
-                class="m-1.5 px-2.5 py-1 text-white bg-green-600 hover:bg-green-700 rounded-lg border border-gray-200 text-sm font-medium hover:text-white"
+                class="m-1.5 px-2.5 py-1 text-white bg-gray-600 hover:bg-gray-100 rounded-lg border border-gray-200 text-sm font-medium hover:text-gray-900"
               >
-                <p class="text-center">수정하기</p>
-              </button>
-              <button
-                onclick="getNormalMode()"
-                id="edit-done-btn"
-                type="button"
-                class="hidden m-1.5 px-2.5 py-1 text-white bg-green-600 hover:bg-green-700 rounded-lg border border-gray-200 text-sm font-medium hover:text-white"
-              >
-                <p class="text-center">수정완료</p>
+                <p class="text-center">공유하기</p>
               </button>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!--  수정사항 알림 div -->
-      <div
-        id="update-popup"
-        class="hidden flex fixed inset-0 items-center justify-center"
-      >
-        <div class="w-72 bg-yellow-100 py-2 px-3 rounded-full">
-          <p class="text-xs font-bold text-center">
-            수정사항이 성공적으로 반영되었습니다.
-          </p>
         </div>
       </div>
     </div>
