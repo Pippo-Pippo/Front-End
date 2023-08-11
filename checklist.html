@@ -7,10 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
-    <script src="./assets/config.js"></script>
-
-    <title>main</title>
+    <title>삐용</title>
     <link rel="stylesheet" href="../css/config.css" />
+    <script src="./js/checklist.js"></script>
   </head>
 
   <body>
@@ -62,7 +61,7 @@
               <span class="font-bold">대비</span>해 보세요
             </p>
           </div>
-          <div><img src="../img/checklist_icon.png"</div>
+          <div><img src="../img/icon/checklist_icon.png"</div>
         </div>
       </div>
 
@@ -82,7 +81,7 @@
             <div class="flex justify-center items-center">
               <img
                 class="flex justify-center items-center"
-                src="../img/rain_icon.png"
+                src="../img/icon/rain_icon.png"
               />
             </div>
             <p class="text-sm">호우/홍수/침수</p>
@@ -96,7 +95,7 @@
             <div class="flex justify-center items-center">
               <img
                 class="flex justify-center items-center"
-                src="../img/earthquake_icon.png"
+                src="../img/icon/earthquake_icon.png"
               />
             </div>
             <p class="text-sm text-center">지진/해일</p>
@@ -110,7 +109,7 @@
             <div class="flex justify-center items-center">
               <img
                 class="flex justify-center items-center"
-                src="../img/typhoon_icon.png"
+                src="../img/icon/typhoon_icon.png"
               />
             </div>
             <p class="text-sm text-center">태풍/강풍</p>
@@ -124,7 +123,7 @@
             <div class="flex justify-center items-center">
               <img
                 class="flex justify-center items-center"
-                src="../img/hotSummer_icon.png"
+                src="../img/icon/hotSummer_icon.png"
               />
             </div>
             <p class="text-sm text-center">폭염</p>
@@ -138,7 +137,7 @@
             <div class="flex justify-center items-center">
               <img
                 class="flex justify-center items-center"
-                src="../img/snow_icon.png"
+                src="../img/icon/snow_icon.png"
               />
             </div>
             <p class="text-sm text-center">대설</p>
@@ -152,7 +151,7 @@
             <div class="flex justify-center items-center">
               <img
                 class="flex justify-center items-center"
-                src="../img/ambulance_icon.png"
+                src="../img/icon/ambulance_icon.png"
               />
             </div>
             <p class="text-sm text-center">안전/테러</p>
@@ -165,13 +164,15 @@
           class="bg-white w-80 h-24 rounded shadow flex justify-center items-center mt-4"
         >
           <div class="block justify-center items-center">
-            <div class="flex justify-center items-center">
-              <img
-                class="flex justify-center items-center"
-                src="../img/pencil_icon.png"
-              />
-            </div>
-            <p class="text-sm text-center">MY 체크리스트</p>
+            <a href="/myChecklist.html">
+              <div class="flex justify-center items-center">
+                <img
+                  class="flex justify-center items-center"
+                  src="../img/icon/pencil_icon.png"
+                />
+              </div>
+              <p class="text-sm text-center">MY 체크리스트</p>
+            </a>
           </div>
         </div>
       </div>
