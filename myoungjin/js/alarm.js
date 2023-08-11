@@ -6,7 +6,68 @@ String.prototype.replaceAt = function (index, replacement) {
     return this.substring(0, index) + replacement + this.substring(index + 1);
 }
 var alarm_num = 0;
-//백엔드 통신 전(목데이터)
+// 백엔드 통신 후 (ajax)
+// $(document).ready(function () {
+
+//     $.ajax({
+//         type: "GET",
+//         async: false,
+//         url: `http://page.ppiyong.shop/api/notification`,
+//         contentType: "application/json",
+//         success: function (data) {
+//             console.log("알림 데이터 가져오기 성공");
+//             // console.log(data);
+
+//             $.each(data, function (index, item) {
+//                 var id = item.id,
+//                     title = item.title,
+//                     content = item.content,
+//                     time = item.createdAt;
+
+//                 var date = ChangeTime(time);
+
+//                 //몇분전, 몇시간전 텍스트로 받기
+//                 var timeText = elapsedText(date);
+
+//                 $(document).ready(function () {
+//                     const alarm = $("#alarm_message");
+//                     // Create the inner div with class and content
+//                     const innerDiv = $('<div>').addClass('pb-2 border-b-2 mt-4');
+//                     const innerContent = $('<div>').addClass('flex ml-3');
+//                     const titleDiv = $('<div>').addClass('font-bold text-xl mb-1 mr-2').text(title);
+//                     const timeDiv = $('<div>').addClass('text-xs ml-auto').text(timeText);
+//                     const messageDiv = $('<div>').addClass('ml-3 mb-2').text(content);
+
+//                     // Build the structure
+//                     innerContent.append(titleDiv, timeDiv);
+//                     innerDiv.append(innerContent, messageDiv);
+//                     alarm.append(innerDiv);
+
+//                 });
+//                 alarm_num += 1;
+
+//             })
+//             console.log(alarm_num);
+//             const numDiv = $('<div>').text("아직 확인하지 않은 " + alarm_num + "개의 알림이 있어요");
+//             $('#alarm_num').append(numDiv);
+//         },
+//         error: function (request, status, error) {
+//             //alert(
+//             "code:" +
+//                 request.status +
+//                 "\n" +
+//                 "message:" +
+//                 request.responseText +
+//                 "\n" +
+//                 "error:" +
+//                 error
+//             // );
+//         }
+//     });
+
+// });
+
+// 백엔드 통신 전(목데이터)
 $.getJSON("../json/alarm.json", function (data) {
     $.each(data, function (index, item) {
         var id = item.id,
@@ -23,9 +84,9 @@ $.getJSON("../json/alarm.json", function (data) {
             const alarm = $("#alarm_message");
             // Create the inner div with class and content
             const innerDiv = $('<div>').addClass('pb-2 border-b-2 mt-4');
-            const innerContent = $('<div>').addClass('flex space-x-36 ml-3');
+            const innerContent = $('<div>').addClass('flex ml-3');
             const titleDiv = $('<div>').addClass('font-bold text-xl mb-1 mr-2').text(title);
-            const timeDiv = $('<div>').addClass('text-xs').text(timeText);
+            const timeDiv = $('<div>').addClass('text-xs ml-auto').text(timeText);
             const messageDiv = $('<div>').addClass('ml-3 mb-2').text(content);
 
             // Build the structure
@@ -54,8 +115,7 @@ function ChangeTime(time) {
     console.log(hours);
     var minute = time.substring(14);
     console.log(minute);
-    var date = new Date(years, month, hours, minute);
-    //다 제대로 받아왔는데 date()에 들어가면 8월 22일로 떠버림. 왜 ?
+    var date = new Date(years, month, day, hours, minute);
     return date;
 };
 
@@ -92,64 +152,5 @@ function elapsedText(date) {
     return elapsedText;
 }
 
-//백엔드 통신 후 (ajax)
-// $(document).ready(function () {
 
-//     $.ajax({
-//         type: "GET",
-//         async: false,
-//         url: `http://page.ppiyong.shop/api/notification`,
-//         contentType: "application/json",
-//         success: function (data) {
-//             console.log("알림 데이터 가져오기 성공");
-//             // console.log(data);
-
-//             $.each(data, function (index, item) {
-//                 var id = item.id,
-//                     title = item.title,
-//                     content = item.content,
-//                     time = item.createdAt;
-
-//                 var date = ChangeTime(time);
-
-//                 //몇분전, 몇시간전 텍스트로 받기
-//                 var timeText = elapsedText(date);
-
-//                 $(document).ready(function () {
-//                     const alarm = $("#alarm_message");
-//                     // Create the inner div with class and content
-//                     const innerDiv = $('<div>').addClass('pb-2 border-b-2 mt-4');
-//                     const innerContent = $('<div>').addClass('flex space-x-36 ml-3');
-//                     const titleDiv = $('<div>').addClass('font-bold text-xl mb-1 mr-2').text(title);
-//                     const timeDiv = $('<div>').addClass('text-xs').text(timeText);
-//                     const messageDiv = $('<div>').addClass('ml-3 mb-2').text(content);
-
-//                     // Build the structure
-//                     innerContent.append(titleDiv, timeDiv);
-//                     innerDiv.append(innerContent, messageDiv);
-//                     alarm.append(innerDiv);
-
-//                 });
-//                 alarm_num += 1;
-
-//             })
-//             console.log(alarm_num);
-//             const numDiv = $('<div>').text("아직 확인하지 않은 " + alarm_num + "개의 알림이 있어요");
-//             $('#alarm_num').append(numDiv);
-//         },
-//         error: function (request, status, error) {
-//             //alert(
-//             "code:" +
-//                 request.status +
-//                 "\n" +
-//                 "message:" +
-//                 request.responseText +
-//                 "\n" +
-//                 "error:" +
-//                 error
-//             // );
-//         }
-//     });
-
-// });
 
