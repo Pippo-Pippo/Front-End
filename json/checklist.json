@@ -1,6 +1,6 @@
 [
   {
-    "checklistId": 1,
+    "check_list_Id": 1,
     "title": "A",
     "task": [
       {
@@ -16,8 +16,19 @@
     ]
   },
   {
-    "checklistId": 2,
+    "check_list_Id": 2,
     "title": "B",
-    "task": []
+    "task": [
+      {
+        "taskId": 1,
+        "content": "두번째임",
+        "isComplete": "True"
+      },
+      {
+        "taskId": 2,
+        "content": "꼬미 간식 챙기기",
+        "isComplete": "False"
+      }
+    ]
   }
 ]
