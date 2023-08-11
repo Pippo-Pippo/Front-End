@@ -55,8 +55,8 @@ function displayMarker(locPosition) {
 }
 
 //마커 생성
-var imageRed = '../img/red_marker.svg', // 마커이미지의 주소입니다
-    imageYellow = '../img/yellow_marker.svg',
+var imageRed = '/img/svg/red_marker.svg', // 마커이미지의 주소입니다
+    imageYellow = '/img/svg/yellow_marker.svg',
     imageSize = new kakao.maps.Size(40, 50), // 마커이미지의 크기입니다
     imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
@@ -105,20 +105,21 @@ $.getJSON("../json/map.json", function (data) {
         customOverlay.setMap(map);
 
         kakao.maps.event.addListener(marker, 'click', function () {
-            const mainDiv = $(".content");
+            const mainDiv = $(".content_map");
             // Create the first inner div
             const div1 = document.createElement('div');
             div1.textContent = name;
+            div1.className = 'ml-5 text-lg font-bold mb-2';
             mainDiv.append(div1);
 
             // Create the second inner div with button
             const div2 = document.createElement('div');
             const button = document.createElement('button');
             if (category == "EARTHQUAKE") {
-                button.className = 'h-8 bg-yellow-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold';
+                button.className = 'h-8 bg-yellow-400 item-center rounded-full text-xs ml-5 px-4 p-2 mb-2 text-white font-bold';
             }
             else {
-                button.className = 'h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold';
+                button.className = 'h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 mb-2 text-white font-bold';
             }
             button.textContent = value;
             div2.appendChild(button);
@@ -129,10 +130,12 @@ $.getJSON("../json/map.json", function (data) {
             const div3 = document.createElement('div');
             const span = document.createElement('span');
             span.textContent = address;
+            span.className='textArea';
             const copyButton = document.createElement('button');
             copyButton.textContent = '복사';
-            copyButton.className='ml-2 rounded bg-gray-600 text-white';
-            copyButton.setAttribute('onclick', 'copy()');
+            copyButton.className='ml-2 p-1 rounded bg-gray-600 text-white';
+            copyButton.setAttribute('id','btn');
+            copyButton.setAttribute('data-clipboard-target','.textArea');
             div3.append(span);
             div3.append(copyButton);
 
@@ -251,13 +254,17 @@ $.getJSON("../json/map.json", function (data) {
 //     },
 // });
 
-function copy() {
-    var copyText = "텍스트";
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    document.execCommand("Copy");
+var clipboard = new ClipboardJS('#btn');
+      
+        clipboard.on('success', function(e) {
+            console.log(e);
+        });
+      
+        clipboard.on('error', function(e) {
+            console.log(e);
+        });
+function out() {
+    document.getElementById("modal").style.display = "none";
 }
-
-
 
 
