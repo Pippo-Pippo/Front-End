@@ -6,8 +6,8 @@ $(document).ready(function () {
     var password = $("#password").val();
 
     const data = {
-      email: "email",
-      password: "password",
+      email: email,
+      password: password,
     };
 
     $.ajax({
@@ -17,19 +17,20 @@ $(document).ready(function () {
       contentType: "application/json",
       success: function (response) {
         alert("로그인 성공");
+        window.location.href = "/main.html";
 
         // if (response.Id) {
         //   document.cookie = "Id=" + response.Id;
         //   alert("로그인 성공");
-        //   window.location.href = "/main.html";
+        //
         // } else {
         //   alert("로그인 실패: 잘못된 이메일 또는 비밀번호입니다.");
         // }
       },
       error: function (req, status, err) {
-        console.log(req.responseText);
+        const alert = JSON.parse(req.responseText);
         console.log(status, err);
-        alert("서버 요청에 실패.");
+        alert(alert.message);
       },
     });
   });
