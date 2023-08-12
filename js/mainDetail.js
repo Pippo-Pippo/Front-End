@@ -136,4 +136,69 @@
      //</div>`;
  
 //}
+//Get 댓글 요청
+$(document).ready(function() {
+  loadMainPost();
+
+  function loadMainPost() {
+    var postId = "postId"; 
+    var url = `https://ppiyong.shop/api/post/${postId}`;
+
+    $.ajax({
+      type: "GET",
+      url: url,
+      dataType: "json",
+      success: function(responseData) { 
+        var post = responseData;
+
+        // Update post details
+        $("#post-title").text(post.from);
+        $("#post-category").text(post.category);
+        $("#post-content").text(post.content);
+        $("#post-time").text(post.time);
+
+        var comments = post.comment; 
+        var dataContainer = $("#dataContainer"); 
+
+        dataContainer.empty();
+
+        comments.forEach(function(comment) {
+          var commentHtml = `
+          <div class="ml-5 text-start">
+            <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
+              <div class="flex items-center justify-between">
+                <div>${data.name}</div>
+                <div class="text-grey-600 font-medium text-sm ml-4">${data.createdAt}</div>
+              </div>
+              <div class="flex items-start justify-center text-black font-medium text-base">
+                ${data.content}
+              </div>
+              <div class="flex items-start justify-end">
+                <div class="font-light text-xs mt-1 mr-2">${data.like} Likes</div>
+                <div class="font-light text-xs mt-1">${data.hate} Hates</div>
+              </div>
+            </div>
+          </div>
+        `;
+          console.log(data);
+          dataContainer.append(commentHtml);
+          alert("데이터 불러오기 성공");
+        });
+      },
+      error: function(xhr, status, error) {
+        if (xhr.status === 204) {
+          console.error("Post not found:", error);
+          alert("포스트 요청 실패");
+        } else if (xhr.status === 403) {
+          console.error("Forbidden - No permission:", error);
+          alert("권한 없는 사용자");
+        } else {
+          console.error("Error fetching post details:", error);
+          alert("서버 요청에 실패.");
+        }
+      }
+    });
+  }
+});
+
 

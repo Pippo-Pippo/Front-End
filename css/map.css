@@ -55,7 +55,7 @@ body {
   display: flex;
   width:360px;
   height:156px;
-  top:-130px;
+  top:-150px;
   z-index: 1;
   flex-direction: column;
   border-radius: 10px 10px 0px 0px;
