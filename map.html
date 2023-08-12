@@ -8,6 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB12bgQnvBrc0Hwuztjrqpxvv7vEHvcf0U"
+    ></script>
 
 
     <title>삐용</title>
@@ -56,24 +61,22 @@
             <div class="bg-gray-50" id="main">
                 <div class="ml-5 mr-5 mb-5 mt-2">
                     <div class="address">
-                    <div class="font-bold text-2xl">인천광역시 부평구 삼산2동</div>
+                    <div class="font-bold text-2xl" id="current_city">현재 지역</div>
                     <div class="text-lg mt-1">주변 대피소를 확인해보세요.</div>
                     </div>
                     <div class="flex mb-2 mt-2 mb-1">
 
                         <button
-                            class="h-8 bg-gray-600 item-center rounded-full text-xs px-4 p-2 text-white font-bold">전체</button>
+                            class="h-8 bg-gray-600 item-center rounded-full text-xs px-4 p-2 text-white font-bold" onclick="go()">전체</button>
                         <button
-                            class="h-8 bg-yellow-600 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">지진/해일</button>
+                            class="h-8 bg-yellow-600 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold" onclick="earthquake()">지진/해일</button>
                         <button
-                            class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">민방위</button>
+                            class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold" onclick="civil()">민방위</button>
                     </div>
 
                     <div id="map" style="width: 100%; height: 72vh;"></div>
                 </div>
-                <!-- <div id="modal" class="bg-white" style="display:none;"> -->
                 <div id="modal" class="bg-white">
-                    <!-- <div class="modal-window"> -->
                         <div class="content_map">
                         <div class="ml-auto">
                             <button onclick="out()" class="p-2">
@@ -84,16 +87,15 @@
                                 </svg>
                             </button>
                         </div>
-                        
-                            <!-- <div>보람아파트 지하주차장 대피소</div>
-                            <div><button
-                                    class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold">민방위
-                                    대피시설</button></div>
-                            <div>
-                                <div><span>인천광역시 부평구 굴포로 158</span><button class="ml-2">복사</button></div>
-                            </div> -->
+                            <div id="name" class="ml-5 text-2xl font-bold mb-2"></div>
+                            <div id="value"><button id="category_btn" class="h-8 bg-black ">제발 나와줘 ㅜㅜ</button></div>
+                            <div id="address">
+                                <div class="flex ml-5">
+                                    <div id="textArea" class="mt-1"></div>
+                                    <button id="btn" data-clipboard-target="#textArea" class="ml-2 p-1 rounded bg-gray-600 text-white text-sm pl-2 pr-2 pt-1 pb-1">복사</button>
+                                </div>
+                            </div>
                         </div>
-                    <!-- </div> -->
                 </div>
             </div>
         </div>
