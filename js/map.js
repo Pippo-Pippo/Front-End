@@ -231,109 +231,109 @@ const categorizedData = {
 //     });
 // });
 
-// /************************ 백엔드 통신 ***************************/
-// // $.ajax({
-// //     type: "GET",
-// //     url: `http://page.ppiyong.shop/api/shelter`,
-// //     contentType: "application/json",
-// //     success: function (data) {
-// //         console.log("통신실패");
-// //         $.each(data, function (index, item) {
-// //             var name = item.name,
-// //                 category = item.category,
-// //                 lat = item.latitude,
-// //                 long = item.longitude,
-// //                 address = item.address;
-// //             var value = "구분";
-// //             if (category == "EARTHQUAKE") {
-// //                 // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-// //                 var markerImage = new kakao.maps.MarkerImage(imageRed, imageSize, imageOption);
-// //                 value = "지진/해일 대피시설";
-// //             }
-// //             else {
-// //                 imageSize = new kakao.maps.Size(36, 40);
-// //                 var markerImage = new kakao.maps.MarkerImage(imageYellow, imageSize, imageOption);
-// //                 value = "민방위 대피시설";
+/************************ 백엔드 통신 ***************************/
+$.ajax({
+    type: "GET",
+    url: `http://page.ppiyong.shop/api/shelter`,
+    contentType: "application/json",
+    success: function (data) {
+        console.log("통신실패");
+        $.each(data, function (index, item) {
+            var name = item.name,
+                category = item.category,
+                lat = item.latitude,
+                long = item.longitude,
+                address = item.address;
+            var value = "구분";
+            if (category == "EARTHQUAKE") {
+                // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                var markerImage = new kakao.maps.MarkerImage(imageRed, imageSize, imageOption);
+                value = "지진/해일 대피시설";
+            }
+            else {
+                imageSize = new kakao.maps.Size(36, 40);
+                var markerImage = new kakao.maps.MarkerImage(imageYellow, imageSize, imageOption);
+                value = "민방위 대피시설";
 
-// //             }
-// //             var markerPosition = new kakao.maps.LatLng(long, lat); // 마커가 표시될 위치입니다 //경도, 위도
+            }
+            var markerPosition = new kakao.maps.LatLng(long, lat); // 마커가 표시될 위치입니다 //경도, 위도
 
-// //             // 마커를 생성합니다
-// //             marker = new kakao.maps.Marker({
-// //                 position: markerPosition,
-// //                 image: markerImage // 마커이미지 설정 
-// //             });
+            // 마커를 생성합니다
+            marker = new kakao.maps.Marker({
+                position: markerPosition,
+                image: markerImage // 마커이미지 설정 
+            });
 
-// //             // 마커가 지도 위에 표시되도록 설정합니다
-// //             marker.setMap(map);
-// //             var content = '<div class ="label"><span class="left"></span><span class="center">' + name + '</span><span class="right"></span></div>'
+            // 마커가 지도 위에 표시되도록 설정합니다
+            marker.setMap(map);
+            var content = '<div class ="label"><span class="left"></span><span class="center">' + name + '</span><span class="right"></span></div>'
 
-// //             // 커스텀 오버레이가 표시될 위치입니다 
-// //             var position = new kakao.maps.LatLng(long, lat);
+            // 커스텀 오버레이가 표시될 위치입니다 
+            var position = new kakao.maps.LatLng(long, lat);
 
-// //             // 커스텀 오버레이를 생성합니다
-// //             var customOverlay = new kakao.maps.CustomOverlay({
-// //                 position: position,
-// //                 content: content,
-// //                 yAnchor: 3.5
-// //             });
+            // 커스텀 오버레이를 생성합니다
+            var customOverlay = new kakao.maps.CustomOverlay({
+                position: position,
+                content: content,
+                yAnchor: 3.5
+            });
 
-// //             // 커스텀 오버레이를 지도에 표시합니다
-// //             customOverlay.setMap(map);
+            // 커스텀 오버레이를 지도에 표시합니다
+            customOverlay.setMap(map);
 
-// //             kakao.maps.event.addListener(marker, 'click', function () {
-// //                 const mainDiv = $(".content");
-// //                 // Create the first inner div
-// //                 const div1 = document.createElement('div');
-// //                 div1.textContent = name;
-// //                 mainDiv.append(div1);
+            kakao.maps.event.addListener(marker, 'click', function () {
+                const mainDiv = $(".content");
+                // Create the first inner div
+                const div1 = document.createElement('div');
+                div1.textContent = name;
+                mainDiv.append(div1);
 
-// //                 // Create the second inner div with button
-// //                 const div2 = document.createElement('div');
-// //                 const button = document.createElement('button');
-// //                 if (category == "EARTHQUAKE") {
-// //                     button.className = 'h-8 bg-yellow-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold';
-// //                 }
-// //                 else {
-// //                     button.className = 'h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold';
-// //                 }
-// //                 button.textContent = value;
-// //                 div2.appendChild(button);
+                // Create the second inner div with button
+                const div2 = document.createElement('div');
+                const button = document.createElement('button');
+                if (category == "EARTHQUAKE") {
+                    button.className = 'h-8 bg-yellow-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold';
+                }
+                else {
+                    button.className = 'h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold';
+                }
+                button.textContent = value;
+                div2.appendChild(button);
 
-// //                 mainDiv.append(div2);
+                mainDiv.append(div2);
 
-// //                 // Create the third inner div with span and button
-// //                 const div3 = document.createElement('div');
-// //                 const span = document.createElement('span');
-// //                 span.textContent = address;
-// //                 const copyButton = document.createElement('button');
-// //                 copyButton.textContent = '복사';
-// //                 copyButton.setAttribute('onclick', 'copy()');
-// //                 div3.append(span);
-// //                 div3.append(copyButton);
+                // Create the third inner div with span and button
+                const div3 = document.createElement('div');
+                const span = document.createElement('span');
+                span.textContent = address;
+                const copyButton = document.createElement('button');
+                copyButton.textContent = '복사';
+                copyButton.setAttribute('onclick', 'copy()');
+                div3.append(span);
+                div3.append(copyButton);
 
-// //                 mainDiv.append(div3);
+                mainDiv.append(div3);
 
-// //                 document.getElementById("modal").style.display = "flex";
+                document.getElementById("modal").style.display = "flex";
 
-// //             });
+            });
 
-// //         });
+        });
 
-// //     },
-// //     error: function (request, status, error) {
-// //         alert(
-// //         "code:" +
-// //             request.status +
-// //             "\n" +
-// //             "message:" +
-// //             request.responseText +
-// //             "\n" +
-// //             "error:" +
-// //             error
-// //         );
-// //     },
-// // });
+    },
+    error: function (request, status, error) {
+        alert(
+        "code:" +
+            request.status +
+            "\n" +
+            "message:" +
+            request.responseText +
+            "\n" +
+            "error:" +
+            error
+        );
+    },
+});
 
 
 
