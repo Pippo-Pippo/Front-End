@@ -8,7 +8,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
   const lon = position.coords.longitude;
 
   reverseGeocode(lat, lon, function (city) {
-    console.log(city);
+    console.log("현재 지역 : ", city);
     $("#current_city").text(city);
   });
 });
@@ -37,7 +37,5 @@ function reverseGeocode(lat, lng, callback) {
     }
   });
 }
-
-// 예제 사용:
 
 // api/notification로 지역에 맞는 최근 알림 하나 가져오기
