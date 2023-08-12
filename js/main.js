@@ -364,11 +364,8 @@ function reverseGeocode(lat, lng, callback) {
 
 //현재 접속 좌표 받아와서 주소로 변환하기
 navigator.geolocation.getCurrentPosition(function (position) {
-  // const lat = position.coords.latitude;
-  // const lon = position.coords.longitude;
-
-  const lat = 37.0201013;
-  const lon = 127.09279;
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
 
   reverseGeocode(lat, lon, function (address) {
     console.log(lat, lon, address);
