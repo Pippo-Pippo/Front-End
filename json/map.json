@@ -12,4 +12,19 @@
             "latitude" : 126.747272,
             "longitude" : 37.737621,
             "address" : "서울특별시 제발빨리오길 145-3"
-    } ]
+    },
+    {
+        "name" : "지진옥외대피소 청수공원",
+        "category" : "EARTHQUAKE",
+        "latitude" : 127.1505259,
+        "longitude" : 36.7871487,
+        "address" : "서울특별시 빨리오길 145-3"
+},
+{
+        "name" : "인천 민방위 대피소",
+        "category" : "CIVIL",
+        "latitude" : 126.669495,
+        "longitude" : 37.5108817,
+        "address" : "서울특별시 빨리오길 145-3"
+}
+]
