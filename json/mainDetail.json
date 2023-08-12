@@ -1,31 +1,31 @@
 {
-    
-"from" : "윤진시청",
-"category" : "RAIN",
-"content" : "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다. 심지어 귀엽고 예뻐요",
-"time" : "2023-07-23 오전 02:16",
+  "from" : "경기도청",
+  "category" : "RAIN HOT WIND",
+  "content" : "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
+  "time" : "2023-07-23 오전 02:16",
+  "comment" : [{
+      "id" : 1,
+      "location" : "서울특별시 어쩌구 무슨동",
+      "name" : "강**",
+      "content" : "삐용 사이트 뭔가요?? 저도 들어가보고 싶네요~~",
+      "createdAt" : "2023-07-23 오전 02:18",
+      "like" : 743,
+      "hate" : 4,
+      "isLike" : true, 
+      "isHate" : false,
+      "imageUrl" : null
+  },
+  {
+      "id" : 2,
+      "location" : "서울특별시 어쩌구 무슨동",
+      "name" : "김**",
+      "content" : "저도 들어가보고 싶어요 ^^",
+      "createdAt" : "2023-07-23 오전 02:22",
+      "like" : 7,
+      "hate" : 0,
+      "isLike" : false, 
+      "isHate" : false,
+      "imageUrl": "https://ppiyong.s3.ap-northeast-2.amazonaws.com/images/03659edc-cae6-437b-ada5-340b5ba7136dBack-Endnulled274ba1-2f5c-4bd9-8868-91a451e62ef9.png"
+  }]
+}
 
-
-    "comment": [
-      {
-        "location": "서울특별시 어쩌구 무슨동",
-        "name": "강**",
-        "content": "삐용 사이트 뭔가요?? 저도 들어가보고 싶네요~~",
-        "createdAt": "2023-07-23 오전 02:18",
-        "like": 10,
-        "hate": 4,
-        "isLike": true,
-        "isHate": false
-      },
-      {
-        "location": "서울특별시 어쩌구 무슨동",
-        "name": "김**",
-        "content": "저도 들어가보고 싶어요 ^^ 삐용 사이트가 역시 최고죠 ㅎㅎ",
-        "createdAt": "2023-07-23 오전 02:22",
-        "like": 7,
-        "hate": 0,
-        "isLike": false,
-        "isHate": false
-      }
-    ]
-  }
