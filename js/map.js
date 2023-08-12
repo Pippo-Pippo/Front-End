@@ -116,6 +116,10 @@ $.ajax({
         },
         error: function (request, status, error) {
             console.log("통신실패");
+            console.log(request);
+            console.log(status);
+            console.log(error);
+            console.log(message);
         }
 });
 
