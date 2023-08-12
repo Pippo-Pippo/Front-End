@@ -6,32 +6,33 @@ $(document).ready(function () {
     var password = $("#password").val();
 
     const data = {
-      email: email,
-      password: password,
+      email: "email",
+      password: "password",
     };
 
     $.ajax({
       type: "POST",
       url: "https://ppiyong.shop/api/user/login",
       data: JSON.stringify(data),
-      contentType: "application/json",
+      xhrFields: {
+        withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+      },
+      contentType: "application/json; charset=utf-8",
       success: function (response) {
+        console.log(response);
         alert("로그인 성공");
-        window.location.href = "/main.html";
-
-        // if (response.Id) {
-        //   document.cookie = "Id=" + response.Id;
-        //   alert("로그인 성공");
-        //
-        // } else {
-        //   alert("로그인 실패: 잘못된 이메일 또는 비밀번호입니다.");
-        // }
+        //console.log(response.cookie("SESSION_ID"));
       },
       error: function (req, status, err) {
-        const alert = JSON.parse(req.responseText);
+        //const alert = JSON.parse(req.responseText);
         console.log(status, err);
-        alert(alert.message);
+        //alert(alert.message);
       },
     });
   });
 });
+
+async function getHeader(url) {
+  const headerData = await fetch(url);
+  return headerData.headers;
+}
