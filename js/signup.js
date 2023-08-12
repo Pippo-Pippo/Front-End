@@ -7,6 +7,7 @@ function signup() {
   var password = $("#password").val();
   var nickname = $("#nickname").val();
   var region = $("#location").val();
+
   $.ajax({
     type: "POST",
     url: "https://ppiyoung.shop/api/user/register",
