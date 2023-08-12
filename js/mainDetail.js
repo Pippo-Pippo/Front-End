@@ -137,3 +137,65 @@
  
 //}
 
+$(document).ready(function() {
+  $("#verifyButton").click(function() {
+      var commentContent = $("#verificationCode").val(); // 입력된 댓글 내용
+      var imageSrc = $("#inputPhoto img").attr("src"); // 이미지의 소스
+      
+      // 새 댓글 엘리먼트 생성
+      var newComment = $("<div>").addClass("flex items-center justify-center text-start");
+      var newCommentBox = $("<div>").addClass("h-48 w-80 p-3 text-sm text-start").css("margin-left", "-34px");
+      
+      // 댓글 내용 추가
+      var commentHeader = $("<div>").addClass("flex items-center justify-start");
+      var commentLocation = $("<div>").addClass("font-bold").text("삼산구 삼산 2동");
+      var commentAuthor = $("<div>").addClass("text-grey-600 font-medium text-sm ml-5").text("강**");
+      commentHeader.append(commentLocation, commentAuthor);
+      newCommentBox.append(commentHeader);
+      
+      // 댓글 내용 추가 (수정된 부분)
+      var commentText = $("<div>").addClass("flex items-start justify-center text-black text-base mt-2").text(commentContent);
+      newCommentBox.append(commentText);
+      
+      // 이미지 추가
+      var commentImage = $("<div>").addClass("flex items-center justify-center w-78 h-20 border border-gray-400 mb-1 mt-2").text("사진");
+      if (imageSrc) {
+          var commentImagePreview = $("<img>").addClass("w-78 h-20 object-cover").attr("src", imageSrc);
+          commentImage.empty().append(commentImagePreview);
+      }
+      newCommentBox.append(commentImage);
+      
+      // 시간 및 좋아요/싫어요 카운트 추가
+      var commentTime = $("<div>").addClass("flex items-center justify-start");
+      var commentTimeText = $("<div>").addClass("font-medium text-xs mt-1 ml-5 mr-11").text(getCurrentTime());
+      var helpfulCount = $("<div>").addClass("font-light text-xs mt-1 mr-2").text("좋아요 0").attr("id", "helpfulCount1");
+      var dislikeCount = $("<div>").addClass("font-light text-xs mt-1").text("싫어요 0").attr("id", "dislikeCount1");
+      commentTime.append(commentTimeText, helpfulCount, dislikeCount);
+      newCommentBox.append(commentTime);
+      
+      // 댓글 박스에 내용 추가
+      newComment.append(newCommentBox);
+      
+      // 댓글을 추가하는 부분을 원하는 위치에 추가하면 됩니다.
+      $("#comment").append(newComment);
+      
+      // 입력된 댓글 내용을 지웁니다.
+      $("#verificationCode").val("");
+      
+      // 추가된 댓글 박스 아래에 구분선 추가
+      var separatingLine = $("<div>").addClass("flex items-center justify-center w-80 h-px bg-gray-400 my-2 mt-3");
+      $("#comment").append(separatingLine);
+  });
+});
+
+// 현재 시간을 가져오는 함수
+function getCurrentTime() {
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = String(now.getMonth() + 1).padStart(2, "0");
+  var day = String(now.getDate()).padStart(2, "0");
+  var hour = String(now.getHours()).padStart(2, "0");
+  var minute = String(now.getMinutes()).padStart(2, "0");
+  var second = String(now.getSeconds()).padStart(2, "0");
+  return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+}

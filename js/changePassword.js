@@ -5,14 +5,15 @@ $(document).ready(function() {
       var password = $('#password').val();
       var passwordConfirmation = $('#passwordConfirmation').val();
 
-      if (Password !== passwordConfirmation) {
-          alert('새 비밀번호와 재입력한 비밀번호가 일치하지 않습니다.');
-          return;
-      }
+      if (password !== passwordConfirmation) {
+        alert('새 비밀번호와 재입력한 비밀번호가 일치하지 않습니다.');
+        return;
+    }
+    
 
       $.ajax({
           type: "PUT",
-          url: "https://ppiyong.shop/api/user/pw",  //서버 오류가 계속 발생해요 ㅠㅠ
+          url: "https://page.ppiyong.shop/api/user/pw",  //서버 오류가 계속 발생해요 ㅠㅠ
           data: JSON.stringify({
               'password': password,
           }),
