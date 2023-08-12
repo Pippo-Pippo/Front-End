@@ -319,25 +319,35 @@ function reverseGeocode(lat, lng, callback) {
   geocoder.geocode({ location: latLng }, function (results, status) {
     if (status === "OK") {
       if (results[0]) {
-        const addressComponents = results[2].address_components;
-
-        console.log(results[2].address_components);
+        const addressComponents = results[0].address_components;
+        console.log(addressComponents);
 
         let city = null; // 시/도/광역시 정보를 저장할 변수
         let district = null; // 구/군 정보를 저장할 변수
+        let sub_district = null; // 구/군 정보를 저장할 변수
 
         for (let component of addressComponents) {
           if (component.types.includes("administrative_area_level_1")) {
             city = component.long_name;
+            console.log(city);
           }
-          if (component.types.includes("sublocality_level_1")) {
+          if (
+            component.types.includes("sublocality_level_1") ||
+            component.types.includes("locality")
+          ) {
             district = component.long_name;
-            console.log("시/구", district);
+            console.log(district);
+          }
+          if (component.types.includes("sublocality_level_2")) {
+            sub_district = component.long_name;
+            console.log(sub_district);
           }
         }
 
-        if (city && district) {
-          callback(`${city} ${district}`);
+        if (city && district && sub_district) {
+          callback(`${city} ${district} ${sub_district}`);
+        } else if (city && district) {
+          callback(`${city} ${district} `);
         } else if (city) {
           callback(city);
         } else {
@@ -354,8 +364,11 @@ function reverseGeocode(lat, lng, callback) {
 
 //현재 접속 좌표 받아와서 주소로 변환하기
 navigator.geolocation.getCurrentPosition(function (position) {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
+  // const lat = position.coords.latitude;
+  // const lon = position.coords.longitude;
+
+  const lat = 37.0201013;
+  const lon = 127.09279;
 
   reverseGeocode(lat, lon, function (address) {
     console.log(lat, lon, address);
