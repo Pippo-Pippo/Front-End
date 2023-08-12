@@ -1,30 +1,6 @@
 var select_regionList=[];
 var select_categoryList=[];
 
-$.getJSON("../json/regionList.json", function (data) {
-
-    const length = data.regionList.length;
-    var i;
-    for (i = 0; i < length; i++) {
-
-        const showData = () => {
-
-            const region = data.regionList[i].region;
-            const value = data.regionList[i].value;
-            const buttonElement = document.createElement('button');
-            buttonElement.setAttribute('onclick', 'select_region(this.id)');
-            buttonElement.setAttribute('id', region);
-            buttonElement.textContent = value;
-
-            const divElement = document.createElement('div');
-            divElement.appendChild(buttonElement);
-
-            $('#countryBox').append(divElement);
-
-        }
-        showData();
-    }
-});
 
 //클릭한 지역 리스트에 담는 함수
 function select_region(click_id) {
@@ -53,25 +29,21 @@ function put(){
     select_categoryList=[];
     document.getElementsByClassName("category_btn").style.backgroundColor="#F4F4F5";
     document.getElementsByClassName("category_btn").style.fontWeight="400";
-        // $.ajax({
+    // $.ajax({
     //     type: "PUT",
-    //     url: `http://page.ppiyong.shop/api/notification/region`,
+    //     url: "https://page.ppiyong.shop/api/notification/region",
+    //     data: JSON.stringify({
+    //         "region":region
+    //     }),
     //     contentType: "application/json",
-    //     success: function (data) {
-    //         console.log("전송 성공")
+    //     dataType: "json", 
+    //     success: function(response) {
+    //         console.log("전송성공");
     //     },
-    //     error: function (request, status, error) {
-    //         alert(
-    //             "code:" +
-    //             request.status +
-    //             "\n" +
-    //             "message:" +
-    //             request.responseText +
-    //             "\n" +
-    //             "error:" +
-    //             error
-    //         );
-    //     },
+    //     error: function(request, status, error) {
+    //         console.error(request,status, error);
+    //    
+    //     }
     // });
 
 
