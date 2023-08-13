@@ -44,12 +44,12 @@ body {
     max-width: 500px; 
 }
 
-#countryBox button:hover,
+/* #countryBox button:hover,
 #categoryBox button:hover
 {
     background-color:#FDE047 ;
     font-weight: bold;
-}
+} */
 
 #countryBox div {
     flex-basis: 50%;
