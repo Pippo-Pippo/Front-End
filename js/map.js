@@ -90,40 +90,40 @@ const categorizedData = {
 const EARTHQUAKE = [];
 const CIVIL = [];
 
-// $.getJSON("../json/map.json", function (data) {
-//     data.forEach(item => {
-//         categorizedData[item.category].push(item);
-//     });
-//     console.log(categorizedData);
-// });
-$(document).ready(function () {
-var bounds = map.getBounds();
-bounds.toString();
-var latitude_start = bounds.oa,
-    longitude_start = bounds.qa,
-    latitude_end = bounds.ha,
-    longitude_end = bounds.pa;
-console.log(`http://page.ppiyong.shop/api/shelter${latitude_start}&${longitude_start}&${latitude_end}&${longitude_end}`);
+$.getJSON("../json/map.json", function (data) {
+    data.forEach(item => {
+        categorizedData[item.category].push(item);
+    });
+    console.log(categorizedData);
+});
+// $(document).ready(function () {
+//     var bounds = map.getBounds();
+//     bounds.toString();
+//     var latitude_start = bounds.oa,
+//         longitude_start = bounds.qa,
+//         latitude_end = bounds.ha,
+//         longitude_end = bounds.pa;
 
-$.ajax({
-        type: "GET",
-        url: `https://ppiyong.shop/api/shelter/${latitude_start}&${longitude_start}&${latitude_end}&${longitude_end}`,
-        contentType: "application/json",
-        success: function (data) {
-            data.forEach(item=>{
-                categorizedData[item.category].push(item);
-            });
-            console.log(categorizedData)
-        },
-        error: function (request, status, error) {
-            console.log("통신실패");
-            console.log(request);
-            console.log(status);
-            console.log(error);
-            console.log(message);
-        }
-});
-});
+
+//     $.ajax({
+//         type: "GET",
+//         url: `https://ppiyong.shop/api/shelter/${latitude_start}&${longitude_start}&${latitude_end}&${longitude_end}`,
+//         contentType: "application/json",
+//         success: function (data) {
+//             data.forEach(item => {
+//                 categorizedData[item.category].push(item);
+//             });
+//             console.log(categorizedData)
+//         },
+//         error: function (request, status, error) {
+//             console.log("통신실패");
+//             console.log(request);
+//             console.log(status);
+//             console.log(error);
+//             console.log(message);
+//         }
+//     });
+// });
 
 //받아온 거 쓸 수 있게 정리
 $(document).ready(function () {
@@ -261,6 +261,12 @@ function setMarkers(map, list) {
         list[i].setMap(map);
     }
 }
+$('#all').css('color', 'black');
+$('#earth').css('color', 'black');
+$('#civil').css('color', 'black');
+$('#all').css('color', 'white');
+$('#earth').css('color', 'white');
+$('#civil').css('color', 'white');
 //마커 보이기 함수
 function showMarkers(list) {
     setMarkers(map, list)
@@ -275,6 +281,11 @@ function earthquake() {
 
     hideMarkers(civil_custom);
     showMarkers(earthquake_custom);
+
+    $('#earth').css('color', 'white');
+
+    $('#all').css('color', '#64748b');
+    $('#civil').css('color', '#fca5a5');
 }
 function civil() {
     hideMarkers(earthquake_marker);
@@ -283,10 +294,20 @@ function civil() {
     hideMarkers(earthquake_custom);
     showMarkers(civil_custom);
 
+    $('#civil').css('color', 'white');
+
+    $('#all').css('color', '#64748b');
+    $('#earth').css('color', '#eab308');
+
+
 }
 function go() {
     showMarkers(all_marker);
     showMarkers(all_custom);
+    $('#all').css('color', 'white');
+
+    $('#earth').css('color', '#eab308');
+    $('#civil').css('color', '#fca5a5');
 }
 
 /********************마커 정보창 뜨게 하기******************/

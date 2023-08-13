@@ -35,42 +35,35 @@ $(document).ready(function () {
                 $('#' + buttonId).addClass('active');
             }
         }
-        
-        //1개 선택하면 토스트창 뜨게 하기
-        if (selectedButtons.length === 1) {
-            $('#toastMsg').show();
-                //3초뒤 메세지창 사라짐
-                setTimeout(function () {
-                    $('#toastMsg').hide();
-                }, 3000);
-            var dataToSend = {
-                    "region":selectedButtons[0]
-            };
-            // AJAX PUT 요청 보내기
-            $.ajax({
-                type: 'PUT',
-                url: 'https://ppiyong.shop/api/notification/region', // PUT 요청을 보낼 API의 엔드포인트 URL
-                data: JSON.stringify(dataToSend),
-                contentType: 'application/json',
-                success: function (response) {
-                    console.log("PUT 요청 성공:", response);
-                },
-                error: function (error) {
-                    console.error("PUT 요청 실패:", error);
-                }
-            });
+    });
+
+    // Send 버튼 클릭 이벤트
+    $('#sendButton').click(function () {
+        if (selectedButtons.length === 0) {
+            alert("지역을 선택해주세요.");
             return;
         }
 
+        var dataToSend = {
+            "region":selectedButtons[0]
+        };
         
-        
-        
+        // AJAX PUT 요청 보내기
+        $.ajax({
+            type: 'PUT',
+            url: 'https://ppiyong.shop/api/notification/region', // PUT 요청을 보낼 API의 엔드포인트 URL
+            data: JSON.stringify(dataToSend),
+            contentType: 'application/json',
+            success: function (response) {
+                console.log("PUT 요청 성공:", response);
+                location.href='/alarm/select_region.html';
+
+            },
+            error: function (error) {
+                console.error("PUT 요청 실패:", error);
+            }
+        });
     });
-
-    
-
-        
-
 });
 
 
