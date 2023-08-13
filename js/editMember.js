@@ -214,3 +214,28 @@ const memberData = {
   //           });
   //       });
   // });
+
+  //비밀번호 disable 속성
+ // document.addEventListener("DOMContentLoaded", function() {
+ //  const locationSelect = document.getElementById("locationSelect");
+  //  const changeButton = document.getElementById("changeRegion");
+  
+    //changeRegionButton.addEventListener("click", function() {
+     // if (!locationSelect.disabled) {
+     //   locationSelect.disabled = true;
+       // var changeRegionButton = document.getElementById("changeRegion");
+
+      
+       // });
+    //  } else {
+   //     locationSelect.disabled = false;
+    //  }
+  //  });
+ // });
+
+ //비밀번호 변경 페이지 이동
+ var changeButton = document.getElementById("change");
+
+ changeButton.addEventListener("click", function() {
+     window.location.href = "../account/changePassword.html";
+ });

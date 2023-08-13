@@ -134,195 +134,213 @@ $(document).ready(function () {
 });
 
 // json (지진/해일)
-function loadEarthquake() {
-  return fetch("json/main.json")
-    .then((response) => response.json())
-    .then((json) => json.earthquake)
-    .catch((error) => {
-      console.log("실패");
-      console.error(error);
+$(document).ready(function () {
+  function loadEarthquake() {
+    return $.ajax({
+      type: "GET",
+      url: "https://ppiyong.shop/api/home",
+      dataType: "json",
     });
-}
+  }
 
-document
-  .getElementById("earthquakeButton")
-  .addEventListener("click", function () {
-    loadEarthquake().then((earthquakeData) => {
-      const filteredEarthquakeData = earthquakeData.filter((item) => {
-        return item.category === "EARTHQUAKE" || item.category === "TSUNAMI";
+  $("#earthquakeButton").on("click", function () {
+    loadEarthquake()
+      .done(function (earthquakeData) {
+        const filteredEarthquakeData = earthquakeData.earthquake.filter((item) => {
+          return item.category === "EARTHQUAKE" || item.category === "TSUNAMI";
+        });
+        displayEarthquake(filteredEarthquakeData);
+        alert("통신 성공");
+      })
+      .fail(function () {
+        alert("통신 실패");
       });
-      displayEarthquake(filteredEarthquakeData);
-    });
   });
 
-loadEarthquake().then((earthquakeData) => {
-  displayEarthquake(earthquakeData);
-});
+  loadEarthquake()
+    .done(function (earthquakeData) {
+      displayEarthquake(earthquakeData.earthquake);
+    })
+    .fail(function () {
+      alert("통신 실패");
+    });
 
-function displayEarthquake(earthquakeData) {
-  const container = document.getElementById("main");
-  container.innerHTML = earthquakeData
-    .map((item) => createHTMLString(item))
-    .join("");
-}
+  function displayEarthquake(earthquakeData) {
+    const container = $("#main");
+    container.empty().append(earthquakeData.map((item) => createHTMLString(item)).join(""));
+  }
 
-function createHTMLString(earthquake) {
-  return `
-    <!--메인 박스-->
-    <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
-      <div class="flex items-center justify-between">
-        <div>${earthquake.from}</div>
-        <div class="text-grey-600 font-medium text-sm ml-4">${earthquake.time}</div>
-      </div>
-      <!--파란, 회색 버튼-->
-      <button class="w-14 h-7 bg-blue-300 rounded-full mr-1 text-sm font-medium text-white mb-1">
-      ${earthquake.category}
-      </button>
-      <button class="w-14 h-7 bg-gray-600 mt-1 rounded-full text-sm font-medium text-white mb-1">
-        예보
-      </button>
-      <div class="flex items-start justify-center text-black font-medium text-base">
-      ${earthquake.category}
-      </div>
-      <div class="flex items-center justify-end text-end">
-        <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
-        <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-        <div class="font-medium text-bold mt-1 mr-5">${earthquake.comment}</div>
-        <button
-          id="authButton"
-          type="button"
-          class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-        >
-          더보기
+  function createHTMLString(earthquake) {
+    return `
+      <!--메인 박스-->
+      <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
+        <div class="flex items-center justify-between">
+          <div>${earthquake.from}</div>
+          <div class="text-grey-600 font-medium text-sm ml-4">${earthquake.time}</div>
+        </div>
+        <!--파란, 회색 버튼-->
+        <button class="w-14 h-7 ${
+          earthquake.category === "EARTHQUAKE" || earthquake.category === "TSUNAMI"
+            ? "bg-blue-300"
+            : "bg-gray-600"
+        } rounded-full mr-1 text-sm font-medium text-white mb-1">
+        ${earthquake.category}
         </button>
-      </div>
-    </div>`;
-}
+        <button class="w-14 h-7 bg-gray-600 mt-1 rounded-full text-sm font-medium text-white mb-1">
+          예보
+        </button>
+        <div class="flex items-start justify-center text-black font-medium text-base">
+          ${earthquake.category}
+        </div>
+        <div class="flex items-center justify-end text-end">
+          <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
+          <div class="font-medium text-sm mt-1 mr-1">댓글</div>
+          <div class="font-medium text-bold mt-1 mr-5">${earthquake.comment}</div>
+          <button
+            id="authButton"
+            type="button"
+            class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+          >
+            더보기
+          </button>
+        </div>
+      </div>`;
+  }
+});
 
 //민방위
-document.getElementById("civilButton").addEventListener("click", function () {
-  loadcivil().then((civilData) => {
-    const filteredcivilData = civilData.filter((item) => {
-      return item.category === "CIVIL";
+$(document).ready(function () {
+  function loadCivil() {
+    return $.ajax({
+      type: "GET",
+      url: "https://ppiyong.shop/api/home",
+      dataType: "json",
     });
-    displayCivil(civilData);
+  }
+
+  $("#civilButton").on("click", function () {
+    loadCivil().done(function (civilData) {
+      const filteredCivilData = civilData.filter((item) => {
+        return item.category === "CIVIL";
+      });
+      displayCivil(filteredCivilData);
+      alert("통신 성공"); 
+    })
+    .fail(function () {
+      alert("통신 실패"); 
+    });
   });
-});
 
-loadcivil().then((civilData) => {
-  displayCivil(civilData);
-});
+  function displayCivil(civilData) {
+    const container = $("#main");
+    container.empty().append(civilData.map((item) => createHTMLString(item)).join(""));
+  }
 
-function loadcivil() {
-  return fetch("json/main.json")
-    .then((response) => response.json())
-    .then((json) => json.civil)
-    .catch((error) => {
-      console.log("실패");
-      console.error(error);
-    });
-}
-
-function displayCivil(civilData) {
-  const container = document.getElementById("main");
-  container.innerHTML = civilData
-    .map((item) => createHTMLString(item))
-    .join("");
-}
-
-function createHTMLString(civil) {
-  return `
-    <!--메인 박스-->
-    <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
-      <div class="flex items-center justify-between">
-        <div>${civil.from}</div>
-        <div class="text-grey-600 font-medium text-sm ml-4">${civil.time}</div>
-      </div>
-      <!--파란, 회색 버튼-->
-      <button class="w-14 h-7 bg-blue-300 rounded-full mr-1 text-sm font-medium text-white mb-1">
-      ${civil.category}
-      </button>
-      <button class="w-14 h-7 bg-gray-600 mt-1 rounded-full text-sm font-medium text-white mb-1">
-        예보
-      </button>
-      <div class="flex items-start justify-center text-black font-medium text-base">
-      ${civil.category}
-      </div>
-      <div class="flex items-center justify-end text-end">
-        <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
-        <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-        <div class="font-medium text-bold mt-1 mr-5">${civil.comment}</div>
-        <button
-          id="authButton"
-          type="button"
-          class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-        >
-          더보기
+  function createHTMLString(civil) {
+    return `
+      <!--메인 박스-->
+      <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
+        <div class="flex items-center justify-between">
+          <div>${civil.from}</div>
+          <div class="text-grey-600 font-medium text-sm ml-4">${civil.time}</div>
+        </div>
+        <!--파란, 회색 버튼-->
+        <button class="w-14 h-7 bg-blue-300 rounded-full mr-1 text-sm font-medium text-white mb-1">
+        ${civil.category}
         </button>
-      </div>
-    </div>`;
-}
+        <button class="w-14 h-7 bg-gray-600 mt-1 rounded-full text-sm font-medium text-white mb-1">
+          예보
+        </button>
+        <div class="flex items-start justify-center text-black font-medium text-base">
+        ${civil.category}
+        </div>
+        <div class="flex items-center justify-end text-end">
+          <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
+          <div class="font-medium text-sm mt-1 mr-1">댓글</div>
+          <div class="font-medium text-bold mt-1 mr-5">${civil.comment}</div>
+          <button
+            id="authButton"
+            type="button"
+            class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+          >
+            더보기
+          </button>
+        </div>
+      </div>`;
+  }
+});
+
 //실종자
-document.getElementById("lostButton").addEventListener("click", function () {
-  loadlost().then((lostData) => {
-    const filteredlostData = lostData.filter((item) => {
-      return item.category === "LOST";
+$(document).ready(function () {
+  function loadlost() {
+    return $.ajax({
+      type: "GET",
+      url: "https://ppiyong.shop/api/home", 
+      dataType: "json",
     });
-    displaylost(lostData);
+  }
+
+  $("#lostButton").on("click", function () {
+    loadlost()
+      .done(function (lostData) {
+        const filteredlostData = lostData.filter((item) => {
+          return item.category === "LOST";
+        });
+        displaylost(filteredlostData);
+        alert("통신 성공"); 
+      })
+      .fail(function () {
+        alert("통신 실패"); 
+      });
   });
-});
 
-loadlost().then((lostData) => {
-  displaylost(lostData);
-});
-
-function loadlost() {
-  return fetch("json/main.json")
-    .then((response) => response.json())
-    .then((json) => json.lost)
-    .catch((error) => {
-      console.log("실패");
-      console.error(error);
+  loadlost()
+    .done(function (lostData) {
+      displaylost(lostData);
+      alert("데이터 가져오기"); 
+    })
+    .fail(function () {
+      alert("데이터 못 가져옴"); 
     });
-}
 
-function displaylost(lostData) {
-  const container = document.getElementById("main");
-  container.innerHTML = lostData.map((item) => createHTMLString(item)).join("");
-}
+  function displaylost(lostData) {
+    const container = $("#main");
+    container.empty().append(lostData.map((item) => createHTMLString(item)).join(""));
+  }
 
-function createHTMLString(lost) {
-  return `
-    <!--메인 박스-->
-    <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
-      <div class="flex items-center justify-between">
-        <div>${lost.from}</div>
-        <div class="text-grey-600 font-medium text-sm ml-4">${lost.time}</div>
-      </div>
-      <!--파란, 회색 버튼-->
-      <button class="w-14 h-7 bg-blue-300 rounded-full mr-1 text-sm font-medium text-white mb-1">
-      ${lost.category}
-      </button>
-      <button class="w-14 h-7 bg-gray-600 mt-1 rounded-full text-sm font-medium text-white mb-1">
-      ${lost.category}
-      </button>
-      <div class="flex items-start justify-center text-black font-medium text-base">
-        ${lost.content}
-      </div>
-      <div class="flex items-center justify-end text-end">
-        <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
-        <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-        <div class="font-medium text-bold mt-1 mr-5">${lost.comment}</div>
-        <button
-          id="authButton"
-          type="button"
-          class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-        >
-          더보기
+  function createHTMLString(lost) {
+    return `
+      <!--메인 박스-->
+      <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
+        <div class="flex items-center justify-between">
+          <div>${lost.from}</div>
+          <div class="text-grey-600 font-medium text-sm ml-4">${lost.time}</div>
+        </div>
+        <!--파란, 회색 버튼-->
+        <button class="w-14 h-7 bg-blue-300 rounded-full mr-1 text-sm font-medium text-white mb-1">
+        ${lost.category}
         </button>
-      </div>
-    </div>`;
-}
+        <button class="w-14 h-7 bg-gray-600 mt-1 rounded-full text-sm font-medium text-white mb-1">
+        ${lost.category}
+        </button>
+        <div class="flex items-start justify-center text-black font-medium text-base">
+        ${lost.content}
+        </div>
+        <div class="flex items-center justify-end text-end">
+          <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
+          <div class="font-medium text-sm mt-1 mr-1">댓글</div>
+          <div class="font-medium text-bold mt-1 mr-5">${lost.comment}</div>
+          <button
+            id="authButton"
+            type="button"
+            class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+          >
+            더보기
+          </button>
+        </div>
+      </div>`;
+  }
+});
 
 //현재 좌표로 주소변환해서 추가하기
 function reverseGeocode(lat, lng, callback) {
@@ -384,4 +402,42 @@ navigator.geolocation.getCurrentPosition(function (position) {
     console.log(lat, lon, address);
     $("#current_city").text(address);
   });
+});
+
+//버튼 클릭 시 글씨 색 변경
+$(document).ready(function() {
+
+  $("#weatherButton, #earthquakeButton, #civilButton, #lostButton").click(function() {
+
+    $(this).find("p").css("font-weight", "bold");
+    
+ 
+    $("#weatherButton p, #earthquakeButton p, #civilButton p, #lostButton p")
+      .not($(this).find("p"))
+      .css("font-weight", "normal");
+  });
+});
+
+// 새로고침 버튼 누르면 시간 바뀌게 하는 js
+const refreshButton = document.getElementById("refresh");
+
+
+refreshButton.addEventListener("click", () => {
+ 
+  const now = new Date();
+
+ 
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0"); 
+  const day = String(now.getDate()).padStart(2, "0"); 
+
+
+  let hour = now.getHours();
+  const minute = String(now.getMinutes()).padStart(2, "0"); 
+  const amPm = hour < 12 ? "오전" : "오후";
+  hour = hour % 12 || 12; 
+
+ 
+  const dateTimeElement = document.querySelector(".text-black.font-medium.text-sm");
+  dateTimeElement.textContent = `${year}/${month}/${day} ${amPm} ${hour}:${minute} 기준`;
 });
