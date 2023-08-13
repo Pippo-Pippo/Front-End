@@ -2,7 +2,7 @@ $(document).ready(function () {
   function getNewsList() {
     return $.ajax({
       type: "GET",
-      url: "https://page.ppiyong.shop/api/home",
+      url: "https://ppiyong.shop/api/home",
       dataType: "json",
     });
   }
@@ -56,71 +56,82 @@ $(document).ready(function () {
 });
 
 // json (날씨)
-function loadWeather() {
-  return fetch("json/main.json")
-    .then((response) => response.json())
-    .then((json) => json.weather)
-    .catch((error) => {
-      console.log("실패");
-      console.error(error);
+$(document).ready(function () {
+  function loadWeather() {
+    return $.ajax({
+      type: "GET",
+      url: "https://ppiyong.shop/api/home",
+      dataType: "json",
     });
-}
+  }
 
-document.getElementById("weatherButton").addEventListener("click", function () {
-  loadWeather().then((weatherData) => {
-    filteredWeatherData = weatherData.filter((item) => {
-      return (
-        item.category === "WIND" ||
-        item.category === "RAIN" ||
-        item.category === "HOT" ||
-        item.category === "SNOW"
-      );
-    });
-    displayWeather(filteredWeatherData);
+  $("#weatherButton").on("click", function () {
+    loadWeather()
+      .done(function (weatherData) {
+        const filteredWeatherData = weatherData.weather.filter((item) => {
+          return (
+            item.category === "WIND" ||
+            item.category === "RAIN" ||
+            item.category === "HOT" ||
+            item.category === "SNOW"
+          );
+        });
+        displayWeather(filteredWeatherData);
+        alert("통신 성공");
+        console.log(weatherData);
+      })
+      .fail(function () {
+        alert("통신 실패");
+      });
   });
-});
-loadWeather().then((weather) => {
-  displayWeather(weather);
-});
 
-function displayWeather(weather) {
-  console.log(weather);
-  const container = document.getElementById("main");
-  container.innerHTML = weather.map((item) => createHTMLString(item)).join("");
-}
+  loadWeather()
+    .done(function (weatherData) {
+      displayWeather(weatherData.weather);
+    })
+    .fail(function () {
+      alert("통신 실패");
+    });
 
-function createHTMLString(weather) {
-  return `
-    <!--메인 박스-->
-    <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
-      <div class="flex items-center justify-between">
-        <div>${weather.from}</div>
-        <div class="text-grey-600 font-medium text-sm ml-4">${weather.time}</div>
-      </div>
-      <!--파란, 회색 버튼-->
-      <button class="w-14 h-7 bg-blue-300 rounded-full mr-1 text-sm font-medium text-white mb-1">
-      ${weather.category}
-      </button>
-      <button class="w-14 h-7 bg-gray-600 mt-1 rounded-full text-sm font-medium text-white mb-1">
-      ${weather.category}
-      </button>
-      <div class="flex items-start justify-center text-black font-medium text-base">
-        ${weather.content}
-      </div>
-      <div class="flex items-center justify-end text-end">
-        <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
-        <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-        <div class="font-medium text-bold mt-1 mr-5">${weather.comment}</div>
-        <button
-          id="authButton"
-          type="button"
-          class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-        >
-          더보기
+  function displayWeather(weatherData) {
+    const container = $("#main");
+    container.empty().append(weatherData.map((item) => createHTMLString(item)).join(""));
+  }
+
+  function createHTMLString(weatherData) {
+    return `
+      <!--메인 박스-->
+      <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
+        <div class="flex items-center justify-between">
+          <div>${weatherD.from}</div>
+          <div class="text-grey-600 font-medium text-sm ml-4">${weather.time}</div>
+        </div>
+        <!--파란, 회색 버튼-->
+        <button class="w-14 h-7 ${
+          weather.category === "RAIN" || weather.category === "SNOW"
+            ? "bg-blue-300"
+            : "bg-gray-600"
+        } rounded-full mr-1 text-sm font-medium text-white mb-1">
+        ${weather.category}
         </button>
-      </div>
-    </div>`;
-}
+        <div class="flex items-start justify-center text-black font-medium text-base">
+          ${weather.content}
+        </div>
+        <div class="flex items-center justify-end text-end">
+          <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
+          <div class="font-medium text-sm mt-1 mr-1">댓글</div>
+          <div class="font-medium text-bold mt-1 mr-5">${weather.comment}</div>
+          <button
+            id="authButton"
+            type="button"
+            class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+          >
+            더보기
+          </button>
+        </div>
+      </div>`;
+  }
+});
 
 // json (지진/해일)
 function loadEarthquake() {
