@@ -13,7 +13,7 @@
 		{
 			"id": 1,
 			"from": "경기도청",
-			"category": "RAIN",
+			"category": "RAIN HOT WIND",
 			"content": "비가 온다. 주륵주륵",
 			"time": "2023-07-23 오전 02:16",
 			"comment": 14
@@ -67,7 +67,7 @@
 		{
 			"id": 12,
 			"from": "경기도청",
-			"category": "lost",
+			"category": "LOST",
 			"content": "실종 아동을 찾습니다. ",
 			"time": "2023-07-23 오전 02:16",
 			"comment": 14
@@ -75,7 +75,7 @@
 		{
 			"id": 13,
 			"from": "행정안전부",
-			"category": "lost",
+			"category": "LOST",
 			"content": "실종 어르신을 찾습니다.",
 			"time": "2023-07-23 오전 02:16",
 			"comment": 16
