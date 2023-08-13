@@ -11,6 +11,22 @@
 
     <title>삐용</title>
     <link rel="stylesheet" href="../css/select.css" />
+    <style>
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateZ(0);
+            }
+        }
+        #toastMsg{
+            animation:fadeInUp 1s;
+        }
+    </style>
 </head>
 
 
@@ -47,7 +63,8 @@
                                         <path d="M10 19L3 12M3 12L10 5M3 12H21" stroke="#3F3F46" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                    <div class="w-56 h-8 bg-yellow-100 rounded-full text-xs ml-10 px-4 p-2 font-bold text-gray-700;" id="toastMsg" style="display:none">지역이 성공적으로
+                                    <div class="w-56 h-8 bg-yellow-100 rounded-full text-xs ml-10 px-4 p-2 font-bold text-gray-700;"
+                                        id="toastMsg" style="display:none">지역이 성공적으로
                                         변경되었습니다.</div>
                             </div>
 
@@ -60,7 +77,7 @@
                 </nav>
                 <div>
                     <div id="countryBox">
-                        <div><button>서울특별시</button></div>
+                        <!-- <div><button>서울특별시</button></div>
                         <div><button>부산광역시</button></div>
                         <div><button>대구광역시</button></div>
                         <div><button>인천광역시</button></div>
@@ -76,7 +93,7 @@
                         <div><button>전라남도</button></div>
                         <div><button>경상북도</button></div>
                         <div><button>경상남도</button></div>
-                        <div><button>제주특별자치도</button></div>
+                        <div><button>제주특별자치도</button></div> -->
                     </div>
 
                 </div>
