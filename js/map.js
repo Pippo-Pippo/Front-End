@@ -107,7 +107,7 @@ console.log(`http://page.ppiyong.shop/api/shelter${latitude_start}&${longitude_s
 
 $.ajax({
         type: "GET",
-        url: `https://page.ppiyong.shop/api/shelter${latitude_start}&${longitude_start}&${latitude_end}&${longitude_end}`,
+        url: `https://page.ppiyong.shop/api/shelter?${latitude_start=latitude_start}&${longitude_start=longitude_start}&${latitude_end=latitude_end}&${longitude_end=longitude_end}`,
         contentType: "application/json",
         success: function (data) {
             data.forEach(item=>{
