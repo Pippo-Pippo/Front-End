@@ -96,17 +96,18 @@ const CIVIL = [];
 //     });
 //     console.log(categorizedData);
 // });
-
+$(document).ready(function () {
 var bounds = map.getBounds();
 bounds.toString();
 var latitude_start = bounds.oa,
     longitude_start = bounds.qa,
     latitude_end = bounds.ha,
     longitude_end = bounds.pa;
+console.log(`http://page.ppiyong.shop/api/shelter${latitude_start}&${longitude_start}&${latitude_end}&${longitude_end}`);
 
 $.ajax({
         type: "GET",
-        url: `http://page.ppiyong.shop/api/shelter${latitude_start}&${longitude_start}&${latitude_end}&${longitude_end}`,
+        url: `https://page.ppiyong.shop/api/shelter${latitude_start}&${longitude_start}&${latitude_end}&${longitude_end}`,
         contentType: "application/json",
         success: function (data) {
             data.forEach(item=>{
@@ -121,6 +122,7 @@ $.ajax({
             console.log(error);
             console.log(message);
         }
+});
 });
 
 //받아온 거 쓸 수 있게 정리
