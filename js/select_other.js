@@ -54,40 +54,43 @@ $.getJSON("../json/regionList.json", function (data) {
             //     select_region=null;
             // });
             //제주도는 선택 X 왜 ??????????????????????????????????????????????????????////
-            $.ajax({
-                type: "PUT",
-                url: `http://page.ppiyong.shop/api/notification/region`,
-                contentType: "application/json",
-                data: JSON.stringify(
-                    {
-                        "region": select_region
-                    }
-                ),
-                success: function (data) {
-                    console.log("전송 성공")
-                    $('#toastMsg').show();
-                    //3초뒤 메세지창 사라짐
-                    setTimeout(function() {
-                        $('#toastMsg').hide();
-                      }, 3000);
-                },
-                error: function (request, status, error) {
-                    console.log(
-                        "code:" +
-                        request.status +
-                        "\n" +
-                        "message:" +
-                        request.responseText +
-                        "\n" +
-                        "error:" +
-                        error
-                    );
-                },
-            });
+        
 
         });
         
     }
+});
+$(document).ready(function () {
+$.ajax({
+    type: "PUT",
+    url: `http://page.ppiyong.shop/api/notification/region`,
+    contentType: "application/json",
+    data: JSON.stringify(
+        {
+            "region": select_region
+        }
+    ),
+    success: function (data) {
+        console.log("전송 성공")
+        $('#toastMsg').show();
+        //3초뒤 메세지창 사라짐
+        setTimeout(function() {
+            $('#toastMsg').hide();
+          }, 3000);
+    },
+    error: function (request, status, error) {
+        console.log(
+            "code:" +
+            request.status +
+            "\n" +
+            "message:" +
+            request.responseText +
+            "\n" +
+            "error:" +
+            error
+        );
+    },
+});
 });
 
 
