@@ -1,17 +1,60 @@
-function getDisaster() {
-  console.log("getDisaster");
+function loadRecent(address) {
+  $.getJSON("../json/regionList.json", function (data) {
+    const regionList = data;
+
+    const convertedAddress = convertRegion(regionList, address);
+    console.log(convertedAddress); // INCHEON
+
+    $.ajax({
+      type: "GET",
+      url: `https://ppiyoung.shop/api/home?region=${convertedAddress}`,
+      contentType: "application/json",
+      success: function (data) {
+        console.log(data);
+        //최근 카테고리 하나 불러오기
+      },
+      error: function (request, status, error) {
+        alert("잘못된 요청입니다.");
+        console.log("error");
+      },
+    });
+  });
 }
 
-//접속 기준 위치
-navigator.geolocation.getCurrentPosition(function (position) {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
+$(document).ready(function () {
+  const current_region = localStorage.getItem("current_region");
+  if (current_region === null) {
+    getRegion();
+  } else {
+    localStorage.getItem("current_region");
+    $("#current_city").text(current_region.split(" ")[0]);
+  }
 
-  reverseGeocode(lat, lon, function (city) {
-    console.log("현재 지역 : ", city);
-    $("#current_city").text(city);
-  });
+  loadRecent(current_region);
 });
+
+// 지역명 변환 함수
+function convertRegion(regionList, address) {
+  for (let region in regionList) {
+    if (address.includes(region)) {
+      return regionList[region];
+    }
+  }
+  return address; // 변환할 수 없는 경우 원래 주소 반환
+}
+
+//접속 기준 위치 가져오기
+function getRegion() {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    reverseGeocode(lat, lon, function (city) {
+      console.log("현재 지역 : ", city);
+      $("#current_city").text(city);
+    });
+  });
+}
 
 //구글 GeoCoding API 사용해서 좌표 -> 주소변환 하기
 function reverseGeocode(lat, lng, callback) {
