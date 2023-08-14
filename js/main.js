@@ -1,9 +1,18 @@
 //뉴스 불러오기
 $(document).ready(function () {
+  const current_region = localStorage.getItem("current_region");
+  const convertedAddress = localStorage.getItem("converted_address");
+
+  $.getJSON("../json/regionList.json", function (data) {
+    const regionList = data;
+    const convertedAddress = convertRegion(regionList, current_region);
+    localStorage.setItem("converted_address", convertedAddress);
+  });
+
   function getNewsList() {
     return $.ajax({
       type: "GET",
-      url: "https://ppiyong.shop/api/home",
+      url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
       dataType: "json",
     });
   }
@@ -56,6 +65,16 @@ $(document).ready(function () {
       alert("통신 실패");
     });
 });
+
+// 지역명 변환 함수
+function convertRegion(regionList, address) {
+  for (let region in regionList) {
+    if (address.includes(region)) {
+      return regionList[region];
+    }
+  }
+  return address; // 변환할 수 없는 경우 원래 주소 반환
+}
 
 //버튼 색상 설정
 function updateButtonColors(category) {
