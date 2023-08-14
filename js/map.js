@@ -15,6 +15,12 @@ function out() {
     document.getElementById("modal").style.display = "none";
 }
 
+//현재 위치 받아오기
+$(document).ready(function () {
+    var location = localStorage.getItem("current_region");
+    $("#current_city").text(location);
+});
+
 /********************마커 생성하기 + 커스텀 오버레이 생성******************/
 //마커 기본 설정 
 var imageRed = '/img/svg/red_marker.svg', // 마커이미지의 주소입니다
@@ -90,40 +96,41 @@ const categorizedData = {
 const EARTHQUAKE = [];
 const CIVIL = [];
 
-$.getJSON("../json/map.json", function (data) {
-    data.forEach(item => {
-        categorizedData[item.category].push(item);
-    });
-    console.log(categorizedData);
-});
-// $(document).ready(function () {
-//     var bounds = map.getBounds();
-//     bounds.toString();
-//     var latitude_start = bounds.oa,
-//         longitude_start = bounds.qa,
-//         latitude_end = bounds.ha,
-//         longitude_end = bounds.pa;
-
-
-//     $.ajax({
-//         type: "GET",
-//         url: `https://ppiyong.shop/api/shelter/${latitude_start}&${longitude_start}&${latitude_end}&${longitude_end}`,
-//         contentType: "application/json",
-//         success: function (data) {
-//             data.forEach(item => {
-//                 categorizedData[item.category].push(item);
-//             });
-//             console.log(categorizedData)
-//         },
-//         error: function (request, status, error) {
-//             console.log("통신실패");
-//             console.log(request);
-//             console.log(status);
-//             console.log(error);
-//             console.log(message);
-//         }
+// $.getJSON("../json/map.json", function (data) {
+//     data.forEach(item => {
+//         categorizedData[item.category].push(item);
 //     });
+//     console.log(categorizedData);
 // });
+
+$(document).ready(function () {
+    var bounds = map.getBounds();
+    bounds.toString();
+    var latitude_start = bounds.oa,
+        longitude_start = bounds.qa,
+        latitude_end = bounds.ha,
+        longitude_end = bounds.pa;
+
+
+    $.ajax({
+        type: "GET",
+        url: `https://ppiyong.shop/api/shelter?latitude_start=${latitude_start}&longitude_start=${longitude_start}&latitude_end=${latitude_end}&longitude_end=${longitude_end}`,
+        contentType: "application/json",
+        success: function (data) {
+            data.forEach(item => {
+                categorizedData[item.category].push(item);
+            });
+            console.log(categorizedData)
+        },
+        error: function (request, status, error) {
+            console.log("통신실패");
+            console.log(request);
+            console.log(status);
+            console.log(error);
+            console.log(message);
+        }
+    });
+});
 
 //받아온 거 쓸 수 있게 정리
 $(document).ready(function () {
@@ -164,93 +171,75 @@ var civil_marker = [],
 //지진 마커 생성
 $(document).ready(function () {
     for (var i = 0; i < EARTHQUAKE.length; i++) {
-        //마커 생성
+        (function (index) {
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: EARTHQUAKE[index].latlng,
+                image: marker_yellow,
+                clickable: true
+            });
 
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: EARTHQUAKE[i].latlng,
-            image: marker_yellow,// 마커이미지 설정
-            clickable: true
-        });
+            marker.name = EARTHQUAKE[index].name;
+            marker.address = EARTHQUAKE[index].address;
+            marker.category = EARTHQUAKE[index].value;
 
-        marker.name = EARTHQUAKE[i].name;
-        marker.address = EARTHQUAKE[i].address;
-        marker.category = EARTHQUAKE[i].value;
+            earthquake_marker.push(marker);
+            all_marker.push(marker);
 
-        console.log(marker.name);
+            marker.setMap(map);
 
-        earthquake_marker.push(marker);
-        all_marker.push(marker);
-        // 마커가 지도 위에 표시되도록 설정합니다
-        marker.setMap(map);
+            var customOverlay = new kakao.maps.CustomOverlay({
+                position: EARTHQUAKE[index].latlng,
+                content: EARTHQUAKE[index].content,
+                yAnchor: 3.5
+            });
 
-        // 커스텀 오버레이를 생성합니다
-        var customOverlay = new kakao.maps.CustomOverlay({
-            position: EARTHQUAKE[i].latlng,
-            content: EARTHQUAKE[i].content,
-            yAnchor: 3.5
-        });
+            customOverlay.setMap(map);
+            earthquake_custom.push(customOverlay);
+            all_custom.push(customOverlay);
 
-        // 커스텀 오버레이를 지도에 표시합니다
-        customOverlay.setMap(map);
-        earthquake_custom.push(customOverlay);
-        all_custom.push(customOverlay);
-
-
-        kakao.maps.event.addListener(marker, 'click', function () {
-            openModal(marker);
-
-        });
+            kakao.maps.event.addListener(marker, 'click', function () {
+                openModal(marker);
+            });
+        })(i);
     }
-
 });
 
-
-//민방위 마커 
+//민방위 마커 생성
 $(document).ready(function () {
     for (var i = 0; i < CIVIL.length; i++) {
-        //마커 생성
+        (function (index) {
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: CIVIL[index].latlng,
+                image: marker_red,
+                clickable: true
+            });
 
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: CIVIL[i].latlng,
-            image: marker_red,
-            clickable: true
+            marker.name = CIVIL[index].name;
+            marker.address = CIVIL[index].address;
+            marker.category = CIVIL[index].value;
 
-        })
-        marker.name = CIVIL[i].name;
-        marker.address = CIVIL[i].address;
-        marker.category = CIVIL[i].value;
-        console.log(marker.name); //두개 찍힘
-        //마커 클릭하면 두번째마커의 정보만 뜸. 왜지 ..?
+            civil_marker.push(marker);
+            all_marker.push(marker);
 
-        civil_marker.push(marker);
-        all_marker.push(marker);
-        // 마커가 지도 위에 표시되도록 설정합니다
-        marker.setMap(map);
+            marker.setMap(map);
 
-        // 커스텀 오버레이를 생성합니다
-        var customOverlay = new kakao.maps.CustomOverlay({
-            position: CIVIL[i].latlng,
-            content: CIVIL[i].content,
-            yAnchor: 3.5
-        });
+            var customOverlay = new kakao.maps.CustomOverlay({
+                position: CIVIL[index].latlng,
+                content: CIVIL[index].content,
+                yAnchor: 3.5
+            });
 
-        // 커스텀 오버레이를 지도에 표시합니다
-        customOverlay.setMap(map);
+            customOverlay.setMap(map);
+            civil_custom.push(customOverlay);
+            all_custom.push(customOverlay);
 
-        civil_custom.push(customOverlay);
-        all_custom.push(customOverlay);
-
-
-        kakao.maps.event.addListener(marker, 'click', function () {
-            openModal(marker);
-
-        });
-
-
+            kakao.maps.event.addListener(marker, 'click', function () {
+                openModal(marker);
+            });
+        })(i);
     }
-
 });
 
 /********************카테고리따라 마커 보이기 숨기기******************/
@@ -341,67 +330,66 @@ function openModal(marker) {
 }
 
 //현재 좌표로 주소변환해서 추가하기
-function reverseGeocode(lat, lng, callback) {
-    const geocoder = new google.maps.Geocoder();
-    const latLng = { lat: lat, lng: lng };
+// function reverseGeocode(lat, lng, callback) {
+//     const geocoder = new google.maps.Geocoder();
+//     const latLng = { lat: lat, lng: lng };
 
-    geocoder.geocode({ location: latLng }, function (results, status) {
-        if (status === "OK") {
-            if (results[0]) {
-                const addressComponents = results[0].address_components;
-                console.log(addressComponents);
+//     geocoder.geocode({ location: latLng }, function (results, status) {
+//         if (status === "OK") {
+//             if (results[0]) {
+//                 const addressComponents = results[0].address_components;
+//                 console.log(addressComponents);
 
-                let city = null; // 시/도/광역시 정보를 저장할 변수
-                let district = null; // 구/군 정보를 저장할 변수
-                let sub_district = null; // 구/군 정보를 저장할 변수
+//                 let city = null; // 시/도/광역시 정보를 저장할 변수
+//                 let district = null; // 구/군 정보를 저장할 변수
+//                 let sub_district = null; // 구/군 정보를 저장할 변수
 
-                for (let component of addressComponents) {
-                    if (component.types.includes("administrative_area_level_1")) {
-                        city = component.long_name;
-                        console.log(city);
-                    }
-                    if (
-                        component.types.includes("sublocality_level_1") ||
-                        component.types.includes("locality")
-                    ) {
-                        district = component.long_name;
-                        console.log(district);
-                    }
-                    if (component.types.includes("sublocality_level_2")) {
-                        sub_district = component.long_name;
-                        console.log(sub_district);
-                    }
-                }
+//                 for (let component of addressComponents) {
+//                     if (component.types.includes("administrative_area_level_1")) {
+//                         city = component.long_name;
+//                         console.log(city);
+//                     }
+//                     if (
+//                         component.types.includes("sublocality_level_1") ||
+//                         component.types.includes("locality")
+//                     ) {
+//                         district = component.long_name;
+//                         console.log(district);
+//                     }
+//                     if (component.types.includes("sublocality_level_2")) {
+//                         sub_district = component.long_name;
+//                         console.log(sub_district);
+//                     }
+//                 }
 
-                if (city && district && sub_district) {
-                    callback(`${city} ${district} ${sub_district}`);
-                } else if (city && district) {
-                    callback(`${city} ${district} `);
-                } else if (city) {
-                    callback(city);
-                } else {
-                    callback("시/도/광역시 또는 구/군 정보를 찾을 수 없습니다.");
-                }
-            } else {
-                callback("결과가 없습니다.");
-            }
-        } else {
-            callback("Geocoder failed due to: " + status);
-        }
-    });
-}
+//                 if (city && district && sub_district) {
+//                     callback(`${city} ${district} ${sub_district}`);
+//                 } else if (city && district) {
+//                     callback(`${city} ${district} `);
+//                 } else if (city) {
+//                     callback(city);
+//                 } else {
+//                     callback("시/도/광역시 또는 구/군 정보를 찾을 수 없습니다.");
+//                 }
+//             } else {
+//                 callback("결과가 없습니다.");
+//             }
+//         } else {
+//             callback("Geocoder failed due to: " + status);
+//         }
+//     });
+// }
 
-//현재 접속 좌표 받아와서 주소로 변환하기
-navigator.geolocation.getCurrentPosition(function (position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
+// //현재 접속 좌표 받아와서 주소로 변환하기
+// navigator.geolocation.getCurrentPosition(function (position) {
+//     const lat = position.coords.latitude;
+//     const lon = position.coords.longitude;
 
-    reverseGeocode(lat, lon, function (address) {
-        console.log(lat, lon, address);
-        $("#current_city").text(address);
-    });
-});
-
+//     reverseGeocode(lat, lon, function (address) {
+//         console.log(lat, lon, address);
+//         $("#current_city").text(address);
+//     });
+// });
 
 
 

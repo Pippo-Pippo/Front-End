@@ -3,22 +3,22 @@ $(document).ready(function () {
     var selectedButtons=[];
 
     // 페이지 로드 시 JSON 데이터 가져오기
-    $.getJSON('/json/user_region.json', function (data) {
-        selectedButtons.push(data.region);
-        $('#'+data.region).addClass('active');
+    // $.getJSON('/json/user_region.json', function (data) {
+    //     selectedButtons.push(data.region);
+    //     $('#'+data.region).addClass('active');
         
-    });
-    // $.ajax({
-    //     type: 'GET',
-    //     url:`https://ppiyong.shop/api/notification/region`,
-    //     success: function(data) {
-    //         selectedButtons.push(data.region);
-    //         $('#'+data.region).addClass('active');
-    //     },
-    //     error: function(error) {
-    //         console.error("GET 요청 실패:", error);
-    //     }
     // });
+    $.ajax({
+        type: 'GET',
+        url:`https://ppiyong.shop/api/notification/region`,
+        success: function(data) {
+            selectedButtons.push(data.region);
+            $('#'+data.region).addClass('active');
+        },
+        error: function(error) {
+            console.error("GET 요청 실패:", error);
+        }
+    });
 
     // 버튼 클릭 이벤트
     $('.region_btn').click(function () {
