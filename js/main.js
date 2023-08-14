@@ -163,19 +163,19 @@ $(document).ready(function () {
 
     return `
       <!--메인 박스-->
-      <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
-        <div class="flex items-center justify-between">
+      <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
+        <div class="flex items-center justify-between py-2">
           <div>${weather.from}</div>
           <div class="text-grey-600 font-medium text-sm ml-4">${weather.time}</div>
         </div>
         <div class="button-container"></div>
-        <div class="flex items-start justify-center text-black font-medium text-base">
+        <div class="flex py-2 text-start items-start text-black font-medium text-base">
           ${weather.content}
         </div>
         <div class="flex items-center justify-end text-end">
-          <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
+          <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
           <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-          <div class="font-medium text-bold mt-1 mr-5">${weather.comment}</div>
+          <div class="font-medium text-bold mt-1 mr-5 ">${weather.comment}</div>
           <button
             id="authButton"
             type="button"
@@ -256,31 +256,30 @@ function displayEarthquake(earthquakeData) {
 function createHTMLString(earthquake) {
   const categories = earthquake.category.split(" ");
   const buttonBackgroundColor = getButtonBackgroundColor(earthquake.category);
-
   return `
-    <!--메인 박스-->
-    <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
-      <div class="flex items-center justify-between">
-        <div>${earthquake.from}</div>
-        <div class="text-grey-600 font-medium text-sm ml-4">${earthquake.time}</div>
-      </div>
-      <div class="button-container"></div>
-      <div class="flex items-start justify-center text-black font-medium text-base">
-        ${earthquake.content}
-      </div>
-      <div class="flex items-center justify-end text-end">
-        <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
-        <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-        <div class="font-medium text-bold mt-1 mr-5">${earthquake.comment}</div>
-        <button
-          id="authButton"
-          type="button"
-          class="${earthquake.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-        >
-          더보기
-        </button>
-      </div>
-    </div>`;
+      <!--메인 박스-->
+      <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
+        <div class="flex items-center justify-between py-2">
+          <div>${earthquake.from}</div>
+          <div class="text-grey-600 font-medium text-sm ml-4">${earthquake.time}</div>
+        </div>
+        <div class="button-container"></div>
+        <div class="flex py-2 text-start items-start text-black font-medium text-base">
+          ${earthquake.content}
+        </div>
+        <div class="flex items-center justify-end text-end">
+          <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
+          <div class="font-medium text-sm mt-1 mr-1">댓글</div>
+          <div class="font-medium text-bold mt-1 mr-5 ">${earthquake.comment}</div>
+          <button
+            id="authButton"
+            type="button"
+            class="${earthquake.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+          >
+            더보기
+          </button>
+        </div>
+      </div>`;
 }
 
 function getButtonBackgroundColor(category) {
@@ -342,31 +341,30 @@ function displayCivil(civilData) {
 
 function createHTMLString(civil) {
   const buttonBackgroundColor = getButtonBackgroundColor(civil.category);
-
   return `
-    <!--메인 박스-->
-    <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
-      <div class="flex items-center justify-between">
-        <div>${civil.from}</div>
-        <div class="text-grey-600 font-medium text-sm ml-4">${civil.time}</div>
-      </div>
-      <div class="button-container"></div>
-      <div class="flex items-start justify-center text-black font-medium text-base">
-        ${civil.content}
-      </div>
-      <div class="flex items-center justify-end text-end">
-        <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
-        <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-        <div class="font-medium text-bold mt-1 mr-5">${civil.comment}</div>
-        <button
-          id="authButton"
-          type="button"
-          class="${civil.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-        >
-          더보기
-        </button>
-      </div>
-    </div>`;
+  <!--메인 박스-->
+  <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
+    <div class="flex items-center justify-between py-2">
+      <div>${civil.from}</div>
+      <div class="text-grey-600 font-medium text-sm ml-4">${civil.time}</div>
+    </div>
+    <div class="button-container"></div>
+    <div class="flex py-2 text-start items-start text-black font-medium text-base">
+      ${civil.content}
+    </div>
+    <div class="flex items-center justify-end text-end">
+      <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
+      <div class="font-medium text-sm mt-1 mr-1">댓글</div>
+      <div class="font-medium text-bold mt-1 mr-5 ">${civil.comment}</div>
+      <button
+        id="authButton"
+        type="button"
+        class="${civil.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+      >
+        더보기
+      </button>
+    </div>
+  </div>`;
 }
 
 function getButtonBackgroundColor(category) {
@@ -430,29 +428,29 @@ function createHTMLString(lost) {
   const buttonBackgroundColor = getButtonBackgroundColor(lost.category);
 
   return `
-    <!--메인 박스-->
-    <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
-      <div class="flex items-center justify-between">
-        <div>${lost.from}</div>
-        <div class="text-grey-600 font-medium text-sm ml-4">${lost.time}</div>
-      </div>
-      <div class="button-container"></div>
-      <div class="flex items-start justify-center text-black font-medium text-base">
-        ${lost.content}
-      </div>
-      <div class="flex items-center justify-end text-end">
-        <img src="img/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
-        <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-        <div class="font-medium text-bold mt-1 mr-5">${lost.comment}</div>
-        <button
-          id="authButton"
-          type="button"
-          class="${lost.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-        >
-          더보기
-        </button>
-      </div>
-    </div>`;
+      <!--메인 박스-->
+      <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
+        <div class="flex items-center justify-between py-2">
+          <div>${lost.from}</div>
+          <div class="text-grey-600 font-medium text-sm ml-4">${lost.time}</div>
+        </div>
+        <div class="button-container"></div>
+        <div class="flex py-2 text-start items-start text-black font-medium text-base">
+          ${lost.content}
+        </div>
+        <div class="flex items-center justify-end text-end">
+          <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
+          <div class="font-medium text-sm mt-1 mr-1">댓글</div>
+          <div class="font-medium text-bold mt-1 mr-5 ">${lost.comment}</div>
+          <button
+            id="authButton"
+            type="button"
+            class="${lost.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+          >
+            더보기
+          </button>
+        </div>
+      </div>`;
 }
 
 function getButtonBackgroundColor(category) {
@@ -485,48 +483,50 @@ function getButtonBackgroundColor(category) {
   }
 }
 
-//현재 좌표로 주소변환해서 추가하기
+//현재 좌표로 주소변환해서 추가하기 -> 그냥 배열로 받아와서 두번째 까지만 출력하도록 함 !!,
+// 메인페이지에 사용할 주소 두번째 토큰까지
+// 댓글달때 사용할 주소 세번째 토큰
+// 체크리스트때 사용할 주소 첫번째 토큰
+
 function reverseGeocode(lat, lng, callback) {
   const geocoder = new google.maps.Geocoder();
   const latLng = { lat: lat, lng: lng };
+  let current_region = "";
+  let main_current_region = "";
+  let slicedAddressComponents;
 
   geocoder.geocode({ location: latLng }, function (results, status) {
     if (status === "OK") {
       if (results[0]) {
-        const addressComponents = results[0].address_components;
-        console.log(addressComponents);
+        const addressComponents = results[0].address_components; //원본 배열
 
-        let city = null; // 시/도/광역시 정보를 저장할 변수
-        let district = null; // 구/군 정보를 저장할 변수
-        let sub_district = null; // 구/군 정보를 저장할 변수
+        // "administrative_area_level_1" 조건을 만족하는 요소의 인덱스를 찾는다.
+        let index = addressComponents.findIndex((component) =>
+          component.types.includes("administrative_area_level_1")
+        );
 
-        for (let component of addressComponents) {
-          if (component.types.includes("administrative_area_level_1")) {
-            city = component.long_name;
-            console.log(city);
-          }
-          if (
-            component.types.includes("sublocality_level_1") ||
-            component.types.includes("locality")
-          ) {
-            district = component.long_name;
-            console.log(district);
-          }
-          if (component.types.includes("sublocality_level_2")) {
-            sub_district = component.long_name;
-            console.log(sub_district);
-          }
+        // 해당 인덱스부터의 모든 요소들을 새 배열로 저장한다.
+        if (index !== -1) {
+          slicedAddressComponents = addressComponents.slice(1, index + 1);
         }
 
-        if (city && district && sub_district) {
-          callback(`${city} ${district} ${sub_district}`);
-        } else if (city && district) {
-          callback(`${city} ${district} `);
-        } else if (city) {
-          callback(city);
-        } else {
-          callback("시/도/광역시 또는 구/군 정보를 찾을 수 없습니다.");
+        console.log(slicedAddressComponents);
+
+        // ex_ 인천광역시 부평구 삼산동 형태 저장
+        for (let component of slicedAddressComponents.reverse()) {
+          current_region += component.long_name + " ";
         }
+        current_region = current_region.trim();
+        //localStorage.removeItem("current_region");
+        localStorage.setItem("current_region", current_region); // 로컬에 저장
+
+        // ex_ 인천광역시 부평구 형태 저장
+        for (let i = 0; i < slicedAddressComponents.length - 1; i++) {
+          main_current_region += slicedAddressComponents[i].long_name + " ";
+        }
+        main_current_region = main_current_region.trim();
+
+        callback(main_current_region);
       } else {
         callback("결과가 없습니다.");
       }
@@ -575,7 +575,7 @@ function updateDateTime() {
   const amPm = hour < 12 ? "오전" : "오후";
   hour = hour % 12 || 12;
 
-  $(".text-black.font-medium.text-sm").text(
+  $("#current_time").text(
     `${year}/${month}/${day} ${amPm} ${hour}:${minute} 기준`
   );
 }
