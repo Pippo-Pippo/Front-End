@@ -23,6 +23,7 @@ $(document).ready(function () {
   });
 });
 
+//POST - 댓글 입력
 function postComment() {
   const postId = 1; //이거 바꿔줘야함
   const location = localStorage.getItem("current_region");
@@ -179,12 +180,16 @@ function createCommentBoxHTML(comment, commentNumber) {
         comment.createdAt
       }</div>
       <!--도움돼요, 싫어요 버튼-->
-      <div class="comment-like${commentNumber} font-light text-xs mt-1 mr-2">도움돼요 ${
+      <button onclick="likeComment(${comment.id}, ${
+    comment.isLike
+  })" class="comment-like font-light text-xs mt-1 mr-2">도움돼요 ${
     comment.like
-  }</div>
-      <div class="comment-hate${commentNumber} font-light text-xs mt-1">싫어요 ${
+  }</button>
+      <button onclick="hateComment(${comment.id}, ${
+    comment.isHate
+  })" class="comment-hate font-light text-xs mt-1">싫어요 ${
     comment.hate
-  }</div>
+  }</button>
     </div>
 
   </div>
@@ -197,6 +202,46 @@ function createCommentBoxHTML(comment, commentNumber) {
 }
 
 displayComment(jsonData);
+
+//POST - 댓글 좋아요
+function likeComment(commentId, isLike) {
+  console.log(commentId, isLike);
+  if (isLike) {
+    $.ajax({
+      url: `https://ppiyong.shop/api/comment/${commentId}/like`,
+      type: "POST",
+      success: function (response) {
+        console.log(response);
+        alert("해당 댓글에 도움돼요라고 표시했어요.");
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.error(textStatus, errorThrown);
+      },
+    });
+  } else {
+    alert("이미 도움된다고 표시한 댓글이에요.");
+  }
+}
+
+//POST - 댓글 싫어요
+function hateComment(commentId, isHate) {
+  console.log(commentId, isHate);
+  if (isHate) {
+    $.ajax({
+      url: `https://ppiyong.shop/api/comment/${commentId}/hate`,
+      type: "POST",
+      success: function (response) {
+        console.log(response);
+        alert("해당 댓글에 싫어요라고 표시했어요.");
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.error(textStatus, errorThrown);
+      },
+    });
+  } else {
+    alert("이미 싫어요 표시한 댓글이에요.");
+  }
+}
 
 // 목데이터 연습본
 // function loadComment() {
