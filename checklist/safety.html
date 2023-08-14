@@ -7,8 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
-    <script src="./assets/config.js"></script>
-
     <title>main</title>
     <link rel="stylesheet" href="../css/config.css" />
   </head>
@@ -58,7 +56,7 @@
         <div class="content-title flex justify-between">
           <div>
             <p class="text-2xl">
-              <span class="font-bold">호우/홍수/침수</span> <br />
+              <span class="font-bold">안전/테러</span> <br />
               체크리스트
             </p>
           </div>
@@ -90,6 +88,8 @@
         <div class="button-footer flex justify-center mt-1.5">
           <div class="flex justify-center items-center">
             <button
+              onclick="shareLink()"
+              id="shareLink"
               type="button"
               class="m-1.5 px-2.5 py-1 text-white bg-gray-600 hover:bg-gray-700 rounded-lg border border-gray-200 text-sm font-medium hover:text-white"
             >
@@ -99,6 +99,8 @@
 
           <div class="flex justify-center items-center">
             <button
+              onclick="shareKakao()"
+              id="shareKakao"
               type="button"
               class="m-1.5 px-2.5 py-1 text-black bg-yellow-400 hover:bg-yellow-500 rounded-lg border border-gray-200 text-sm font-medium hover:text-white"
             >
@@ -108,5 +110,15 @@
         </div>
       </div>
     </div>
+
+    <script
+      src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js"
+      integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/checklist_detail.js"></script>
+    <script>
+      Kakao.init("84006249f39045b05f2da9f99f8320ca");
+    </script>
   </body>
 </html>
