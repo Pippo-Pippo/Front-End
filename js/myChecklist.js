@@ -1,11 +1,14 @@
 $(document).ready(function () {
-  loadChecklists();
-  //getMockData();
+  //loadChecklists();
+  getMockData();
 });
 
 function getMockData() {
+  console.log("getMockData");
   $.getJSON("./json/checklist.json", function (data) {
     localStorage.setItem("checklistData", JSON.stringify(data));
+    localStorage.setItem("currentChecklistId", 1);
+
     initializeChecklist();
   });
 }
@@ -28,99 +31,99 @@ function loadChecklists() {
   });
 }
 
-//DELETE 요청 - 태스크 삭제
-function deleteTask(taskId) {
-  $.ajax({
-    url: `https://ppiyong.shop/api/checklist/${taskId}`,
-    type: "DELETE",
-    dataType: "json",
-    body: testData,
-    success: function (data) {
-      console.log("삭제 완료");
-      localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", 1);
+// //DELETE 요청 - 태스크 삭제
+// function deleteTask(taskId) {
+//   $.ajax({
+//     url: `https://ppiyong.shop/api/checklist/${taskId}`,
+//     type: "DELETE",
+//     dataType: "json",
+//     body: testData,
+//     success: function (data) {
+//       console.log("삭제 완료");
+//       localStorage.setItem("checklistData", JSON.stringify(data));
+//       localStorage.setItem("currentChecklistId", 1);
 
-      initializeChecklist();
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      console.error(textStatus, errorThrown);
-    },
-  });
-}
+//       initializeChecklist();
+//     },
+//     error: function (jqXHR, textStatus, errorThrown) {
+//       console.error(textStatus, errorThrown);
+//     },
+//   });
+// }
 
-//DELETE 요청 - 체크리스트 삭제
-function deleteChecklist() {
-  console.log("하이요");
-  const currentChecklistId = localStorage.getItem("currentChecklistId");
-  $.ajax({
-    url: `https://ppiyong.shop/api/checklist/${currentChecklistId}`,
-    type: "DELETE",
-    dataType: "json",
-    success: function (data) {
-      localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", 1);
+// //DELETE 요청 - 체크리스트 삭제
+// function deleteChecklist() {
+//   console.log("하이요");
+//   const currentChecklistId = localStorage.getItem("currentChecklistId");
+//   $.ajax({
+//     url: `https://ppiyong.shop/api/checklist/${currentChecklistId}`,
+//     type: "DELETE",
+//     dataType: "json",
+//     success: function (data) {
+//       localStorage.setItem("checklistData", JSON.stringify(data));
+//       localStorage.setItem("currentChecklistId", 1);
 
-      initializeChecklist();
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      console.error(textStatus, errorThrown);
-    },
-  });
-}
+//       initializeChecklist();
+//     },
+//     error: function (jqXHR, textStatus, errorThrown) {
+//       console.error(textStatus, errorThrown);
+//     },
+//   });
+// }
 
-$(document).on("click", "#delete-checklist", deleteChecklist());
+//$(document).on("click", "#delete-checklist", deleteChecklist());
 
-//POST 요청 ?? 이거 왜 안되냐
-function updateChecklist(checklist) {
-  delete checklist.check_list_id;
-  console.log(checklist);
+// //POST 요청 ?? 이거 왜 안되냐
+// function updateChecklist(checklist) {
+//   delete checklist.check_list_Id;
+//   console.log(checklist);
 
-  const testData = {
-    title: "A",
-    task: [
-      {
-        content: "테스트",
-      },
-    ],
-  };
+//   const testData = {
+//     title: "A",
+//     task: [
+//       {
+//         content: "테스트",
+//       },
+//     ],
+//   };
 
-  $.ajax({
-    url: "https://ppiyong.shop/api/checklist",
-    type: "POST",
-    dataType: "json",
-    body: testData,
-    success: function (data) {
-      localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", 1);
+//   $.ajax({
+//     url: "https://ppiyong.shop/api/checklist",
+//     type: "POST",
+//     dataType: "json",
+//     body: testData,
+//     success: function (data) {
+//       localStorage.setItem("checklistData", JSON.stringify(data));
+//       localStorage.setItem("currentChecklistId", 1);
 
-      initializeChecklist();
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      console.error(textStatus, errorThrown);
-    },
-  });
-}
+//       initializeChecklist();
+//     },
+//     error: function (jqXHR, textStatus, errorThrown) {
+//       console.error(textStatus, errorThrown);
+//     },
+//   });
+// }
 
-//PUT 요청 - checklist title 수정
-function changeChecklistTitle(checklist) {
-  console.log("PUT요청 : ", checklist);
+// //PUT 요청 - checklist title 수정
+// function changeChecklistTitle(checklist) {
+//   console.log("PUT요청 : ", checklist);
 
-  $.ajax({
-    url: `https://ppiyong.shop/api/checklist/${checklistId}`,
-    type: "PUT",
-    dataType: "json",
-    body: checklist,
-    success: function (data) {
-      localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", 1);
+//   $.ajax({
+//     url: `https://ppiyong.shop/api/checklist/${checklistId}`,
+//     type: "PUT",
+//     dataType: "json",
+//     body: checklist,
+//     success: function (data) {
+//       localStorage.setItem("checklistData", JSON.stringify(data));
+//       localStorage.setItem("currentChecklistId", 1);
 
-      initializeChecklist();
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      console.error(textStatus, errorThrown);
-    },
-  });
-}
+//       initializeChecklist();
+//     },
+//     error: function (jqXHR, textStatus, errorThrown) {
+//       console.error(textStatus, errorThrown);
+//     },
+//   });
+// }
 
 //체크리스트 초기화
 function initializeChecklist() {
@@ -130,15 +133,15 @@ function initializeChecklist() {
   const $checklistContent = $(".checklist-content");
 
   $.each(checklistData, function (index, checklist) {
-    $(".my-checlist-container").empty();
-    const navItem = renderNavItem(checklist.title[0], checklist.check_list_id);
+    $(".my-checklist-container").empty();
+    const navItem = renderNavItem(checklist.title[0], checklist.check_list_Id);
     $myChecklistsContainer.append(navItem);
   }); //navItem 렌더링하기
 
   const checklistId = localStorage.getItem("currentChecklistId");
   const checklist = checklistData.find(
-    (item) => item.check_list_id == checklistId
-  );
+    (item) => item.check_list_Id == checklistId
+  ); //각각의 체크리스트 가져오기
 
   $checklistTitleText.text(checklist.title);
   $checklistContent.empty();
@@ -157,10 +160,10 @@ function updateSelectedChecklist(checklistId) {
   const $checklistContent = $(".checklist-content");
 
   const checklist = checklistData.find(
-    (item) => item.check_list_id == checklistId
+    (item) => item.check_list_Id == checklistId
   );
 
-  console.log(checklist);
+  console.log(checklistId, checklist);
 
   $checklistTitleText.text(checklist.title);
   $checklistContent.empty();
@@ -206,7 +209,7 @@ function saveNewTask(text) {
   const currentChecklistId = localStorage.getItem("currentChecklistId");
 
   const checklist = storedChecklistData.find(
-    (item) => item.check_list_id == currentChecklistId
+    (item) => item.check_list_Id == currentChecklistId
   );
 
   if (checklist) {
@@ -255,7 +258,6 @@ function renderNavItem(title, checklistid) {
 
 // 체크박스를 렌더링하는 함수
 function renderCheckbox(taskId, isComplete) {
-  console.log("체크박스 :", taskId);
   const checkboxWrapper = $("<div>").addClass("flex h-6 items-center");
   const checkboxImg = $("<img>")
     .attr({
@@ -298,7 +300,7 @@ $(document).on("click", ".delete-btn", function () {
   const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
 
   const targetChecklist = storedChecklistData.find(
-    (item) => item.check_list_id == currentChecklistId
+    (item) => item.check_list_Id == currentChecklistId
   );
 
   if (targetChecklist) {
@@ -338,7 +340,7 @@ $(document).on("click", "#plus-nav-item", function () {
   const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
   const newChecklistId = storedChecklistData.length + 1;
   const newChecklist = {
-    check_list_id: newChecklistId,
+    check_list_Id: newChecklistId,
     title: "새 체크리스트",
     task: [],
   };
@@ -379,16 +381,15 @@ $(document).on("click", ".checkbox", function () {
   }
 
   const targetChecklist = storedChecklistData.find(
-    (item) => item.check_list_id == currentChecklistId
+    (item) => item.check_list_Id == currentChecklistId
   );
 
   if (targetChecklist) {
     const targetTaskIndex = targetChecklist.task.findIndex(
       (task) => task.taskId == taskId
     );
-    targetChecklist.task[targetTaskIndex].isComplete = nowComplete;
+    targetChecklist.task[targetTaskIndex + 1].isComplete = nowComplete;
   }
-
   // 변경된 데이터를 다시 localStorage에 저장
   localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
 });
@@ -408,7 +409,7 @@ $(document).on("blur", ".editInput", function () {
   const currentChecklistId = localStorage.getItem("currentChecklistId");
   const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
   const targetChecklist = storedChecklistData.find(
-    (item) => item.check_list_id == currentChecklistId
+    (item) => item.check_list_Id == currentChecklistId
   );
 
   if (newText.length === 0 || newText.length > 10) {

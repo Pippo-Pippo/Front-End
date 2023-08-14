@@ -54,7 +54,6 @@
           </div>
         </nav>
       </div>
-
       <div class="cehcklist-content p-5">
         <div class="title flex justify-between">
           <div>
@@ -63,63 +62,64 @@
               재난대비 체크리스트
             </p>
           </div>
-          <div><img src="../img/icon/pencil_icon.png"></div>
+          <div><img src="../img/icon/pencil_icon.png" /></div>
         </div>
       </div>
+      <div class="flex flex-col justify-center pt-0 p-5">
+        <div class="my-checklists-container flex"></div>
 
-      <div class="my-checklists-container flex"></div>
+        <div class="my-checklist">
+          <div
+            class="bg-white w-80 h-96 rounded shadow mt-4 flex flex-col justify-between"
+          >
+            <div class="warp">
+              <div class="checklist-title">
+                <div class="flex justify-between">
+                  <p
+                    id="checklist-title-text"
+                    class="font-bold px-4 py-2 text-lg"
+                  ></p>
+                  <button
+                    id="delete-checklist"
+                    type="button"
+                    class="m-1.5 px-2.5 py-1 text-white bg-red-500 rounded-lg border border-gray-200 text-sm font-medium"
+                  >
+                    <p class="text-center">삭제하기</p>
+                  </button>
+                </div>
+                <div class="bg-gray-100 h-0.5"></div>
+              </div>
 
-      <div class="my-checklist">
-        <div
-          class="bg-white w-80 h-96 rounded shadow mt-4 flex flex-col justify-between"
-        >
-          <div class="warp">
-            <div class="checklist-title">
-              <div class="flex justify-between">
-                <p
-                  id="checklist-title-text"
-                  class="font-bold px-4 py-2 text-lg"
-                ></p>
+              <div class="checklist-content overflow-auto"></div>
+            </div>
+
+            <div class="checklist-footer">
+              <div class="checklist-input mt-2 mb-2 relative">
+                <input
+                  id="checklist-input"
+                  placeholder="체크리스트를 추가해보세요."
+                  class="text-gray-900 border border-gray-300 form-input w-80 h-11 px-3 py-2 rounded-md border focus:outline-none focus:ring focus:border-blue-600"
+                  required
+                />
                 <button
-                  id="delete-checklist"
+                  id="add-btn"
                   type="button"
-                  class="m-1.5 px-2.5 py-1 text-white bg-red-500 rounded-lg border border-gray-200 text-sm font-medium"
+                  class="absolute right-2 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-bold text-sm"
                 >
-                  <p class="text-center">삭제하기</p>
+                  추가
                 </button>
               </div>
+
               <div class="bg-gray-100 h-0.5"></div>
-            </div>
 
-            <div class="checklist-content overflow-auto"></div>
-          </div>
-
-          <div class="checklist-footer">
-            <div class="checklist-input mt-2 mb-2 relative">
-              <input
-                id="checklist-input"
-                placeholder="체크리스트를 추가해보세요."
-                class="text-gray-900 border border-gray-300 form-input w-80 h-11 px-3 py-2 rounded-md border focus:outline-none focus:ring focus:border-blue-600"
-                required
-              />
-              <button
-                id="add-btn"
-                type="button"
-                class="absolute right-2 translate-y-1/4 w-11 h-7 bg-gray-600 rounded-md text-white font-bold text-sm"
-              >
-                추가
-              </button>
-            </div>
-
-            <div class="bg-gray-100 h-0.5"></div>
-
-            <div class="flex justify-center items-center">
-              <button
-                type="button"
-                class="m-1.5 px-2.5 py-1 text-white bg-gray-600 hover:bg-gray-100 rounded-lg border border-gray-200 text-sm font-medium hover:text-gray-900"
-              >
-                <p class="text-center">공유하기</p>
-              </button>
+              <div class="flex justify-center items-center">
+                <button
+                  type="button"
+                  class="m-1.5 px-2.5 py-1 text-white bg-gray-600 hover:bg-gray-100 rounded-lg border border-gray-200 text-sm font-medium hover:text-gray-900"
+                >
+                  <p class="text-center">공유하기</p>
+                </button>
+              </div>
             </div>
           </div>
         </div>
