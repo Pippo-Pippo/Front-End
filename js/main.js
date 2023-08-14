@@ -20,40 +20,41 @@ $(document).ready(function () {
       </li>`;
   }
 
-  getNewsList().done(function (data) {
-    const newsList = data.news;
-    displayNews(newsList);
+  getNewsList()
+    .done(function (data) {
+      const newsList = data.news;
+      displayNews(newsList);
 
-    // News rolling
-    var height = $(".newsList").height();
-    var move = 0;
-    var noticeRollingOff;
+      // News rolling
+      var height = $(".newsList").height();
+      var move = 0;
+      var noticeRollingOff;
 
-    function noticeRolling() {
-      move += height;
-      $(".news-list").animate({ top: -move }, 600, function () {
-        if (move >= $(".news-list li").length * height) {
-          $(this).css("top", 0);
-          move = 0;
-        }
+      function noticeRolling() {
+        move += height;
+        $(".news-list").animate({ top: -move }, 600, function () {
+          if (move >= $(".news-list li").length * height) {
+            $(this).css("top", 0);
+            move = 0;
+          }
+        });
+      }
+
+      noticeRollingOff = setInterval(noticeRolling, 3000);
+
+      $(".news-list_stop").click(function () {
+        clearInterval(noticeRollingOff);
       });
-    }
 
-    noticeRollingOff = setInterval(noticeRolling, 3000);
-
-    $(".news-list_stop").click(function () {
-      clearInterval(noticeRollingOff);
+      $(".news-list_start").click(function () {
+        noticeRollingOff = setInterval(noticeRolling, 1000);
+      });
+      alert("통신 성공");
+    })
+    .fail(function (error) {
+      console.error("Failed to retrieve news data:", error);
+      alert("통신 실패");
     });
-
-    $(".news-list_start").click(function () {
-      noticeRollingOff = setInterval(noticeRolling, 1000);
-    });
-    alert("통신 성공");
-
-  }).fail(function (error) {
-    console.error("Failed to retrieve news data:", error);
-    alert("통신 실패");
-  });
 });
 
 //버튼 색상 설정
@@ -135,7 +136,9 @@ $(document).ready(function () {
 
   function displayWeather(weather) {
     const container = $("#main");
-    container.empty().append(weather.map((item) => createHTMLString(item)).join(""));
+    container
+      .empty()
+      .append(weather.map((item) => createHTMLString(item)).join(""));
 
     const buttonContainers = container.find(".button-container");
     weather.forEach((item, index) => {
@@ -144,7 +147,11 @@ $(document).ready(function () {
       const categories = item.category.split(" ");
       for (const category of categories) {
         const button = $("<button>")
-          .addClass(`category-button w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`)
+          .addClass(
+            `category-button w-14 h-7 ${getButtonBackgroundColor(
+              category
+            )} rounded-full mr-1 text-sm font-medium text-white mb-1`
+          )
           .text(category);
         buttonContainer.append(button);
       }
@@ -172,7 +179,7 @@ $(document).ready(function () {
           <button
             id="authButton"
             type="button"
-            class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+            class="${weather.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
           >
             더보기
           </button>
@@ -207,14 +214,16 @@ function loadEarthquake() {
     });
 }
 
-document.getElementById("earthquakeButton").addEventListener("click", function () {
-  loadEarthquake().then((earthquakeData) => {
-    const filteredEarthquakeData = earthquakeData.filter((item) => {
-      return item.category.includes("EARTHQUAKE");
+document
+  .getElementById("earthquakeButton")
+  .addEventListener("click", function () {
+    loadEarthquake().then((earthquakeData) => {
+      const filteredEarthquakeData = earthquakeData.filter((item) => {
+        return item.category.includes("EARTHQUAKE");
+      });
+      displayEarthquake(filteredEarthquakeData);
     });
-    displayEarthquake(filteredEarthquakeData);
   });
-});
 
 loadEarthquake().then((earthquakeData) => {
   displayEarthquake(earthquakeData);
@@ -222,18 +231,22 @@ loadEarthquake().then((earthquakeData) => {
 
 function displayEarthquake(earthquakeData) {
   const container = document.getElementById("main");
-  container.innerHTML = earthquakeData.map((item) => createHTMLString(item)).join("");
+  container.innerHTML = earthquakeData
+    .map((item) => createHTMLString(item))
+    .join("");
 
   const buttonContainers = container.querySelectorAll(".button-container");
   earthquakeData.forEach((item, index) => {
     const buttonContainer = buttonContainers[index];
-    
-    buttonContainer.innerHTML = ''; // Clear previous buttons
+
+    buttonContainer.innerHTML = ""; // Clear previous buttons
 
     const categories = item.category.split(" ");
     for (const category of categories) {
       const button = document.createElement("button");
-      button.className = `w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`;
+      button.className = `w-14 h-7 ${getButtonBackgroundColor(
+        category
+      )} rounded-full mr-1 text-sm font-medium text-white mb-1`;
       button.innerText = category;
       buttonContainer.appendChild(button);
     }
@@ -262,7 +275,7 @@ function createHTMLString(earthquake) {
         <button
           id="authButton"
           type="button"
-          class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+          class="${earthquake.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
         >
           더보기
         </button>
@@ -278,7 +291,6 @@ function getButtonBackgroundColor(category) {
       return "bg-gray-600";
   }
 }
-
 
 //민방위
 function loadCivil() {
@@ -306,7 +318,9 @@ loadCivil().then((civil) => {
 
 function displayCivil(civilData) {
   const container = $("#main");
-  container.empty().append(civilData.map((item) => createHTMLString(item)).join(""));
+  container
+    .empty()
+    .append(civilData.map((item) => createHTMLString(item)).join(""));
 
   const buttonContainers = container.find(".button-container");
   civilData.forEach((item, index) => {
@@ -315,7 +329,11 @@ function displayCivil(civilData) {
     const categories = item.category.split(" ");
     for (const category of categories) {
       const button = $("<button>")
-        .addClass(`category-button w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`)
+        .addClass(
+          `category-button w-14 h-7 ${getButtonBackgroundColor(
+            category
+          )} rounded-full mr-1 text-sm font-medium text-white mb-1`
+        )
         .text(category);
       buttonContainer.append(button);
     }
@@ -343,7 +361,7 @@ function createHTMLString(civil) {
         <button
           id="authButton"
           type="button"
-          class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+          class="${civil.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
         >
           더보기
         </button>
@@ -359,7 +377,6 @@ function getButtonBackgroundColor(category) {
       return "bg-gray-600";
   }
 }
-
 
 //실종자
 $("#lostButton").on("click", function () {
@@ -387,7 +404,9 @@ function loadlost() {
 
 function displayLost(lostData) {
   const container = $("#main");
-  container.empty().append(lostData.map((item) => createHTMLString(item)).join(""));
+  container
+    .empty()
+    .append(lostData.map((item) => createHTMLString(item)).join(""));
 
   const buttonContainers = container.find(".button-container");
   lostData.forEach((item, index) => {
@@ -396,7 +415,11 @@ function displayLost(lostData) {
     const categories = item.category.split(" ");
     for (const category of categories) {
       const button = $("<button>")
-        .addClass(`category-button w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`)
+        .addClass(
+          `category-button w-14 h-7 ${getButtonBackgroundColor(
+            category
+          )} rounded-full mr-1 text-sm font-medium text-white mb-1`
+        )
         .text(category);
       buttonContainer.append(button);
     }
@@ -424,7 +447,7 @@ function createHTMLString(lost) {
         <button
           id="authButton"
           type="button"
-          class="w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+          class="${lost.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
         >
           더보기
         </button>
@@ -461,7 +484,6 @@ function getButtonBackgroundColor(category) {
       return "bg-gray-600";
   }
 }
-
 
 //현재 좌표로 주소변환해서 추가하기
 function reverseGeocode(lat, lng, callback) {
@@ -525,40 +547,42 @@ navigator.geolocation.getCurrentPosition(function (position) {
   });
 });
 
-//버튼 클릭 시 글씨 색 변경
-$(document).ready(function() {
+$(document).ready(function () {
+  updateDateTime(); // 페이지 준비되면 현재시간 받아오기
 
-  $("#weatherButton, #earthquakeButton, #civilButton, #lostButton").click(function() {
+  //버튼 클릭 시 글씨 색 변경
+  $("#weatherButton, #earthquakeButton, #civilButton, #lostButton").click(
+    function () {
+      $(this).find("p").css("font-weight", "bold");
 
-    $(this).find("p").css("font-weight", "bold");
-    
- 
-    $("#weatherButton p, #earthquakeButton p, #civilButton p, #lostButton p")
-      .not($(this).find("p"))
-      .css("font-weight", "normal");
-  });
+      $("#weatherButton p, #earthquakeButton p, #civilButton p, #lostButton p")
+        .not($(this).find("p"))
+        .css("font-weight", "normal");
+    }
+  );
 });
 
-// 새로고침 버튼 누르면 시간 바뀌게 하는 js
-const refreshButton = document.getElementById("refresh");
-
-
-refreshButton.addEventListener("click", () => {
- 
+// 시간 업데이트 함수
+function updateDateTime() {
   const now = new Date();
 
- 
   const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0"); 
-  const day = String(now.getDate()).padStart(2, "0"); 
-
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
 
   let hour = now.getHours();
-  const minute = String(now.getMinutes()).padStart(2, "0"); 
+  const minute = String(now.getMinutes()).padStart(2, "0");
   const amPm = hour < 12 ? "오전" : "오후";
-  hour = hour % 12 || 12; 
+  hour = hour % 12 || 12;
 
- 
-  const dateTimeElement = document.querySelector(".text-black.font-medium.text-sm");
-  dateTimeElement.textContent = `${year}/${month}/${day} ${amPm} ${hour}:${minute} 기준`;
+  $(".text-black.font-medium.text-sm").text(
+    `${year}/${month}/${day} ${amPm} ${hour}:${minute} 기준`
+  );
+}
+
+// 새로고침 버튼 누르면 페이지 reload
+const refreshButton = document.getElementById("refresh");
+
+refreshButton.addEventListener("click", function () {
+  window.location.reload();
 });
