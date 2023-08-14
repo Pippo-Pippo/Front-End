@@ -19,9 +19,47 @@ $(document).ready(function () {
   });
 
   $("#create-comment-button").click(function () {
-    console.log("여기에 댓글 전송 ajax 입력");
+    postComment();
   });
 });
+
+function postComment() {
+  const postId = 1; //이거 바꿔줘야함
+  const location = localStorage.getItem("current_region");
+  const content = $("#message").val();
+
+  var fileInput = $("#imageBt")[0];
+  var file = fileInput.files[0];
+
+  // FormData 객체 생성
+  var formData = new FormData();
+  // JSON 데이터 추가
+  var jsonData = {
+    location: location,
+    content: content,
+  };
+
+  formData.append("jsonData", JSON.stringify(jsonData));
+  formData.append("file", file);
+
+  console.log(file);
+
+  $.ajax({
+    url: `https://ppiyong.shop/api/post/${postId}`,
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+    body: data,
+    success: function (response) {
+      console.log(response);
+      alert("댓글이 입력되었습니다.");
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error(textStatus, errorThrown);
+    },
+  });
+}
 
 // 현재 시간을 가져오는 함수
 function getCurrentTime() {
