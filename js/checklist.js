@@ -7,15 +7,15 @@ function loadRecent(address) {
 
     $.ajax({
       type: "GET",
-      url: `https://ppiyoung.shop/api/home?region=${convertedAddress}`,
+      url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
       contentType: "application/json",
       success: function (data) {
         console.log(data);
         //최근 카테고리 하나 불러오기
       },
       error: function (request, status, error) {
-        alert("잘못된 요청입니다.");
-        console.log("error");
+        //alert("잘못된 요청입니다.");
+        console.log(request);
       },
     });
   });
