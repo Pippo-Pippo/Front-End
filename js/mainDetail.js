@@ -1,4 +1,10 @@
+//파라미터로 들어온 postId 저장
+const params = new URLSearchParams(window.location.search);
+const postId = params.get("id");
+
 $(document).ready(function () {
+  console.log(postId);
+  //getCommentData(postId);
   $("#imageDiv").click(function () {
     $("#imageBt").trigger("click");
   });
@@ -19,13 +25,12 @@ $(document).ready(function () {
   });
 
   $("#create-comment-button").click(function () {
-    postComment();
+    postComment(postId);
   });
 });
 
 //POST - 댓글 입력
-function postComment() {
-  const postId = 1; //이거 바꿔줘야함
+function postComment(postId) {
   const location = localStorage.getItem("current_region");
   const content = $("#message").val();
 
@@ -51,7 +56,6 @@ function postComment() {
     data: formData,
     contentType: false,
     processData: false,
-    body: data,
     success: function (response) {
       console.log(response);
       alert("댓글이 입력되었습니다.");
@@ -107,6 +111,16 @@ const jsonData = {
     },
   ],
 };
+
+//Get 함수
+// function getCommentData(postId) {
+//   return $.ajax({
+//     type: "GET",
+//     url: `https://ppiyong.shop/api/post/${postId}`,
+//     dataType: "json",
+//   });
+//   displayComment(data);
+// }
 
 function displayComment(data) {
   console.log(data);

@@ -195,6 +195,7 @@ $(document).ready(function () {
           <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
           <div class="font-medium text-sm mt-1 mr-1">댓글</div>
           <div class="font-medium text-bold mt-1 mr-5 ">${weather.comment}</div>
+          <a href="/mainDetail.html?id=${weather.id}">
           <button
             id="authButton"
             type="button"
@@ -202,6 +203,7 @@ $(document).ready(function () {
           >
             더보기
           </button>
+          </a>
         </div>
       </div>`;
   }
@@ -290,6 +292,7 @@ function createHTMLString(earthquake) {
           <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
           <div class="font-medium text-sm mt-1 mr-1">댓글</div>
           <div class="font-medium text-bold mt-1 mr-5 ">${earthquake.comment}</div>
+          <a href="/mainDetail.html?id=${earthquake.id}">
           <button
             id="authButton"
             type="button"
@@ -297,6 +300,7 @@ function createHTMLString(earthquake) {
           >
             더보기
           </button>
+          </a>
         </div>
       </div>`;
 }
@@ -375,6 +379,7 @@ function createHTMLString(civil) {
       <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
       <div class="font-medium text-sm mt-1 mr-1">댓글</div>
       <div class="font-medium text-bold mt-1 mr-5 ">${civil.comment}</div>
+      <a href="mainDetail.html?id=${civil.id}">
       <button
         id="authButton"
         type="button"
@@ -382,6 +387,7 @@ function createHTMLString(civil) {
       >
         더보기
       </button>
+      </a>
     </div>
   </div>`;
 }
@@ -461,6 +467,7 @@ function createHTMLString(lost) {
           <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
           <div class="font-medium text-sm mt-1 mr-1">댓글</div>
           <div class="font-medium text-bold mt-1 mr-5 ">${lost.comment}</div>
+          <a href="mainDetail.html?id=${lost.id}">
           <button
             id="authButton"
             type="button"
@@ -468,6 +475,7 @@ function createHTMLString(lost) {
           >
             더보기
           </button>
+          </a>
         </div>
       </div>`;
 }
@@ -579,6 +587,8 @@ $(document).ready(function () {
         .css("font-weight", "normal");
     }
   );
+
+  $("#weatherButton").click(); //기본값 날씨 선택
 });
 
 // 시간 업데이트 함수
