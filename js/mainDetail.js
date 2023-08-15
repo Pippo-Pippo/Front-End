@@ -4,7 +4,7 @@ const postId = params.get("id");
 
 $(document).ready(function () {
   console.log(postId);
-  //getCommentData(postId);
+  getCommentData(postId);
   $("#imageDiv").click(function () {
     $("#imageBt").trigger("click");
   });
@@ -78,49 +78,22 @@ function getCurrentTime() {
   return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
 }
 //목데이터
-const jsonData = {
-  from: "경기도청",
-  category: "EARTHQUAKE RAIN",
-  content: "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
-  time: "2023-07-23 오전 02:16",
-  comment: [
-    {
-      id: 1,
-      location: "서울특별시 어쩌구 무슨동",
-      name: "강**",
-      content: "삐용 사이트 뭔가요?? 나도 들어갈래~~",
-      createdAt: "2023-07-23 오전 02:18",
-      like: 743,
-      hate: 4,
-      isLike: true,
-      isHate: false,
-      imageUrl: null,
-    },
-    {
-      id: 2,
-      location: "서울특별시 어쩌구 무슨동",
-      name: "김**",
-      content: "저도 들어가보고 싶어요 ^^",
-      createdAt: "2023-07-23 오전 02:22",
-      like: 7,
-      hate: 0,
-      isLike: false,
-      isHate: false,
-      imageUrl:
-        "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
-    },
-  ],
-};
 
 //Get 함수
-// function getCommentData(postId) {
-//   return $.ajax({
-//     type: "GET",
-//     url: `https://ppiyong.shop/api/post/${postId}`,
-//     dataType: "json",
-//   });
-//   displayComment(data);
-// }
+function getCommentData(postId) {
+  $.ajax({
+    type: "GET",
+    url: `https://ppiyong.shop/api/post/${postId}`,
+    dataType: "json",
+  })
+    .success(function (data) {
+      console.log(data);
+      displayComment(data);
+    })
+    .error(function (data) {
+      console.log(error);
+    });
+}
 
 function displayComment(data) {
   console.log(data);
@@ -138,7 +111,6 @@ function displayComment(data) {
 
 // updateButtonColors 함수 추가
 function updateButtonColors(categories) {
-  
   const categoryNames = {
     RAIN: "강우",
     HOT: "폭염",
@@ -147,7 +119,7 @@ function updateButtonColors(categories) {
     EARTHQUAKE: "지진",
     CIVIL: "민방위",
     LOST: "실종자",
-    default: "기타"
+    default: "기타",
   };
 
   const categoryColors = {
@@ -158,16 +130,18 @@ function updateButtonColors(categories) {
     EARTHQUAKE: "bg-yellow-600",
     CIVIL: "bg-green-500",
     LOST: "bg-gray-400",
-    default: "bg-gray-600"
+    default: "bg-gray-600",
   };
 
   const categoryButtonsContainer = document.getElementById("categoryButtons");
   categoryButtonsContainer.innerHTML = ""; // 기존 버튼 삭제
-  
-  categories.forEach(category => {
+
+  categories.forEach((category) => {
     const button = document.createElement("button");
-     button.textContent = categoryNames[category] || categoryNames.default;
-    button.className = `w-14 h-7 rounded-full mr-1 text-sm font-medium text-white mb-1 btn ${categoryColors[category] || categoryColors.default}`;
+    button.textContent = categoryNames[category] || categoryNames.default;
+    button.className = `w-14 h-7 rounded-full mr-1 text-sm font-medium text-white mb-1 btn ${
+      categoryColors[category] || categoryColors.default
+    }`;
     categoryButtonsContainer.appendChild(button);
   });
 }
@@ -249,8 +223,6 @@ function createCommentBoxHTML(comment, commentNumber) {
 </div>
 `;
 }
-
-displayComment(jsonData);
 
 //POST - 댓글 좋아요
 function likeComment(commentId, isLike) {
