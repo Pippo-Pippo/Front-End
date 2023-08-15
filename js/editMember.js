@@ -120,98 +120,93 @@
       });
   
     // 비밀번호 변경
-    function changePassword(newPassword) {
-      return $.ajax({
+    $("#change").on("click", function () {
+      var newPassword = $("#password").val();
+
+      $.ajax({
         type: "PUT",
         url: "https://ppiyong.shop/api/user/pw",
         data: JSON.stringify({
           password: newPassword,
         }),
+        xhrFields: {
+          withCredentials: true,
+        },
         contentType: "application/json",
         dataType: "json",
-      });
-    }
-      $("#change").on("click", function () {
-        var newPassword = $("#password").val();
-
-           changePassword(newPassword)
-          .done(function (response) {
-            if (response.success) {
-              alert("비밀번호가 성공적으로 변경되었습니다.");
-              window.location.href = "/login.html";
-            } else {
-              alert("비밀번호 변경 실패: 서버에서 문제가 발생하였습니다.");
-            }
-          })
-          .fail(function (xhr, status, error) {
-            console.error(xhr, status, error);
-            alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
-          });
-      });
+      })
+        .done(function (response) {
+          if (response.success) {
+            alert("비밀번호가 성공적으로 변경되었습니다.");
+            window.location.href = "/login.html";
+          } else {
+            alert("비밀번호 변경 실패: 서버에서 문제가 발생하였습니다.");
+          }
+        })
+        .fail(function (xhr, status, error) {
+          console.error(xhr, status, error);
+          alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
+        });
+    });
 
   //닉네임 변경
-      function changeNickname(newNickname) {
-        return $.ajax({
-          type: "PUT",
-          url: "https://ppiyong.shop/api/user/nickname",
-          data: JSON.stringify({
-            nickname: newNickname,
-          }),
-          contentType: "application/json",
-          dataType: "json",
-        });
-      }
-    
-      $("#changeNickname").on("click", function () {
-        var newNickname = $("#nickname").val();
-    
-        changeNickname(newNickname)
-          .done(function (response) {
-            if (response.success) {
-              alert("닉네임이 성공적으로 변경되었습니다.");
-              const nicknameDisplay = document.getElementById("nicknameDisplay");
-              nicknameDisplay.textContent = newNickname;
-            } else {
-              alert("닉네임 변경 실패: 서버에서 문제가 발생하였습니다.");
-            }
-          })
-          .fail(function (xhr, status, error) {
-            console.error(xhr, status, error);
-            alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
-          });
-      });
+  $("#changeNickname").on("click", function () {
+    var newNickname = $("#nickname").val();
 
-  //지역변경
-    function changeRegion(newRegion) {
-          return $.ajax({
-            type: "PUT",
-            url: "https://ppiyong.shop/api/user/region",
-            data: JSON.stringify({
-              region: newRegion,
-            }),
-            contentType: "application/json",
-            dataType: "json",
-          });
+    $.ajax({
+      type: "PUT",
+      url: "https://ppiyong.shop/api/user/nickname",
+      data: JSON.stringify({
+        nickname: newNickname,
+      }),
+      xhrFields: {
+        withCredentials: true,
+      },
+      contentType: "application/json",
+      dataType: "json",
+    })
+      .done(function (response) {
+        if (response.success) {
+          alert("닉네임이 성공적으로 변경되었습니다.");
+          const nicknameDisplay = document.getElementById("nicknameDisplay");
+          nicknameDisplay.textContent = newNickname;
+        } else {
+          alert("닉네임 변경 실패: 서버에서 문제가 발생하였습니다.");
         }
-     
-        $("#changeRegion").on("click", function () {
-          var newRegion = $("#locationSelect").val();
-    
-      
-          changeRegion(newRegion)
-            .done(function (response) {
-              if (response.success) {
-                alert("지역이 성공적으로 변경되었습니다.");
-               
-                const regionDisplay = document.getElementById("regionDisplay");
-                regionDisplay.textContent = newRegion || "지역을 선택하세요";
-              } else {
-                alert("지역 변경 실패: 서버에서 문제가 발생하였습니다.");
-              }
-            })
-            .fail(function (xhr, status, error) {
-              console.error(xhr, status, error);
-              alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
-            });
-        });
+      })
+      .fail(function (xhr, status, error) {
+        console.error(xhr, status, error);
+        alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
+      });
+  });
+  //지역변경
+  $("#changeRegion").on("click", function () {
+    var newRegion = $("#locationSelect").val();
+
+    $.ajax({
+      type: "PUT",
+      url: "https://ppiyong.shop/api/user/region",
+      data: JSON.stringify({
+        region: newRegion,
+      }),
+      xhrFields: {
+        withCredentials: true,
+      },
+      contentType: "application/json",
+      dataType: "json",
+    })
+      .done(function (response) {
+        if (response.success) {
+          alert("지역이 성공적으로 변경되었습니다.");
+          const regionDisplay = document.getElementById("regionDisplay");
+          regionDisplay.textContent = newRegion || "지역을 선택하세요";
+        } else {
+          alert("지역 변경 실패: 서버에서 문제가 발생하였습니다.");
+        }
+      })
+      .fail(function (xhr, status, error) {
+        console.error(xhr, status, error);
+        alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
+      });
+  });
   });
