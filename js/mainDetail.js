@@ -80,7 +80,7 @@ function getCurrentTime() {
 //목데이터
 const jsonData = {
   from: "경기도청",
-  category: "RAIN",
+  category: "EARTHQUAKE RAIN",
   content: "재난대비용 삐용 사이트를 즉시 방문해주시길 바랍니다.",
   time: "2023-07-23 오전 02:16",
   comment: [
@@ -131,8 +131,48 @@ function displayComment(data) {
   commentContainer.innerHTML = data.comment
     .map((comment, index) => createCommentBoxHTML(comment, index + 1))
     .join("");
+
+  // 카테고리에 따라 버튼 색상 업데이트
+  updateButtonColors(data.category.split(" "));
 }
 
+// updateButtonColors 함수 추가
+function updateButtonColors(categories) {
+  
+  const categoryNames = {
+    RAIN: "강우",
+    HOT: "폭염",
+    WIND: "태풍",
+    SNOW: "폭설",
+    EARTHQUAKE: "지진",
+    CIVIL: "민방위",
+    LOST: "실종자",
+    default: "기타"
+  };
+
+  const categoryColors = {
+    RAIN: "bg-blue-300",
+    HOT: "bg-red-400",
+    WIND: "bg-blue-600",
+    SNOW: "bg-blue-900",
+    EARTHQUAKE: "bg-yellow-600",
+    CIVIL: "bg-yellow-300",
+    LOST: "bg-gray-400",
+    default: "bg-gray-600"
+  };
+
+  const categoryButtonsContainer = document.getElementById("categoryButtons");
+  categoryButtonsContainer.innerHTML = ""; // 기존 버튼 삭제
+  
+  categories.forEach(category => {
+    const button = document.createElement("button");
+     button.textContent = categoryNames[category] || categoryNames.default;
+    button.className = `w-14 h-7 rounded-full mr-1 text-sm font-medium text-white mb-1 btn ${categoryColors[category] || categoryColors.default}`;
+    categoryButtonsContainer.appendChild(button);
+  });
+}
+
+// createMainBoxHTML 함수는 그대로 유지
 function createMainBoxHTML(data) {
   return `
     <!--메인 박스-->
@@ -145,16 +185,11 @@ function createMainBoxHTML(data) {
           <div class="text-grey-600 font-medium text-sm ml-4">${data.time}</div>
         </div>
         <div class="main-content-button-wrapper mb-2">
-          <button class="w-14 h-7 bg-blue-300 rounded-full mr-1 text-sm font-medium text-white mb-1">
-            ${data.category}
-          </button>
-          <button class="w-14 h-7 bg-gray-600 mt-1 rounded-full text-sm font-medium text-white mb-1">
-            ${data.category}
-        </button>
+          <div id="categoryButtons"></div>
         </div>
 
         <div class="flex items-start justify-center text-black font-medium text-base">
-        ${data.content}
+          ${data.content}
         </div>
       </div>
     </div>
