@@ -159,6 +159,7 @@ function initializeChecklist() {
     (item) => item.check_list_Id == checklistId
   ); //각각의 체크리스트 가져오기
 
+  console.log(checklist);
   $checklistTitleText.text(checklist.title);
   $checklistContent.empty();
 
