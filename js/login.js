@@ -6,8 +6,8 @@ $(document).ready(function () {
     var password = $("#password").val();
 
     const data = {
-      email: "email",
-      password: "password",
+      email: email,
+      password: password,
     };
 
     $.ajax({
@@ -22,6 +22,7 @@ $(document).ready(function () {
         console.log(response);
         alert("로그인 성공");
         //console.log(response.cookie("SESSION_ID"));
+        location.href = "/main.html";
       },
       error: function (req, status, err) {
         //const alert = JSON.parse(req.responseText);
