@@ -15,6 +15,9 @@ function signup() {
     type: "POST",
     url: "https://ppiyoung.shop/api/user/register",
     contentType: "application/json",
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
     data: JSON.stringify({
       email: email,
       password: password,
@@ -55,6 +58,9 @@ $("#authButton").on("click", function (e) {
   $.ajax({
     url: "https://ppiyong.shop/api/user/emailCheck",
     data: { email: $("input[name='email']").val() },
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
     type: "POST",
     success: function (data) {
       alert("이메일로 인증코드가 발송되었습니다. 인증코드를 입력해주세요.");
@@ -91,14 +97,7 @@ $("#verifyButton").on("click", function (e) {
     },
     contentType: "application/json; charset=utf-8",
     success: function (response) {
-      if (response.success) {
-        $("#verificationConfirm").show();
-        alert("인증번호 일치");
-        console.log(data);
-      } else {
-        $("#verificationConfirm").hide();
-        alert("인증번호 불일치");
-      }
+   
       alert("인증번호 요청 성공");
     },
     error: function (req, status, err) {
