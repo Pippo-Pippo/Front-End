@@ -9,6 +9,9 @@ function loadRecent(address) {
       type: "GET",
       url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
       contentType: "application/json",
+      xhrFields: {
+        withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+      },
       success: function (data) {
         console.log(data);
         //최근 카테고리 하나 불러오기

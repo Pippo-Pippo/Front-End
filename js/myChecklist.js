@@ -1,17 +1,17 @@
 $(document).ready(function () {
-  loadChecklists();
-  //getMockData();
+  //loadChecklists();
+  getMockData();
 });
 
-// function getMockData() {
-//   console.log("getMockData");
-//   $.getJSON("./json/checklist.json", function (data) {
-//     localStorage.setItem("checklistData", JSON.stringify(data));
-//     localStorage.setItem("currentChecklistId", 1);
+function getMockData() {
+  console.log("getMockData");
+  $.getJSON("./json/checklist.json", function (data) {
+    localStorage.setItem("checklistData", JSON.stringify(data));
+    localStorage.setItem("currentChecklistId", 1);
 
-//     initializeChecklist();
-//   });
-// }
+    initializeChecklist();
+  });
+}
 
 //GET요청
 function loadChecklists() {
@@ -19,7 +19,11 @@ function loadChecklists() {
     url: "https://ppiyong.shop/api/checklist",
     type: "GET",
     dataType: "json",
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
     success: function (data) {
+      console.log("하이");
       localStorage.setItem("checklistData", JSON.stringify(data));
       localStorage.setItem("currentChecklistId", 1);
 

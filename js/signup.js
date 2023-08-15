@@ -81,6 +81,8 @@ $("#verifyButton").on("click", function (e) {
     verification: inputCode,
   };
 
+  console.log(data);
+
   $.ajax({
     url: "https://ppiyong.shop/api/user/verification",
     type: "POST",

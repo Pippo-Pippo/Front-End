@@ -10,7 +10,7 @@ $(document).ready(function () {
 
   function getNewsList() {
     const convertedAddress = localStorage.getItem("converted_address");
-  
+
     return $.ajax({
       type: "GET",
       url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
@@ -154,7 +154,7 @@ $(document).ready(function () {
         },
       });
     });
-  
+
     $.ajax({
       url: "json/main.json",
       method: "GET",
@@ -166,37 +166,41 @@ $(document).ready(function () {
         console.error(error);
       },
     });
-  
+
     const categoryNames = {
       RAIN: "강우",
       HOT: "폭염",
       WIND: "태풍",
       SNOW: "폭설",
     };
-  
+
     function displayWeather(weather) {
       const container = $("#main");
-      container.empty().append(weather.map((item) => createHTMLString(item)).join(""));
-  
+      container
+        .empty()
+        .append(weather.map((item) => createHTMLString(item)).join(""));
+
       const buttonContainers = container.find(".button-container");
       weather.forEach((item, index) => {
         const buttonContainer = buttonContainers.eq(index);
-  
+
         const categories = item.category.split(" ");
         for (const category of categories) {
           const button = $("<button>")
             .addClass(
-              `category-button w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`
+              `category-button w-14 h-7 ${getButtonBackgroundColor(
+                category
+              )} rounded-full mr-1 text-sm font-medium text-white mb-1`
             )
             .text(categoryNames[category] || category);
           buttonContainer.append(button);
         }
       });
     }
-  
+
     function createHTMLString(weather) {
       const buttonBackgroundColor = getButtonBackgroundColor(weather.category);
-  
+
       return `
         <!--메인 박스-->
         <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
@@ -224,7 +228,7 @@ $(document).ready(function () {
           </div>
         </div>`;
     }
-  
+
     function getButtonBackgroundColor(category) {
       switch (category) {
         case "RAIN":
@@ -240,7 +244,6 @@ $(document).ready(function () {
       }
     }
   });
-  
 
   function getButtonBackgroundColor(category) {
     switch (category) {
@@ -273,7 +276,7 @@ $(document).ready(function () {
   function loadEarthquake() {
     const convertedAddress = localStorage.getItem("converted_address");
     const current_region = localStorage.getItem("current_region");
-    
+
     $.ajax({
       url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
       method: "GET",
@@ -285,7 +288,6 @@ $(document).ready(function () {
         });
         displayEarthquake(filteredEarthquakeData);
         console.log("Received data:", earthquakeData);
-
       },
       error: function (error) {
         console.log("실패");
@@ -297,7 +299,9 @@ $(document).ready(function () {
 
   function displayEarthquake(earthquakeData) {
     const container = $("#main");
-    container.empty().append(earthquakeData.map((item) => createHTMLString(item)).join(""));
+    container
+      .empty()
+      .append(earthquakeData.map((item) => createHTMLString(item)).join(""));
 
     const buttonContainers = container.find(".button-container");
     earthquakeData.forEach((item, index) => {
@@ -308,7 +312,9 @@ $(document).ready(function () {
       for (const category of categories) {
         const button = $("<button>")
           .addClass(
-            `w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`
+            `w-14 h-7 ${getButtonBackgroundColor(
+              category
+            )} rounded-full mr-1 text-sm font-medium text-white mb-1`
           )
           .text(categoryNames2[category] || category);
         buttonContainer.append(button);
@@ -357,8 +363,6 @@ $(document).ready(function () {
   }
 });
 
-
-
 //민방위
 $(document).ready(function () {
   $("#civilButton").on("click", function () {
@@ -374,7 +378,7 @@ $(document).ready(function () {
   function loadCivil() {
     const convertedAddress = localStorage.getItem("converted_address");
     const current_region = localStorage.getItem("current_region");
-    
+
     $.ajax({
       url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
       method: "GET",
@@ -395,7 +399,9 @@ $(document).ready(function () {
 
   function displayCivil(civilData) {
     const container = $("#main");
-    container.empty().append(civilData.map((item) => createHTMLString(item)).join(""));
+    container
+      .empty()
+      .append(civilData.map((item) => createHTMLString(item)).join(""));
 
     const buttonContainers = container.find(".button-container");
     civilData.forEach((item, index) => {
@@ -406,7 +412,9 @@ $(document).ready(function () {
       for (const category of categories) {
         const button = $("<button>")
           .addClass(
-            `category-button w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`
+            `category-button w-14 h-7 ${getButtonBackgroundColor(
+              category
+            )} rounded-full mr-1 text-sm font-medium text-white mb-1`
           )
           .text(categoryNames[category] || category);
         buttonContainer.append(button);
@@ -469,7 +477,7 @@ $(document).ready(function () {
   function loadLost() {
     const convertedAddress = localStorage.getItem("converted_address");
     const current_region = localStorage.getItem("current_region");
-    
+
     $.ajax({
       url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
       method: "GET",
@@ -490,7 +498,9 @@ $(document).ready(function () {
 
   function displayLost(lostData) {
     const container = $("#main");
-    container.empty().append(lostData.map((item) => createHTMLString(item)).join(""));
+    container
+      .empty()
+      .append(lostData.map((item) => createHTMLString(item)).join(""));
 
     const buttonContainers = container.find(".button-container");
     lostData.forEach((item, index) => {
@@ -501,7 +511,9 @@ $(document).ready(function () {
       for (const category of categories) {
         const button = $("<button>")
           .addClass(
-            `w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`
+            `w-14 h-7 ${getButtonBackgroundColor(
+              category
+            )} rounded-full mr-1 text-sm font-medium text-white mb-1`
           )
           .text(categoryNames3[category] || category);
         buttonContainer.append(button);
@@ -676,3 +688,5 @@ const refreshButton = document.getElementById("refresh");
 refreshButton.addEventListener("click", function () {
   window.location.reload();
 });
+
+//
