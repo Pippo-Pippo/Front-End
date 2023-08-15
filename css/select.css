@@ -64,6 +64,7 @@ body {
 .active {
     background-color:#FDE047;
     font-weight: 700;
+    
     display: inline-flex;
     align-items: center;
     flex-shrink: 0;
