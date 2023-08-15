@@ -35,99 +35,111 @@ function loadChecklists() {
   });
 }
 
-// //DELETE 요청 - 태스크 삭제
-// function deleteTask(taskId) {
-//   $.ajax({
-//     url: `https://ppiyong.shop/api/checklist/${taskId}`,
-//     type: "DELETE",
-//     dataType: "json",
-//     body: testData,
-//     success: function (data) {
-//       console.log("삭제 완료");
-//       localStorage.setItem("checklistData", JSON.stringify(data));
-//       localStorage.setItem("currentChecklistId", 1);
+//DELETE 요청 - 태스크 삭제
+function deleteTask(taskId) {
+  $.ajax({
+    url: `https://ppiyong.shop/api/checklist/${taskId}`,
+    type: "DELETE",
+    dataType: "json",
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
+    body: testData,
+    success: function (data) {
+      console.log("삭제 완료");
+      localStorage.setItem("checklistData", JSON.stringify(data));
+      localStorage.setItem("currentChecklistId", 1);
 
-//       initializeChecklist();
-//     },
-//     error: function (jqXHR, textStatus, errorThrown) {
-//       console.error(textStatus, errorThrown);
-//     },
-//   });
-// }
+      initializeChecklist();
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error(textStatus, errorThrown);
+    },
+  });
+}
 
-// //DELETE 요청 - 체크리스트 삭제
-// function deleteChecklist() {
-//   console.log("하이요");
-//   const currentChecklistId = localStorage.getItem("currentChecklistId");
-//   $.ajax({
-//     url: `https://ppiyong.shop/api/checklist/${currentChecklistId}`,
-//     type: "DELETE",
-//     dataType: "json",
-//     success: function (data) {
-//       localStorage.setItem("checklistData", JSON.stringify(data));
-//       localStorage.setItem("currentChecklistId", 1);
+//DELETE 요청 - 체크리스트 삭제
+function deleteChecklist() {
+  console.log("하이요");
+  const currentChecklistId = localStorage.getItem("currentChecklistId");
+  $.ajax({
+    url: `https://ppiyong.shop/api/checklist/${currentChecklistId}`,
+    type: "DELETE",
+    dataType: "json",
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
+    success: function (data) {
+      localStorage.setItem("checklistData", JSON.stringify(data));
+      localStorage.setItem("currentChecklistId", 1);
 
-//       initializeChecklist();
-//     },
-//     error: function (jqXHR, textStatus, errorThrown) {
-//       console.error(textStatus, errorThrown);
-//     },
-//   });
-// }
+      initializeChecklist();
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error(textStatus, errorThrown);
+    },
+  });
+}
 
-//$(document).on("click", "#delete-checklist", deleteChecklist());
+$(document).on("click", "#delete-checklist", deleteChecklist());
 
-// //POST 요청 ?? 이거 왜 안되냐
-// function updateChecklist(checklist) {
-//   delete checklist.check_list_Id;
-//   console.log(checklist);
+//POST 요청 ?? 이거 왜 안되냐
+function updateChecklist(checklist) {
+  delete checklist.check_list_Id;
+  console.log(checklist);
 
-//   const testData = {
-//     title: "A",
-//     task: [
-//       {
-//         content: "테스트",
-//       },
-//     ],
-//   };
+  const testData = {
+    title: "A",
+    task: [
+      {
+        content: "테스트",
+      },
+    ],
+  };
 
-//   $.ajax({
-//     url: "https://ppiyong.shop/api/checklist",
-//     type: "POST",
-//     dataType: "json",
-//     body: testData,
-//     success: function (data) {
-//       localStorage.setItem("checklistData", JSON.stringify(data));
-//       localStorage.setItem("currentChecklistId", 1);
+  $.ajax({
+    url: "https://ppiyong.shop/api/checklist",
+    type: "POST",
+    dataType: "json",
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
+    body: testData,
+    success: function (data) {
+      localStorage.setItem("checklistData", JSON.stringify(data));
+      localStorage.setItem("currentChecklistId", 1);
 
-//       initializeChecklist();
-//     },
-//     error: function (jqXHR, textStatus, errorThrown) {
-//       console.error(textStatus, errorThrown);
-//     },
-//   });
-// }
+      initializeChecklist();
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error(textStatus, errorThrown);
+    },
+  });
+}
 
-// //PUT 요청 - checklist title 수정
-// function changeChecklistTitle(checklist) {
-//   console.log("PUT요청 : ", checklist);
+//PUT 요청 - checklist title 수정
+function changeChecklistTitle(checklist) {
+  console.log("PUT요청 : ", checklist);
 
-//   $.ajax({
-//     url: `https://ppiyong.shop/api/checklist/${checklistId}`,
-//     type: "PUT",
-//     dataType: "json",
-//     body: checklist,
-//     success: function (data) {
-//       localStorage.setItem("checklistData", JSON.stringify(data));
-//       localStorage.setItem("currentChecklistId", 1);
+  $.ajax({
+    url: `https://ppiyong.shop/api/checklist/${checklistId}`,
+    type: "PUT",
+    dataType: "json",
+    body: checklist,
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
+    success: function (data) {
+      localStorage.setItem("checklistData", JSON.stringify(data));
+      localStorage.setItem("currentChecklistId", 1);
 
-//       initializeChecklist();
-//     },
-//     error: function (jqXHR, textStatus, errorThrown) {
-//       console.error(textStatus, errorThrown);
-//     },
-//   });
-// }
+      initializeChecklist();
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error(textStatus, errorThrown);
+    },
+  });
+}
 
 //체크리스트 초기화
 function initializeChecklist() {
