@@ -106,10 +106,14 @@ const CIVIL = [];
 $(document).ready(function () {
     var bounds = map.getBounds();
     bounds.toString();
-    var latitude_start = bounds.oa,
-        longitude_start = bounds.qa,
-        latitude_end = bounds.ha,
-        longitude_end = bounds.pa;
+    var latitude_start = (bounds.oa).toFixed(1),
+        longitude_start = (bounds.qa).toFixed(1),
+        latitude_end = (bounds.ha).toFixed(1),
+        longitude_end = (bounds.pa).toFixed(1);
+        console.log(latitude_start);
+        console.log(longitude_start);
+        console.log(latitude_end);
+        console.log(longitude_end);
 
 
     $.ajax({
