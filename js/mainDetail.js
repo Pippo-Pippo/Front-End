@@ -40,12 +40,12 @@ function postComment(postId) {
   // FormData 객체 생성
   var formData = new FormData();
   // JSON 데이터 추가
-  var jsonData = {
+  var data = {
     location: location,
     content: content,
   };
 
-  formData.append("jsonData", JSON.stringify(jsonData));
+  formData.append("data", JSON.stringify(jsonData));
   formData.append("file", file);
 
   console.log(file);
