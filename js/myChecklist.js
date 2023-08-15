@@ -38,7 +38,7 @@ function deleteTask(taskId) {
     success: function (data) {
       console.log("삭제 완료");
       localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", data[0].check_list_Id);
+      localStorage.setItem("currentChecklistId", data[0].check_list_id);
 
       initializeChecklist();
     },
@@ -75,7 +75,7 @@ $(document).on("click", "#delete-checklist", deleteChecklist());
 
 //POST 요청 ?? 이거 왜 안되냐
 function updateChecklist(checklist) {
-  delete checklist.check_list_Id;
+  delete checklist.check_list_id;
   console.log(checklist);
 
   const testData = {
@@ -140,15 +140,16 @@ function initializeChecklist() {
 
   $.each(checklistData, function (index, checklist) {
     $(".my-checklist-container").empty();
-    const navItem = renderNavItem(checklist.title[0], checklist.check_list_Id);
+    const navItem = renderNavItem(checklist.title[0], checklist.check_list_id);
     $myChecklistsContainer.append(navItem);
   }); //navItem 렌더링하기
 
   const checklistId = localStorage.getItem("currentChecklistId");
   const checklist = checklistData.find(
-    (item) => item.check_list_Id == checklistId
+    (item) => item.check_list_id == checklistId
   ); //각각의 체크리스트 가져오기
 
+  console.log();
   $checklistTitleText.text(checklist.title);
   $checklistContent.empty();
 
@@ -166,7 +167,7 @@ function updateSelectedChecklist(checklistId) {
   const $checklistContent = $(".checklist-content");
 
   const checklist = checklistData.find(
-    (item) => item.check_list_Id == checklistId
+    (item) => item.check_list_id == checklistId
   );
 
   console.log(checklistId, checklist);
@@ -215,7 +216,7 @@ function saveNewTask(text) {
   const currentChecklistId = localStorage.getItem("currentChecklistId");
 
   const checklist = storedChecklistData.find(
-    (item) => item.check_list_Id == currentChecklistId
+    (item) => item.check_list_id == currentChecklistId
   );
 
   if (checklist) {
@@ -306,7 +307,7 @@ $(document).on("click", ".delete-btn", function () {
   const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
 
   const targetChecklist = storedChecklistData.find(
-    (item) => item.check_list_Id == currentChecklistId
+    (item) => item.check_list_id == currentChecklistId
   );
 
   if (targetChecklist) {
@@ -346,7 +347,7 @@ $(document).on("click", "#plus-nav-item", function () {
   const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
   const newChecklistId = storedChecklistData.length + 1;
   const newChecklist = {
-    check_list_Id: newChecklistId,
+    check_list_id: newChecklistId,
     title: "새 체크리스트",
     task: [],
   };
@@ -387,7 +388,7 @@ $(document).on("click", ".checkbox", function () {
   }
 
   const targetChecklist = storedChecklistData.find(
-    (item) => item.check_list_Id == currentChecklistId
+    (item) => item.check_list_id == currentChecklistId
   );
 
   if (targetChecklist) {
@@ -415,7 +416,7 @@ $(document).on("blur", ".editInput", function () {
   const currentChecklistId = localStorage.getItem("currentChecklistId");
   const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
   const targetChecklist = storedChecklistData.find(
-    (item) => item.check_list_Id == currentChecklistId
+    (item) => item.check_list_id == currentChecklistId
   );
 
   if (newText.length === 0 || newText.length > 10) {
