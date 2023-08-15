@@ -13,7 +13,7 @@ function signup() {
 
   $.ajax({
     type: "POST",
-    url: "https://ppiyoung.shop/api/user/register",
+    url: "https://ppiyong.shop/api/user/register",
     contentType: "application/json",
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
