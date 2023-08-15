@@ -14,6 +14,9 @@ $(document).ready(function () {
         async: false,
         url: `https://ppiyong.shop/api/notification`,
         contentType: "application/json",
+        xhrFields: {
+            withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+          },
         success: function (data) {
             console.log("알림 데이터 가져오기 성공");
             // console.log(data);
