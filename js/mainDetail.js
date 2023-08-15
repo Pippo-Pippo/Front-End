@@ -45,7 +45,7 @@ function postComment(postId) {
     content: content,
   };
 
-  formData.append("data", JSON.stringify(jsonData));
+  formData.append("data", JSON.stringify(data));
   formData.append("file", file);
 
   console.log(file);
