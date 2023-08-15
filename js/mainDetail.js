@@ -55,8 +55,6 @@ function postComment(postId) {
     type: "POST",
     "Content-Type": "multipart/form-data",
     data: formData,
-    contentType: false,
-    processData: false,
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
