@@ -97,6 +97,7 @@ $("#verifyButton").on("click", function (e) {
       } else {
         $("#verificationConfirm").hide();
       }
+      alert("인증번호 요청 성공");
     },
     error: function (req, status, err) {
       console.log(req);
