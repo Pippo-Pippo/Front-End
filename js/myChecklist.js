@@ -1,17 +1,17 @@
 $(document).ready(function () {
-  //loadChecklists();
-  getMockData();
+  loadChecklists();
+  //getMockData();
 });
 
-function getMockData() {
-  console.log("getMockData");
-  $.getJSON("./json/checklist.json", function (data) {
-    localStorage.setItem("checklistData", JSON.stringify(data));
-    localStorage.setItem("currentChecklistId", 1);
+// function getMockData() {
+//   console.log("getMockData");
+//   $.getJSON("./json/checklist.json", function (data) {
+//     localStorage.setItem("checklistData", JSON.stringify(data));
+//     localStorage.setItem("currentChecklistId", 1);
 
-    initializeChecklist();
-  });
-}
+//     initializeChecklist();
+//   });
+// }
 
 //GET요청
 function loadChecklists() {
