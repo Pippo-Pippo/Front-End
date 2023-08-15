@@ -156,7 +156,7 @@ function updateButtonColors(categories) {
     WIND: "bg-blue-600",
     SNOW: "bg-blue-900",
     EARTHQUAKE: "bg-yellow-600",
-    CIVIL: "bg-yellow-300",
+    CIVIL: "bg-green-500",
     LOST: "bg-gray-400",
     default: "bg-gray-600"
   };

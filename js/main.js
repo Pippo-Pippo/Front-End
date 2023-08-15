@@ -85,7 +85,7 @@ function updateButtonColors(category) {
     WIND: "bg-blue-600",
     SNOW: "bg-gray-100",
     EARTHQUAKE: "bg-yellow-600",
-    CIVIL: "bg-yellow-100",
+    CIVIL: "bg-green-300",
     LOST: "bg-gray-300",
   };
 
@@ -109,7 +109,7 @@ $(document).ready(function () {
       WIND: "bg-blue-300",
       SNOW: "bg-white",
       EARTHQUAKE: "bg-yellow-600",
-      CIVIL: "bg-yellow-300",
+      CIVIL: "bg-green-300",
       LOST: "bg-gray-400",
     };
 
@@ -126,95 +126,121 @@ $(document).ready(function () {
   }
 
   //날씨 목데이터
-  function loadWeather() {
-    return fetch("json/main.json")
-      .then((response) => response.json())
-      .then((json) => json.weather)
-      .catch((error) => {
-        console.log("실패");
+  $(document).ready(function () {
+    $("#weatherButton").on("click", function () {
+      const convertedAddress = localStorage.getItem("converted_address");
+      const current_region = localStorage.getItem("current_region");
+
+      $.ajax({
+        url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
+        method: "GET",
+        dataType: "json",
+        success: function (json) {
+          const weatherData = json.weather;
+          const filteredWeatherData = weatherData.filter((item) => {
+            return (
+              item.category.includes("WIND") ||
+              item.category.includes("RAIN") ||
+              item.category.includes("HOT") ||
+              item.category.includes("SNOW")
+            );
+          });
+          displayWeather(filteredWeatherData);
+          console.log(weatherData);
+        },
+        error: function (error) {
+          console.log("실패");
+          console.error(error);
+        },
+      });
+    });
+  
+    $.ajax({
+      url: "json/main.json",
+      method: "GET",
+      dataType: "json",
+      success: function (weather) {
+        displayWeather(weather);
+      },
+      error: function (error) {
         console.error(error);
-      });
-  }
-
-  $("#weatherButton").on("click", function () {
-    loadWeather().then((weatherData) => {
-      const filteredWeatherData = weatherData.filter((item) => {
-        return (
-          item.category.includes("WIND") ||
-          item.category.includes("RAIN") ||
-          item.category.includes("HOT") ||
-          item.category.includes("SNOW")
-        );
-      });
-      displayWeather(filteredWeatherData);
+      },
     });
-  });
-
-  loadWeather().then((weather) => {
-    displayWeather(weather);
-  });
-
-  const categoryNames = {
-    RAIN: "강우",
-    HOT: "폭염",
-    WIND: "태풍",
-    SNOW: "폭설",
-  };
-
-  function displayWeather(weather) {
-    const container = $("#main");
-    container
-      .empty()
-      .append(weather.map((item) => createHTMLString(item)).join(""));
-
-    const buttonContainers = container.find(".button-container");
-    weather.forEach((item, index) => {
-      const buttonContainer = buttonContainers.eq(index);
-
-      const categories = item.category.split(" ");
-      for (const category of categories) {
-        const button = $("<button>")
-          .addClass(
-            `category-button w-14 h-7 ${getButtonBackgroundColor(
-              category
-            )} rounded-full mr-1 text-sm font-medium text-white mb-1`
-          )
-           .text(categoryNames[category] || category);
-      buttonContainer.append(button);
+  
+    const categoryNames = {
+      RAIN: "강우",
+      HOT: "폭염",
+      WIND: "태풍",
+      SNOW: "폭설",
+    };
+  
+    function displayWeather(weather) {
+      const container = $("#main");
+      container.empty().append(weather.map((item) => createHTMLString(item)).join(""));
+  
+      const buttonContainers = container.find(".button-container");
+      weather.forEach((item, index) => {
+        const buttonContainer = buttonContainers.eq(index);
+  
+        const categories = item.category.split(" ");
+        for (const category of categories) {
+          const button = $("<button>")
+            .addClass(
+              `category-button w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`
+            )
+            .text(categoryNames[category] || category);
+          buttonContainer.append(button);
+        }
+      });
+    }
+  
+    function createHTMLString(weather) {
+      const buttonBackgroundColor = getButtonBackgroundColor(weather.category);
+  
+      return `
+        <!--메인 박스-->
+        <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
+          <div class="flex items-center justify-between py-2">
+            <div>${weather.from}</div>
+            <div class="text-grey-600 font-medium text-sm ml-4">${weather.time}</div>
+          </div>
+          <div class="button-container"></div>
+          <div class="flex py-2 text-start items-start text-black font-medium text-base">
+            ${weather.content}
+          </div>
+          <div class="flex items-center justify-end text-end">
+            <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
+            <div class="font-medium text-sm mt-1 mr-1">댓글</div>
+            <div class="font-medium text-bold mt-1 mr-5 ">${weather.comment}</div>
+            <a href="/mainDetail.html?id=${weather.id}">
+              <button
+                id="authButton"
+                type="button"
+                class="${weather.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+              >
+                더보기
+              </button>
+            </a>
+          </div>
+        </div>`;
+    }
+  
+    function getButtonBackgroundColor(category) {
+      switch (category) {
+        case "RAIN":
+          return "bg-blue-300";
+        case "HOT":
+          return "bg-red-400";
+        case "WIND":
+          return "bg-blue-600";
+        case "SNOW":
+          return "bg-blue-900";
+        default:
+          return "bg-gray-600";
       }
-    });
-  }
-
-  function createHTMLString(weather) {
-    const buttonBackgroundColor = getButtonBackgroundColor(weather.category);
-
-    return `
-      <!--메인 박스-->
-      <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
-        <div class="flex items-center justify-between py-2">
-          <div>${weather.from}</div>
-          <div class="text-grey-600 font-medium text-sm ml-4">${weather.time}</div>
-        </div>
-        <div class="button-container"></div>
-        <div class="flex py-2 text-start items-start text-black font-medium text-base">
-          ${weather.content}
-        </div>
-        <div class="flex items-center justify-end text-end">
-          <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
-          <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-          <div class="font-medium text-bold mt-1 mr-5 ">${weather.comment}</div>
-          <a href="/mainDetail.html?id=${weather.id}">
-          <button
-            id="authButton"
-            type="button"
-            class="${weather.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-          >
-            더보기
-          </button>
-          </a>
-        </div>
-      </div>`;
-  }
+    }
+  });
+  
 
   function getButtonBackgroundColor(category) {
     switch (category) {
@@ -233,248 +259,261 @@ $(document).ready(function () {
 });
 
 //지진
-function loadEarthquake() {
-  return fetch("json/main.json")
-    .then((response) => response.json())
-    .then((json) => json.earthquake)
-    .catch((error) => {
-      console.log("실패");
-      console.error(error);
-    });
-}
-
-document
-  .getElementById("earthquakeButton")
-  .addEventListener("click", function () {
-    loadEarthquake().then((earthquakeData) => {
-      const filteredEarthquakeData = earthquakeData.filter((item) => {
-        return item.category.includes("EARTHQUAKE");
-      });
-      displayEarthquake(filteredEarthquakeData);
-    });
+$(document).ready(function () {
+  $("#earthquakeButton").on("click", function () {
+    loadEarthquake();
   });
 
-loadEarthquake().then((earthquakeData) => {
-  displayEarthquake(earthquakeData);
-});
+  loadEarthquake();
 
-const categoryNames2 = {
-  EARTHQUAKE: "지진",
+  const categoryNames2 = {
+    EARTHQUAKE: "지진",
+  };
 
-};
-function displayEarthquake(earthquakeData) {
-  const container = document.getElementById("main");
-  container.innerHTML = earthquakeData
-    .map((item) => createHTMLString(item))
-    .join("");
+  function loadEarthquake() {
+    const convertedAddress = localStorage.getItem("converted_address");
+    const current_region = localStorage.getItem("current_region");
+    
+    $.ajax({
+      url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
+      method: "GET",
+      dataType: "json",
+      success: function (json) {
+        const earthquakeData = json.earthquake;
+        const filteredEarthquakeData = earthquakeData.filter((item) => {
+          return item.category.includes("EARTHQUAKE");
+        });
+        displayEarthquake(filteredEarthquakeData);
+        console.log("Received data:", earthquakeData);
 
-  const buttonContainers = container.querySelectorAll(".button-container");
-  earthquakeData.forEach((item, index) => {
-    const buttonContainer = buttonContainers[index];
+      },
+      error: function (error) {
+        console.log("실패");
+        console.error(error);
+        console.log("Request failed:", error);
+      },
+    });
+  }
 
-    buttonContainer.innerHTML = ""; // Clear previous buttons
+  function displayEarthquake(earthquakeData) {
+    const container = $("#main");
+    container.empty().append(earthquakeData.map((item) => createHTMLString(item)).join(""));
 
-    const categories = item.category.split(" ");
-    for (const category of categories) {
-      const button = document.createElement("button");
-      button.className = `w-14 h-7 ${getButtonBackgroundColor(
-        category
-      )} rounded-full mr-1 text-sm font-medium text-white mb-1`;
-      button.innerText = categoryNames2[category] || category; // Use categoryNames or fallback to original category
-      buttonContainer.appendChild(button);
-    }
-  });
-}
+    const buttonContainers = container.find(".button-container");
+    earthquakeData.forEach((item, index) => {
+      const buttonContainer = buttonContainers.eq(index);
+      buttonContainer.empty(); // Clear previous buttons
 
-function createHTMLString(earthquake) {
-  const categories = earthquake.category.split(" ");
-  const buttonBackgroundColor = getButtonBackgroundColor(earthquake.category);
-  return `
+      const categories = item.category.split(" ");
+      for (const category of categories) {
+        const button = $("<button>")
+          .addClass(
+            `w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`
+          )
+          .text(categoryNames2[category] || category);
+        buttonContainer.append(button);
+      }
+    });
+  }
+
+  function createHTMLString(earthquake) {
+    const categories = earthquake.category.split(" ");
+    const buttonBackgroundColor = getButtonBackgroundColor(earthquake.category);
+    return `
       <!--메인 박스-->
       <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
+          <div class="flex items-center justify-between py-2">
+            <div>${earthquake.from}</div>
+            <div class="text-grey-600 font-medium text-sm ml-4">${earthquake.time}</div>
+          </div>
+          <div class="button-container"></div>
+          <div class="flex py-2 text-start items-start text-black font-medium text-base">
+            ${earthquake.content}
+          </div>
+          <div class="flex items-center justify-end text-end">
+            <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
+            <div class="font-medium text-sm mt-1 mr-1">댓글</div>
+            <div class="font-medium text-bold mt-1 mr-5 ">${earthquake.comment}</div>
+            <a href="/mainDetail.html?id=${earthquake.id}">
+              <button
+                id="authButton"
+                type="button"
+                class="${earthquake.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+              >
+                더보기
+              </button>
+            </a>
+          </div>
+        </div>`;
+  }
+
+  function getButtonBackgroundColor(category) {
+    switch (category) {
+      case "EARTHQUAKE":
+        return "bg-yellow-600";
+      default:
+        return "bg-gray-600";
+    }
+  }
+});
+
+
+
+//민방위
+$(document).ready(function () {
+  $("#civilButton").on("click", function () {
+    loadCivil();
+  });
+
+  loadCivil();
+
+  const categoryNames = {
+    CIVIL: "민방위",
+  };
+
+  function loadCivil() {
+    const convertedAddress = localStorage.getItem("converted_address");
+    const current_region = localStorage.getItem("current_region");
+    
+    $.ajax({
+      url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
+      method: "GET",
+      dataType: "json",
+      success: function (json) {
+        const civilData = json.civil;
+        const filteredCivilData = civilData.filter((item) => {
+          return item.category === "CIVIL";
+        });
+        displayCivil(filteredCivilData);
+      },
+      error: function (error) {
+        console.log("실패");
+        console.error(error);
+      },
+    });
+  }
+
+  function displayCivil(civilData) {
+    const container = $("#main");
+    container.empty().append(civilData.map((item) => createHTMLString(item)).join(""));
+
+    const buttonContainers = container.find(".button-container");
+    civilData.forEach((item, index) => {
+      const buttonContainer = buttonContainers.eq(index);
+      buttonContainer.empty(); // Clear previous buttons
+
+      const categories = item.category.split(" ");
+      for (const category of categories) {
+        const button = $("<button>")
+          .addClass(
+            `category-button w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`
+          )
+          .text(categoryNames[category] || category);
+        buttonContainer.append(button);
+      }
+    });
+  }
+
+  function createHTMLString(civil) {
+    const buttonBackgroundColor = getButtonBackgroundColor(civil.category);
+    return `
+    <!--메인 박스-->
+    <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
         <div class="flex items-center justify-between py-2">
-          <div>${earthquake.from}</div>
-          <div class="text-grey-600 font-medium text-sm ml-4">${earthquake.time}</div>
+          <div>${civil.from}</div>
+          <div class="text-grey-600 font-medium text-sm ml-4">${civil.time}</div>
         </div>
         <div class="button-container"></div>
         <div class="flex py-2 text-start items-start text-black font-medium text-base">
-          ${earthquake.content}
+          ${civil.content}
         </div>
         <div class="flex items-center justify-end text-end">
           <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
           <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-          <div class="font-medium text-bold mt-1 mr-5 ">${earthquake.comment}</div>
-          <a href="/mainDetail.html?id=${earthquake.id}">
-          <button
-            id="authButton"
-            type="button"
-            class="${earthquake.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-          >
-            더보기
-          </button>
+          <div class="font-medium text-bold mt-1 mr-5 ">${civil.comment}</div>
+          <a href="/mainDetail.html?id=${civil.id}">
+            <button
+              id="authButton"
+              type="button"
+              class="${civil.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+            >
+              더보기
+            </button>
           </a>
         </div>
       </div>`;
-}
-
-function getButtonBackgroundColor(category) {
-  switch (category) {
-    case "EARTHQUAKE":
-      return "bg-yellow-600";
-    default:
-      return "bg-gray-600";
   }
-}
 
-//민방위
-function loadCivil() {
-  return fetch("json/main.json")
-    .then((response) => response.json())
-    .then((json) => json.civil)
-    .catch((error) => {
-      console.log("실패");
-      console.error(error);
-    });
-}
-
-$("#civilButton").on("click", function () {
-  loadCivil().then((civilData) => {
-    const filteredCivilData = civilData.filter((item) => {
-      return item.category === "CIVIL";
-    });
-    displayCivil(filteredCivilData);
-  });
-});
-
-loadCivil().then((civil) => {
-  displayCivil(civil);
-});
-
-const categoryNames = {
-  CIVIL: "민방위",
- 
-};
-
-function displayCivil(civilData) {
-  const container = $("#main");
-  container
-    .empty()
-    .append(civilData.map((item) => createHTMLString(item)).join(""));
-
-  const buttonContainers = container.find(".button-container");
-  civilData.forEach((item, index) => {
-    const buttonContainer = buttonContainers.eq(index);
-
-    const categories = item.category.split(" ");
-    for (const category of categories) {
-      const button = $("<button>")
-        .addClass(
-          `category-button w-14 h-7 ${getButtonBackgroundColor(
-            category
-          )} rounded-full mr-1 text-sm font-medium text-white mb-1`
-        )
-        .text(categoryNames[category] || category);
-      buttonContainer.append(button);
+  function getButtonBackgroundColor(category) {
+    switch (category) {
+      case "CIVIL":
+        return "bg-green-400";
+      default:
+        return "bg-gray-600";
     }
-  });
-}
-
-function createHTMLString(civil) {
-  const buttonBackgroundColor = getButtonBackgroundColor(civil.category);
-  return `
-  <!--메인 박스-->
-  <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
-    <div class="flex items-center justify-between py-2">
-      <div>${civil.from}</div>
-      <div class="text-grey-600 font-medium text-sm ml-4">${civil.time}</div>
-    </div>
-    <div class="button-container"></div>
-    <div class="flex py-2 text-start items-start text-black font-medium text-base">
-      ${civil.content}
-    </div>
-    <div class="flex items-center justify-end text-end">
-      <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
-      <div class="font-medium text-sm mt-1 mr-1">댓글</div>
-      <div class="font-medium text-bold mt-1 mr-5 ">${civil.comment}</div>
-      <a href="mainDetail.html?id=${civil.id}">
-      <button
-        id="authButton"
-        type="button"
-        class="${civil.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-      >
-        더보기
-      </button>
-      </a>
-    </div>
-  </div>`;
-}
-
-function getButtonBackgroundColor(category) {
-  switch (category) {
-    case "CIVIL":
-      return "bg-yellow-300";
-    default:
-      return "bg-gray-600";
   }
-}
+});
 
 //실종자
-$("#lostButton").on("click", function () {
-  loadlost().then((lostData) => {
-    const filteredLostData = lostData.filter((item) => {
-      return item.category === "LOST"; // 카테고리 이름에 맞게 수정
-    });
-    displayLost(filteredLostData);
+$(document).ready(function () {
+  $("#lostButton").on("click", function () {
+    loadLost();
   });
-});
 
-loadlost().then((lostData) => {
-  displayLost(lostData);
-});
+  loadLost();
 
-function loadlost() {
-  return fetch("json/main.json")
-    .then((response) => response.json())
-    .then((json) => json.lost)
-    .catch((error) => {
-      console.log("실패");
-      console.error(error);
+  const categoryNames3 = {
+    LOST: "실종자",
+  };
+
+  function loadLost() {
+    const convertedAddress = localStorage.getItem("converted_address");
+    const current_region = localStorage.getItem("current_region");
+    
+    $.ajax({
+      url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
+      method: "GET",
+      dataType: "json",
+      success: function (json) {
+        const lostData = json.lost;
+        const filteredLostData = lostData.filter((item) => {
+          return item.category === "LOST";
+        });
+        displayLost(filteredLostData);
+      },
+      error: function (error) {
+        console.log("실패");
+        console.error(error);
+      },
     });
-}
-const categoryNames3 = {
-  LOST: "실종자",
+  }
 
-};
-function displayLost(lostData) {
-  const container = $("#main");
-  container
-    .empty()
-    .append(lostData.map((item) => createHTMLString(item)).join(""));
+  function displayLost(lostData) {
+    const container = $("#main");
+    container.empty().append(lostData.map((item) => createHTMLString(item)).join(""));
 
-  const buttonContainers = container.find(".button-container");
-  lostData.forEach((item, index) => {
-    const buttonContainer = buttonContainers.eq(index);
+    const buttonContainers = container.find(".button-container");
+    lostData.forEach((item, index) => {
+      const buttonContainer = buttonContainers.eq(index);
+      buttonContainer.empty(); // Clear previous buttons
 
-    const categories = item.category.split(" ");
-    for (const category of categories) {
-      const button = $("<button>")
-        .addClass(
-          `category-button w-14 h-7 ${getButtonBackgroundColor(
-            category
-          )} rounded-full mr-1 text-sm font-medium text-white mb-1`
-        )
-        .text(categoryNames3[category] || category);
-      buttonContainer.append(button);
-    }
-  });
-}
+      const categories = item.category.split(" ");
+      for (const category of categories) {
+        const button = $("<button>")
+          .addClass(
+            `w-14 h-7 ${getButtonBackgroundColor(category)} rounded-full mr-1 text-sm font-medium text-white mb-1`
+          )
+          .text(categoryNames3[category] || category);
+        buttonContainer.append(button);
+      }
+    });
+  }
 
-function createHTMLString(lost) {
-  const buttonBackgroundColor = getButtonBackgroundColor(lost.category);
-
-  return `
-      <!--메인 박스-->
-      <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
+  function createHTMLString(lost) {
+    const buttonBackgroundColor = getButtonBackgroundColor(lost.category);
+    return `
+    <!--메인 박스-->
+    <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
         <div class="flex items-center justify-between py-2">
           <div>${lost.from}</div>
           <div class="text-grey-600 font-medium text-sm ml-4">${lost.time}</div>
@@ -487,28 +526,30 @@ function createHTMLString(lost) {
           <img src="img/icon/댓글.png" class="w-4 h-3.5 mt-1 mr-4" />
           <div class="font-medium text-sm mt-1 mr-1">댓글</div>
           <div class="font-medium text-bold mt-1 mr-5 ">${lost.comment}</div>
-          <a href="mainDetail.html?id=${lost.id}">
-          <button
-            id="authButton"
-            type="button"
-            class="${lost.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
-          >
-            더보기
-          </button>
+          <a href="/mainDetail.html?id=${lost.id}">
+            <button
+              id="authButton"
+              type="button"
+              class="${lost.id} w-14 h-7 bg-gray-600 rounded-md text-white font-medium text-sm"
+            >
+              더보기
+            </button>
           </a>
         </div>
       </div>`;
-}
-
-function getButtonBackgroundColor(category) {
-  switch (category) {
-    case "LOST":
-      return "bg-gray-300"; // 실종자 버튼에 맞게 수정
-    default:
-      return "bg-gray-600";
   }
-}
 
+  function getButtonBackgroundColor(category) {
+    switch (category) {
+      case "LOST":
+        return "bg-gray-500"; // 실종자 버튼에 맞게 수정
+      default:
+        return "bg-gray-600";
+    }
+  }
+});
+
+//색깔 결정
 function getButtonBackgroundColor(category) {
   switch (category) {
     case "RAIN":
@@ -522,9 +563,9 @@ function getButtonBackgroundColor(category) {
     case "EARTHQUAKE":
       return "bg-yellow-600";
     case "CIVIL":
-      return "bg-yellow-300";
+      return "bg-green-500";
     case "LOST":
-      return "bg-gray-400"; // 예시로 "bg-gray-400"로 변경
+      return "bg-gray-800"; // 예시로 "bg-gray-400"로 변경
     default:
       return "bg-gray-600";
   }
