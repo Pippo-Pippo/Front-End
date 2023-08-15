@@ -55,7 +55,6 @@ $(document).ready(function () {
             alert(request+status);
         }
     });
-
 });
 
 // 백엔드 통신 전(목데이터)
