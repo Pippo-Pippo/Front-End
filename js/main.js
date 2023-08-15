@@ -85,7 +85,7 @@ function updateButtonColors(category) {
     WIND: "bg-blue-600",
     SNOW: "bg-gray-100",
     EARTHQUAKE: "bg-yellow-600",
-    CIVIL: "bg-yellow-100",
+    CIVIL: "bg-green-300",
     LOST: "bg-gray-300",
   };
 
@@ -109,7 +109,7 @@ $(document).ready(function () {
       WIND: "bg-blue-300",
       SNOW: "bg-white",
       EARTHQUAKE: "bg-yellow-600",
-      CIVIL: "bg-yellow-300",
+      CIVIL: "bg-green-300",
       LOST: "bg-gray-400",
     };
 
@@ -412,7 +412,7 @@ function createHTMLString(civil) {
 function getButtonBackgroundColor(category) {
   switch (category) {
     case "CIVIL":
-      return "bg-yellow-300";
+      return "bg-green-400";
     default:
       return "bg-gray-600";
   }
@@ -509,6 +509,7 @@ function getButtonBackgroundColor(category) {
   }
 }
 
+//색깔 결정
 function getButtonBackgroundColor(category) {
   switch (category) {
     case "RAIN":
@@ -522,7 +523,7 @@ function getButtonBackgroundColor(category) {
     case "EARTHQUAKE":
       return "bg-yellow-600";
     case "CIVIL":
-      return "bg-yellow-300";
+      return "bg-green-500";
     case "LOST":
       return "bg-gray-400"; // 예시로 "bg-gray-400"로 변경
     default:
