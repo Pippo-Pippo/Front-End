@@ -3,16 +3,6 @@ $(document).ready(function () {
   //getMockData();
 });
 
-function getMockData() {
-  console.log("getMockData");
-  $.getJSON("./json/checklist.json", function (data) {
-    localStorage.setItem("checklistData", JSON.stringify(data));
-    localStorage.setItem("currentChecklistId", 1);
-
-    initializeChecklist();
-  });
-}
-
 //GET요청
 function loadChecklists() {
   $.ajax({
@@ -25,7 +15,7 @@ function loadChecklists() {
     success: function (data) {
       console.log("하이");
       localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", 1);
+      localStorage.setItem("currentChecklistId", data[0].check_list_id);
 
       initializeChecklist();
     },
@@ -48,7 +38,7 @@ function deleteTask(taskId) {
     success: function (data) {
       console.log("삭제 완료");
       localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", 1);
+      localStorage.setItem("currentChecklistId", data[0].check_list_Id);
 
       initializeChecklist();
     },
@@ -71,7 +61,7 @@ function deleteChecklist() {
     },
     success: function (data) {
       localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", 1);
+      localStorage.setItem("currentChecklistId", data[0].check_list_id);
 
       initializeChecklist();
     },
@@ -107,7 +97,7 @@ function updateChecklist(checklist) {
     body: testData,
     success: function (data) {
       localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", 1);
+      localStorage.setItem("currentChecklistId", data[0].check_list_id);
 
       initializeChecklist();
     },
@@ -131,7 +121,7 @@ function changeChecklistTitle(checklist) {
     },
     success: function (data) {
       localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", 1);
+      localStorage.setItem("currentChecklistId", data[0].check_list_id);
 
       initializeChecklist();
     },
@@ -159,7 +149,6 @@ function initializeChecklist() {
     (item) => item.check_list_Id == checklistId
   ); //각각의 체크리스트 가져오기
 
-  console.log(checklist);
   $checklistTitleText.text(checklist.title);
   $checklistContent.empty();
 
