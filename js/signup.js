@@ -83,9 +83,12 @@ $("#verifyButton").on("click", function (e) {
 
   $.ajax({
     url: "https://ppiyong.shop/api/user/verification",
-    data: data,
     type: "POST",
-    dataType: "json",
+    data: JSON.stringify(data),
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
+    contentType: "application/json; charset=utf-8",
     success: function (response) {
       if (response.success) {
         $("#verificationConfirm").show();
