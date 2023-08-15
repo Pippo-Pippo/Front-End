@@ -35,7 +35,7 @@ var marker_red = new kakao.maps.MarkerImage(imageRed, imageSize, imageOption);
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(37.56645, 126.97796), // 지도의 중심좌표 내 현위치로 바꾸기
-        level: 7 // 지도의 확대 레벨
+        level: 10 // 지도의 확대 레벨
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -96,71 +96,88 @@ const categorizedData = {
 const EARTHQUAKE = [];
 const CIVIL = [];
 
-// $.getJSON("../json/map.json", function (data) {
-//     data.forEach(item => {
-//         categorizedData[item.category].push(item);
+$.getJSON("../json/map.json", function (data) {
+    data.forEach(item => {
+        categorizedData[item.category].push(item);
+    });
+    console.log(categorizedData);
+});
+
+// $(document).ready(function () {
+//     var bounds = map.getBounds();
+//     bounds.toString();
+//     // var latitude_start = (bounds.oa).toFixed(1),
+//     //     latitude_end = (bounds.ha).toFixed(1),
+
+//     //     longitude_start = (bounds.qa).toFixed(1),
+//     //     longitude_end = (bounds.pa).toFixed(1),
+
+//     var  latitude_start = (bounds.qa).toFixed(1),
+//         latitude_end = (bounds.pa).toFixed(1),
+
+//         longitude_start = (bounds.oa).toFixed(1),
+//         longitude_end = (bounds.ha).toFixed(1);
+//     console.log(latitude_start);
+//     console.log(longitude_start);
+//     console.log(latitude_end);
+//     console.log(longitude_end);
+
+
+//     $.ajax({
+//         type: "GET",
+//         url: `https://ppiyong.shop/api/shelter?latitude_start=${latitude_start}&latitude_end=${latitude_end}&longitude_start=${longitude_end}&longitude_end=${longitude_start}`,
+//         contentType: "application/json",
+//         success: function (data) {
+//             data.forEach(item => {
+//                 categorizedData[item.category].push(item);
+//             });
+//             console.log(categorizedData)
+//         },
+//         error: function (request, status, error) {
+//             console.log("통신실패");
+//             console.log(request);
+//             console.log(status);
+//             console.log(error);
+//             console.log(message);
+//         }
 //     });
-//     console.log(categorizedData);
 // });
 
-$(document).ready(function () {
-    var bounds = map.getBounds();
-    bounds.toString();
-    var latitude_start = (bounds.oa).toFixed(1),
-        longitude_start = (bounds.qa).toFixed(1),
-        latitude_end = (bounds.ha).toFixed(1),
-        longitude_end = (bounds.pa).toFixed(1);
-        console.log(latitude_start);
-        console.log(longitude_start);
-        console.log(latitude_end);
-        console.log(longitude_end);
-
-
-    $.ajax({
-        type: "GET",
-        url: `https://ppiyong.shop/api/shelter?latitude_start=${latitude_start}&longitude_start=${longitude_start}&latitude_end=${latitude_end}&longitude_end=${longitude_end}`,
-        contentType: "application/json",
-        success: function (data) {
-            data.forEach(item => {
-                categorizedData[item.category].push(item);
-            });
-            console.log(categorizedData)
-        },
-        error: function (request, status, error) {
-            console.log("통신실패");
-            console.log(request);
-            console.log(status);
-            console.log(error);
-            console.log(message);
+//받아온 거 쓸 수 있게 정리
+$(document).ready(function (){
+    categorizedData.forEach(item => {
+        if (item.category === 'EARTHQUAKE') {
+          EARTHQUAKE.push(item);
+        } else if (item.category === 'B') {
+          B.push(item);
         }
+
     });
 });
+// $(document).ready(function () {
+//     for (var i = 0; i < categorizedData.EARTHQUAKE.length; i++) {
+//         EARTHQUAKE.push({
+//             content: '<div class ="label"><span class="left"></span><span class="center">' + categorizedData.EARTHQUAKE[i].name + '</span><span class="right"></span></div>',
+//             latlng: new kakao.maps.LatLng(categorizedData.EARTHQUAKE[i].longitude, categorizedData.EARTHQUAKE[i].latitude),
+//             value: "지진/해일 대피시설",
+//             address: categorizedData.EARTHQUAKE[i].address,
+//             name: categorizedData.EARTHQUAKE[i].name,
+//             category: categorizedData.EARTHQUAKE[i].category
+//         })
 
-//받아온 거 쓸 수 있게 정리
-$(document).ready(function () {
-    for (var i = 0; i < categorizedData.EARTHQUAKE.length; i++) {
-        EARTHQUAKE.push({
-            content: '<div class ="label"><span class="left"></span><span class="center">' + categorizedData.EARTHQUAKE[i].name + '</span><span class="right"></span></div>',
-            latlng: new kakao.maps.LatLng(categorizedData.EARTHQUAKE[i].longitude, categorizedData.EARTHQUAKE[i].latitude),
-            value: "지진/해일 대피시설",
-            address: categorizedData.EARTHQUAKE[i].address,
-            name: categorizedData.EARTHQUAKE[i].name,
-            category: categorizedData.EARTHQUAKE[i].category
-        })
+//     };
+//     for (var i = 0; i < categorizedData.CIVIL.length; i++) {
 
-    };
-    for (var i = 0; i < categorizedData.CIVIL.length; i++) {
-
-        CIVIL.push({
-            content: '<div class ="label"><span class="left"></span><span class="center">' + categorizedData.CIVIL[i].name + '</span><span class="right"></span></div>',
-            latlng: new kakao.maps.LatLng(categorizedData.CIVIL[i].longitude, categorizedData.CIVIL[i].latitude),
-            value: "민방위 대피시설",
-            address: categorizedData.CIVIL[i].address,
-            name: categorizedData.CIVIL[i].name,
-            category: categorizedData.CIVIL[i].category
-        })
-    };
-});
+//         CIVIL.push({
+//             content: '<div class ="label"><span class="left"></span><span class="center">' + categorizedData.CIVIL[i].name + '</span><span class="right"></span></div>',
+//             latlng: new kakao.maps.LatLng(categorizedData.CIVIL[i].longitude, categorizedData.CIVIL[i].latitude),
+//             value: "민방위 대피시설",
+//             address: categorizedData.CIVIL[i].address,
+//             name: categorizedData.CIVIL[i].name,
+//             category: categorizedData.CIVIL[i].category
+//         })
+//     };
+// });
 //maker list
 var civil_custom = [],
     earthquake_custom = [],
