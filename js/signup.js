@@ -1,18 +1,15 @@
 function isPasswordValid(password) {
   // 비밀번호가 8자리 이상이면서 특수문자를 포함하는지 검사
-  const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  const passwordPattern =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   return passwordPattern.test(password);
 }
 function signup() {
- 
-
   var email = $("#email").val();
   var password = $("#password").val();
   var nickname = $("#nickname").val();
-  var region = $("#location").val();  
+  var region = $("#location").val();
   var password = $("#password").val();
-
-
 
   $.ajax({
     type: "POST",
@@ -26,8 +23,6 @@ function signup() {
     }),
     success: function (data) {
       alert(JSON.stringify(data));
-
-     
     },
     error: function (request, status, error) {
       alert("잘못된 요청입니다.");
@@ -51,9 +46,7 @@ document.getElementById("nextButton").addEventListener("click", function () {
   }
 
   signup();
-  nextButton.addEventListener("click", function () {
-    goNext();
-  });
+  goNext();
 });
 
 //이메일 인증번호
@@ -80,15 +73,15 @@ $("#authButton").on("click", function (e) {
 
 $("#verifyButton").on("click", function (e) {
   var inputCode = $("#verificationCode").val();
-
+  console.log("버튼 클릭");
 
   $.ajax({
     url: "https://ppiyong.shop/api/user/verification",
-    data: { verificationCode: inputCode, email: email }, 
+    data: { verificationCode: inputCode, email: email },
     type: "POST",
     dataType: "json",
     success: function (response) {
-      if (response.success) { 
+      if (response.success) {
         $("#verificationConfirm").show();
         alert("인증번호 요청 성공");
       } else {
@@ -103,64 +96,15 @@ $("#verifyButton").on("click", function (e) {
   });
 });
 
-const authButton = document.getElementById("authButton");
-const verificationMessage = document.getElementById(
-  "verificationMessage"
-);
-const verificationInput = document.getElementById("verificationInput");
-const verificationConfirm = document.getElementById(
-  "verificationConfirm"
-);
-const nicknameInput = document.getElementById("nicknameInput");
-const locationDropdown = document.getElementById("locationDropdown");
-const nextButton = document.getElementById("nextButton");
-const heading = document.querySelector(
-  ".flex .items-start .text-left .text-black .font-bold .text-2xl"
-);
-
-authButton.addEventListener("click", function () {
-  verificationMessage.style.display = "flex";
-  verificationInput.style.display = "block";
-  verificationConfirm.style.display = "none";
-});
-
-verifyButton.addEventListener("click", function () {
-  verificationConfirm.style.display = "block";
-});
-
 function goNext() {
   const signupWarp = document.getElementById("signup-wrap");
   const signupTitle = document.getElementById("signup-title");
   const nextButton = document.getElementById("nextButton");
-    // "회원가입" 내용이 사라진 후에 실행
+  // "회원가입" 내용이 사라진 후에 실행
 
   signupWarp.style.display = "none"; //없어지기
   signupTitle.innerHTML = "회원정보 입력"; //innerText 수정
   nextButton.innerHTML = "회원가입 완료!"; //innerText 수정
-  // const emailInput = document.getElementById("email");
-  // const verificationMessage = document.getElementById(
-  //   "verificationMessage"
-  // );
-  // const verificationInput = document.getElementById("verificationInput");
-  // const verificationConfirm = document.getElementById(
-  //   "verificationConfirm"
-  // );
-  // const passwordInput = document.getElementById("password");
-  // const authButton = document.getElementById("authButton");
-  // const verifyButton = document.getElementById("verifyButton");
-  // const nextButton = document.getElementById("nextButton");
-  // const heading = document.querySelector(
-  //   ".flex .items-start .text-left .text-black .font-bold .text-2xl"
-  // );
-
-  // //정보 사라지게 하기
-  // emailInput.style.display = "none";
-  // authButton.style.display = "none";
-  // verificationMessage.style.display = "none";
-  // verificationInput.style.display = "none";
-  // verifyButton.style.display = "none";
-  // verificationConfirm.style.display = "none";
-  // passwordInput.style.display = "none";
 
   // 닉네임, 지역 정보 보여주기
   nicknameInput.style.display = "block";
