@@ -25,7 +25,7 @@ $(document).ready(function () {
                 var id = item.id,
                     title = item.title,
                     content = item.content,
-                    time = item.createdAt;
+                    time = item.time;
           
                 var date = ChangeTime(time);
           
@@ -95,7 +95,7 @@ $(document).ready(function () {
 //   const numDiv = $('<div>').text("아직 확인하지 않은 " + alarm_num + "개의 알림이 있어요");
 //   $('#alarm_num').append(numDiv);
 // });
-
+var hours="";
 //시간 형식바꾸기 함수
 function ChangeTime(time) {
   var years = time.substring(0, 4);
@@ -104,10 +104,18 @@ function ChangeTime(time) {
   console.log(month);
   var day = time.substring(8, 10);
   console.log(day);
-  var hours = time.substring(11, 13);
+  var check=time.substring(11, 13);
+  if(check="PM"){
+    hours=Number(time.substring(14, 16))+12;
+  }
+  else{
+    hours=Number(time.substring(14, 16));
+  }
   console.log(hours);
-  var minute = time.substring(14);
+
+  var minute = time.substring(17);
   console.log(minute);
+
   var date = new Date(years, month, day, hours, minute);
   return date;
 };
