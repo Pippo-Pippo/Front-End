@@ -1,0 +1,23 @@
+[
+  {
+    "category": "EARTHQUAKE",
+    "latitude": 37.588768580930825,
+    "longitude": 126.97094230542973,
+    "name": "청운중학교 운동장",
+    "address": "서울특별시 종로구 청운동   89-142"
+  },
+  {
+    "category": "EARTHQUAKE",
+    "latitude": 37.58815017347914,
+    "longitude": 126.9700402222006,
+    "name": "경기상업고등학교 운동장",
+    "address": "서울특별시 종로구 청운동   89-3"
+  },
+  {
+    "category": "EARTHQUAKE",
+    "latitude": 37.587019898806965,
+    "longitude": 126.97069900044882,
+    "name": "경복고등학교 운동장",
+    "address": "서울특별시 종로구 청운동   89-9"
+  }
+]

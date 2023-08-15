@@ -45,8 +45,8 @@ body {
   animation: fadeInUp 1s;
   display: flex;
   width:360px;
-  height:170px;
-  top:-170px;
+  min-height:170px;
+  bottom:170px;
   z-index: 1;
   flex-direction: column;
   border-radius: 10px 10px 0px 0px;
