@@ -1,7 +1,6 @@
 //뉴스 불러오기
 $(document).ready(function () {
   const current_region = localStorage.getItem("current_region");
-  const convertedAddress = localStorage.getItem("converted_address");
 
   $.getJSON("../json/regionList.json", function (data) {
     const regionList = data;
@@ -10,6 +9,8 @@ $(document).ready(function () {
   });
 
   function getNewsList() {
+    const convertedAddress = localStorage.getItem("converted_address");
+  
     return $.ajax({
       type: "GET",
       url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
