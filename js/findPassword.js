@@ -8,9 +8,7 @@ $(document).ready(function () {
     $.ajax({
       type: "POST",
       url: `https://ppiyong.shop/api/user/findPw?email=${email}`,
-
       contentType: "application/json",
-      dataType: "json",
       success: function (response) {
         if (response.success) {
           alert("임시 비밀번호가 이메일로 전송되었습니다.");
