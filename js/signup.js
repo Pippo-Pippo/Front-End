@@ -61,6 +61,7 @@ $("#authButton").on("click", function (e) {
       $("#verificationMessage").show();
       $("#verificationInput").show();
       $("#authButton").hide();
+      console.log(data);
     },
     error: function (req, status, err) {
       console.log(req);
@@ -88,7 +89,7 @@ $("#verifyButton").on("click", function (e) {
     type: "POST",
     data: JSON.stringify(data),
     xhrFields: {
-      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+      withCredentials: true, 
     },
     contentType: "application/json; charset=utf-8",
     success: function (response) {
@@ -125,4 +126,4 @@ function goNext() {
   heading.textContent = "회원정보 입력";
   nextButton.textContent = "회원가입 완료";
 }
-//다음 버튼
+
