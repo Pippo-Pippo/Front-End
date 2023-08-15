@@ -81,23 +81,23 @@ $("#authButton").on("click", function (e) {
 $("#verifyButton").on("click", function (e) {
   var inputCode = $("#verificationCode").val();
 
-  // 이메일로 인증번호 확인 요청을 보내서 서버 응답을 받아옵니다.
+
   $.ajax({
     url: "https://ppiyong.shop/api/user/verification",
-    data: { verificationCode: inputCode, email: email }, // 이메일을 어디서 가져오는지 확인 필요
+    data: { verificationCode: inputCode, email: email }, 
     type: "POST",
     dataType: "json",
     success: function (response) {
-      if (response.success) { // 인증번호가 일치하는 경우
+      if (response.success) { 
         $("#verificationConfirm").show();
+        alert("인증번호 요청 성공");
       } else {
-        alert("인증번호가 일치하지 않습니다. 다시 입력해주세요.");
         $("#verificationConfirm").hide();
       }
     },
     error: function (req, status, err) {
       console.log(req);
-      alert("인증번호 확인에 실패했습니다. 다시 시도해주세요.");
+      alert("인증번호가 일치하지 않습니다. 다시 입력해주세요.");
       $("#verificationConfirm").hide();
     },
   });
