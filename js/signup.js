@@ -76,9 +76,14 @@ $("#verifyButton").on("click", function (e) {
   var email = $("input[name='email']").val();
   console.log(inputCode, email, "버튼 클릭");
 
+  const data = {
+    email: email,
+    verification: inputCode,
+  };
+
   $.ajax({
     url: "https://ppiyong.shop/api/user/verification",
-    data: { verification: inputCode, email: email },
+    data: data,
     type: "POST",
     dataType: "json",
     success: function (response) {
