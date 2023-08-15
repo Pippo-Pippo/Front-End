@@ -51,7 +51,7 @@
             <span>인증번호가 확인되었습니다.</span>
           </div>
         </div>
-      </div>
+    
 
         <!-- 비밀번호 input-box -->
         <div class="input-box mt-4">
@@ -68,13 +68,13 @@
         </div>
         <!-- 비밀번호 재입력 input-box -->
         <div class="input-box mt-4">
-          <label for="repassword" class="block text-black-700 font-bold mb-2"
+          <label for="confirmPassword" class="block text-black-700 font-bold mb-2"
             >비밀번호 재입력</label
           >
           <input
             type="password"
-            id="repassword"
-            name="repassword"
+            id="confirmPassword"
+            name="confirmPassword"
             class="form-input w-80 h-11 px-3 py-2 rounded-md border border-gray-400 focus:outline-none focus:ring focus:border-blue-600 mb-8"
             required
           />
@@ -137,73 +137,7 @@
     </div>
 
     <script>
-      const authButton = document.getElementById("authButton");
-      const verificationMessage = document.getElementById(
-        "verificationMessage"
-      );
-      const verificationInput = document.getElementById("verificationInput");
-      const verificationConfirm = document.getElementById(
-        "verificationConfirm"
-      );
-      const nicknameInput = document.getElementById("nicknameInput");
-      const locationDropdown = document.getElementById("locationDropdown");
-      const nextButton = document.getElementById("nextButton");
-      const heading = document.querySelector(
-        ".flex .items-start .text-left .text-black .font-bold .text-2xl"
-      );
 
-      authButton.addEventListener("click", function () {
-        verificationMessage.style.display = "flex";
-        verificationInput.style.display = "block";
-        verificationConfirm.style.display = "none";
-      });
-
-      verifyButton.addEventListener("click", function () {
-        verificationConfirm.style.display = "block";
-      });
-
-      //다음 버튼
-      nextButton.addEventListener("click", function () {
-        const signupWarp = document.getElementById("signup-wrap");
-        const signupTitle = document.getElementById("signup-title");
-        const nextButton = document.getElementById("nextButton");
-
-        signupWarp.style.display = "none"; //없어지기
-        signupTitle.innerHTML = "회원정보 입력"; //innerText 수정
-        nextButton.innerHTML = "회원가입 완료!"; //innerText 수정
-        // const emailInput = document.getElementById("email");
-        // const verificationMessage = document.getElementById(
-        //   "verificationMessage"
-        // );
-        // const verificationInput = document.getElementById("verificationInput");
-        // const verificationConfirm = document.getElementById(
-        //   "verificationConfirm"
-        // );
-        // const passwordInput = document.getElementById("password");
-        // const authButton = document.getElementById("authButton");
-        // const verifyButton = document.getElementById("verifyButton");
-        // const nextButton = document.getElementById("nextButton");
-        // const heading = document.querySelector(
-        //   ".flex .items-start .text-left .text-black .font-bold .text-2xl"
-        // );
-
-        // //정보 사라지게 하기
-        // emailInput.style.display = "none";
-        // authButton.style.display = "none";
-        // verificationMessage.style.display = "none";
-        // verificationInput.style.display = "none";
-        // verifyButton.style.display = "none";
-        // verificationConfirm.style.display = "none";
-        // passwordInput.style.display = "none";
-
-        // 닉네임, 지역 정보 보여주기
-        nicknameInput.style.display = "block";
-        locationDropdown.style.display = "block";
-
-        // 회원정보 입력 헤드, 버튼 이름 바꾸기
-        heading.textContent = "회원정보 입력";
-        nextButton.textContent = "회원가입 완료";
-      });
     </script>
      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
      <script src="../js/signup.js"></script>

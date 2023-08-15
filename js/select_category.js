@@ -3,31 +3,31 @@ $(document).ready(function () {
     var selectedButtons = [];
 
     // 페이지 로드 시 JSON 데이터 가져오기
-    $.getJSON('/json/category.json', function (data) {
-        $.each(data, function (key, value) {
-            console.log(data);
-            if (value == 1) {
-                selectedButtons.push(key);
-                $('#' + key).addClass('active');
-            }
-        });
-    });
-    // $.ajax({
-    //     type: 'GET',
-    //     url:`https://ppiyong.shop/api/notification/category`,
-    //     success: function(data) {
-    //         $.each(data, function (key, value) {
-    //             console.log(data);
-    //             if (value == 1) {
-    //                 selectedButtons.push(key);
-    //                 $('#' + key).addClass('active');
-    //             }
-    //         });
-    //     },
-    //     error: function(error) {
-    //         console.error("GET 요청 실패:", error);
-    //     }
+    // $.getJSON('/json/category.json', function (data) {
+    //     $.each(data, function (key, value) {
+    //         console.log(data);
+    //         if (value == 1) {
+    //             selectedButtons.push(key);
+    //             $('#' + key).addClass('active');
+    //         }
+    //     });
     // });
+    $.ajax({
+        type: 'GET',
+        url:`https://ppiyong.shop/api/notification/category`,
+        success: function(data) {
+            $.each(data, function (key, value) {
+                console.log(data);
+                if (value == 1) {
+                    selectedButtons.push(key);
+                    $('#' + key).addClass('active');
+                }
+            });
+        },
+        error: function(error) {
+            console.error("GET 요청 실패:", error);
+        }
+    });
 
     // 버튼 클릭 이벤트
     $('.category_btn').click(function () {
@@ -60,11 +60,16 @@ $(document).ready(function () {
             "civil": selectedButtons.includes("civil") ? 1 : 0,
             "lost": selectedButtons.includes("lost") ? 1 : 0
         };
+        $.each(dataToSend, function (key, value) {
+            key=value;
+            //ex) weather 값에 1 넣은것 
+            
+        });
         console.log(dataToSend);
         // AJAX PUT 요청 보내기
         $.ajax({
             type: 'PUT',
-            url: 'https://ppiyong.shop/api/notification/category', // PUT 요청을 보낼 API의 엔드포인트 URL
+            url: `https://ppiyong.shop/api/notification/category?weather=${weather}&earthquake=${earthquake}&civil=${civil}&lost=${lost}`, // PUT 요청을 보낼 API의 엔드포인트 URL
             data: JSON.stringify(dataToSend),
             contentType: 'application/json',
             success: function (response) {
