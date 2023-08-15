@@ -17,6 +17,7 @@ $(document).ready(function () {
         success: function(data) {
             selectedButtons.push(data.region);
             $('#'+data.region).addClass('active');
+            console.log(data.region);
         },
         error: function(error) {
             console.error("GET 요청 실패:", error);
@@ -50,19 +51,18 @@ $(document).ready(function () {
         var dataToSend = {
             "region":selectedButtons[0]
         };
-        
+        console.log(dataToSend);
         // AJAX PUT 요청 보내기
         $.ajax({
             type: 'PUT',
-            url: 'https://ppiyong.shop/api/notification/region', // PUT 요청을 보낼 API의 엔드포인트 URL
+            url: `https://ppiyong.shop/api/notification/region`, // PUT 요청을 보낼 API의 엔드포인트 URL
             data: JSON.stringify(dataToSend),
-            contentType: 'application/json',
             xhrFields: {
                 withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
               },
             success: function (response) {
                 console.log("PUT 요청 성공:", response);
-                location.href='/alarm/select_region.html';
+                location.href='/alarm/select_category.html';
 
             },
             error: function (error) {
