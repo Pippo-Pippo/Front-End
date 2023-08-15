@@ -95,10 +95,13 @@ $("#verifyButton").on("click", function (e) {
     success: function (response) {
       if (response.success) {
         $("#verificationConfirm").show();
-        alert("인증번호 요청 성공");
+        alert("인증번호 일치");
+        console.log(data);
       } else {
         $("#verificationConfirm").hide();
+        alert("인증번호 불일치");
       }
+      alert("인증번호 요청 성공");
     },
     error: function (req, status, err) {
       console.log(req);
