@@ -154,6 +154,13 @@ $(document).ready(function () {
     displayWeather(weather);
   });
 
+  const categoryNames = {
+    RAIN: "강우",
+    HOT: "폭염",
+    WIND: "태풍",
+    SNOW: "폭설",
+  };
+
   function displayWeather(weather) {
     const container = $("#main");
     container
@@ -172,8 +179,8 @@ $(document).ready(function () {
               category
             )} rounded-full mr-1 text-sm font-medium text-white mb-1`
           )
-          .text(category);
-        buttonContainer.append(button);
+           .text(categoryNames[category] || category);
+      buttonContainer.append(button);
       }
     });
   }
@@ -218,7 +225,7 @@ $(document).ready(function () {
       case "WIND":
         return "bg-blue-600";
       case "SNOW":
-        return "bg-gray-100";
+        return "bg-blue-900";
       default:
         return "bg-gray-600";
     }
@@ -251,6 +258,10 @@ loadEarthquake().then((earthquakeData) => {
   displayEarthquake(earthquakeData);
 });
 
+const categoryNames2 = {
+  EARTHQUAKE: "지진",
+
+};
 function displayEarthquake(earthquakeData) {
   const container = document.getElementById("main");
   container.innerHTML = earthquakeData
@@ -269,7 +280,7 @@ function displayEarthquake(earthquakeData) {
       button.className = `w-14 h-7 ${getButtonBackgroundColor(
         category
       )} rounded-full mr-1 text-sm font-medium text-white mb-1`;
-      button.innerText = category;
+      button.innerText = categoryNames2[category] || category; // Use categoryNames or fallback to original category
       buttonContainer.appendChild(button);
     }
   });
@@ -339,6 +350,11 @@ loadCivil().then((civil) => {
   displayCivil(civil);
 });
 
+const categoryNames = {
+  CIVIL: "민방위",
+ 
+};
+
 function displayCivil(civilData) {
   const container = $("#main");
   container
@@ -357,7 +373,7 @@ function displayCivil(civilData) {
             category
           )} rounded-full mr-1 text-sm font-medium text-white mb-1`
         )
-        .text(category);
+        .text(categoryNames[category] || category);
       buttonContainer.append(button);
     }
   });
@@ -425,7 +441,10 @@ function loadlost() {
       console.error(error);
     });
 }
+const categoryNames3 = {
+  LOST: "실종자",
 
+};
 function displayLost(lostData) {
   const container = $("#main");
   container
@@ -444,7 +463,7 @@ function displayLost(lostData) {
             category
           )} rounded-full mr-1 text-sm font-medium text-white mb-1`
         )
-        .text(category);
+        .text(categoryNames3[category] || category);
       buttonContainer.append(button);
     }
   });

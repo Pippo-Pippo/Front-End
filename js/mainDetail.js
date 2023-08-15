@@ -139,11 +139,22 @@ function displayComment(data) {
 // updateButtonColors 함수 추가
 function updateButtonColors(categories) {
   
+  const categoryNames = {
+    RAIN: "강우",
+    HOT: "폭염",
+    WIND: "태풍",
+    SNOW: "폭설",
+    EARTHQUAKE: "지진",
+    CIVIL: "민방위",
+    LOST: "실종자",
+    default: "기타"
+  };
+
   const categoryColors = {
     RAIN: "bg-blue-300",
-    HOT: "bg-pink-500",
-    WIND: "bg-blue-300",
-    SNOW: "bg-white",
+    HOT: "bg-red-400",
+    WIND: "bg-blue-600",
+    SNOW: "bg-blue-900",
     EARTHQUAKE: "bg-yellow-600",
     CIVIL: "bg-yellow-300",
     LOST: "bg-gray-400",
@@ -155,7 +166,7 @@ function updateButtonColors(categories) {
   
   categories.forEach(category => {
     const button = document.createElement("button");
-    button.textContent = category;
+     button.textContent = categoryNames[category] || categoryNames.default;
     button.className = `w-14 h-7 rounded-full mr-1 text-sm font-medium text-white mb-1 btn ${categoryColors[category] || categoryColors.default}`;
     categoryButtonsContainer.appendChild(button);
   });
