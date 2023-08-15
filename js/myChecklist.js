@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  //loadChecklists();
-  getMockData();
+  loadChecklists();
+  //getMockData();
 });
 
 function getMockData() {
