@@ -53,7 +53,6 @@ function postComment(postId) {
   $.ajax({
     url: `https://ppiyong.shop/api/post/${postId}`,
     type: "POST",
-    "Content-Type": "multipart/form-data",
     contentType: false,
     processData: false,
     data: formData,
