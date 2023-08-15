@@ -83,7 +83,7 @@ $("#verifyButton").on("click", function (e) {
 
   // 인증번호 전송하여 비교
   $.ajax({
-    url: "https://ppiyoung.shop/api/user/verification",
+    url: "https://ppiyong.shop/api/user/verification",
     data: { verificationCode: inputCode },
     type: "POST",
     success: function (data) {
