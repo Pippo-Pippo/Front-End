@@ -12,10 +12,10 @@
     <title>삐용</title>
     <link rel="stylesheet" href="../css/select.css" />
     <style>
-        @keyframes fadeInUp {
+        @keyframes fadeInDown {
             0% {
                 opacity: 0;
-                transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, -100%, 0);
             }
 
             to {
@@ -25,7 +25,7 @@
         }
 
         #toastMsg {
-            animation: fadeInUp 1s;
+            animation: fadeInDown 1s;
         }
     </style>
 </head>
@@ -56,51 +56,55 @@
             <!--다른 지역 확인하기-->
             <section id="select_other">
                 <nav>
-                    <div class="ml-4 mb-6 mt-5 h-18">
+                    <div class="ml-4 mb-6 mt-5 h-25">
 
                         <div class="flex-col justify-start mb-4">
-                            <div class="flex items-center"><a href="/alarm/alarm.html">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none">
-                                        <path d="M10 19L3 12M3 12L10 5M3 12H21" stroke="#3F3F46" stroke-width="2.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    </a>
-                                    <div class="w-56 h-8 bg-yellow-100 rounded-full text-xs ml-10 px-4 pb-1 pt-1 font-bold text-gray-700 "
-                                        id="toastMsg" style="display: none;">지역이 성공적으로
-                                        변경되었습니다.</div>
+                            <div class="flex items-center h-6">
+                                    <div>
+                                        <a href="#">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path d="M10 19L3 12M3 12L10 5M3 12H21" stroke="#3F3F46" stroke-width="2.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                </a>
                             </div>
+
+                            <div class="inline-block w-56 h-8 bg-yellow-100 rounded-full pr-4 pl-4 pb-1 pt-2 text-xs ml-10 font-bold text-gray-700 "
+                                id="toastMsg" style="display: none;">지역이 성공적으로
+                                변경되었습니다.</div>
                         </div>
-
-                        <div class="font-bold text-3xl ml-1">다른 지역 확인하기</div>
-
                     </div>
 
-        </div>
-        </nav>
-        <div>
-            <div id="countryBox">
-                <div><button class="region_btn" id="SEOUL">서울특별시</button></div>
-                <div><button class="region_btn" id="BUSAN">부산광역시</button></div>
-                <div><button class="region_btn" id="DAEGU">대구광역시</button></div>
-                <div><button class="region_btn" id="INCHEON">인천광역시</button></div>
-                <div><button class="region_btn" id="GWANJU">광주광역시</button></div>
-                <div><button class="region_btn" id="DAEJEON">대전광역시</button></div>
-                <div><button class="region_btn" id="ULSAN">울산광역시</button></div>
-                <div><button class="region_btn" id="SEJONG">세종특별자치시</button></div>
-                <div><button class="region_btn" id="GYEONGGI">경기도</button></div>
-                <div><button class="region_btn" id="GANGWON">강원특별자치도</button></div>
-                <div><button class="region_btn" id="CHUNGCHEONGBUKDO">충청북도</button></div>
-                <div><button class="region_btn" id="CHUNGCHEONGNAMDO">충청남도</button></div>
-                <div><button class="region_btn" id="JEOLLABUKDO">전라북도</button></div>
-                <div><button class="region_btn" id="JEOLLANAMDO">전라남도</button></div>
-                <div><button class="region_btn" id="GYEONGSANGBUKDO">경상북도</button></div>
-                <div><button class="region_btn" id="GYEONGSANGNAMDO">경상남도</button></div>
-                <div><button class="region_btn" id="JEJU">제주특별자치도</button></div>
-            </div>
+                    <div class="font-bold text-3xl ml-1">다른 지역 확인하기</div>
 
         </div>
-        </section>
+
+    </div>
+    </nav>
+    <div>
+        <div id="countryBox">
+            <div><button class="region_btn" id="SEOUL">서울특별시</button></div>
+            <div><button class="region_btn" id="BUSAN">부산광역시</button></div>
+            <div><button class="region_btn" id="DAEGU">대구광역시</button></div>
+            <div><button class="region_btn" id="INCHEON">인천광역시</button></div>
+            <div><button class="region_btn" id="GWANJU">광주광역시</button></div>
+            <div><button class="region_btn" id="DAEJEON">대전광역시</button></div>
+            <div><button class="region_btn" id="ULSAN">울산광역시</button></div>
+            <div><button class="region_btn" id="SEJONG">세종특별자치시</button></div>
+            <div><button class="region_btn" id="GYEONGGI">경기도</button></div>
+            <div><button class="region_btn" id="GANGWON">강원특별자치도</button></div>
+            <div><button class="region_btn" id="CHUNGCHEONGBUKDO">충청북도</button></div>
+            <div><button class="region_btn" id="CHUNGCHEONGNAMDO">충청남도</button></div>
+            <div><button class="region_btn" id="JEOLLABUKDO">전라북도</button></div>
+            <div><button class="region_btn" id="JEOLLANAMDO">전라남도</button></div>
+            <div><button class="region_btn" id="GYEONGSANGBUKDO">경상북도</button></div>
+            <div><button class="region_btn" id="GYEONGSANGNAMDO">경상남도</button></div>
+            <div><button class="region_btn" id="JEJU">제주특별자치도</button></div>
+        </div>
+
+    </div>
+    </section>
 
     </div>
     </div>
