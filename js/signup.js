@@ -99,7 +99,7 @@ $("#verifyButton").on("click", function (e) {
     },
     contentType: "application/json; charset=utf-8",
     success: function (response) {
-   
+      $("#verificationConfirm").show();
       alert("인증번호 요청 성공");
     },
     error: function (req, status, err) {
