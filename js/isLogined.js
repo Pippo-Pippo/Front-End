@@ -15,7 +15,6 @@ $(document).ready(function () {
     $.ajax({
       url: "https://ppiyong.shop/api/user",
       type: "GET",
-      dataType: "json",
       xhrFields: {
         withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
       },
