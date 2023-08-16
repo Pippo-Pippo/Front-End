@@ -17,20 +17,21 @@
     <title>삐용</title>
     <link rel="stylesheet" href="../css/config.css" />
     <style>
-      .newsList {
-        width: 100%;
-        height: 50px;
+      .news-rolling-container {
+        position: relative;
         overflow: hidden;
+        height: 30px; /* 뉴스 하나의 높이에 따라 조정이 필요 */
       }
+
       .news-list {
         position: relative;
         width: 100%;
         height: auto;
       }
-      .news-list li {
-        width: 100%;
-        height: 50px;
-        line-height: 20px;
+
+      .news-item {
+        height: 30px; /* 뉴스 하나의 높이에 따라 조정이 필요 */
+        line-height: 30px; /* 세로 중앙 정렬을 위한 설정 */
       }
     </style>
   </head>
@@ -263,9 +264,8 @@
         <div
           class="bg-white border-gray-200 shadow-md h-12 w-80 mt-5 p-2 text-sm text-center rounded-md"
         >
-          <div class="newsList">
-            <ul id="news-item" class="news-list"></ul>
-            <!--뉴스 데이터 업로드-->
+          <div class="news-rolling-container">
+            <ul class="news-list"></ul>
           </div>
         </div>
       </div>

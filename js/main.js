@@ -1,46 +1,32 @@
 let allData; // 전역변수
 
 //뉴스 불러오기
-$(document).ready(function () {
+$(document).ready(async function () {
   //현재 접속 좌표 받아와서 주소로 변환하기
-  navigator.geolocation.getCurrentPosition(function (position) {
+  navigator.geolocation.getCurrentPosition(async function (position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
-    reverseGeocode(lat, lon, function (address) {
-      console.log(lat, lon, address);
+    try {
+      const address = await reverseGeocode(lat, lon);
       $("#current_city").text(address);
-    });
-  });
+      // 아래는 이어지는 처리
+      $.getJSON("../json/regionList.json", function (data) {
+        const regionList = data;
+        const convertedAddress = convertRegion(regionList, current_region);
+        localStorage.setItem("converted_address", convertedAddress);
 
-  $.getJSON("../json/regionList.json", function (data) {
-    const regionList = data;
-    const convertedAddress = convertRegion(regionList, current_region);
-    localStorage.setItem("converted_address", convertedAddress);
-    getAllData(convertedAddress); //주소 기반으로 get요청하기
+        getAllData(convertedAddress);
+        $("#weatherButton").click();
+      });
+    } catch (error) {
+      console.error("주소 변환 오류:", error);
+    }
   });
-
   const current_region = localStorage.getItem("current_region");
 
   updateDateTime(); // 페이지 준비되면 현재시간 받아오기
-
-  //get으로 받아온 데이터 로드하기
-  // 버튼 이벤트 리스너
-  $("#weatherButton").click(function () {
-    displayCategoryData(allData.weather);
-  });
-
-  $("#earthquakeButton").click(function () {
-    displayCategoryData(allData.earthquake);
-  });
-
-  $("#civilButton").click(function () {
-    displayCategoryData(allData.civil);
-  });
-
-  $("#lostButton").click(function () {
-    displayCategoryData(allData.lost);
-  });
+  setupNewsRolling(); //뉴스 롤링 효과
 
   //버튼 클릭 시 글씨 색 변경
   $("#weatherButton, #earthquakeButton, #civilButton, #lostButton").click(
@@ -52,8 +38,6 @@ $(document).ready(function () {
         .css("font-weight", "normal");
     }
   );
-
-  $("#weatherButton").click(); //기본값 날씨 선택
 });
 
 // 지역명 변환 함수
@@ -71,51 +55,53 @@ function convertRegion(regionList, address) {
 // 댓글달때 사용할 주소 세번째 토큰
 // 체크리스트때 사용할 주소 첫번째 토큰
 
-function reverseGeocode(lat, lng, callback) {
-  const geocoder = new google.maps.Geocoder();
-  const latLng = { lat: lat, lng: lng };
-  let current_region = "";
-  let main_current_region = "";
-  let slicedAddressComponents;
+function reverseGeocode(lat, lng) {
+  return new Promise((resolve, reject) => {
+    const geocoder = new google.maps.Geocoder();
+    const latLng = { lat: lat, lng: lng };
+    let current_region = "";
+    let main_current_region = "";
+    let slicedAddressComponents;
 
-  geocoder.geocode({ location: latLng }, function (results, status) {
-    if (status === "OK") {
-      if (results[0]) {
-        const addressComponents = results[0].address_components; //원본 배열
+    geocoder.geocode({ location: latLng }, function (results, status) {
+      if (status === "OK") {
+        if (results[0]) {
+          const addressComponents = results[0].address_components; //원본 배열
 
-        // "administrative_area_level_1" 조건을 만족하는 요소의 인덱스를 찾는다.
-        let index = addressComponents.findIndex((component) =>
-          component.types.includes("administrative_area_level_1")
-        );
+          // "administrative_area_level_1" 조건을 만족하는 요소의 인덱스를 찾는다.
+          let index = addressComponents.findIndex((component) =>
+            component.types.includes("administrative_area_level_1")
+          );
 
-        // 해당 인덱스부터의 모든 요소들을 새 배열로 저장한다.
-        if (index !== -1) {
-          slicedAddressComponents = addressComponents.slice(1, index + 1);
+          // 해당 인덱스부터의 모든 요소들을 새 배열로 저장한다.
+          if (index !== -1) {
+            slicedAddressComponents = addressComponents.slice(1, index + 1);
+          }
+
+          console.log(slicedAddressComponents);
+
+          // ex_ 인천광역시 부평구 삼산동 형태 저장
+          for (let component of slicedAddressComponents.reverse()) {
+            current_region += component.long_name + " ";
+          }
+          current_region = current_region.trim();
+          //localStorage.removeItem("current_region");
+          localStorage.setItem("current_region", current_region); // 로컬에 저장
+
+          // ex_ 인천광역시 부평구 형태 저장
+          for (let i = 0; i < slicedAddressComponents.length - 1; i++) {
+            main_current_region += slicedAddressComponents[i].long_name + " ";
+          }
+          main_current_region = main_current_region.trim();
+
+          resolve(main_current_region);
+        } else {
+          reject("결과가 없습니다.");
         }
-
-        console.log(slicedAddressComponents);
-
-        // ex_ 인천광역시 부평구 삼산동 형태 저장
-        for (let component of slicedAddressComponents.reverse()) {
-          current_region += component.long_name + " ";
-        }
-        current_region = current_region.trim();
-        //localStorage.removeItem("current_region");
-        localStorage.setItem("current_region", current_region); // 로컬에 저장
-
-        // ex_ 인천광역시 부평구 형태 저장
-        for (let i = 0; i < slicedAddressComponents.length - 1; i++) {
-          main_current_region += slicedAddressComponents[i].long_name + " ";
-        }
-        main_current_region = main_current_region.trim();
-
-        callback(main_current_region);
       } else {
-        callback("결과가 없습니다.");
+        reject("Geocoder failed due to: " + status);
       }
-    } else {
-      callback("Geocoder failed due to: " + status);
-    }
+    });
   });
 }
 
@@ -144,19 +130,70 @@ $(document).on("click", "#refresh", function () {
 
 //최초 get요청 한번만 하는 로직
 function getAllData(address) {
-  $.ajax({
-    url: `https://ppiyong.shop/api/home?region=${address}`,
-    method: "GET",
-    dataType: "json",
-    success: function (json) {
-      allData = json;
-      console.log(json);
-    },
-    error: function (error) {
-      console.log("실패");
-      console.error(error);
-    },
+  console.log(
+    "여기로 url 요청할거임:",
+    `https://ppiyong.shop/api/home?region=${address}`
+  );
+
+  $.getJSON("../json/main.json", function (data) {
+    allData = data;
+    console.log(allData);
+
+    // get으로 받아온 데이터 로드하기
+    // 버튼 이벤트 리스너
+    displayNews(allData.news);
+    console.log(allData.news);
+
+    $("#weatherButton").click(function () {
+      displayCategoryData(allData.weather);
+    });
+
+    $("#earthquakeButton").click(function () {
+      displayCategoryData(allData.earthquake);
+    });
+
+    $("#civilButton").click(function () {
+      displayCategoryData(allData.civil);
+    });
+
+    $("#lostButton").click(function () {
+      displayCategoryData(allData.lost);
+    });
+
+    $("#weatherButton").click();
   });
+
+  // $.ajax({
+  //   url: `https://ppiyong.shop/api/home?region=${address}`,
+  //   method: "GET",
+  //   dataType: "json",
+  //   success: function (json) {
+  //     allData = json;
+  //     console.log(json);
+
+  //     // get으로 받아온 데이터 로드하기
+  //     // 버튼 이벤트 리스너
+  //     $("#weatherButton").click(function () {
+  //       displayCategoryData(allData.weather);
+  //     });
+
+  //     $("#earthquakeButton").click(function () {
+  //       displayCategoryData(allData.earthquake);
+  //     });
+
+  //     $("#civilButton").click(function () {
+  //       displayCategoryData(allData.civil);
+  //     });
+
+  //     $("#lostButton").click(function () {
+  //       displayCategoryData(allData.lost);
+  //     });
+  //   },
+  //   error: function (error) {
+  //     console.log("실패");
+  //     console.error(error);
+  //   },
+  // });
 }
 
 function getButtonBackgroundColor(button) {
@@ -178,7 +215,7 @@ function getButtonBackgroundColor(button) {
   }
 }
 
-function displayCategory(category) {
+function displayCategoryData(category) {
   const container = $("#main");
   container
     .empty()
@@ -242,63 +279,32 @@ function createHTMLString(item) {
       </div>`;
 }
 
-//뉴스 불러오기
-function getNewsCategory() {
-  function getNewsList() {
-    const convertedAddress = localStorage.getItem("converted_address");
+function displayNews(news) {
+  const container = document.querySelector(".news-list");
+  container.innerHTML = news.map((item) => createNewsString(item)).join("");
+}
 
-    return $.ajax({
-      type: "GET",
-      url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
-      dataType: "json",
+function createNewsString(item) {
+  console.log(item);
+  return `
+    <li class="news-item">
+      <a href="${item.url}" class="link">${item.title}</a>
+    </li>`;
+}
+
+function setupNewsRolling() {
+  const newsList = $(".news-list");
+  const height = newsList.find(".news-item").outerHeight();
+  let rollingInterval;
+
+  function noticeRolling() {
+    newsList.animate({ top: `-=${height}px` }, 600, function () {
+      // 첫 번째 뉴스 항목을 마지막으로 이동
+      $(this).children("li:first").appendTo($(this));
+      // top 위치를 초기화
+      $(this).css("top", 0);
     });
   }
 
-  function displayNews(news) {
-    const container = document.getElementById("news-item");
-    container.innerHTML = news.map((item) => createHTMLString(item)).join("");
-  }
-
-  function createHTMLString(news) {
-    return `
-      <li class="news-item">
-        <a href="${news.url}" class="link">${news.title}</a>
-      </li>`;
-  }
-
-  getNewsList()
-    .done(function (data) {
-      const newsList = data.news;
-      displayNews(newsList);
-
-      // News rolling
-      var height = $(".newsList").height();
-      var move = 0;
-      var noticeRollingOff;
-
-      function noticeRolling() {
-        move += height;
-        $(".news-list").animate({ top: -move }, 600, function () {
-          if (move >= $(".news-list li").length * height) {
-            $(this).css("top", 0);
-            move = 0;
-          }
-        });
-      }
-
-      noticeRollingOff = setInterval(noticeRolling, 3000);
-
-      $(".news-list_stop").click(function () {
-        clearInterval(noticeRollingOff);
-      });
-
-      $(".news-list_start").click(function () {
-        noticeRollingOff = setInterval(noticeRolling, 1000);
-      });
-      alert("통신 성공");
-    })
-    .fail(function (error) {
-      console.error("Failed to retrieve news data:", error);
-      alert("통신 실패");
-    });
+  rollingInterval = setInterval(noticeRolling, 3000);
 }
