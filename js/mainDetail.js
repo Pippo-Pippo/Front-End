@@ -217,14 +217,14 @@ function createCommentBoxHTML(comment, commentNumber) {
       <!--도움돼요, 싫어요 버튼-->
       <button onclick="likeComment(${comment.id}, ${
     comment.isLike
-  })" class="comment-like font-light text-xs mt-1 mr-2">도움돼요 ${
+  })" class="comment-like font-light text-xs mt-1 mr-2">도움돼요 <span id=comment-like"> ${
     comment.like
-  }</button>
+  }</span></button>
       <button onclick="hateComment(${comment.id}, ${
     comment.isHate
-  })" class="comment-hate font-light text-xs mt-1">싫어요 ${
+  })" class="comment-hate font-light text-xs mt-1">싫어요 <span id=comment-hate">${
     comment.hate
-  }</button>
+  }</span></button>
     </div>
 
   </div>
@@ -249,6 +249,9 @@ function likeComment(commentId, isLike) {
       success: function (response) {
         console.log(response);
         alert("해당 댓글에 도움돼요라고 표시했어요.");
+
+        let currentLikes = Number($("#comment-like").text());
+        $("#comment-like").text(currentLikes + 1);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error(textStatus, errorThrown);
@@ -272,6 +275,9 @@ function hateComment(commentId, isHate) {
       success: function (response) {
         console.log(response);
         alert("해당 댓글에 싫어요라고 표시했어요.");
+
+        let currentHates = Number($("#comment-hate").text());
+        $("#comment-hate").text(currentHates + 1);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error(textStatus, errorThrown);
