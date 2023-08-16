@@ -5,34 +5,28 @@ $(document).ready(async function () {
   //현재 접속 좌표 받아와서 주소로 변환하기
 
   const current_region = localStorage.getItem("current_region");
-  const converted_address = localStorage.getItem("converted_address");
+  //onst converted_address = localStorage.getItem("converted_address");
 
-  if (converted_address) {
-    navigator.geolocation.getCurrentPosition(async function (position) {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
+  navigator.geolocation.getCurrentPosition(async function (position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
 
-      try {
-        const address = await reverseGeocode(lat, lon);
-        $("#current_city").text(address);
-        // 아래는 이어지는 처리
-        $.getJSON("../json/regionList.json", function (data) {
-          const regionList = data;
-          const convertedAddress = convertRegion(regionList, current_region);
-          localStorage.setItem("converted_address", convertedAddress);
+    try {
+      const address = await reverseGeocode(lat, lon);
+      $("#current_city").text(address);
+      // 아래는 이어지는 처리
+      $.getJSON("../json/regionList.json", function (data) {
+        const regionList = data;
+        const convertedAddress = convertRegion(regionList, current_region);
+        localStorage.setItem("converted_address", convertedAddress);
 
-          getAllData(convertedAddress);
-          $("#weatherButton").click();
-        });
-      } catch (error) {
-        console.error("주소 변환 오류:", error);
-      }
-    });
-  } else {
-    getAllData(converted_address);
-    $("#weatherButton").click();
-    $("#current_city").text(current_region);
-  }
+        getAllData(convertedAddress);
+        $("#weatherButton").click();
+      });
+    } catch (error) {
+      console.error("주소 변환 오류:", error);
+    }
+  });
 
   updateDateTime(); // 페이지 준비되면 현재시간 받아오기
   setupNewsRolling(); //뉴스 롤링 효과
