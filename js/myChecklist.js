@@ -154,7 +154,7 @@ function initializeChecklist() {
   $checklistContent.empty();
 
   $.each(checklist.task, function (taskIndex, task) {
-    renderTask(task.content, taskIndex, task.isComplete);
+    renderTask(task.content, taskIndex, task.complete);
   });
 
   $(".nav-item:first").click();
@@ -176,7 +176,7 @@ function updateSelectedChecklist(checklistId) {
   $checklistContent.empty();
 
   $.each(checklist.task, function (taskIndex, task) {
-    renderTask(task.content, taskIndex, task.isComplete);
+    renderTask(task.content, taskIndex, task.complete);
   });
 }
 
@@ -193,13 +193,13 @@ $(document).on("click", ".nav-item", function () {
 });
 
 //테스크 렌더링
-function renderTask(text, taskId, isCompleted) {
+function renderTask(text, taskId, completed) {
   const newTask = $("<div>").addClass(
     "checklist-task px-4 py-2 flex items-center"
   );
   const taskText = $("<p>").addClass("px-4 text-sm").text(text);
 
-  const checkbox = renderCheckbox(taskId, isCompleted);
+  const checkbox = renderCheckbox(taskId, completed);
   const deleteBtn = renderDeleteButton(taskId);
 
   newTask.append(checkbox, taskText, deleteBtn);
@@ -231,13 +231,13 @@ function saveNewTask(text) {
     const addTask = {
       taskId: taskId,
       content: text,
-      isComplete: "False",
+      complete: "False",
     };
 
     // 해당 체크리스트의 task 배열에 새 태스크 추가
     checklist.task.push(addTask);
 
-    const ulElement = renderTask(text, taskId, addTask.isComplete);
+    const ulElement = renderTask(text, taskId, addTask.complete);
     ulElement.attr("data-task-id", taskId); // ul 엘리먼트의 data-task-id 설정
 
     // 업데이트된 데이터를 다시 로컬 스토리지에 저장
@@ -245,8 +245,8 @@ function saveNewTask(text) {
   }
 }
 
-function addNewTask(text, taskId, isComplete) {
-  saveNewTask(text, taskId, isComplete);
+function addNewTask(text, taskId, complete) {
+  saveNewTask(text, taskId, complete);
 }
 //이거뭐냐 ㅋㅋ
 
@@ -264,7 +264,7 @@ function renderNavItem(title, checklistid) {
 }
 
 // 체크박스를 렌더링하는 함수
-function renderCheckbox(taskId, isComplete) {
+function renderCheckbox(taskId, complete) {
   const checkboxWrapper = $("<div>").addClass("flex h-6 items-center");
   const checkboxImg = $("<img>")
     .attr({
@@ -272,7 +272,7 @@ function renderCheckbox(taskId, isComplete) {
       width: "18",
       height: "18",
     })
-    .css({ display: isComplete === "False" ? "none" : "block" });
+    .css({ display: complete === "False" ? "none" : "block" });
 
   const checkbox = $("<button>")
     .addClass("checkbox w-5 h-5 rounded-full border border-gray-600")
@@ -395,7 +395,7 @@ $(document).on("click", ".checkbox", function () {
     const targetTaskIndex = targetChecklist.task.findIndex(
       (task) => task.taskId == taskId
     );
-    targetChecklist.task[targetTaskIndex + 1].isComplete = nowComplete;
+    targetChecklist.task[targetTaskIndex + 1].complete = nowComplete;
   }
   // 변경된 데이터를 다시 localStorage에 저장
   localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
