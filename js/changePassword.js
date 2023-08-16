@@ -13,7 +13,7 @@ $(document).ready(function() {
 
       $.ajax({
           type: "PUT",
-          url: "https://page.ppiyong.shop/api/user/pw",  //서버 오류가 계속 발생해요 ㅠㅠ
+          url: "https://piyong.shop/api/user/pw",  //서버 오류가 계속 발생해요 ㅠㅠ
           data: JSON.stringify({
               'password': password,
           }),
