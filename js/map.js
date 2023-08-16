@@ -22,30 +22,6 @@ $(document).ready(function () {
     
 });
 
-// /************현재 위치 생성************/
-// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-if (navigator.geolocation) {
-
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function (position) {
-
-        var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
-
-        var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-
-        // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition);
-
-    });
-
-} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-        message = 'geolocation을 사용할수 없어요..'
-
-    displayMarker(locPosition);
-}
 /************지도 생성************/
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -69,6 +45,32 @@ function displayMarker(locPosition) {
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);
 
+}
+// /************현재 위치 생성************/
+var locPosition=null;
+// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+if (navigator.geolocation) {
+
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function (position) {
+
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+        console.log(lat);
+        console.log(lon);
+        locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+
+        // 마커와 인포윈도우를 표시합니다
+        displayMarker(locPosition);
+        console.log(locPosition);
+    });
+
+} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+        message = 'geolocation을 사용할수 없어요..'
+
+    displayMarker(locPosition);
 }
 
 // // 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
@@ -98,19 +100,23 @@ const CIVIL = [];
 
 $(document).ready(function () {
     
-    var bounds = map.getBounds();
-    bounds.toString();
-        //살짝 바꾸기
-        var  latitude_start = bounds.qa,
-        latitude_end = bounds.pa,
+    // var bounds = map.getBounds();
+    // bounds.toString();
+    //     //살짝 바꾸기
+    //     var  latitude_start = bounds.qa,
+    //     latitude_end = bounds.pa,
 
-        longitude_start = bounds.oa,
-        longitude_end = bounds.ha;
-        console.log(latitude_start);
-        console.log(longitude_start);
-        console.log(latitude_end);
-        console.log(longitude_end);
+    //     longitude_start = bounds.oa,
+    //     longitude_end = bounds.ha;
+    //     console.log(latitude_start);
+    //     console.log(longitude_start);
+    //     console.log(latitude_end);
+    //     console.log(longitude_end);
+        var  latitude_start = locPosition.Ma-0.0073,
+        latitude_end = bounds.pa+0.0073,
 
+        longitude_start = bounds.oa+0.0033,
+        longitude_end = bounds.ha-0.0033;
 
     $.ajax({
         type: "GET",
