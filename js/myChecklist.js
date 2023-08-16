@@ -8,18 +8,18 @@ function loadChecklists() {
   $.ajax({
     url: "https://ppiyong.shop/api/checklist",
     type: "GET",
-    dataType: "json",
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
     success: function (data) {
-      console.log("하이");
+      console.log("로드완료", data);
       localStorage.setItem("checklistData", JSON.stringify(data));
       localStorage.setItem("currentChecklistId", data[0].check_list_id);
 
       initializeChecklist();
     },
     error: function (jqXHR, textStatus, errorThrown) {
+      console.log("로드 실패");
       console.error(textStatus, errorThrown);
     },
   });
