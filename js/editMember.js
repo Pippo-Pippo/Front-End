@@ -147,33 +147,29 @@ $(document).ready(function () {
   // 닉네임 변경
   $("#changeNickname").on("click", function () {
     var newNickname = $("#nickname").val();
-  
     $.ajax({
       url: `https://ppiyong.shop/api/user/nickname?nickName=${newNickname}`,
       type: "PUT",
       dataType: "json",
       contentType: "application/json",
+      data: {nickname: newNickname,},
       xhrFields: {
-        withCredentials: true,
+        withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
       },
-      data: JSON.stringify({
-        nickname: newNickname,
-      }),
-      success: function (response) {
-      
-          alert("닉네임이 성공적으로 변경되었습니다.");
-          const nicknameDisplay = document.getElementById("nicknameDisplay");
-          nicknameDisplay.textContent = newNickname;
-       
+      success: function (data) {
+         alert("닉네임이 성공적으로 변경되었습니다.");
+            const nicknameDisplay = document.getElementById("nicknameDisplay");
+            nicknameDisplay.textContent = newNickname;
+            console.log(data);
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        console.error(jqXHR, textStatus, errorThrown);
-        alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
+         console.error(jqXHR, textStatus, errorThrown);
+          alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
       },
     });
   });
-  // 지역 변경
-  $("#changeRegion").on("click", function () {
+   // 지역 변경
+   $("#changeRegion").on("click", function () {
     var newRegion = $("#locationSelect").val();
   
     // 지역 코드를 매핑하는 객체
@@ -200,30 +196,27 @@ $(document).ready(function () {
   
     // 선택한 지역을 지역 코드로 변환
     var regionCode = regionMap[newRegion];
-  
-    $.ajax({
-      type: "PUT",
-      url: `https://ppiyong.shop/api/user/region?region=${regionCode}`,
-      data: JSON.stringify({
-        region: regionCode,
-      }),
-      xhrFields: {
-        withCredentials: true,
-      },
-      contentType: "application/json",
-      dataType: "json",
-    })
-      .sucesss(function (response) {
-       
-          alert("지역이 성공적으로 변경되었습니다.");
+
+ $.ajax({
+    url: `https://ppiyong.shop/api/user/region?region=${regionCode}`,
+    type: "PUT",
+    dataType: "json",
+    contentType: "application/json",
+    data: {region: regionCode,},
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
+    success: function (data) {
+        alert("지역이 성공적으로 변경되었습니다.");
           const regionDisplay = document.getElementById("regionDisplay");
           regionDisplay.textContent = newRegion || "지역을 선택하세요";
-        
-      })
-      .error(function (xhr, status, error) {
-        console.error(xhr, status, error);
-        alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
-      });
+console.log(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.log("수정실패");
+      console.error(textStatus, errorThrown);
+    },
+  });
   });
   
   });
