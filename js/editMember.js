@@ -205,7 +205,7 @@ $(document).ready(function () {
   
     $.ajax({
       type: "PUT",
-      url: `https://ppiyong.shop/api/user/region?=${newRegion}`,
+      url: `https://ppiyong.shop/api/user/region?region=${regionCode}`,
       data: JSON.stringify({
         region: regionCode, 
       }),
