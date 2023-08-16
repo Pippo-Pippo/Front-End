@@ -20,12 +20,10 @@ $(document).ready(function() {
           contentType: "application/json",
           dataType: "json", 
           success: function(response) {
-              if (response.success) {
+            
                   alert('비밀번호가 성공적으로 변경되었습니다.');
                   window.location.href = "/main.html";
-              } else {
-                  alert('비밀번호 변경 실패: 서버에서 문제가 발생하였습니다.');
-              }
+             
           },
           error: function(xhr, status, error) {
               console.error(xhr, status, error);
