@@ -6,7 +6,6 @@ $(document).ready(async function () {
 
   const current_region = localStorage.getItem("current_region");
   const converted_address = localStorage.getItem("converted_address");
-  const main_region = current_region.split(" ");
 
   if (converted_address === "null") {
     navigator.geolocation.getCurrentPosition(async function (position) {
@@ -30,6 +29,8 @@ $(document).ready(async function () {
       }
     });
   } else {
+    const main_region = current_region.split(" ");
+
     getAllData(converted_address);
     $("#weatherButton").click();
     $("#current_city").text(main_region.slice(0, 2).join(" "));
