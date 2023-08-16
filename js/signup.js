@@ -1,4 +1,3 @@
-
 function signup() {
   var email = $("#email").val();
   var password = $("#password").val();
@@ -8,11 +7,8 @@ function signup() {
 
   $.ajax({
     type: "POST",
-    url: "https://ppiyong.shop/api/user/register",
+    url: "https://ppiyoung.shop/api/user/register",
     contentType: "application/json",
-    xhrFields: {
-      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
-    },
     data: JSON.stringify({
       email: email,
       password: password,
@@ -20,20 +16,27 @@ function signup() {
       region: region,
     }),
     success: function (data) {
-      console.log(data);
-      alert("회원가입 성공");
+      alert(JSON.stringify(data));
+     
     },
     error: function (request, status, error) {
-      if (request.status === 409) {
-        alert("이미 가입된 로그인입니다.");
-      }else {
-        alert("잘못된 요청입니다.");
-      }
+      alert("잘못된 요청입니다.");
+      console.log("error");
     },
   });
-  
 }
 
+document.getElementById("nextButton").addEventListener("click", function () {
+  var password = $("#password").val();
+  var confirmPassword = $("#confirmPassword").val();
+  
+  if (password !== confirmPassword) {
+    alert("비밀번호가 일치하지 않습니다.");
+    return;
+  }
+  signup();
+  goNext();
+});
 //이메일 인증번호
 $("#authButton").on("click", function (e) {
   console.log($("input[name='email']").val());
@@ -59,19 +62,15 @@ $("#authButton").on("click", function (e) {
     },
   });
 });
-
 $("#verifyButton").on("click", function (e) {
   var inputCode = $("#verificationCode").val();
   var email = $("input[name='email']").val();
   console.log(inputCode, email, "버튼 클릭");
-
   const data = {
     email: email,
     verification: inputCode,
   };
-
   console.log(data);
-
   $.ajax({
     url: "https://ppiyong.shop/api/user/verification",
     type: "POST",
@@ -91,21 +90,17 @@ $("#verifyButton").on("click", function (e) {
     },
   });
 });
-
 function goNext() {
   const signupWarp = document.getElementById("signup-wrap");
   const signupTitle = document.getElementById("signup-title");
   const nextButton = document.getElementById("nextButton");
   // "회원가입" 내용이 사라진 후에 실행
-
   signupWarp.style.display = "none"; //없어지기
   signupTitle.innerHTML = "회원정보 입력"; //innerText 수정
   nextButton.innerHTML = "회원가입 완료!"; //innerText 수정
-
   // 닉네임, 지역 정보 보여주기
   nicknameInput.style.display = "block";
   locationDropdown.style.display = "block";
-
   // 회원정보 입력 헤드, 버튼 이름 바꾸기
   heading.textContent = "회원정보 입력";
   nextButton.textContent = "회원가입 완료";
