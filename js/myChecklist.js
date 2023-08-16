@@ -41,10 +41,11 @@ function deleteTask(taskId) {
     },
     success: function (data) {
       console.log("삭제 완료");
-      localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", data[0].check_list_id);
+      console.log(data);
+      // localStorage.setItem("checklistData", JSON.stringify(data));
+      // localStorage.setItem("currentChecklistId", data[0].check_list_id);
 
-      initializeChecklist();
+      // initializeChecklist();
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.error(textStatus, errorThrown);
