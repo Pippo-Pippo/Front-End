@@ -99,11 +99,11 @@ var hours="";
 //시간 형식바꾸기 함수
 function ChangeTime(time) {
   var years = time.substring(0, 4);
-  console.log(years);
+//   console.log(years);
   var month = Number(time.substring(5, 7)) - 1;
-  console.log(month);
+//   console.log(month);
   var day = time.substring(8, 10);
-  console.log(day);
+//   console.log(day);
   var check=time.substring(11, 13);
   if(check="PM"){
     hours=Number(time.substring(14, 16))+12;
@@ -111,10 +111,10 @@ function ChangeTime(time) {
   else{
     hours=Number(time.substring(14, 16));
   }
-  console.log(hours);
+//   console.log(hours);
 
   var minute = time.substring(17);
-  console.log(minute);
+//   console.log(minute);
 
   var date = new Date(years, month, day, hours, minute);
   return date;
@@ -134,7 +134,7 @@ function elapsedText(date) {
   var today = new Date();
   var elapsedTime = Math.trunc((today.getTime() - date.getTime()) / 1000);
 
-  console.log(elapsedTime);
+//   console.log(elapsedTime);
   var elapsedText = "";
   if (elapsedTime < seconds) {
       elapsedText = "방금 전";
