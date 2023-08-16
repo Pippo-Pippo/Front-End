@@ -177,12 +177,37 @@ $(document).ready(function () {
   // 지역 변경
   $("#changeRegion").on("click", function () {
     var newRegion = $("#locationSelect").val();
-
+  
+    // 지역 코드를 매핑하는 객체
+    var regionMap = {
+      "서울특별시": "SEOUL",
+      "부산광역시": "BUSAN",
+      "대구광역시": "DAEGU",
+      "인천광역시": "INCHEON",
+      "광주광역시": "GWANJU",
+      "대전광역시": "DAEJEON",
+      "울산광역시": "ULSAN",
+      "세종특별자치시": "SEJONG",
+      "경기도": "GYEONGGI",
+      "강원특별자치도": "GANGWON",
+      "충청북도": "CHUNGCHEONGBUKDO",
+      "충청남도": "CHUNGCHEONGNAMDO",
+      "전라북도": "JEOLLABUKDO",
+      "전라남도": "JEOLLANAMDO",
+      "경상북도": "GYEONGSANGBUKDO",
+      "경상남도": "GYEONGSANGNAMDO",
+      "제주특별자치도": "JEJU"
+    };
+  
+    //지역선택
+    // 선택한 지역을 지역 코드로 변환
+    var regionCode = regionMap[newRegion];
+  
     $.ajax({
       type: "PUT",
-      url: "https://ppiyong.shop/api/user/region",
+      url: `https://ppiyong.shop/api/user/region?=${location}`,
       data: JSON.stringify({
-        region: newRegion,
+        region: regionCode, 
       }),
       xhrFields: {
         withCredentials: true,
@@ -204,4 +229,6 @@ $(document).ready(function () {
         alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
       });
   });
-});
+  
+  });
+
