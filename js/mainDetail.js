@@ -100,7 +100,7 @@ function getCommentData(postId) {
     .success(function (data) {
       console.log(data);
       displayComment(data);
-      $("comment_number").text(data.comment.length);
+      $("comment_number").val(data.comment.length);
     })
     .error(function (data) {
       console.log(error);
