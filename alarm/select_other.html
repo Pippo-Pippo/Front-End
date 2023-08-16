@@ -266,37 +266,6 @@
 
 
     </div>
-    <script>
-        $(document).ready(function () {
-          const is_logged_in = true; //초기값, 이거 검사 어케하노 로그인되면 로컬에 로그인유무 저장
-  
-          if (is_logged_in) {
-            getUserInform();
-            $("#login-nav").show();
-            $("#non-login-nav").hide();
-          } else {
-            $("#non-login-nav").show();
-            $("#login-nav").hide();
-          }
-        });
-  
-        //로그인한 상태면 유저정보 받아오기
-        function getUserInform() {
-          $.ajax({
-            url: "https://ppiyong.shop/api/user",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-              username = data.nickName;
-              $(".username-text").text(username);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              //alert("통신 실패");
-              console.error(textStatus, errorThrown);
-            },
-          });
-        }
-      </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/select_other.js"></script>
     <script src="../js/isLoggedin.js"></script>
