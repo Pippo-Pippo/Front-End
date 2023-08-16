@@ -62,6 +62,7 @@ $("#authButton").on("click", function (e) {
     },
   });
 });
+
 $("#verifyButton").on("click", function (e) {
   var inputCode = $("#verificationCode").val();
   var email = $("input[name='email']").val();
@@ -95,7 +96,7 @@ function goNext() {
   const signupTitle = document.getElementById("signup-title");
   const nextButton = document.getElementById("nextButton");
   const heading = document.getElementById("heading");
-  
+
   // "회원가입" 내용이 사라진 후에 실행
   signupWarp.style.display = "none"; //없어지기
   signupTitle.innerHTML = "회원정보 입력"; //innerText 수정
