@@ -30,7 +30,7 @@ $(document).ready(function () {
 
   // 비밀번호 변경
   $("#change").on("click", function () {
-    window.location.href = "../account/findPassword.html";
+    window.location.href = "../account/changePassword.html";
   });
 
   // 닉네임 변경
