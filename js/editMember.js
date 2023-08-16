@@ -138,7 +138,7 @@ $(document).ready(function () {
         console.log(data);
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        console.log(data);
+        console.log("변경 실패");
       },
     });
   });
