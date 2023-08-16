@@ -150,7 +150,7 @@ $(document).ready(function () {
 
     $.ajax({
       type: "PUT",
-      url: "https://ppiyong.shop/api/user/nickname",
+      url: `https://ppiyong.shop/api/user/nickname?nickName${newNickname}`,
       data: JSON.stringify({
         nickname: newNickname,
       }),
