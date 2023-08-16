@@ -25,9 +25,9 @@ function signup() {
       region: region,
     }),
     success: function (data) {
-      alert(JSON.stringify(data));
+
       console.log(data);
-      alert("회원가입 성공");
+    
     },
     error: function (request, status, error) {
       if (request.status === 400) {
