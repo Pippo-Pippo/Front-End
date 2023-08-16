@@ -254,8 +254,8 @@ function saveNewTask(text) {
 
     // 업데이트된 데이터를 다시 로컬 스토리지에 저장
     localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
+    changeChecklistTitle(checklist);
   }
-  changeChecklistTitle(checklist);
 }
 
 function addNewTask(text, taskId, complete) {
