@@ -231,7 +231,7 @@ function saveNewTask(text) {
     const addTask = {
       taskId: taskId,
       content: text,
-      complete: "False",
+      complete: false,
     };
 
     // 해당 체크리스트의 task 배열에 새 태스크 추가
@@ -272,7 +272,7 @@ function renderCheckbox(taskId, complete) {
       width: "18",
       height: "18",
     })
-    .css({ display: complete === "False" ? "none" : "block" });
+    .css({ display: complete === false ? "none" : "block" });
 
   const checkbox = $("<button>")
     .addClass("checkbox w-5 h-5 rounded-full border border-gray-600")
@@ -381,10 +381,10 @@ $(document).on("click", ".checkbox", function () {
   let nowComplete;
   if (checkboxImg.css("display") === "none") {
     checkboxImg.css({ display: "block" });
-    nowComplete = "True";
+    nowComplete = true;
   } else {
     checkboxImg.css({ display: "none" });
-    nowComplete = "False";
+    nowComplete = false;
   }
 
   const targetChecklist = storedChecklistData.find(
