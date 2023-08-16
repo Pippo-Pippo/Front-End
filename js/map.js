@@ -112,11 +112,11 @@ $(document).ready(function () {
         // console.log(longitude_start);
         // console.log(latitude_end);
         // console.log(longitude_end);
-        var  latitude_start = locPosition.Ma-0.0073,
-        latitude_end = locPosition.Ma+0.0073,
+        var  latitude_start = locPosition.Ma-0.02,
+        latitude_end = locPosition.Ma+0.02,
 
-        longitude_start = locPosition.La+0.0033,
-        longitude_end = locPosition.La-0.0033;
+        longitude_start = locPosition.La+0.01,
+        longitude_end = locPosition.La-0.01;
 
         console.log(latitude_start);
         console.log(latitude_end);
