@@ -71,7 +71,7 @@ function deleteChecklist() {
   });
 }
 
-$(document).on("click", "#delete-checklist", deleteChecklist());
+//$(document).on("click", "#delete-checklist", deleteChecklist());
 
 //POST 요청 ?? 이거 왜 안되냐
 function updateChecklist(checklist) {
