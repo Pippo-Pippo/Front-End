@@ -50,26 +50,29 @@ function deleteTask(taskId) {
 function deleteChecklist() {
   console.log("하이요");
   const currentChecklistId = localStorage.getItem("currentChecklistId");
-  $.ajax({
-    url: `https://ppiyong.shop/api/checklist/${currentChecklistId}`,
-    type: "DELETE",
-    dataType: "json",
-    xhrFields: {
-      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
-    },
-    success: function (data) {
-      localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", data[0].check_list_id);
 
-      initializeChecklist();
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      console.error(textStatus, errorThrown);
-    },
+  $("#delete-checklist").click(function () {
+    $.ajax({
+      url: `https://ppiyong.shop/api/checklist/${currentChecklistId}`,
+      type: "DELETE",
+      dataType: "json",
+      xhrFields: {
+        withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+      },
+      success: function (data) {
+        localStorage.setItem("checklistData", JSON.stringify(data));
+        localStorage.setItem("currentChecklistId", data[0].check_list_id);
+
+        initializeChecklist();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.error(textStatus, errorThrown);
+      },
+    });
   });
 }
 
-$(document).on("click", "#delete-checklist", deleteChecklist());
+//$(document).on("click", "#delete-checklist", deleteChecklist());
 
 //POST 요청 ?? 이거 왜 안되냐
 function updateChecklist(checklist) {
