@@ -140,7 +140,7 @@ $(document).ready(function () {
       },
       error: function (jqXHR, textStatus, errorThrown) {
       
-          alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
+        consolee.log(data);
       },
     });
   });
