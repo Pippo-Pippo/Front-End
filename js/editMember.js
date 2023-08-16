@@ -199,7 +199,7 @@ $(document).ready(function () {
       "제주특별자치도": "JEJU"
     };
   
-    //지역선택
+  
     // 선택한 지역을 지역 코드로 변환
     var regionCode = regionMap[newRegion];
   
@@ -207,7 +207,7 @@ $(document).ready(function () {
       type: "PUT",
       url: `https://ppiyong.shop/api/user/region?region=${regionCode}`,
       data: JSON.stringify({
-        region: regionCode, 
+        region: regionCode,
       }),
       xhrFields: {
         withCredentials: true,
