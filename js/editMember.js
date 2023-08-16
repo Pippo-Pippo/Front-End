@@ -149,7 +149,7 @@ $(document).ready(function () {
     var newNickname = $("#nickname").val();
   
     $.ajax({
-      url: `https://ppiyong.shop/api/user/nickname?nickname=${newNickname}`,
+      url: `https://ppiyong.shop/api/user/nickname?nickName=${newNickname}`,
       type: "PUT",
       dataType: "json",
       contentType: "application/json",
