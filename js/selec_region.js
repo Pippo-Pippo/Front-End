@@ -1,3 +1,13 @@
+// 지역명 변환 함수
+function getKeyByValue(regionList, value) {
+    for (const key in regionList) {
+      if (regionList[key]=== value) {
+        return key;
+      }
+    }
+    return null; 
+}
+
 $(document).ready(function () {
     // 초기 상태 설정
     var selectedButtons=[];
@@ -18,15 +28,14 @@ $(document).ready(function () {
         },
         contentType: "application/json",
         success: function(data) {
-            var region_en=+data.region;
+            var region_en=data.region;
             console.log("GET 요청 성공");
-            $.getJSON("../json/regionList_kor.json", function (data) {
+            $.getJSON("../json/regionList.json", function (data) {
                 const regionList = data;
-                const region_kor = convertRegion(regionList,region_en);
+                var region_kor=getKeyByValue(regionList,region_en);
                 console.log(region_kor);
                 selectedButtons.push(region_kor);
-                console.log(selectedButtons);
-                $('#'+convertedRegion).addClass('active');
+                $('#'+region_kor).addClass('active');
               });
             
             // console.log(data.region);
@@ -76,7 +85,7 @@ $(document).ready(function () {
             success: function (response) {
                 alert("PUT 요청 성공");
                 console.log("PUT 요청 성공:", response);
-                // location.href='/alarm/select_category.html';
+                location.href='/alarm/select_category.html';
 
             },
             error: function (error) {
@@ -86,13 +95,5 @@ $(document).ready(function () {
     });
 });
 
-// 지역명 변환 함수
-function convertRegion(regionList, address) {
-    for (let region in regionList) {
-      if (address.includes(region)) {
-        return regionList[region];
-      }
-    }
-    return address; // 변환할 수 없는 경우 원래 주소 반환
-}
+
 

@@ -7,7 +7,7 @@ function signup() {
 
   $.ajax({
     type: "POST",
-    url: "https://ppiyong.shop/api/user/register",
+    url: "https://ppiyoung.shop/api/user/register",
     contentType: "application/json",
     data: JSON.stringify({
       email: email,
