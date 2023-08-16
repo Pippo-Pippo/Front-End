@@ -7,7 +7,7 @@ $(document).ready(async function () {
   const current_region = localStorage.getItem("current_region");
   const converted_address = localStorage.getItem("converted_address");
 
-  if (converted_address === "null") {
+  if (converted_address) {
     navigator.geolocation.getCurrentPosition(async function (position) {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
