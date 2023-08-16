@@ -125,7 +125,7 @@ function changeChecklistTitle(checklist) {
     type: "PUT",
     dataType: "json",
     contentType: "application/json",
-    data: checklist,
+    data: JSON.stringify(checklist),
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
