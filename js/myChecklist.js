@@ -124,6 +124,7 @@ function changeChecklistTitle(checklist) {
     url: `https://ppiyong.shop/api/checklist/${checklist.check_list_id}`,
     type: "PUT",
     dataType: "json",
+    data: JSON.stringify(checklist),
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
@@ -134,6 +135,7 @@ function changeChecklistTitle(checklist) {
       initializeChecklist();
     },
     error: function (jqXHR, textStatus, errorThrown) {
+      console.log("수정실패");
       console.error(textStatus, errorThrown);
     },
   });
@@ -435,7 +437,6 @@ $(document).on("blur", ".editInput", function () {
     $(".editInput").focus();
   } else {
     targetChecklist.title = newText;
-    localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
     changeChecklistTitle(targetChecklist); //이것만 드가면 되는건가?
 
     $(this).parent().text(newText);
