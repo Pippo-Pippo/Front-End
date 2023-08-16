@@ -27,16 +27,15 @@ function signup() {
     success: function (data) {
       alert(JSON.stringify(data));
       console.log(data);
+      alert("회원가입 성공");
     },
     error: function (request, status, error) {
-      if (request.status === 409) {
+      if (request.status === 400) {
         alert("이미 가입된 이메일 주소입니다. 다른 이메일을 사용해주세요.");
-      } else {
-        alert("회원가입 성공");
       }
-     
     },
   });
+  
 }
 
 document.getElementById("nextButton").addEventListener("click", function () {
