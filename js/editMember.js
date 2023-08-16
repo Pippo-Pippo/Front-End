@@ -115,34 +115,10 @@ $(document).ready(function () {
     });
 
   // 비밀번호 변경
-  $("#change").on("click", function () {
-    var newPassword = $("#password").val();
-
-    $.ajax({
-      type: "PUT",
-      url: "https://ppiyong.shop/api/user/pw",
-      data: JSON.stringify({
-        password: newPassword,
-      }),
-      xhrFields: {
-        withCredentials: true,
-      },
-      contentType: "application/json",
-      dataType: "json",
-    })
-      .done(function (response) {
-        if (response.success) {
-          alert("비밀번호가 성공적으로 변경되었습니다.");
-          window.location.href = "/login.html";
-        } else {
-          alert("비밀번호 변경 실패: 서버에서 문제가 발생하였습니다.");
-        }
-      })
-      .fail(function (xhr, status, error) {
-        console.error(xhr, status, error);
-        alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
-      });
-  });
+ $("#change").on("click", function () {
+ 
+  window.location.href = "../account/findPassword.html"; 
+});
 
   // 닉네임 변경
   $("#changeNickname").on("click", function () {
