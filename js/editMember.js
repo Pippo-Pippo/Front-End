@@ -160,13 +160,11 @@ $(document).ready(function () {
         nickname: newNickname,
       }),
       success: function (response) {
-        if (response.success) {
+      
           alert("닉네임이 성공적으로 변경되었습니다.");
           const nicknameDisplay = document.getElementById("nicknameDisplay");
           nicknameDisplay.textContent = newNickname;
-        } else {
-          alert("닉네임 변경 실패: 서버에서 문제가 발생하였습니다.");
-        }
+       
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error(jqXHR, textStatus, errorThrown);
@@ -215,16 +213,14 @@ $(document).ready(function () {
       contentType: "application/json",
       dataType: "json",
     })
-      .done(function (response) {
-        if (response.success) {
+      .sucesss(function (response) {
+       
           alert("지역이 성공적으로 변경되었습니다.");
           const regionDisplay = document.getElementById("regionDisplay");
           regionDisplay.textContent = newRegion || "지역을 선택하세요";
-        } else {
-          alert("지역 변경 실패: 서버에서 문제가 발생하였습니다.");
-        }
+        
       })
-      .fail(function (xhr, status, error) {
+      .error(function (xhr, status, error) {
         console.error(xhr, status, error);
         alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
       });
