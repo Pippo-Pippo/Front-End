@@ -163,7 +163,7 @@ $(document).ready(function () {
             console.log(data);
       },
       error: function (jqXHR, textStatus, errorThrown) {
-         console.error(jqXHR, textStatus, errorThrown);
+      
           alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
       },
     });
@@ -214,7 +214,7 @@ console.log(data);
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.log("수정실패");
-      console.error(textStatus, errorThrown);
+     
     },
   });
   });
