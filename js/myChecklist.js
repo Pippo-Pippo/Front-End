@@ -28,7 +28,7 @@ function loadChecklists() {
 //DELETE 요청 - 태스크 삭제
 function deleteTask(taskId) {
   $.ajax({
-    url: `https://ppiyong.shop/api/checklist/${taskId}`,
+    url: `https://ppiyong.shop/api/checklist/task/${taskId}`,
     type: "DELETE",
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
@@ -46,33 +46,35 @@ function deleteTask(taskId) {
   });
 }
 
-//DELETE 요청 - 체크리스트 삭제
+// DELETE 요청 함수 정의
 function deleteChecklist() {
   console.log("하이요");
+
   const currentChecklistId = localStorage.getItem("currentChecklistId");
 
-  $("#delete-checklist").click(function () {
-    $.ajax({
-      url: `https://ppiyong.shop/api/checklist/${currentChecklistId}`,
-      type: "DELETE",
-      dataType: "json",
-      xhrFields: {
-        withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
-      },
-      success: function (data) {
-        localStorage.setItem("checklistData", JSON.stringify(data));
-        localStorage.setItem("currentChecklistId", data[0].check_list_id);
+  $.ajax({
+    url: `https://ppiyong.shop/api/checklist/${currentChecklistId}`,
+    type: "DELETE",
+    dataType: "json",
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
+    success: function (data) {
+      localStorage.setItem("checklistData", JSON.stringify(data));
+      localStorage.setItem("currentChecklistId", data[0].check_list_id);
 
-        initializeChecklist();
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        console.error(textStatus, errorThrown);
-      },
-    });
+      initializeChecklist();
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error(textStatus, errorThrown);
+    },
   });
 }
 
-//$(document).on("click", "#delete-checklist", deleteChecklist());
+// 이벤트 핸들러 등록
+$(document).ready(function () {
+  $("#delete-checklist").click(deleteChecklist);
+});
 
 //POST 요청 ?? 이거 왜 안되냐
 function updateChecklist(checklist) {
