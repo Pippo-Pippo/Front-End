@@ -21,7 +21,7 @@
           >
             <!-- 로고 이미지 삽입 -->
             <div class="flex items-center justify-center">
-              <a href="#" class="flex items-center">
+              <a href="main.html" class="flex items-center">
                 <img src="../img/logo.png" class="w-24 h-9 mr-10" />
               </a>
             </div>
@@ -30,7 +30,9 @@
                 id="login-nav"
                 class="flex items-center justify-end text-end"
               >
-                <img src="../img/icon/알림.png" class="w-6 h-6 mt-3 mr-3" />
+                <a href="alarm/alarm.html"
+                  ><img src="../img/icon/알림.png" class="w-6 h-6 mt-3 mr-3"
+                /></a>
                 <div class="username-text font-medium text-lg mt-1 mr-6">
                   강윤진님
                 </div>
@@ -52,10 +54,14 @@
 
               <div id="non-login-nav" class="flex justify-end">
                 <div class="w-20 h-8 text-center p-1 ml-14">
-                  <button>로그인</button>
+                  <a href="account/login.html">
+                    <button>로그인</button>
+                  </a>
                 </div>
                 <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
-                  <button>회원가입</button>
+                  <a href="account/signup.html">
+                    <button>회원가입</button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -67,17 +73,17 @@
             class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-3 pb-0"
           >
             <button id="home-href" class="font-bold">
-              <a href="#">홈</a>
+              <a href="main.html">홈</a>
               <div
                 class="under-nav bg-mySky p-1 h-3 border-b-4 border-yellow-300 border-7"
               ></div>
             </button>
             <button id="shelter-href">
-              <a href="#">주변 대피소</a>
+              <a href="map.html">주변 대피소</a>
               <div class="bg-mySky p-1 h-3"></div>
             </button>
             <button id="checklist-href">
-              <a href="#">체크리스트</a>
+              <a href="checklist.html">체크리스트</a>
               <div class="bg-mySky p-1 h-3"></div>
             </button>
           </div>
@@ -117,8 +123,7 @@
           <ul class="space-y-2">
             <li>
               <a
-                href="#"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white"
               >
                 <svg
                   class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -135,7 +140,7 @@
             </li>
             <li>
               <a
-                href="#"
+                href="myChecklist.html"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -150,7 +155,7 @@
             </li>
             <li>
               <a
-                href="#"
+                href="/account/select_region.html"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -167,7 +172,7 @@
             </li>
             <li>
               <a
-                href="#"
+                href="account/editMember.html"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -204,7 +209,7 @@
 
     <script>
       $(document).ready(function () {
-        const is_logged_in = false; //초기값, 이거 검사 어케하노 로그인되면 로컬에 로그인유무 저장
+        const is_logged_in = true; //초기값, 이거 검사 어케하노 로그인되면 로컬에 로그인유무 저장
 
         if (is_logged_in) {
           getUserInform();
@@ -227,7 +232,7 @@
             $(".username-text").text(username);
           },
           error: function (jqXHR, textStatus, errorThrown) {
-            alert("통신 실패");
+            //alert("통신 실패");
             console.error(textStatus, errorThrown);
           },
         });
