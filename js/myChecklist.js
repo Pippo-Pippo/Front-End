@@ -130,6 +130,7 @@ function changeChecklistTitle(checklist) {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
     success: function (data) {
+      console.log("수정성공", data);
       localStorage.setItem("checklistData", JSON.stringify(data));
       localStorage.setItem("currentChecklistId", data[0].check_list_id);
 

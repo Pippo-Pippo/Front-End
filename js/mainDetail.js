@@ -45,7 +45,10 @@ function postComment(postId) {
     content: content,
   };
 
-  formData.append("data", JSON.stringify(data));
+  const json = JSON.stringify(data);
+  const blob = new Blob([json], { type: "application/json" });
+
+  formData.append("data", blob);
   formData.append("file", file, file.name);
 
   console.log(file);
