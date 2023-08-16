@@ -115,10 +115,9 @@ $(document).ready(function () {
     });
 
   // 비밀번호 변경
- $("#change").on("click", function () {
- 
-  window.location.href = "../account/findPassword.html"; 
-});
+  $("#change").on("click", function () {
+    window.location.href = "../account/findPassword.html";
+  });
 
   // 닉네임 변경
   $("#changeNickname").on("click", function () {
@@ -128,72 +127,67 @@ $(document).ready(function () {
       type: "PUT",
       dataType: "json",
       contentType: "application/json",
-      data: {nickname: newNickname,},
+      data: { nickname: newNickname },
       xhrFields: {
         withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
       },
       success: function (data) {
-         alert("닉네임이 성공적으로 변경되었습니다.");
-            const nicknameDisplay = document.getElementById("nicknameDisplay");
-            nicknameDisplay.textContent = newNickname;
-            console.log(data);
+        alert("닉네임이 성공적으로 변경되었습니다.");
+        const nicknameDisplay = document.getElementById("nicknameDisplay");
+        nicknameDisplay.textContent = newNickname;
+        console.log(data);
       },
       error: function (jqXHR, textStatus, errorThrown) {
-      
-        consolee.log(data);
+        console.log(data);
       },
     });
   });
-   // 지역 변경
-   $("#changeRegion").on("click", function () {
+  // 지역 변경
+  $("#changeRegion").on("click", function () {
     var newRegion = $("#locationSelect").val();
-  
+
     // 지역 코드를 매핑하는 객체
     var regionMap = {
-      "서울특별시": "SEOUL",
-      "부산광역시": "BUSAN",
-      "대구광역시": "DAEGU",
-      "인천광역시": "INCHEON",
-      "광주광역시": "GWANJU",
-      "대전광역시": "DAEJEON",
-      "울산광역시": "ULSAN",
-      "세종특별자치시": "SEJONG",
-      "경기도": "GYEONGGI",
-      "강원특별자치도": "GANGWON",
-      "충청북도": "CHUNGCHEONGBUKDO",
-      "충청남도": "CHUNGCHEONGNAMDO",
-      "전라북도": "JEOLLABUKDO",
-      "전라남도": "JEOLLANAMDO",
-      "경상북도": "GYEONGSANGBUKDO",
-      "경상남도": "GYEONGSANGNAMDO",
-      "제주특별자치도": "JEJU"
+      서울특별시: "SEOUL",
+      부산광역시: "BUSAN",
+      대구광역시: "DAEGU",
+      인천광역시: "INCHEON",
+      광주광역시: "GWANJU",
+      대전광역시: "DAEJEON",
+      울산광역시: "ULSAN",
+      세종특별자치시: "SEJONG",
+      경기도: "GYEONGGI",
+      강원특별자치도: "GANGWON",
+      충청북도: "CHUNGCHEONGBUKDO",
+      충청남도: "CHUNGCHEONGNAMDO",
+      전라북도: "JEOLLABUKDO",
+      전라남도: "JEOLLANAMDO",
+      경상북도: "GYEONGSANGBUKDO",
+      경상남도: "GYEONGSANGNAMDO",
+      제주특별자치도: "JEJU",
     };
-  
-  
+
     // 선택한 지역을 지역 코드로 변환
     var regionCode = regionMap[newRegion];
 
- $.ajax({
-    url: `https://ppiyong.shop/api/user/region?region=${regionCode}`,
-    type: "PUT",
-    dataType: "json",
-    contentType: "application/json",
-    data: {region: regionCode,},
-    xhrFields: {
-      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
-    },
-    success: function (data) {
+    $.ajax({
+      url: `https://ppiyong.shop/api/user/region?region=${regionCode}`,
+      type: "PUT",
+      dataType: "json",
+      contentType: "application/json",
+      data: { region: regionCode },
+      xhrFields: {
+        withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+      },
+      success: function (data) {
         alert("지역이 성공적으로 변경되었습니다.");
-          const regionDisplay = document.getElementById("regionDisplay");
-          regionDisplay.textContent = newRegion || "지역을 선택하세요";
-console.log(data);
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      console.log("수정실패");
-     
-    },
+        const regionDisplay = document.getElementById("regionDisplay");
+        regionDisplay.textContent = newRegion || "지역을 선택하세요";
+        console.log(data);
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log("수정실패");
+      },
+    });
   });
-  });
-  
-  });
-
+});
