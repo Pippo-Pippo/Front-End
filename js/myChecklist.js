@@ -124,7 +124,8 @@ function changeChecklistTitle(checklist) {
     url: `https://ppiyong.shop/api/checklist/${checklist.check_list_id}`,
     type: "PUT",
     dataType: "json",
-    data: JSON.stringify(checklist),
+    contentType: "application/json",
+    data: checklist,
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
