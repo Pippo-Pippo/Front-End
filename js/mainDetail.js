@@ -49,7 +49,9 @@ function postComment(postId) {
   const blob = new Blob([json], { type: "application/json" });
 
   formData.append("data", blob);
-  formData.append("file", file, file.name);
+  if (file) {
+    formData.append("file", file, file.name);
+  }
 
   console.log(file);
   for (let [key, value] of formData.entries()) {
