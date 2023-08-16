@@ -138,7 +138,7 @@ function updateDateTime() {
 }
 
 // 새로고침 버튼 누르면 페이지 reload
-$("#refresh").addEventListener("click", function () {
+$(document).on("click", "#refresh", function () {
   window.location.reload();
 });
 
