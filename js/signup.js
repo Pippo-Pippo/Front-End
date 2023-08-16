@@ -9,7 +9,7 @@ function signup() {
   var password = $("#password").val();
   var nickname = $("#nickname").val();
   var region = $("#location").val();
-  var password = $("#password").val();
+
 
   $.ajax({
     type: "POST",
@@ -29,7 +29,11 @@ function signup() {
       console.log(data);
     },
     error: function (request, status, error) {
-      alert("잘못된 요청입니다.");
+      if (request.status === 409) {
+        alert("이미 가입된 이메일 주소입니다. 다른 이메일을 사용해주세요.");
+      } else {
+        alert("잘못된 요청입니다.");
+      }
       console.log("error");
     },
   });
