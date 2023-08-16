@@ -1,5 +1,5 @@
 // 지역명 변환 함수
-function convertRegion(regionList, value) {
+function getKeyByValue(regionList, value) {
     for (const key in regionList) {
       if (regionList[key]=== value) {
         return key;
