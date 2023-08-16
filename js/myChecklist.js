@@ -13,10 +13,16 @@ function loadChecklists() {
     },
     success: function (data) {
       console.log("로드완료", data);
-      localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", data[0].check_list_id);
 
-      initializeChecklist();
+      if (data) {
+        localStorage.setItem("checklistData", JSON.stringify(data));
+        localStorage.setItem("currentChecklistId", data[0].check_list_id);
+
+        initializeChecklist();
+      } else {
+        localStorage.setItem("checklistData", JSON.stringify(data));
+        renderPlusNavItem();
+      }
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.log("로드 실패");
