@@ -113,10 +113,10 @@ $(document).ready(function () {
     //     console.log(latitude_end);
     //     console.log(longitude_end);
         var  latitude_start = locPosition.Ma-0.0073,
-        latitude_end = bounds.pa+0.0073,
+        latitude_end = locPosition.Ma+0.0073,
 
-        longitude_start = bounds.oa+0.0033,
-        longitude_end = bounds.ha-0.0033;
+        longitude_start = locPosition.La+0.0033,
+        longitude_end = locPosition.La-0.0033;
 
     $.ajax({
         type: "GET",
