@@ -1,0 +1,84 @@
+{
+	"news": [
+		{
+			"id": 1,
+			"content": "[뉴스] 삐용 서비스 팀 이름, 삐뽀삐뽀로 밝혀져.."
+		},
+		{
+			"id": 250,
+			"content": "[긴급 속보] 삐뽀삐뽀팀 백엔드 초초초 비상.. "
+		}
+	],
+	"weather": [
+		{
+			"id": 1,
+			"from": "경기도청",
+			"category": "RAIN HOT WIND",
+			"content": "비가 온다. 주륵주륵",
+			"time": "2023-07-23 오전 02:16",
+			"comment": 14
+		},
+		{
+			"id": 2,
+			"from": "행정안전부",
+			"category": "SNOW",
+			"content": "곧 태풍이 온다는데 모르겠다",
+			"time": "2023-07-23 오전 02:16",
+			"comment": 16
+		}
+	],
+	"earthquake": [
+		{
+			"id": 3,
+			"from": "경기도청",
+			"category": "EARTHQUAKE",
+			"content": "지진이래 도망쳐",
+			"time": "2023-07-23 오전 02:16",
+			"comment": 14
+		},
+		{
+			"id": 4,
+			"from": "행정안전부",
+			"category": "EARTHQUAKE",
+			"content": "지진 실화인가요?",
+			"time": "2023-07-23 오전 02:16",
+			"comment": 16
+		}
+	],
+	"civil": [
+		{
+			"id": 5,
+			"from": "경기도청",
+			"category": "CIVIL",
+			"content": "민방위 훈련이래여 꺄",
+			"time": "2023-07-23 오전 02:16",
+			"comment": 9
+		},
+		{
+			"id": 6,
+			"from": "행정안전부",
+			"category": "CIVIL",
+			"content": "충성 이리메르 갔다가 ",
+			"time": "2023-07-23 오전 02:16",
+			"comment": 16
+		}
+	],
+	"lost": [
+		{
+			"id": 12,
+			"from": "경기도청",
+			"category": "LOST",
+			"content": "실종 아동을 찾습니다. ",
+			"time": "2023-07-23 오전 02:16",
+			"comment": 14
+		},
+		{
+			"id": 13,
+			"from": "행정안전부",
+			"category": "LOST",
+			"content": "실종 어르신을 찾습니다.",
+			"time": "2023-07-23 오전 02:16",
+			"comment": 16
+		}
+	]
+}

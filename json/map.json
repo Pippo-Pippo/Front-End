@@ -1,0 +1,352 @@
+[
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.82100825216922,
+                "longitude": 127.34885673610256,
+                "name": "조종초등학교 운동장",
+                "address": "경기도 가평군 조종면 현리 276-0"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.81728093360061,
+                "longitude": 127.35190815532921,
+                "name": "조종생활체육공원",
+                "address": "경기도 가평군 조종면 현리 420-13"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.74565283079966,
+                "longitude": 127.207255223641,
+                "name": "광릉초등학교 운동장",
+                "address": "경기도 남양주시 진접읍 팔야리 762-0"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.74265214161756,
+                "longitude": 127.2137419498433,
+                "name": "광릉중학교 운동장",
+                "address": "경기도 남양주시 진접읍 진벌리 611"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.72526089991619,
+                "longitude": 127.20695238200167,
+                "name": "주곡중학교 운동장",
+                "address": "경기도 남양주시 진접읍 금곡리 1003"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.70125986526674,
+                "longitude": 127.20543122199257,
+                "name": "오남중학교 운동장",
+                "address": "경기도 남양주시 오남읍 양지리 49"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.73278975474531,
+                "longitude": 127.29342273084204,
+                "name": "가양초등학교 운동장",
+                "address": "경기도 남양주시 수동면 수산리 12-2"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.709048499266004,
+                "longitude": 127.32424919410225,
+                "name": "수동중학교 운동장",
+                "address": "경기도 남양주시 수동면 입석리 333-5"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.711632552138695,
+                "longitude": 127.32336279849123,
+                "name": "수동초등학교 운동장",
+                "address": "경기도 남양주시 수동면 입석리 458-1"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.78709738380579,
+                "longitude": 127.23054861885534,
+                "name": "내촌초등학교 운동장",
+                "address": "경기도 포천시 내촌면 내리 334-5"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.78695419500877,
+                "longitude": 127.22749053904646,
+                "name": "내촌체육문화센터",
+                "address": "경기도 포천시 내촌면 내리 503"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.87485372594506,
+                "longitude": 127.22350725403513,
+                "name": "청성초등학교 운동장",
+                "address": "경기도 포천시 군내면 직두리 740"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.895642118534774,
+                "longitude": 127.20637580436104,
+                "name": "포천일고등학교 운동장",
+                "address": "경기도 포천시 군내면 하성북리 663"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.892737057256426,
+                "longitude": 127.20994971620374,
+                "name": "청성역사공원",
+                "address": "경기도 포천시 군내면 하성북리 637-5"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.77962678826458,
+                "longitude": 127.22453539139347,
+                "name": "내촌중학교 운동장",
+                "address": "경기도 포천시 내촌면 음현리 710-1"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.737708933605695,
+                "longitude": 127.42159342493564,
+                "name": "청평초등학교 운동장",
+                "address": "경기도 가평군 청평면 청평리 395-0"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.74304476894993,
+                "longitude": 127.4221269038314,
+                "name": "청평중학교 운동장",
+                "address": "경기도 가평군 청평면 청평리 283-2"
+        },
+        {
+                "category": "EARTHQUAKE",
+                "latitude": 37.775705302361054,
+                "longitude": 127.37130275165262,
+                "name": "상면초등학교 운동장",
+                "address": "경기도 가평군 상면 임초리 412-3"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.84021508,
+                "longitude": 127.235504,
+                "name": "푸른솔GC 포천 지하 1층",
+                "address": "경기도 포천시 가산면 금우로 276, 푸른솔 골프클럽포천"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.71018942,
+                "longitude": 127.3198502,
+                "name": "시니어타운, 지하1층",
+                "address": "경기도 남양주시 수동면 비룡로 801-88"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.72101779,
+                "longitude": 127.3149028,
+                "name": "신망애재활원(해제대상)",
+                "address": "경기도 남양주시 수동면 비룡로972번길 17"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.72179387,
+                "longitude": 127.2980257,
+                "name": "매그너스 요양병원, 지하1층",
+                "address": "경기도 남양주시 수동면 지둔로445번길 33-51, 매그너스요양병원"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.74527996,
+                "longitude": 127.2170156,
+                "name": "신창비바패밀리 아파트, 지하주차장 1층",
+                "address": "경기도 남양주시 진접읍 진벌로 85-2(신창비바패밀리아파트)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.80238153,
+                "longitude": 127.4701946,
+                "name": "서울특별시교육청학생교육원글로벌문화언어체험교육원(지하1층",
+                "address": "경기도 가평군 가평읍 불기산길 88, 서울특별시학생교육원가평교육원"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.74025214,
+                "longitude": 127.4164973,
+                "name": "세양청마루아파트 (101동&103동 지하주차장 1층)",
+                "address": "경기도 가평군 청평면 경춘로 807-45 (청평세양청마루아파트)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.73851971,
+                "longitude": 127.4173741,
+                "name": "청구아파트(지하주차장 1층)",
+                "address": "경기도 가평군 청평면 경춘로 807-18 (청평청구아파트)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.73218333,
+                "longitude": 127.4162807,
+                "name": "삼성쉐르빌아파트 (전체 동의 지하주차장1층)",
+                "address": "경기도 가평군 청평면 강변나루로 54 (청평삼성쉐르빌)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.72988981,
+                "longitude": 127.4101085,
+                "name": "이안지안스아파트(전체 동의 지하주차장1층)",
+                "address": "경기도 가평군 청평면 구청평로 20 (이안지안스 청평)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.74222735,
+                "longitude": 127.4215245,
+                "name": "경남아너스빌아파트(지하주차장 1층)",
+                "address": "경기도 가평군 청평면 골안길 7-28 (청평 경남아너스빌)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.84713833,
+                "longitude": 127.2808936,
+                "name": "서파장어랜드 지하 1층",
+                "address": "경기도 포천시 내촌면 금강로3224번길 11, 서파장어랜드"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.70340231,
+                "longitude": 127.3259918,
+                "name": "수동면사무소, 지하주차장 1층",
+                "address": "경기도 남양주시 수동면 비룡로 729, 수동면사무소, 지하주차장"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.89488533,
+                "longitude": 127.2004043,
+                "name": "포천시청 지하1층",
+                "address": "경기도 포천시 중앙로 87 (신읍동, 포천시청)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.8890247,
+                "longitude": 127.2178354,
+                "name": "군내면사무소 지하 1층",
+                "address": "경기도 포천시 군내면 청군로3290번길 16, 지하1층 (군내면사무소)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.80003276,
+                "longitude": 127.2449414,
+                "name": "베어스타운 직원식당 지하 1층",
+                "address": "경기도 포천시 내촌면 금강로2536번길 27"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.78570584,
+                "longitude": 127.2278899,
+                "name": "가산농협내촌지소 식당 지하 1층",
+                "address": "경기도 포천시 내촌면 내촌로 68 (내촌농협)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.89383902,
+                "longitude": 127.2972023,
+                "name": "농기계창고 지하 1층",
+                "address": "경기도 포천시 화현면 우시동1길 53"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.89903263,
+                "longitude": 127.2035897,
+                "name": "포천축협 지하1층",
+                "address": "경기도 포천시 포천로1586번길 6 (신읍동)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.89775776,
+                "longitude": 127.203883,
+                "name": "포천신협 지하1층",
+                "address": "경기도 포천시 중앙로 132 (신읍동)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.89576635,
+                "longitude": 127.2121844,
+                "name": "반월아트홀 지하 1층",
+                "address": "경기도 포천시 군내면 청성로 111-0, 공연동 지하1층"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.89763455,
+                "longitude": 127.2025929,
+                "name": "예원프라자 지하주차장 1층~4층",
+                "address": "경기도 포천시 중앙로119번길 4 (신읍동, 동원예원프라자)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.73290459,
+                "longitude": 127.3080039,
+                "name": "대성학원, 지하1층",
+                "address": "경기도 남양주시 수동면 외방로135번길 12-30, 대성학원(지하주차장)"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.81825604,
+                "longitude": 127.3529515,
+                "name": "조종도서관(지하1층)",
+                "address": "경기도 가평군 조종면 조종희망로26번길 22, 가평조종도서관"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.81386488,
+                "longitude": 127.3462437,
+                "name": "조종고등학교 직원기숙사(지하1층)",
+                "address": "경기도 가평군 조종면 청군로 1233-103, 조종중고등교직원기숙사"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.88162886,
+                "longitude": 127.3501098,
+                "name": "가평꽃동네 희망의 집(지하1층)",
+                "address": "경기도 가평군 조종면 꽃동네길 35-25, 가평꽃동네 희망의집"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.75993127,
+                "longitude": 127.3955976,
+                "name": "켄싱턴리조트 청평(지하주차장 1층)",
+                "address": "경기도 가평군 상면 청군로 430, 켄싱턴리조트청평"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.77005166,
+                "longitude": 127.3532414,
+                "name": "서울시학생교육원(지하식당)",
+                "address": "경기도 가평군 상면 축령로45번길 40-135, 서울특별시학생교육원"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.81761227,
+                "longitude": 127.3532892,
+                "name": "조종면행정복지센터(지하1층)",
+                "address": "경기도 가평군 조종면 조종내길 71, 조종면사무소"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.88311435,
+                "longitude": 127.3493143,
+                "name": "가평꽃동네 사랑의 집(지하1층)",
+                "address": "경기도 가평군 조종면 꽃동네길 53-37, 가평꽃동네 사랑의집"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.82055527,
+                "longitude": 127.3439116,
+                "name": "조종농협웨딩홀(지하1층)",
+                "address": "경기도 가평군 조종면 청군로 1311-14"
+        },
+        {
+                "category": "CIVIL",
+                "latitude": 37.8049777,
+                "longitude": 127.3569916,
+                "name": "상면 행정복지센터(지하1층 창고)",
+                "address": "경기도 가평군 상면 청군로 1105"
+        }
+]

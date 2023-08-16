@@ -1,0 +1,34 @@
+[
+  {
+    "check_list_Id": 1,
+    "title": "A",
+    "task": [
+      {
+        "taskId": 1,
+        "content": "가족끼리 모일 장소 정하기",
+        "isComplete": "True"
+      },
+      {
+        "taskId": 2,
+        "content": "꼬미 간식 챙기기",
+        "isComplete": "False"
+      }
+    ]
+  },
+  {
+    "check_list_Id": 2,
+    "title": "B",
+    "task": [
+      {
+        "taskId": 1,
+        "content": "두번째임",
+        "isComplete": "True"
+      },
+      {
+        "taskId": 2,
+        "content": "꼬미 간식 챙기기",
+        "isComplete": "False"
+      }
+    ]
+  }
+]

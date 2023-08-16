@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB12bgQnvBrc0Hwuztjrqpxvv7vEHvcf0U"></script>
+    <script src="./js/checklist.js"></script>
+
+    <link rel="stylesheet" href="../css/config.css" />
+    <title>삐용</title>
+  </head>
+
+  <body>
+    <div class="relative content bg-gray-50 border-white">
+      <div class="bg-white border-gray-200 shadow">
+        <nav>
+          <div
+            class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-15"
+          >
+            <a href="#" class="flex items-center">
+              <img src="../img/logo.png" class="w-24 h-9 mr-3" />
+            </a>
+            <div class="flex justify-end items-center">
+              <div class="w-20 h-8 text-center p-1">
+                <button>로그인</button>
+              </div>
+              <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
+                <button>회원가입</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <nav>
+          <div
+            class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-3 pb-0"
+          >
+            <div>
+              <a href="#">홈</a>
+              <div class="bg-mySky p-1 h-3"></div>
+            </div>
+            <div>
+              <a href="#">주변 대피소</a>
+              <div class="bg-mySky p-1 h-3"></div>
+            </div>
+            <div>
+              <a href="#">체크리스트</a>
+              <div class="bg-mySky p-1 h-3"></div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="cehcklist-content p-5">
+        <div class="title flex justify-between">
+          <div>
+            <p class="text-2xl">
+              급박한 <span class="font-bold">재난상황</span>을 <br />미리
+              <span class="font-bold">대비</span>해 보세요
+            </p>
+          </div>
+          <div><img src="../img/icon/checklist_icon.png"</div>
+        </div>
+      </div>
+
+      <div class="recent-message block bg-yellow-100 mb-5">
+        <p class="text-base text-center p-2 m-3">
+          <span id="current_city"></span>에서 <br />
+          가장 최근에 온 재난 메세지는 <br />
+          <span class="font-bold">호우 관련 </span>입니다.
+        </p>
+      </div>
+
+      <div class="buttons grid gap-4 grid-cols-3 grid-rows-2">
+        <div
+          class="bg-white w-24 h-24 rounded shadow mr-1 flex justify-center items-center"
+        >
+          <a href="checklist/rain.html">
+            <div class="block justify-center items-center">
+              <div class="flex justify-center items-center">
+                <img
+                  class="flex justify-center items-center"
+                  src="../img/icon/rain_icon.png"
+                />
+              </div>
+              <p class="text-sm">호우/홍수/침수</p>
+            </div>
+          </a>
+        </div>
+
+        <div
+          class="bg-white w-24 h-24 rounded shadow mr-1 flex justify-center items-center"
+        >
+          <a href="checklist/tsunami.html">
+            <div class="block justify-center items-center">
+              <div class="flex justify-center items-center">
+                <img
+                  class="flex justify-center items-center"
+                  src="../img/icon/earthquake_icon.png"
+                />
+              </div>
+              <p class="text-sm text-center">지진/해일</p>
+            </div>
+          </a>
+        </div>
+
+        <div
+          class="bg-white w-24 h-24 rounded shadow mr-1 flex justify-center items-center"
+        >
+          <a href="checklist/typhoon.html">
+            <div class="block justify-center items-center">
+              <div class="flex justify-center items-center">
+                <img
+                  class="flex justify-center items-center"
+                  src="../img/icon/typhoon_icon.png"
+                />
+              </div>
+              <p class="text-sm text-center">태풍/강풍</p>
+            </div>
+          </a>
+        </div>
+
+        <div
+          class="bg-white w-24 h-24 rounded shadow mr-1 flex justify-center items-center"
+        >
+          <a href="checklist/heat.html">
+            <div class="block justify-center items-center">
+              <div class="flex justify-center items-center">
+                <img
+                  class="flex justify-center items-center"
+                  src="../img/icon/hotSummer_icon.png"
+                />
+              </div>
+              <p class="text-sm text-center">폭염</p>
+            </div>
+          </a>
+        </div>
+
+        <div
+          class="bg-white w-24 h-24 rounded shadow mr-1 flex justify-center items-center"
+        >
+          <a href="checklist/snow.html">
+            <div class="block justify-center items-center">
+              <div class="flex justify-center items-center">
+                <img
+                  class="flex justify-center items-center"
+                  src="../img/icon/snow_icon.png"
+                />
+              </div>
+              <p class="text-sm text-center">대설</p>
+            </div>
+          </a>
+        </div>
+
+        <div
+          class="bg-white w-24 h-24 rounded shadow mr-1 flex justify-center items-center"
+        >
+          <a href="checklist/safety.html">
+            <div class="block justify-center items-center">
+              <div class="flex justify-center items-center">
+                <img
+                  class="flex justify-center items-center"
+                  src="../img/icon/ambulance_icon.png"
+                />
+              </div>
+              <p class="text-sm text-center">안전/테러</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="my-checklist">
+        <div
+          class="bg-white w-80 h-24 rounded shadow flex justify-center items-center mt-4"
+        >
+          <div class="block justify-center items-center">
+            <a href="/myChecklist.html">
+              <div class="flex justify-center items-center">
+                <img
+                  class="flex justify-center items-center"
+                  src="../img/icon/pencil_icon.png"
+                />
+              </div>
+              <p class="text-sm text-center">MY 체크리스트</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

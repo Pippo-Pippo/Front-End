@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
+    <title>main</title>
+    <link rel="stylesheet" href="../css/config.css" />
+  </head>
+
+  <body>
+    <div class="relative content bg-gray-50 border-white">
+      <div class="bg-white border-gray-200 shadow">
+        <nav>
+          <div
+            class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-15"
+          >
+            <a href="#" class="flex items-center">
+              <img src="../img/logo.png" class="w-24 h-9 mr-3" />
+            </a>
+            <div class="flex justify-end items-center">
+              <div class="w-20 h-8 text-center p-1">
+                <button>로그인</button>
+              </div>
+              <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
+                <button>회원가입</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <nav>
+          <div
+            class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-3 pb-0"
+          >
+            <div>
+              <a href="#">홈</a>
+              <div class="bg-mySky p-1 h-3"></div>
+            </div>
+            <div>
+              <a href="#">주변 대피소</a>
+              <div class="bg-mySky p-1 h-3"></div>
+            </div>
+            <div>
+              <a href="#">체크리스트</a>
+              <div class="bg-mySky p-1 h-3"></div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="cehcklist-content p-5">
+        <div class="content-title flex justify-between">
+          <div>
+            <p class="text-2xl">
+              <span class="font-bold">태풍/강풍</span> <br />
+              체크리스트
+            </p>
+          </div>
+        </div>
+
+        <div class="main-article pt-4">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </div>
+
+        <div class="youtube-div py-3">
+          <iframe
+            class="w-80 h-40 border-none"
+            src="https://www.youtube.com/embed/H4iIv-WY7Og"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <div class="button-footer flex justify-center mt-1.5">
+          <div class="flex justify-center items-center">
+            <button
+              onclick="shareLink()"
+              id="shareLink"
+              type="button"
+              class="m-1.5 px-2.5 py-1 text-white bg-gray-600 hover:bg-gray-700 rounded-lg border border-gray-200 text-sm font-medium hover:text-white"
+            >
+              <p class="text-center">링크 복사하기</p>
+            </button>
+          </div>
+
+          <div class="flex justify-center items-center">
+            <button
+              onclick="shareKakao()"
+              id="shareKakao"
+              type="button"
+              class="m-1.5 px-2.5 py-1 text-black bg-yellow-400 hover:bg-yellow-500 rounded-lg border border-gray-200 text-sm font-medium hover:text-white"
+            >
+              <p class="text-center">카카오톡 공유</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js"
+      integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/checklist_detail.js"></script>
+    <script>
+      Kakao.init("84006249f39045b05f2da9f99f8320ca");
+    </script>
+  </body>
+</html>
