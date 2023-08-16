@@ -38,7 +38,6 @@
 
   <body>
     <div class="relative content bg-gray-50 border-white">
-      <!--상단 네비바-->
       <div class="bg-white border-gray-200 shadow">
         <nav class="bg-white border-gray-200">
           <div
@@ -55,7 +54,9 @@
                 id="login-nav"
                 class="flex items-center justify-end text-end"
               >
-                <img src="../img/icon/알림.png" class="w-6 h-6 mt-3 mr-3" />
+                <a href="alarm/alarm.html"
+                  ><img src="../img/icon/알림.png" class="w-6 h-6 mt-3 mr-3"
+                /></a>
                 <div class="username-text font-medium text-lg mt-1 mr-6">
                   강윤진님
                 </div>
@@ -77,10 +78,14 @@
 
               <div id="non-login-nav" class="flex justify-end">
                 <div class="w-20 h-8 text-center p-1 ml-14">
-                  <button>로그인</button>
+                  <a href="account/login.html">
+                    <button>로그인</button>
+                  </a>
                 </div>
                 <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
-                  <button>회원가입</button>
+                  <a href="account/signup.html">
+                    <button>회원가입</button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -142,8 +147,7 @@
           <ul class="space-y-2">
             <li>
               <a
-                href="#"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white"
               >
                 <svg
                   class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -160,7 +164,7 @@
             </li>
             <li>
               <a
-                href="#"
+                href="myChecklist.html"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -175,7 +179,7 @@
             </li>
             <li>
               <a
-                href="#"
+                href="/account/select_region.html"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -192,7 +196,7 @@
             </li>
             <li>
               <a
-                href="#"
+                href="account/editMember.html"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
