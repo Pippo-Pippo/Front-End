@@ -29,11 +29,9 @@ $(document).ready(async function () {
       }
     });
   } else {
-    const main_region = current_region.split(" ");
-
     getAllData(converted_address);
     $("#weatherButton").click();
-    $("#current_city").text(main_region.slice(0, 2).join(" "));
+    $("#current_city").text(current_region);
   }
 
   updateDateTime(); // 페이지 준비되면 현재시간 받아오기
