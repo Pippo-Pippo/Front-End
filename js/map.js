@@ -100,23 +100,28 @@ const CIVIL = [];
 
 $(document).ready(function () {
     
-    // var bounds = map.getBounds();
-    // bounds.toString();
-    //     //살짝 바꾸기
-    //     var  latitude_start = bounds.qa,
-    //     latitude_end = bounds.pa,
+    var bounds = map.getBounds();
+    bounds.toString();
+        //살짝 바꾸기
+        // var  latitude_start = bounds.qa,
+        // latitude_end = bounds.pa,
 
-    //     longitude_start = bounds.oa,
-    //     longitude_end = bounds.ha;
-    //     console.log(latitude_start);
-    //     console.log(longitude_start);
-    //     console.log(latitude_end);
-    //     console.log(longitude_end);
+        // longitude_start = bounds.oa,
+        // longitude_end = bounds.ha;
+        // console.log(latitude_start);
+        // console.log(longitude_start);
+        // console.log(latitude_end);
+        // console.log(longitude_end);
         var  latitude_start = locPosition.Ma-0.0073,
         latitude_end = locPosition.Ma+0.0073,
 
         longitude_start = locPosition.La+0.0033,
         longitude_end = locPosition.La-0.0033;
+
+        console.log(latitude_start);
+        console.log(latitude_end);
+        console.log(longitude_start);
+        console.log(longitude_end);
 
     $.ajax({
         type: "GET",
