@@ -76,7 +76,7 @@ $(document).ready(function () {
             success: function (response) {
                 alert("PUT 요청 성공");
                 console.log("PUT 요청 성공:", response);
-                // location.href='/alarm/select_category.html';
+                location.href='/alarm/select_category.html';
 
             },
             error: function (error) {

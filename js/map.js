@@ -105,13 +105,13 @@ $(document).ready(function () {
         //살짝 바꾸기
         // var  latitude_start = bounds.qa,
         // latitude_end = bounds.pa,
-
         // longitude_start = bounds.oa,
         // longitude_end = bounds.ha;
         // console.log(latitude_start);
         // console.log(longitude_start);
         // console.log(latitude_end);
         // console.log(longitude_end);
+        
         var  latitude_start = locPosition.Ma-0.02,
         latitude_end = locPosition.Ma+0.02,
 
