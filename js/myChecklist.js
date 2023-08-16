@@ -30,7 +30,6 @@ function deleteTask(taskId) {
   $.ajax({
     url: `https://ppiyong.shop/api/checklist/${taskId}`,
     type: "DELETE",
-    dataType: "json",
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
@@ -89,11 +88,11 @@ function updateChecklist(checklist) {
   $.ajax({
     url: "https://ppiyong.shop/api/checklist",
     type: "POST",
-    dataType: "json",
+    contentType: "application/json; charset=utf-8",
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
-    body: JSON.stringify(newChecklist),
+    data: JSON.stringify(newChecklist),
     success: function (data) {
       localStorage.setItem("checklistData", JSON.stringify(data));
       localStorage.setItem("currentChecklistId", data[0].check_list_id);
@@ -111,10 +110,9 @@ function changeChecklistTitle(checklist) {
   console.log("PUT요청 : ", checklist);
 
   $.ajax({
-    url: `https://ppiyong.shop/api/checklist/${checklistId}`,
+    url: `https://ppiyong.shop/api/checklist/${checklist.check_list_id}`,
     type: "PUT",
     dataType: "json",
-    body: checklist,
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
