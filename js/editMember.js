@@ -115,12 +115,10 @@ $(document).ready(function () {
     });
 
   // 비밀번호 변경
-  $("#change").on("click", function () {
-    // 비밀번호 변경 로직 처리 (이 부분은 실제 비밀번호 변경 로직으로 대체되어야 합니다)
-  
-    // 페이지 이동
-    window.location.href = "메인 페이지 URL"; // 여기에 실제 메인 페이지의 URL을 입력해주세요
-  });
+ $("#change").on("click", function () {
+ 
+  window.location.href = "../account/findPassword.html"; 
+});
 
   // 닉네임 변경
   $("#changeNickname").on("click", function () {
