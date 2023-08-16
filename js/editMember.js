@@ -152,7 +152,7 @@ $(document).ready(function () {
       type: "PUT",
       url: `https://ppiyong.shop/api/user/nickname?nickName=${newNickname}`,
       data: JSON.stringify({
-        nickName: newNickname,
+        nickname: newNickname,
       }),
       xhrFields: {
         withCredentials: true,
