@@ -27,11 +27,9 @@
 //   const idInput = document.getElementById("id");
 
 //   nicknameInput.value = nickname;
-//   regionDisplay.textContent = region || "지역을 선택하세요"; 
-
+//   regionDisplay.textContent = region || "지역을 선택하세요";
 
 //   locationSelect.innerHTML = '';
-
 
 //   const defaultOption = document.createElement("option");
 //   defaultOption.value = "";
@@ -39,7 +37,6 @@
 //   defaultOption.selected = true;
 //   defaultOption.textContent = memberData.region || "지역을 선택하세요";
 //   locationSelect.appendChild(defaultOption);
-
 
 //   const regions = [
 //     "서울특별시",
@@ -69,19 +66,16 @@
 //     locationSelect.appendChild(option);
 //   });
 
-
 //   if (region) {
 //     locationSelect.value = region;
 //   }
 
-
 //   locationSelect.addEventListener("change", function () {
 //     regionDisplay.textContent = locationSelect.value;
 //   });
-//  idInput.value = data.email; 
+//  idInput.value = data.email;
 //   return '';
 // }
-
 
 // const memberData = {
 //   "email": "jiyun@naver.com",
@@ -89,36 +83,37 @@
 //   "region": "경상북도"
 // };
 
-  //ajax 
-  $(document).ready(function () {
-    
-    function getMemberData() {
-      return $.ajax({
-        type: "GET",
-        url: "https://ppiyong.shop/api/user", 
-        dataType: "json",
-      });
-    }
-  
-    function displayMember(data) {
-      const { email, nickname, region } = data;
-      $("#id").val(email);
-      $("#nickname").val(nickname);
-      $("#regionDisplay").text(region || "지역을 선택하세요");
-      $("#locationSelect").val(region);
-    }
-  
-    getMemberData()
-      .done(function (data) {
-        console.log(data);
-        displayMember(data);
-       
-      })
-      .fail(function (xhr, status, error) {
-        console.error(xhr, status, error);
-        alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
-      });
-  
+//ajax
+$(document).ready(function () {
+  function getMemberData() {
+    return $.ajax({
+      type: "GET",
+      url: "https://ppiyong.shop/api/user",
+      dataType: "json",
+      xhrFields: {
+        withCredentials: true,
+      },
+    });
+  }
+
+  function displayMember(data) {
+    const { email, nickname, region } = data;
+    $("#id").val(email);
+    $("#nickname").val(nickname);
+    $("#regionDisplay").text(region || "지역을 선택하세요");
+    $("#locationSelect").val(region);
+  }
+
+  getMemberData()
+    .done(function (data) {
+      console.log(data);
+      displayMember(data);
+    })
+    .fail(function (xhr, status, error) {
+      console.error(xhr, status, error);
+      alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
+    });
+
   // 비밀번호 변경
   $("#change").on("click", function () {
     var newPassword = $("#password").val();
@@ -149,8 +144,8 @@
       });
   });
 
-   // 닉네임 변경
-   $("#changeNickname").on("click", function () {
+  // 닉네임 변경
+  $("#changeNickname").on("click", function () {
     var newNickname = $("#nickname").val();
 
     $.ajax({
@@ -209,4 +204,4 @@
         alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
       });
   });
-  });
+});
