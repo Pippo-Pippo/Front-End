@@ -26,6 +26,7 @@ function signup() {
     }),
     success: function (data) {
       alert(JSON.stringify(data));
+      console.log(data);
     },
     error: function (request, status, error) {
       alert("잘못된 요청입니다.");
@@ -100,7 +101,7 @@ $("#verifyButton").on("click", function (e) {
     contentType: "application/json; charset=utf-8",
     success: function (response) {
       $("#verificationConfirm").show();
-      alert("인증번호 요청 성공");
+     
     },
     error: function (req, status, err) {
       console.log(req);
