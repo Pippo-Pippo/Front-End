@@ -135,34 +135,6 @@ function getAllData(address) {
     `https://ppiyong.shop/api/home?region=${address}`
   );
 
-  //   $.getJSON("../json/main.json", function (data) {
-  //     allData = data;
-  //     console.log(allData);
-
-  //     // get으로 받아온 데이터 로드하기
-  //     // 버튼 이벤트 리스너
-  //     displayNews(allData.news);
-  //     console.log(allData.news);
-
-  //     $("#weatherButton").click(function () {
-  //       displayCategoryData(allData.weather);
-  //     });
-
-  //     $("#earthquakeButton").click(function () {
-  //       displayCategoryData(allData.earthquake);
-  //     });
-
-  //     $("#civilButton").click(function () {
-  //       displayCategoryData(allData.civil);
-  //     });
-
-  //     $("#lostButton").click(function () {
-  //       displayCategoryData(allData.lost);
-  //     });
-
-  //     $("#weatherButton").click();
-  //   });
-
   $.ajax({
     url: `https://ppiyong.shop/api/home?region=${address}`,
     method: "GET",
@@ -171,6 +143,7 @@ function getAllData(address) {
       allData = json;
       console.log(json);
 
+      displayNews(allData.news);
       // get으로 받아온 데이터 로드하기
       // 버튼 이벤트 리스너
       $("#weatherButton").click(function () {
@@ -188,6 +161,8 @@ function getAllData(address) {
       $("#lostButton").click(function () {
         displayCategoryData(allData.lost);
       });
+
+      $("#weatherButton").click(); //기본값 날씨 출력
     },
     error: function (error) {
       console.log("실패");
