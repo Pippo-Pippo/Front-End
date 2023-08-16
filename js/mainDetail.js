@@ -239,7 +239,7 @@ function createCommentBoxHTML(comment, commentNumber) {
 //POST - 댓글 좋아요
 function likeComment(commentId, isLike) {
   console.log(commentId, isLike);
-  if (isLike) {
+  if (!isLike) {
     $.ajax({
       url: `https://ppiyong.shop/api/comment/${commentId}/like`,
       type: "POST",
@@ -262,7 +262,7 @@ function likeComment(commentId, isLike) {
 //POST - 댓글 싫어요
 function hateComment(commentId, isHate) {
   console.log(commentId, isHate);
-  if (isHate) {
+  if (!isHate) {
     $.ajax({
       url: `https://ppiyong.shop/api/comment/${commentId}/hate`,
       type: "POST",
