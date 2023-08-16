@@ -24,6 +24,7 @@ $(document).ready(function () {
                     var dataToSend = {
                         "region": selectedButtons[0]
                     };
+                    console.log(dataToSend);
                     console.log(selectedButtons[0]);
                     //홈에서 로컬스토리지에 저장시킨 convertedAddress값을 선택 버튼 값으로 수정시키면 될듯 ..?
                     var value = localStorage.getItem('convertedAddress');

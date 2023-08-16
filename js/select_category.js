@@ -68,11 +68,11 @@ $(document).ready(function () {
             //ex) weather 값에 1 넣은것 
             
         });
-        console.log(dataToSend);
+        console.log(dataToSend.civil);
         // AJAX PUT 요청 보내기
         $.ajax({
             type: 'PUT',
-            url: `https://ppiyong.shop/api/notification/category?weather=${weather}&earthquake=${earthquake}&civil=${civil}&lost=${lost}`, // PUT 요청을 보낼 API의 엔드포인트 URL
+            url: `https://ppiyong.shop/api/notification/category?weather=${dataToSend.weather}&earthquake=${dataToSend.earthquake}&civil=${dataToSend.civil}&lost=${dataToSend.lost}`, // PUT 요청을 보낼 API의 엔드포인트 URL
             data: JSON.stringify(dataToSend),
             contentType: 'application/json',
             xhrFields: {
@@ -80,6 +80,7 @@ $(document).ready(function () {
               },
             success: function (response) {
                 console.log("PUT 요청 성공:", response);
+                alert("변경 완료");
                 location.href='/alarm/alarm.html';
 
             },

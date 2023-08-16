@@ -3,28 +3,38 @@ $(document).ready(function () {
     var selectedButtons=[];
 
     // 페이지 로드 시 JSON 데이터 가져오기
-    $.getJSON('/json/user_region.json', function (data) {
+    // $.getJSON('/json/user_region.json', function (data) {
 
-        selectedButtons.push(data.region);
-        $('#'+data.region).addClass('active');
+    //     selectedButtons.push(data.region);
+    //     $('#'+data.region).addClass('active');
         
-    });
-    // $.ajax({
-    //     type: 'GET',
-    //     url:`https://ppiyong.shop/api/notification/region`,
-    //     xhrFields: {
-    //         withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
-    //     },
-    //     contentType: "application/json",
-    //     success: function(data) {
-    //         selectedButtons.push(data.region);
-    //         $('#'+data.region).addClass('active');
-    //         console.log(data.region);
-    //     },
-    //     error: function(error) {
-    //         console.error("GET 요청 실패:", error);
-    //     }
     // });
+
+    $.ajax({
+        type: 'GET',
+        url:`https://ppiyong.shop/api/notification/region`,
+        xhrFields: {
+            withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+        },
+        contentType: "application/json",
+        success: function(data) {
+            var region_en=+data.region;
+            console.log("GET 요청 성공");
+            $.getJSON("../json/regionList_kor.json", function (data) {
+                const regionList = data;
+                const region_kor = convertRegion(regionList,region_en);
+                console.log(region_kor);
+                selectedButtons.push(region_kor);
+                console.log(selectedButtons);
+                $('#'+convertedRegion).addClass('active');
+              });
+            
+            // console.log(data.region);
+        },
+        error: function(error) {
+            console.error("GET 요청 실패:", error);
+        }
+    });
 
     // 버튼 클릭 이벤트
     $('.region_btn').click(function () {
@@ -64,8 +74,9 @@ $(document).ready(function () {
                 withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
               },
             success: function (response) {
+                alert("PUT 요청 성공");
                 console.log("PUT 요청 성공:", response);
-                location.href='/alarm/select_category.html';
+                // location.href='/alarm/select_category.html';
 
             },
             error: function (error) {
@@ -75,5 +86,13 @@ $(document).ready(function () {
     });
 });
 
-
+// 지역명 변환 함수
+function convertRegion(regionList, address) {
+    for (let region in regionList) {
+      if (address.includes(region)) {
+        return regionList[region];
+      }
+    }
+    return address; // 변환할 수 없는 경우 원래 주소 반환
+}
 

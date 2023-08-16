@@ -100,7 +100,7 @@ $(document).ready(function () {
     
     var bounds = map.getBounds();
     bounds.toString();
-
+        //살짝 바꾸기
         var  latitude_start = bounds.qa,
         latitude_end = bounds.pa,
 
@@ -363,67 +363,6 @@ function openModal(marker) {
 
 }
 
-//현재 좌표로 주소변환해서 추가하기
-// function reverseGeocode(lat, lng, callback) {
-//     const geocoder = new google.maps.Geocoder();
-//     const latLng = { lat: lat, lng: lng };
-
-//     geocoder.geocode({ location: latLng }, function (results, status) {
-//         if (status === "OK") {
-//             if (results[0]) {
-//                 const addressComponents = results[0].address_components;
-//                 console.log(addressComponents);
-
-//                 let city = null; // 시/도/광역시 정보를 저장할 변수
-//                 let district = null; // 구/군 정보를 저장할 변수
-//                 let sub_district = null; // 구/군 정보를 저장할 변수
-
-//                 for (let component of addressComponents) {
-//                     if (component.types.includes("administrative_area_level_1")) {
-//                         city = component.long_name;
-//                         console.log(city);
-//                     }
-//                     if (
-//                         component.types.includes("sublocality_level_1") ||
-//                         component.types.includes("locality")
-//                     ) {
-//                         district = component.long_name;
-//                         console.log(district);
-//                     }
-//                     if (component.types.includes("sublocality_level_2")) {
-//                         sub_district = component.long_name;
-//                         console.log(sub_district);
-//                     }
-//                 }
-
-//                 if (city && district && sub_district) {
-//                     callback(`${city} ${district} ${sub_district}`);
-//                 } else if (city && district) {
-//                     callback(`${city} ${district} `);
-//                 } else if (city) {
-//                     callback(city);
-//                 } else {
-//                     callback("시/도/광역시 또는 구/군 정보를 찾을 수 없습니다.");
-//                 }
-//             } else {
-//                 callback("결과가 없습니다.");
-//             }
-//         } else {
-//             callback("Geocoder failed due to: " + status);
-//         }
-//     });
-// }
-
-// //현재 접속 좌표 받아와서 주소로 변환하기
-// navigator.geolocation.getCurrentPosition(function (position) {
-//     const lat = position.coords.latitude;
-//     const lon = position.coords.longitude;
-
-//     reverseGeocode(lat, lon, function (address) {
-//         console.log(lat, lon, address);
-//         $("#current_city").text(address);
-//     });
-// });
 
 
 

@@ -19,7 +19,7 @@ $(document).ready(function () {
           },
         success: function (data) {
             console.log("알림 데이터 가져오기 성공");
-            console.log(data);
+            // console.log(data);
 
             $.each(data, function (index, item) {
                 var id = item.id,
