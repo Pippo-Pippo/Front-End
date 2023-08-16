@@ -34,7 +34,6 @@ function deleteTask(taskId) {
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
-    body: testData,
     success: function (data) {
       console.log("삭제 완료");
       localStorage.setItem("checklistData", JSON.stringify(data));
@@ -75,11 +74,11 @@ function deleteChecklist() {
 
 //POST 요청 ?? 이거 왜 안되냐
 function updateChecklist(checklist) {
-  delete checklist.check_list_id;
+  //delete checklist.check_list_id;
   console.log(checklist);
 
-  const testData = {
-    title: "A",
+  const newChecklist = {
+    title: "새 체크리스트",
     task: [
       {
         content: "테스트",
@@ -94,7 +93,7 @@ function updateChecklist(checklist) {
     xhrFields: {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
-    body: testData,
+    body: JSON.stringify(newChecklist),
     success: function (data) {
       localStorage.setItem("checklistData", JSON.stringify(data));
       localStorage.setItem("currentChecklistId", data[0].check_list_id);
