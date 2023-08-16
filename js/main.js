@@ -135,44 +135,15 @@ function getAllData(address) {
     `https://ppiyong.shop/api/home?region=${address}`
   );
 
-  $.getJSON("../json/main.json", function (data) {
-    allData = data;
-    console.log(allData);
-
-    // get으로 받아온 데이터 로드하기
-    // 버튼 이벤트 리스너
-    displayNews(allData.news);
-    console.log(allData.news);
-
-    $("#weatherButton").click(function () {
-      displayCategoryData(allData.weather);
-    });
-
-    $("#earthquakeButton").click(function () {
-      displayCategoryData(allData.earthquake);
-    });
-
-    $("#civilButton").click(function () {
-      displayCategoryData(allData.civil);
-    });
-
-    $("#lostButton").click(function () {
-      displayCategoryData(allData.lost);
-    });
-
-    $("#weatherButton").click();
-  });
-
-  // $.ajax({
-  //   url: `https://ppiyong.shop/api/home?region=${address}`,
-  //   method: "GET",
-  //   dataType: "json",
-  //   success: function (json) {
-  //     allData = json;
-  //     console.log(json);
+  //   $.getJSON("../json/main.json", function (data) {
+  //     allData = data;
+  //     console.log(allData);
 
   //     // get으로 받아온 데이터 로드하기
   //     // 버튼 이벤트 리스너
+  //     displayNews(allData.news);
+  //     console.log(allData.news);
+
   //     $("#weatherButton").click(function () {
   //       displayCategoryData(allData.weather);
   //     });
@@ -188,12 +159,41 @@ function getAllData(address) {
   //     $("#lostButton").click(function () {
   //       displayCategoryData(allData.lost);
   //     });
-  //   },
-  //   error: function (error) {
-  //     console.log("실패");
-  //     console.error(error);
-  //   },
-  // });
+
+  //     $("#weatherButton").click();
+  //   });
+
+  $.ajax({
+    url: `https://ppiyong.shop/api/home?region=${address}`,
+    method: "GET",
+    dataType: "json",
+    success: function (json) {
+      allData = json;
+      console.log(json);
+
+      // get으로 받아온 데이터 로드하기
+      // 버튼 이벤트 리스너
+      $("#weatherButton").click(function () {
+        displayCategoryData(allData.weather);
+      });
+
+      $("#earthquakeButton").click(function () {
+        displayCategoryData(allData.earthquake);
+      });
+
+      $("#civilButton").click(function () {
+        displayCategoryData(allData.civil);
+      });
+
+      $("#lostButton").click(function () {
+        displayCategoryData(allData.lost);
+      });
+    },
+    error: function (error) {
+      console.log("실패");
+      console.error(error);
+    },
+  });
 }
 
 function getButtonBackgroundColor(button) {
