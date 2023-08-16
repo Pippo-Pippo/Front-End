@@ -83,15 +83,12 @@ $(document).ready(function () {
 });
 
 //POST 요청 ?? 이거 왜 안되냐
-function updateChecklist(checklist) {
-  //delete checklist.check_list_id;
-  console.log(checklist);
-
+function updateChecklist() {
   const newChecklist = {
     title: "새 체크리스트",
     task: [
       {
-        content: "테스트",
+        content: "태스크를 입력해주세요!",
       },
     ],
   };
@@ -241,7 +238,7 @@ function saveNewTask(text) {
 
     const taskId = maxTaskId + 1;
     const addTask = {
-      taskId: taskId,
+      task_id: taskId,
       content: text,
       complete: false,
     };
@@ -356,24 +353,7 @@ $(document).on("click", "#plus-nav-item", function () {
     alert("체크리스트는 최대 4개까지 생성 가능해요!");
     return;
   }
-
-  const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
-  const newChecklistId = storedChecklistData.length + 1;
-  const newChecklist = {
-    check_list_id: newChecklistId,
-    title: "새 체크리스트",
-    task: [],
-  };
-
-  storedChecklistData.push(newChecklist);
-  localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
-
-  const navItem = renderNavItem("새", newChecklistId);
-  $("#plus-nav-item").before(navItem);
-  localStorage.setItem("currentChecklistId", navItem.attr("data-checklist-id"));
-  navItem.click();
-
-  updateChecklist(newChecklist);
+  updateChecklist();
 });
 
 $(document).on("click", "#add-btn", function () {

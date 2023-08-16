@@ -103,7 +103,7 @@ function getCommentData(postId) {
       $("comment_number").val(data.comment.length);
     })
     .error(function (data) {
-      console.log(error);
+      console.log("댓글 데이터 불러오기 실패");
     });
 }
 
