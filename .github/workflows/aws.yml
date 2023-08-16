@@ -25,5 +25,5 @@ jobs:
         timeout: 60s
         script: |
           cd /usr/share/nginx/html
-          sudo git pull origin deploy
+          sudo git pull origin main
           
