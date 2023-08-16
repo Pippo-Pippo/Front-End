@@ -49,6 +49,7 @@ function postComment(postId) {
   formData.append("file", file);
 
   console.log(file);
+  console.log(formData);
 
   $.ajax({
     url: `https://ppiyong.shop/api/post/${postId}`,
