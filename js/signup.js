@@ -1,15 +1,10 @@
-function isPasswordValid(password) {
-  // 비밀번호가 8자리 이상이면서 특수문자를 포함하는지 검사
-  const passwordPattern =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-  return passwordPattern.test(password);
-}
+
 function signup() {
   var email = $("#email").val();
   var password = $("#password").val();
   var nickname = $("#nickname").val();
   var region = $("#location").val();
-  var password = $("#password").val();
+
 
   $.ajax({
     type: "POST",
@@ -25,32 +20,19 @@ function signup() {
       region: region,
     }),
     success: function (data) {
-      alert(JSON.stringify(data));
+      console.log(data);
+      alert("회원가입 성공");
     },
     error: function (request, status, error) {
-      alert("잘못된 요청입니다.");
-      console.log("error");
+      if (request.status === 409) {
+        alert("이미 가입된 로그인입니다.");
+      }else {
+        alert("잘못된 요청입니다.");
+      }
     },
   });
+  
 }
-
-document.getElementById("nextButton").addEventListener("click", function () {
-  var password = $("#password").val();
-  var confirmPassword = $("#confirmPassword").val();
-
-  if (!isPasswordValid(password)) {
-    alert("비밀번호는 8자리 이상이며 특수문자를 포함해야 합니다.");
-    return;
-  }
-
-  if (password !== confirmPassword) {
-    alert("비밀번호가 일치하지 않습니다.");
-    return;
-  }
-
-  signup();
-  goNext();
-});
 
 //이메일 인증번호
 $("#authButton").on("click", function (e) {
@@ -100,7 +82,7 @@ $("#verifyButton").on("click", function (e) {
     contentType: "application/json; charset=utf-8",
     success: function (response) {
       $("#verificationConfirm").show();
-      alert("인증번호 요청 성공");
+     
     },
     error: function (req, status, err) {
       console.log(req);
