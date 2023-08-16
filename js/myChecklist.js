@@ -20,7 +20,7 @@ function loadChecklists() {
 
         initializeChecklist();
       } else {
-        localStorage.setItem("checklistData", JSON.stringify(data));
+        localStorage.setItem("checklistData", "[]");
         renderPlusNavItem();
       }
     },
