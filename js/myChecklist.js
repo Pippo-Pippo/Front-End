@@ -149,7 +149,7 @@ function initializeChecklist() {
   const $checklistContent = $(".checklist-content");
 
   $.each(checklistData, function (index, checklist) {
-    $(".my-checklist-container").empty();
+    $(".my-checklists-container").empty();
     const navItem = renderNavItem(checklist.title[0], checklist.check_list_id);
     $myChecklistsContainer.append(navItem);
   }); //navItem 렌더링하기
