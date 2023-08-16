@@ -35,7 +35,7 @@ $(document).ready(function () {
                 var region_kor=getKeyByValue(regionList,region_en);
                 console.log(region_kor);
                 selectedButtons.push(region_kor);
-                $('#'+convertedRegion).addClass('active');
+                $('#'+region_kor).addClass('active');
               });
             
             // console.log(data.region);
