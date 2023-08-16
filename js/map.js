@@ -19,32 +19,10 @@ function out() {
 $(document).ready(function () {
     var location = localStorage.getItem("current_region");
     $("#current_city").text(location);
+    
 });
 
-/********************마커 생성하기 + 커스텀 오버레이 생성******************/
-// //마커 기본 설정 
-// var imageRed = '/img/svg/red_marker.svg', // 마커이미지의 주소입니다
-//     imageYellow = '/img/svg/yellow_marker.svg',
-//     imageSize = new kakao.maps.Size(4,5), // 마커이미지의 크기입니다
-//     imageOption = { offset: new kakao.maps.Point(27, 69) },
-//     image = '/img/svg/location.svg';
-
-// var marker_yellow = new kakao.maps.MarkerImage(imageYellow, imageSize, imageOption);
-// var marker_red = new kakao.maps.MarkerImage(imageRed, imageSize, imageOption);
-
-/************지도 생성************/
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(37.56645, 126.97796), // 지도의 중심좌표 내 현위치로 바꾸기
-        level: 5// 지도의 확대 레벨
-    };
-
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-
-
-/************현재 위치 생성************/
-
+// /************현재 위치 생성************/
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
 
@@ -68,6 +46,14 @@ if (navigator.geolocation) {
 
     displayMarker(locPosition);
 }
+/************지도 생성************/
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.56645, 126.97796), // 지도의 중심좌표 내 현위치로 바꾸기
+        level: 5// 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 // 지도에 현위치 표시하는 함수
 function displayMarker(locPosition) {
     var image = '/img/svg/location.svg';
@@ -82,6 +68,7 @@ function displayMarker(locPosition) {
 
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);
+
 }
 
 // // 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
@@ -110,6 +97,7 @@ const CIVIL = [];
 // });
 
 $(document).ready(function () {
+    
     var bounds = map.getBounds();
     bounds.toString();
 
