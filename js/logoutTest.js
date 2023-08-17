@@ -14,6 +14,7 @@ $(document).ready(function () {
   //logout 
 
     $(document).on("click", "#logout-button", function() {
+        console.log("로그아웃 버튼 클릭");
       logout();
     });
 
@@ -50,10 +51,11 @@ function checkJSessionID() {
   }
 }
 
+
  return jsessionExists;
 }
 
 function logout() {
-document.cookie = "JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-window.location.href = "/main.html"; // 로그인 페이지로 리다이렉션
+document.cookie = "JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; //쿠키삭제
+window.location.href = "/main.html"; //로그인 페이지로 
 }
