@@ -273,64 +273,67 @@
           </div>
         </div>
       </div>
-      <div id="Button" class="flex items-center justify-center mt-3">
-        <!--날씨 버튼-->
-        <div
-          id="weatherButton"
-          class="bg-white border-gray-200 shadow-md rounded-md block justify-center w-20 h-20 items-center mr-1"
-        >
-          <div class="flex justify-center items-center">
-            <img
-              class="flex justify-center items-center w-10 h-11 mb-3"
-              src="../img/icon/날씨.png"
-            />
+
+      <div class="flex justify-center">
+        <div id="Button" class="flex items-center justify-center mt-3 w-80">
+          <!--날씨 버튼-->
+          <div
+            id="weatherButton"
+            class="bg-white border-gray-200 shadow-md rounded-md block justify-center w-20 h-20 items-center mr-1"
+          >
+            <div class="flex justify-center items-center">
+              <img
+                class="flex justify-center items-center w-10 h-11 mb-3"
+                src="../img/icon/날씨.png"
+              />
+            </div>
+            <p class="text-sm text-center">날씨</p>
           </div>
-          <p class="text-sm text-center">날씨</p>
+
+          <!-- 지진/해일 버튼 -->
+          <div
+            id="earthquakeButton"
+            class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1"
+          >
+            <div class="flex justify-center items-center">
+              <img
+                class="flex justify-center items-center w-10 h-11 mb-3"
+                src="../img/icon/earthquake_icon.png"
+              />
+            </div>
+            <p class="text-sm text-center">지진/해일</p>
+          </div>
+          <!--민방위 버튼-->
+          <div
+            id="civilButton"
+            class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1"
+          >
+            <div class="flex justify-center items-center">
+              <img
+                class="flex justify-center items-center w-10 h-11 mb-3"
+                src="../img/icon/민방위.png"
+              />
+            </div>
+            <p class="text-sm text-center">민방위</p>
+          </div>
+          <!-- 실종자 버튼 -->
+          <div
+            id="lostButton"
+            class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20"
+          >
+            <div class="flex justify-center items-center">
+              <img
+                class="flex justify-center items-center w-10 h-11 mb-3"
+                src="../img/icon/실종자.png"
+              />
+            </div>
+            <p class="text-sm text-center">실종자</p>
+          </div>
         </div>
 
-        <!-- 지진/해일 버튼 -->
-        <div
-          id="earthquakeButton"
-          class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1"
-        >
-          <div class="flex justify-center items-center">
-            <img
-              class="flex justify-center items-center w-10 h-11 mb-3"
-              src="../img/icon/earthquake_icon.png"
-            />
-          </div>
-          <p class="text-sm text-center">지진/해일</p>
-        </div>
-        <!--민방위 버튼-->
-        <div
-          id="civilButton"
-          class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1"
-        >
-          <div class="flex justify-center items-center">
-            <img
-              class="flex justify-center items-center w-10 h-11 mb-3"
-              src="../img/icon/민방위.png"
-            />
-          </div>
-          <p class="text-sm text-center">민방위</p>
-        </div>
-        <!-- 실종자 버튼 -->
-        <div
-          id="lostButton"
-          class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20"
-        >
-          <div class="flex justify-center items-center">
-            <img
-              class="flex justify-center items-center w-10 h-11 mb-3"
-              src="../img/icon/실종자.png"
-            />
-          </div>
-          <p class="text-sm text-center">실종자</p>
-        </div>
+        <!--메인 박스-->
+        <div id="main" class="text-start"></div>
       </div>
-
-      <!--메인 박스-->
-      <div id="main" class="ml-5 text-start"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/main.js"></script>
