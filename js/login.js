@@ -4,15 +4,15 @@ $(document).ready(function () {
 
     var email = $("#email").val();
     var password = $("#password").val();
-    var storedEmail = localStorage.getItem("storedEmail");
-    var storedPassword = localStorage.getItem("storedPassword");
+    // var storedEmail = localStorage.getItem("storedEmail");
+    // var storedPassword = localStorage.getItem("storedPassword");
 
-    if (storedEmail && storedPassword) {
-      $("#email").val(storedEmail);
-      $("#password").val(storedPassword);
-    }
+    // if (storedEmail && storedPassword) {
+    //   $("#email").val(storedEmail);
+    //   $("#password").val(storedPassword);
+    // }
 
-    var rememberMe = $("#rememberId").prop("checked");
+    // var rememberMe = $("#rememberId").prop("checked");
 
     const data = {
       email: email,
@@ -29,11 +29,11 @@ $(document).ready(function () {
       contentType: "application/json; charset=utf-8",
       success: function (response) {
         console.log(response);
-        if (rememberMe) {
-          // Store the email and password in localStorage
-          localStorage.setItem("storedEmail", email);
-          localStorage.setItem("storedPassword", password);
-        }
+        // if (rememberMe) {
+        //   // Store the email and password in localStorage
+        //   localStorage.setItem("storedEmail", email);
+        //   localStorage.setItem("storedPassword", password);
+        // }
         location.href = "/main.html";
       },
       error: function (req, status, err) {
@@ -43,7 +43,7 @@ $(document).ready(function () {
   });
 });
 
-async function getHeader(url) {
-  const headerData = await fetch(url);
-  return headerData.headers;
-}
+// async function getHeader(url) {
+//   const headerData = await fetch(url);
+//   return headerData.headers;
+// }
