@@ -5,6 +5,7 @@ $(document).ready(async function () {
   //현재 접속 좌표 받아와서 주소로 변환하기
 
   const current_region = localStorage.getItem("current_region");
+  const select_region = localStorage.getItem("select_region");
   //onst converted_address = localStorage.getItem("converted_address");
 
   navigator.geolocation.getCurrentPosition(async function (position) {
@@ -17,7 +18,9 @@ $(document).ready(async function () {
       // 아래는 이어지는 처리
       $.getJSON("../json/regionList.json", function (data) {
         const regionList = data;
-        const convertedAddress = convertRegion(regionList, current_region);
+        const regionToUse =
+          select_region !== null ? select_region : current_region; // 수정된 부분
+        const convertedAddress = convertRegion(regionList, regionToUse);
         localStorage.setItem("converted_address", convertedAddress);
 
         getAllData(convertedAddress);
