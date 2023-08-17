@@ -96,6 +96,9 @@ function getCommentData(postId) {
     type: "GET",
     url: `https://ppiyong.shop/api/post/${postId}`,
     dataType: "json",
+    xhrFields: {
+      withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+    },
   })
     .success(function (data) {
       console.log(data);
@@ -287,125 +290,3 @@ function hateComment(commentId, isHate) {
     alert("이미 싫어요 표시한 댓글이에요.");
   }
 }
-
-// 목데이터 연습본
-// function loadComment() {
-//   return fetch("json/mainDetail.json")
-//     .then((response) => response.json())
-//     .then((json) => json.comment)
-//     .catch((error) => {
-//       console.log("실패");
-//       console.error(error);
-//     });
-// }
-
-// loadComment().then((comments) => {
-//   displayComment(comments);
-// });
-
-// function displayComment(comments) {
-//   console.log(comments);
-//   const container = document.getElementById("comment");
-//   container.innerHTML = comments.map((item) => createHTMLString(item)).join("");
-// }
-
-// function createHTMLString(comment) {
-//   return `
-//   <div class="comment">
-//     <div class="flex items-center justify-center text-start">
-//       <div class="h-28 w-80 mt-2 p-3 text-sm text-start">
-//         <div class="flex items-center justify-start">
-//           <div class="font-bold">${comment.location}</div>
-//           <div class="text-grey-600 font-medium text-sm ml-5">${comment.name}</div>
-//         </div>
-//         <div class="flex items-start justify-center text-black text-base mt-2">
-//           ${comment.content}
-//         </div>
-//         <div class="flex items-center justify-start">
-//           <div class="font-medium text-xs mt-1 mr-12">${comment.createdAt}</div>
-//           <!-- 도움돼요, 싫어요 버튼 -->
-//           <div class="font-light text-xs mt-1 mr-2">도움돼요 ${comment.like}</div>
-//           <div class="font-light text-xs mt-1">싫어요 ${comment.hate}</div>
-//         </div>
-//         ${
-//           comment.imageUrl
-//             ? `<div id="inputPhoto">
-//                <img src="${comment.imageUrl}" alt="Comment Image" class="w-32 h-auto mt-3">
-//              </div>`
-//             : ""
-//         }
-//       </div>
-//     </div>
-//     <div class="w-80 h-px bg-gray-400 my-2 mt-5 ml-4"></div>
-//   </div>`;
-// }
-//Get 댓글 요청
-// $(document).ready(function() {
-//   loadMainPost();
-
-//   function loadMainPost() {
-//     var postId = "postId";
-//     var url = `https://ppiyong.shop/api/post/${postId}`;
-
-//     $.ajax({
-//       type: "GET",
-//       url: url,
-//       dataType: "json",
-//       success: function(responseData) {
-//         var post = responseData;
-
-//         $("#postTitle").text(post.from);
-//         $("#postCategory").text(post.category);
-//         $("#postContent").text(post.content);
-//         $("#postTime").text(post.time);
-
-//         var comments = post.comment;
-//         var dataContainer = $("#dataContainer");
-
-//         dataContainer.empty();
-
-//         comments.forEach(function(comment) {
-//           var commentHtml = `
-//           <div class="ml-5 text-start">
-//             <div class="bg-white rounded-md shadow-md h-48 w-80 mt-5 p-4 text-lg font-bold text-start">
-//               <div class="flex items-center justify-between">
-//                 <div>${comment.name}</div>
-//                 <div class="text-grey-600 font-medium text-sm ml-4">${comment.createdAt}</div>
-//               </div>
-//               <div class="flex items-start justify-center text-black font-medium text-base">
-//                 ${comment.content}
-//               </div>
-//               <div class="flex items-start justify-end">
-//                 <div class="font-light text-xs mt-1 mr-2">${comment.like} Likes</div>
-//                 <div class="font-light text-xs mt-1">${comment.hate} Hates</div>
-//               </div>
-//               ${
-//                 comment.imageUrl
-//                   ? `<div id="inputPhoto">
-//                      <img src="${comment.imageUrl}" alt="Comment Image" class="w-32 h-auto mt-3">
-//                    </div>`
-//                   : ""
-//               }
-//             </div>
-//           </div>
-//         `;
-//           console.log(data);
-//           dataContainer.append(commentHtml);
-//           alert("데이터 불러오기 성공");
-//         });
-//       },
-//       error: function(xhr, status, error) {
-//         if (xhr.status === 204) {
-//           console.error("Post not found:", error);
-//           alert("포스트 요청 실패");
-//         } else if (xhr.status === 403) {
-//           console.error("Forbidden - No permission:", error);
-//           alert("권한 없는 사용자");
-//         } else {
-//           console.error("Error fetching post details:", error);
-//           alert("서버 요청에 실패.");
-//         }
-//       }
-//     });
-//   }
-// });
