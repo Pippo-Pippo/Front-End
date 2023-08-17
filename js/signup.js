@@ -101,7 +101,7 @@ $("#verifyButton").on("click", function (e) {
       console.log(response); 
       
         $("#verificationConfirm").show();
-        alert("인증번호가 일치하지 않습니다. 다시 입력해주세요.");
+        alert("인증되었습니다.");
 
     },
     error: function (req, status, err) {
