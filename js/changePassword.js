@@ -11,24 +11,20 @@ $(document).ready(function() {
     }
     
 
-      $.ajax({
-          type: "PUT",
-          url: "https://ppiyong.shop/api/user/pw",  //서버 오류가 계속 발생해요 ㅠㅠ
-          data: JSON.stringify({
-              'password': password,
-          }),
-          contentType: "application/json",
-          dataType: "json", 
-          success: function(response) {
-            
-                  alert('비밀번호가 성공적으로 변경되었습니다.');
-                  window.location.href = "/main.html";
-             
-          },
-          error: function(xhr, status, error) {
-           
-              alert('서버 요청 실패: 서버에 문제가 발생하였습니다.'); //이 코드
-          }
-      });
+    $.ajax({
+        type: 'PUT',
+        url: "https://ppiyong.shop/api/user/pw",
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'password': password,
+        }),
+        success: function(data){
+            alert('비밀번호가 성공적으로 변경되었습니다.');
+            window.location.href = "/main.html";
+
+        }, error: function(){    
+            alert('서버 요청 실패: 서버에 문제가 발생하였습니다.'); 
+        }
+    })
   });
 });
