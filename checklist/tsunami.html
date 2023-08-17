@@ -15,70 +15,225 @@
   <body>
     <div class="relative content bg-gray-50 border-white">
       <div class="bg-white border-gray-200 shadow">
-        <nav>
+        <nav class="bg-white border-gray-200">
           <div
-            class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-15"
+            class="max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto p-4 h-15"
           >
-            <a href="https://page.ppiyong.shop/main.html" flex items-center">
-              <img src="../img/logo.png" class="w-24 h-9 mr-3" />
-            </a>
-            <div class="flex justify-end items-center">
-              <div class="w-20 h-8 text-center p-1">
-                <button>로그인</button>
+            <!-- 로고 이미지 삽입 -->
+            <div class="flex items-center justify-center">
+              <a href="main.html" class="flex items-center">
+                <img src="../img/logo.png" class="w-24 h-9 mr-10" />
+              </a>
+            </div>
+            <div class="main-nav-items">
+              <div
+                id="login-nav"
+                class="flex items-center justify-end text-end"
+              >
+                <a href="alarm/alarm.html"
+                  ><img src="../img/icon/알림.png" class="w-6 h-6 mt-3 mr-3"
+                /></a>
+                <div class="username-text font-medium text-lg mt-1 mr-6">
+                  강윤진님
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    data-drawer-target="drawer-navigation"
+                    data-drawer-show="drawer-navigation"
+                    aria-controls="drawer-navigation"
+                  >
+                    <img
+                      src="../img/icon/햄버거바.png"
+                      alt="menu"
+                      class="w-6 h-5 mt-3"
+                    />
+                  </button>
+                </div>
               </div>
-              <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
-                <button>회원가입</button>
+
+              <div id="non-login-nav" class="flex justify-end">
+                <div class="w-20 h-8 text-center p-1 ml-14">
+                  <a href="account/login.html">
+                    <button>로그인</button>
+                  </a>
+                </div>
+                <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
+                  <a href="account/signup.html">
+                    <button>회원가입</button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </nav>
-
         <nav>
           <div
+            id="searchNav-item"
             class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-3 pb-0"
           >
-            <div>
-              <a href="https://page.ppiyong.shop/main.html">홈</a>
+            <button id="home-href">
+              <a href="main.html">홈</a>
               <div class="bg-mySky p-1 h-3"></div>
-            </div>
-            <div>
-              <a href="https://page.ppiyong.shop/map.html">주변 대피소</a>
+            </button>
+            <button id="shelter-href">
+              <a href="map.html">주변 대피소</a>
               <div class="bg-mySky p-1 h-3"></div>
-            </div>
-            <div>
-              <a href="https://page.ppiyong.shop/checklist.html">체크리스트</a>
-              <div class="bg-mySky p-1 h-3"></div>
-            </div>
+            </button>
+            <button id="checklist-href" class="font-bold">
+              <a href="checklist.html">체크리스트</a>
+              <div
+                class="under-nav bg-mySky p-1 h-3 border-b-4 border-yellow-300 border-7"
+              ></div>
+            </button>
           </div>
+
+          <div class="searchMain_nav_underline"></div>
         </nav>
+      </div>
+      <!-- drawer component -->
+      <div
+        id="drawer-navigation"
+        class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"
+        tabindex="-1"
+        aria-labelledby="drawer-navigation-label"
+      >
+        <button
+          type="button"
+          data-drawer-hide="drawer-navigation"
+          aria-controls="drawer-navigation"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          <span class="sr-only">Close menu</span>
+        </button>
+        <div class="py-4 overflow-y-auto">
+          <ul class="space-y-2">
+            <li>
+              <a
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 22 21"
+                ></svg>
+                <span class="username-text mt-10 font-bold text-2xl"
+                  >강윤진</span
+                >
+                <span class="mt-10 font-medium text-2xl">님</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="myChecklist.html"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 18 18"
+                ></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">MY 체크리스트</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/account/select_region.html"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                ></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap"
+                  >다른 지역 확인하기</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                href="account/editMember.html"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 18"
+                ></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap"
+                  >회원정보 수정하기</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 18 20"
+                ></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">로그아웃</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="cehcklist-content p-5">
         <div class="content-title flex justify-between">
           <div>
             <p class="text-2xl">
-              <span class="font-bold">태풍/강풍</span> <br />
+              <span class="font-bold">지진/해일</span> <br />
               체크리스트
             </p>
           </div>
         </div>
 
         <div class="main-article pt-4">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+1. 탁자 아래와 같이 집 안에서 대피할 수 있는 안전한 대피 공간을 미리 확보해두고 유리창이나 넘어지기 쉬운 가구 주변 등에서 최대한 멀리 떨어진다.<br>
+2. 깨진 유리 등에 다치지 않도록 두꺼운 실내화를 준비해둔다.<br>
+3. 가구나 가전제품이 흔들릴 때 넘어지지 않도록 고정하고 창문 등의 유리 부분은 필름을 붙여 유리가 파손되지 않도록 한다.<br>
+4. 가스 및 전기를 미리 점검하고 건물의 균열을 발견하면 보수하고 보강한다.<br>
+5. 비상시 가족과 만날 곳과 연락할 방법을 정해두고 지진에 대비해 비상용품을 준비한다.<br>
+6. 자동차를 타고 있을 때 비상등을 켜고 서서히 속도를 줄여 도로 오른쪽에 차를 세우고 긴급차량을 위해 도로의 중앙부분을 비워둔다.<br>
+7. 전철을 타고 있을 때 전철 안의 손잡이나 기둥, 선반을 꼭 잡고 넘어지지 않도록 하고 전철이 멈췄다고 해서 서둘러 출구로 뛰어가는 것은 위험하므로 안내에 따라 행동한다.<br>
+8. 고층 건물에 있을 때 높은 층의 건물일수록 흔들림이 크게 오래 지속될 수 있으므로 실내에서 떨어지는 물건에 더욱 주의하여야 한다.<br>
+9. 해일 발생 시 1층보다는 2층, 2층보다는 3층, 때에 따라서는 지붕이 안전하니 높은 곳으로 이동하고 목조주택은 떠내려갈 가능성이 있으니 벽돌이나 철근콘크리트 건물로 이동한다.<br>
+10. 해안에서 멀리 떨어진 곳은 직접적인 파도의 영향이 없으므로 바닥에서 높이가 2~3m만 높아도 비교적 안전한다.<br>
+
         </div>
 
         <div class="youtube-div py-3">
           <iframe
             class="w-80 h-40 border-none"
-            src="https://www.youtube.com/embed/H4iIv-WY7Og"
+            src="https://www.youtube.com/embed/S0vA73HKYEY"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
