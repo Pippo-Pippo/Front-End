@@ -14,9 +14,10 @@ function goNext() {
   nicknameInput.style.display = "block";
   locationDropdown.style.display = "block";
 }
-
 document.getElementById("member").addEventListener("click", function () {
   signup();
+})
+
 
 function signup() {
   var email = $("#email").val();
