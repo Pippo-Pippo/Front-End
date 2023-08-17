@@ -15,7 +15,7 @@ $(document).ready(function() {
           type: "PUT",
           url: "https://piyong.shop/api/user/pw",  //서버 오류가 계속 발생해요 ㅠㅠ
           data: JSON.stringify({
-              'password': password,
+              'password': newPassword,
           }),
           contentType: "application/json",
           dataType: "json", 
