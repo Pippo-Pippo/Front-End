@@ -1,5 +1,6 @@
 var isLoggedin=null;
 $(document).ready(function () {
+
     isLoggedin = checkJSessionID();
     console.log(isLoggedin); // true 또는 false
 
