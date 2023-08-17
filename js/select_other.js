@@ -30,11 +30,14 @@ $(document).ready(function () {
                 var dataToSend = {
                     "region": selectedButton
                 };
-                console.log(dataToSend);mai
+                var region_kr=$('#'+selectedButton).text();
+                console.log(dataToSend);
                 console.log(selectedButton);
+                console.log(region_kr);
+
 
                 // 선택된 버튼 값으로 로컬 스토리지 값을 수정합니다.
-                localStorage.setItem('select_region', selectedButton);
+                localStorage.setItem('select_region', region_kr);
             }
         }
     });
