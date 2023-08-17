@@ -5,12 +5,14 @@ $(document).ready(function () {
     var email = $("#email").val();
     console.log(email);
 
+    var password = "임시비밀번호";
+
     $.ajax({
       type: "POST",
       url: `https://ppiyong.shop/api/user/findPw?email=${email}`,
       contentType: "application/json",
       data: JSON.stringify({
-        'password': password,
+        'password': form.pw.value,
     }),
       success: function (response) {
         
