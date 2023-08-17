@@ -2,8 +2,6 @@ function goNext() {
   const signupWarp = document.getElementById("signup-wrap");
   const signupTitle = document.getElementById("signup-title");
   const nextButton = document.getElementById("nextButton");
-
-
   // "회원가입" 내용이 사라진 후에 실행
   signupWarp.style.display = "none"; //없어지기
   signupTitle.innerHTML = "회원정보 입력"; //innerText 수정
@@ -12,18 +10,11 @@ function goNext() {
   nicknameInput.style.display = "block";
   locationDropdown.style.display = "block";
 }
-
-  // "다음" 버튼을 눌렀을 때의 동작 처리
-  goNext();
-  isComplete = true; // 버튼 상태를 "회원가입 완료"로 변경
-
 function signup() {
   var email = $("#email").val();
   var password = $("#password").val();
   var nickname = $("#nickname").val();
   var region = $("#region").val();
-
-
   $.ajax({
     type: "POST",
     url: "https://ppiyong.shop/api/user/register",
@@ -45,7 +36,6 @@ function signup() {
     },
   });
 }
-
 document.getElementById("nextButton").addEventListener("click", function () {
   var password = $("#password").val();
   var confirmPassword = $("#confirmPassword").val();
@@ -82,7 +72,6 @@ $("#authButton").on("click", function (e) {
     },
   });
 });
-
 $("#verifyButton").on("click", function (e) {
   var inputCode = $("#verificationCode").val();
   var email = $("input[name='email']").val();
