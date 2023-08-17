@@ -1,6 +1,5 @@
 $(document).ready(function () {
   var isLoggedin;
-  console.log(isLoggedin); // true 또는 false
 
   function getUserInform() {
     $.ajax({
@@ -10,7 +9,7 @@ $(document).ready(function () {
         withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
       },
       success: function (data) {
-        isLoggedin = false;
+        isLoggedin = true;
         $(".username-text").text(data.nickName);
       },
       error: function (jqXHR, textStatus, errorThrown) {
