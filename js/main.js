@@ -14,7 +14,10 @@ $(document).ready(async function () {
 
     try {
       const address = await reverseGeocode(lat, lon);
-      $("#current_city").text(address);
+      select_region !== null
+        ? $("#current_city").text(select_region)
+        : $("#current_city").text(address);
+
       // 아래는 이어지는 처리
       $.getJSON("../json/regionList.json", function (data) {
         const regionList = data;
