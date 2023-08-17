@@ -11,10 +11,16 @@ $(document).ready(function () {
       success: function (data) {
         isLoggedin = true;
         $(".username-text").text(data.nickName);
+
+        $("#login-nav").show();
+        $("#non-login-nav").hide();
       },
       error: function (jqXHR, textStatus, errorThrown) {
         if (jqXHR.status === 403) {
           isLoggedin = false;
+
+          $("#non-login-nav").show();
+          $("#login-nav").hide();
         }
 
         console.error(textStatus, errorThrown);
@@ -23,13 +29,8 @@ $(document).ready(function () {
     });
   }
 
-  if (isLoggedin) {
-    $("#login-nav").show();
-    $("#non-login-nav").hide();
-  } else {
-    $("#non-login-nav").show();
-    $("#login-nav").hide();
-  }
+  $("#non-login-nav").show();
+  $("#login-nav").hide();
 });
 
 function checkJSessionID() {
