@@ -156,7 +156,7 @@ function initializeChecklist() {
   $checklistContent.empty();
 
   $.each(checklist.task, function (taskIndex, task) {
-    console.log(checklist.task);
+    console.log(task.task_id);
     renderTask(task.content, task.task_id, task.complete);
   });
 
@@ -320,9 +320,9 @@ $(document).on("click", ".delete-btn", function () {
   console.log(targetChecklist);
 
   console.log(targetChecklist.task);
-  console.log(targetChecklist[0].task_id);
-  const taskId = targetChecklist[0].task_id;
-  console.log(taskId, "번 태스트 삭제 요청");
+  // console.log(targetChecklist[0].task_id);
+  // const taskId = targetChecklist[0].task_id;
+  // console.log(taskId, "번 태스트 삭제 요청");
 
   // if (targetChecklist) {
   //   const targetTaskIndex = targetChecklist.task.findIndex(
@@ -334,8 +334,8 @@ $(document).on("click", ".delete-btn", function () {
   // // 변경된 데이터를 다시 localStorage에 저장
   // localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
 
-  deleteTask(taskId); // ajax delete 요청
-  $(this).closest("ul").remove();
+  // deleteTask(taskId); // ajax delete 요청
+  // $(this).closest("ul").remove();
 });
 
 // 플러스 네비버튼 추가
