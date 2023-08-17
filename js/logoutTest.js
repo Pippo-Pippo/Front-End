@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     $(document).on("click", "#logout-button", function() {
         console.log("로그아웃 버튼 클릭");
-      logout();
+        logout();
     });
 
 
