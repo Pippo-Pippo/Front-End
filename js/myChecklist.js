@@ -33,6 +33,7 @@ function loadChecklists() {
 
 //DELETE 요청 - 태스크 삭제
 function deleteTask(taskId) {
+  console.log(taskId, "번 태스크 삭제");
   $.ajax({
     url: `https://ppiyong.shop/api/checklist/task/${taskId}`,
     type: "DELETE",
@@ -148,8 +149,8 @@ function initializeChecklist() {
   const $checklistTitleText = $("#checklist-title-text");
   const $checklistContent = $(".checklist-content");
 
+  $(".my-checklists-container").empty();
   $.each(checklistData, function (index, checklist) {
-    $(".my-checklists-container").empty();
     const navItem = renderNavItem(checklist.title[0], checklist.check_list_id);
     $myChecklistsContainer.append(navItem);
   }); //navItem 렌더링하기
@@ -313,7 +314,8 @@ function renderDeleteButton(taskId) {
 
 //delete 버튼 클릭하면 삭제됨
 $(document).on("click", ".delete-btn", function () {
-  const taskId = $(this).attr("data-task-id");
+  //const taskId = $(this).attr("data-task-id");
+
   const currentChecklistId = localStorage.getItem("currentChecklistId");
   const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
 
@@ -321,15 +323,19 @@ $(document).on("click", ".delete-btn", function () {
     (item) => item.check_list_id == currentChecklistId
   );
 
-  if (targetChecklist) {
-    const targetTaskIndex = targetChecklist.task.findIndex(
-      (task) => task.taskId == taskId
-    );
-    targetChecklist.task.splice(targetTaskIndex, 1);
-  }
+  console.log(targetChecklist[0].task_id);
+  const taskId = targetChecklist[0].task_id;
+  console.log(taskId, "번 태스트 삭제 요청");
 
-  // 변경된 데이터를 다시 localStorage에 저장
-  localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
+  // if (targetChecklist) {
+  //   const targetTaskIndex = targetChecklist.task.findIndex(
+  //     (task) => task.taskId == taskId
+  //   );
+  //   targetChecklist.task.splice(targetTaskIndex, 1);
+  // }
+
+  // // 변경된 데이터를 다시 localStorage에 저장
+  // localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
 
   deleteTask(taskId); // ajax delete 요청
   $(this).closest("ul").remove();
