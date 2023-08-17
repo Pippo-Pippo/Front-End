@@ -22,10 +22,7 @@ $(document).ready(function () {
     });
   }
 
-  $('#logout_btn').click(function () {
-    console.log("로그아웃 버튼 클릭");
-    logout();
-  });
+ 
 
   if (isLoggedin) {
     getUserInform();
@@ -37,7 +34,10 @@ $(document).ready(function () {
   }
 
 });
-
+$('#logout_btn').click(function () {
+  console.log("로그아웃 버튼 클릭");
+  logout();
+});
 function logout() {
     
         $.ajax({
