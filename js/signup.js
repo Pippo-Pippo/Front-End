@@ -104,8 +104,5 @@ function goNext() {
   // 닉네임, 지역 정보 보여주기
   nicknameInput.style.display = "block";
   locationDropdown.style.display = "block";
-  // 회원정보 입력 헤드, 버튼 이름 바꾸기
-  heading.textContent = "회원정보 입력";
-  nextButton.textContent = "회원가입 완료";
 }
 
