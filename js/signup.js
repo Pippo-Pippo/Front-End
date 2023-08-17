@@ -1,15 +1,23 @@
+
 function goNext() {
+  
   const signupWarp = document.getElementById("signup-wrap");
   const signupTitle = document.getElementById("signup-title");
   const nextButton = document.getElementById("nextButton");
   // "회원가입" 내용이 사라진 후에 실행
   signupWarp.style.display = "none"; //없어지기
   signupTitle.innerHTML = "회원정보 입력"; //innerText 수정
-  nextButton.innerHTML = "회원가입 완료!"; //innerText 수정
+  
+  document.getElementById("nextButton").style.display = "none";
+  document.getElementById("member").style.display = "block";
   // 닉네임, 지역 정보 보여주기
   nicknameInput.style.display = "block";
   locationDropdown.style.display = "block";
 }
+document.getElementById("member").addEventListener("click", function () {
+  signup();
+})
+
 function signup() {
   var email = $("#email").val();
   var password = $("#password").val();
