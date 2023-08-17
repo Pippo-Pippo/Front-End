@@ -98,7 +98,7 @@ $(document).ready(function () {
         console.log(data);
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        console.log("수정실패");
+        console.log("수정실패", errorThrown);
       },
     });
   });
