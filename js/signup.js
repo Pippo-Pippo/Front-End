@@ -13,8 +13,6 @@ function goNext() {
   locationDropdown.style.display = "block";
 }
 
-  // "다음" 버튼을 눌렀을 때의 동작 처리
-  goNext();
 
 
 function signup() {
