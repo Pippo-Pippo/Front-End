@@ -101,11 +101,11 @@ function getCommentData(postId) {
     },
   })
     .success(function (data) {
-      console.log(data);
+      console.log(data.comment.length);
       displayComment(data);
-      $("comment_number").val(data.comment.length);
+      $("#comment_number").val(data.comment.length);
     })
-    .error(function (data) {
+    .error(function (jqXHR, textStatus, errorThrown) {
       console.log("댓글 데이터 불러오기 실패");
     });
 }
@@ -253,8 +253,10 @@ function likeComment(commentId, isLike) {
         console.log(response);
         alert("해당 댓글에 도움돼요라고 표시했어요.");
 
-        let currentLikes = Number($("#comment-like").text());
-        $("#comment-like").text(currentLikes + 1);
+        getCommentData(postId);
+
+        // let currentLikes = Number($("#comment-like").text());
+        // $("#comment-like").text(currentLikes + 1);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error(textStatus, errorThrown);
@@ -279,8 +281,10 @@ function hateComment(commentId, isHate) {
         console.log(response);
         alert("해당 댓글에 싫어요라고 표시했어요.");
 
-        let currentHates = Number($("#comment-hate").text());
-        $("#comment-hate").text(currentHates + 1);
+        getCommentData(postId);
+
+        // let currentHates = Number($("#comment-hate").text());
+        // $("#comment-hate").text(currentHates + 1);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error(textStatus, errorThrown);
