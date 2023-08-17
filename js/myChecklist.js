@@ -68,10 +68,7 @@ function deleteChecklist() {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
     success: function (data) {
-      localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", data[0].check_list_id);
-
-      initializeChecklist();
+      loadChecklists();
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.error(textStatus, errorThrown);
@@ -84,7 +81,7 @@ $(document).ready(function () {
   $("#delete-checklist").click(deleteChecklist);
 });
 
-//POST 요청 ?? 이거 왜 안되냐
+//POST 요청
 function updateChecklist() {
   const newChecklist = {
     title: "새 체크리스트",
@@ -104,10 +101,7 @@ function updateChecklist() {
     },
     data: JSON.stringify(newChecklist),
     success: function (data) {
-      localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", data[0].check_list_id);
-
-      initializeChecklist();
+      loadChecklists();
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.error(textStatus, errorThrown);
@@ -130,10 +124,7 @@ function changeChecklistTitle(checklist) {
     },
     success: function (data) {
       console.log("수정성공", data);
-      localStorage.setItem("checklistData", JSON.stringify(data));
-      localStorage.setItem("currentChecklistId", data[0].check_list_id);
-
-      initializeChecklist();
+      loadChecklists();
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.log("수정실패");
@@ -165,7 +156,7 @@ function initializeChecklist() {
   $checklistContent.empty();
 
   $.each(checklist.task, function (taskIndex, task) {
-    renderTask(task.content, taskIndex, task.complete);
+    renderTask(task.content, task.task_id, task.complete);
   });
 
   $(".nav-item:first").click();
@@ -231,6 +222,8 @@ function saveNewTask(text) {
   );
 
   if (checklist) {
+    console.log(checklist);
+
     let maxTaskId = 0;
     for (let task of checklist.task) {
       if (task.taskId > maxTaskId) {
@@ -246,9 +239,9 @@ function saveNewTask(text) {
     };
 
     // 해당 체크리스트의 task 배열에 새 태스크 추가
-    checklist.task.push(addTask);
+    checklist.task.push(addTask.task_id);
 
-    const ulElement = renderTask(text, taskId, addTask.complete);
+    const ulElement = renderTask(text, addTask.task_id, addTask.complete);
     ulElement.attr("data-task-id", taskId); // ul 엘리먼트의 data-task-id 설정
 
     // 업데이트된 데이터를 다시 로컬 스토리지에 저장
