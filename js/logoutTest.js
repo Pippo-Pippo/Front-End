@@ -3,20 +3,6 @@ $(document).ready(function () {
     isLoggedin = checkJSessionID();
     console.log(isLoggedin); // true 또는 false
 
-    if (isLoggedin) {
-    getUserInform();
-    $("#login-nav").show();
-    $("#non-login-nav").hide();
-    } else {
-    $("#non-login-nav").show();
-    $("#login-nav").hide();
-  }
-
-  $('#logout_btn').click(function () {
-    console.log("로그아웃 버튼 클릭");
-    logout();
-});
-
     function getUserInform() {
       $.ajax({
       url: "https://ppiyong.shop/api/user",
@@ -35,6 +21,21 @@ $(document).ready(function () {
       },
     });
   }
+
+  $('#logout_btn').click(function () {
+    console.log("로그아웃 버튼 클릭");
+    logout();
+  });
+
+  if (isLoggedin) {
+    getUserInform();
+    $("#login-nav").show();
+    $("#non-login-nav").hide();
+    } else {
+    $("#non-login-nav").show();
+    $("#login-nav").hide();
+  }
+
 });
 
 function logout() {
