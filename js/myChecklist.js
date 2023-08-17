@@ -242,7 +242,7 @@ function saveNewTask(text) {
     };
 
     // 해당 체크리스트의 task 배열에 새 태스크 추가
-    checklist.task.push(addTask.task_id);
+    checklist.task.push(addTask);
 
     const ulElement = renderTask(text, addTask.task_id, addTask.complete);
     ulElement.attr("data-task-id", taskId); // ul 엘리먼트의 data-task-id 설정
