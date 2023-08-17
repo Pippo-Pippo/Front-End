@@ -70,9 +70,16 @@ function postComment(postId) {
     success: function (response) {
       console.log(response);
       alert("댓글이 입력되었습니다.");
+
+      getCommentData(postId);
+      $("#imageContainer").empty();
+      $("#message").val = "";
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.error(textStatus, errorThrown);
+      if (jqXHR.status === 403) {
+        window.location.href = "https://page.ppiyong.shop/account/login";
+      }
     },
   });
 }
@@ -260,6 +267,9 @@ function likeComment(commentId, isLike) {
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error(textStatus, errorThrown);
+        if (jqXHR.status === 403) {
+          window.location.href = "https://page.ppiyong.shop/account/login";
+        }
       },
     });
   } else {
@@ -288,6 +298,9 @@ function hateComment(commentId, isHate) {
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error(textStatus, errorThrown);
+        if (jqXHR.status === 403) {
+          window.location.href = "https://page.ppiyong.shop/account/login";
+        }
       },
     });
   } else {
