@@ -12,6 +12,11 @@ function goNext() {
   nicknameInput.style.display = "block";
   locationDropdown.style.display = "block";
 }
+
+  // "다음" 버튼을 눌렀을 때의 동작 처리
+  goNext();
+  isComplete = true; // 버튼 상태를 "회원가입 완료"로 변경
+
 function signup() {
   var email = $("#email").val();
   var password = $("#password").val();
