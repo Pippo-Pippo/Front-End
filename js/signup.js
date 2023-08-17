@@ -99,12 +99,10 @@ $("#verifyButton").on("click", function (e) {
     contentType: "application/json; charset=utf-8",
     success: function (response) {
       console.log(response); 
-      if (response.success) {
+      
         $("#verificationConfirm").show();
-      } else {
-        $("#verificationConfirm").hide();
         alert("인증번호가 일치하지 않습니다. 다시 입력해주세요.");
-      }
+
     },
     error: function (req, status, err) {
       console.log(req);
