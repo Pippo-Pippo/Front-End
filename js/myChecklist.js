@@ -314,8 +314,8 @@ function renderDeleteButton(taskId) {
 
 //delete 버튼 클릭하면 삭제됨
 $(document).on("click", ".delete-btn", function () {
-  const taskId = $(this).attr("data-task-id");
-  console.log(taskId, "번 태스트 삭제 요청");
+  //const taskId = $(this).attr("data-task-id");
+
   const currentChecklistId = localStorage.getItem("currentChecklistId");
   const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
 
@@ -323,15 +323,19 @@ $(document).on("click", ".delete-btn", function () {
     (item) => item.check_list_id == currentChecklistId
   );
 
-  if (targetChecklist) {
-    const targetTaskIndex = targetChecklist.task.findIndex(
-      (task) => task.taskId == taskId
-    );
-    targetChecklist.task.splice(targetTaskIndex, 1);
-  }
+  console.log(targetChecklist[0].task_id);
+  const taskId = targetChecklist[0].task_id;
+  console.log(taskId, "번 태스트 삭제 요청");
 
-  // 변경된 데이터를 다시 localStorage에 저장
-  localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
+  // if (targetChecklist) {
+  //   const targetTaskIndex = targetChecklist.task.findIndex(
+  //     (task) => task.taskId == taskId
+  //   );
+  //   targetChecklist.task.splice(targetTaskIndex, 1);
+  // }
+
+  // // 변경된 데이터를 다시 localStorage에 저장
+  // localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
 
   deleteTask(taskId); // ajax delete 요청
   $(this).closest("ul").remove();
