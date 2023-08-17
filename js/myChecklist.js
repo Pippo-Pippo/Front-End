@@ -197,6 +197,8 @@ $(document).on("click", ".nav-item", function () {
 
 //테스크 렌더링
 function renderTask(text, taskId, completed) {
+  console.log("renderTask", taskId);
+
   const newTask = $("<div>").addClass(
     "checklist-task px-4 py-2 flex items-center"
   );
@@ -271,6 +273,7 @@ function renderNavItem(title, checklistid) {
 
 // 체크박스를 렌더링하는 함수
 function renderCheckbox(taskId, complete) {
+  console.log("renderCheckbox", taskId);
   const checkboxWrapper = $("<div>").addClass("flex h-6 items-center");
   const checkboxImg = $("<img>")
     .attr({
@@ -292,6 +295,7 @@ function renderCheckbox(taskId, complete) {
 
 // 엑스 버튼을 렌더링하는 함수
 function renderDeleteButton(taskId) {
+  console.log("renderTaskButton", taskId);
   const deleteBtn = $("<button>")
     .attr("data-task-id", taskId)
     .addClass(`delete-btn ml-auto`)
@@ -308,6 +312,7 @@ function renderDeleteButton(taskId) {
 
 //delete 버튼 클릭하면 삭제됨
 $(document).on("click", ".delete-btn", function () {
+  console.log($(this).attr("data-task-id"));
   //const taskId = $(this).attr("data-task-id");
 
   const currentChecklistId = localStorage.getItem("currentChecklistId");
