@@ -42,11 +42,7 @@ function deleteTask(taskId) {
     },
     success: function (data) {
       console.log("삭제 완료");
-      console.log(data);
-      // localStorage.setItem("checklistData", JSON.stringify(data));
-      // localStorage.setItem("currentChecklistId", data[0].check_list_id);
-
-      // initializeChecklist();
+      loadChecklists();
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.error(textStatus, errorThrown);
@@ -375,6 +371,7 @@ $(document).on("click", ".checkbox", function () {
       (task) => task.taskId == taskId
     );
     targetChecklist.task[targetTaskIndex + 1].complete = nowComplete;
+    changeChecklistTitle(targetChecklist);
   }
   // 변경된 데이터를 다시 localStorage에 저장
   localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
