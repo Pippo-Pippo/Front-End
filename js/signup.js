@@ -13,7 +13,7 @@ function signup() {
       email: email,
       password: password,
       nickname: nickname,
-      region: region,
+      region: location,
     }),
     success: function (data) {
       alert(JSON.stringify(data));
