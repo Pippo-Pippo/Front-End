@@ -11,7 +11,10 @@ $(document).ready(function () {
     $("#login-nav").hide();
   }
 
-
+  $('#logout_btn').click(function () {
+    console.log("로그아웃 버튼 클릭");
+    logout();
+});
 
     function getUserInform() {
       $.ajax({
@@ -35,15 +38,12 @@ $(document).ready(function () {
 
 function logout() {
     document.cookie = "JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; //쿠키삭제
+    console.log(document.cookie);
     alert("로그아웃 성공");
     window.location.href = "/main.html"; //로그인 페이지로 
     }
-    
-$('#logout_btn').click(function () {
 
-    console.log("로그아웃 버튼 클릭");
-    logout();
-});
+
 
 
 function checkJSessionID() {
