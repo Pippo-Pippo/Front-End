@@ -8,19 +8,17 @@ $(document).ready(function () {
     var password = "임시비밀번호";
 
     $.ajax({
-      type: "POST",
+      type: 'GET',
       url: `https://ppiyong.shop/api/user/findPw?email=${email}`,
-      contentType: "application/json",
-  
-      success: function (response) {
-        
-          alert("임시 비밀번호가 이메일로 전송되었습니다.");
-
-      },
-      error: function (xhr, status, error) {
-        console.error(xhr, status, error);
+      
+      contentType: 'application/json',
+    
+      success: function(data){
+        alert("임시 비밀번호가 이메일로 전송되었습니다.");
+      }, 
+      error: function(request, status, error){
         alert("서버 요청 실패: 서버에 문제가 발생하였습니다.");
-      },
-    });
+      }
+    })
   });
 });
