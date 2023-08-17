@@ -2,7 +2,7 @@ function signup() {
   var email = $("#email").val();
   var password = $("#password").val();
   var nickname = $("#nickname").val();
-  var region = $("#location").val();
+  var region = $("#region").val();
 
 
   $.ajax({
@@ -13,10 +13,11 @@ function signup() {
       email: email,
       password: password,
       nickname: nickname,
-      region: location,
+      region: region,
     }),
     success: function (data) {
       alert(JSON.stringify(data));
+      console.log("success");
      
     },
     error: function (request, status, error) {
@@ -95,7 +96,7 @@ function goNext() {
   const signupWarp = document.getElementById("signup-wrap");
   const signupTitle = document.getElementById("signup-title");
   const nextButton = document.getElementById("nextButton");
-  const heading = document.getElementById("heading");
+
 
   // "회원가입" 내용이 사라진 후에 실행
   signupWarp.style.display = "none"; //없어지기
