@@ -33,6 +33,7 @@ function loadChecklists() {
 
 //DELETE 요청 - 태스크 삭제
 function deleteTask(taskId) {
+  console.log(taskId, "번 태스크 삭제");
   $.ajax({
     url: `https://ppiyong.shop/api/checklist/task/${taskId}`,
     type: "DELETE",
@@ -314,6 +315,7 @@ function renderDeleteButton(taskId) {
 //delete 버튼 클릭하면 삭제됨
 $(document).on("click", ".delete-btn", function () {
   const taskId = $(this).attr("data-task-id");
+  console.log(taskId, "번 태스트 삭제 요청");
   const currentChecklistId = localStorage.getItem("currentChecklistId");
   const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
 
