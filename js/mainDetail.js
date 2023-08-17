@@ -73,6 +73,7 @@ function postComment(postId) {
 
       getCommentData(postId);
       $("#imageContainer").empty();
+      console.log($("#message").val);
       $("#message").val = "";
     },
     error: function (jqXHR, textStatus, errorThrown) {
@@ -110,7 +111,7 @@ function getCommentData(postId) {
     .success(function (data) {
       console.log(data.comment.length);
       displayComment(data);
-      $("#comment_number").innerHTML(data.comment.length);
+      $("#comment_number").text(data.comment.length);
     })
     .error(function (jqXHR, textStatus, errorThrown) {
       console.log("댓글 데이터 불러오기 실패");
