@@ -6,22 +6,64 @@ function loadRecent(address) {
     console.log(convertedAddress); // INCHEON
 
     $.ajax({
-      type: "GET",
       url: `https://ppiyong.shop/api/home?region=${convertedAddress}`,
-      contentType: "application/json",
-      xhrFields: {
-        withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
-      },
+      method: "GET",
+      dataType: "json",
       success: function (data) {
         console.log(data);
-        //최근 카테고리 하나 불러오기
+
+        const recent = recentDisaster(data);
+        $("#recent-disaster").text(mappingRegionName(recent));
       },
-      error: function (request, status, error) {
-        //alert("잘못된 요청입니다.");
-        console.log(request);
+      error: function (error) {
+        console.log("실패");
+        console.error(error);
       },
     });
   });
+}
+
+function mappingRegionName(key) {
+  const categoryNames = {
+    RAIN: "강우",
+    HOT: "폭염",
+    WIND: "태풍",
+    SNOW: "폭설",
+    EARTHQUAKE: "지진",
+    CIVIL: "민방위",
+    LOST: "실종자",
+  };
+
+  return categoryNames[key] || "알 수 없음"; // 매핑된 값이 없을 경우 "알 수 없음" 반환
+}
+
+function recentDisaster(data) {
+  function parseDate(dateStr) {
+    const [datePart, period, timePart] = dateStr.split(" ");
+    const [hour, minute] = timePart.split(":");
+    const adjustedHour =
+      period === "오후" && hour !== "12"
+        ? (parseInt(hour) + 12).toString()
+        : hour;
+    return new Date(`${datePart}T${adjustedHour}:${minute}:00`);
+  }
+
+  const categories = ["weather", "earthquake", "civil", "lost"];
+
+  let latestDate = new Date(0); // 초기값을 1970-01-01로 설정
+  let latestCategory = null;
+
+  categories.forEach((category) => {
+    data[category].forEach((item) => {
+      const itemDate = parseDate(item.time);
+      if (itemDate > latestDate) {
+        latestDate = itemDate;
+        latestCategory = item.category;
+      }
+    });
+  });
+
+  return latestCategory;
 }
 
 $(document).ready(function () {

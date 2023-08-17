@@ -12,8 +12,6 @@ function loadChecklists() {
       withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
     },
     success: function (data) {
-      console.log("로드완료", data);
-
       if (data) {
         localStorage.setItem("checklistData", JSON.stringify(data));
         localStorage.setItem("currentChecklistId", data[0].check_list_id);
@@ -33,7 +31,6 @@ function loadChecklists() {
 
 //DELETE 요청 - 태스크 삭제
 function deleteTask(taskId) {
-  console.log(taskId, "번 태스크 삭제");
   $.ajax({
     url: `https://ppiyong.shop/api/checklist/task/${taskId}`,
     type: "DELETE",
@@ -52,8 +49,6 @@ function deleteTask(taskId) {
 
 // DELETE 요청 함수 정의
 function deleteChecklist() {
-  console.log("하이요");
-
   const currentChecklistId = localStorage.getItem("currentChecklistId");
 
   $.ajax({
@@ -147,12 +142,10 @@ function initializeChecklist() {
     (item) => item.check_list_id == checklistId
   ); //각각의 체크리스트 가져오기
 
-  console.log();
   $checklistTitleText.text(checklist.title);
   $checklistContent.empty();
 
   $.each(checklist.task, function (taskIndex, task) {
-    console.log(task.task_id);
     renderTask(task.content, task.task_id, task.complete);
   });
 
@@ -168,8 +161,6 @@ function updateSelectedChecklist(checklistId) {
   const checklist = checklistData.find(
     (item) => item.check_list_id == checklistId
   );
-
-  console.log(checklistId, checklist);
 
   $checklistTitleText.text(checklist.title);
   $checklistContent.empty();
@@ -193,8 +184,6 @@ $(document).on("click", ".nav-item", function () {
 
 //테스크 렌더링
 function renderTask(text, taskId, completed) {
-  console.log("renderTask", taskId);
-
   const newTask = $("<div>").addClass(
     "checklist-task px-4 py-2 flex items-center"
   );
@@ -221,8 +210,6 @@ function saveNewTask(text) {
   );
 
   if (checklist) {
-    console.log(checklist);
-
     let maxTaskId = 0;
     for (let task of checklist.task) {
       if (task.taskId > maxTaskId) {
@@ -269,7 +256,6 @@ function renderNavItem(title, checklistid) {
 
 // 체크박스를 렌더링하는 함수
 function renderCheckbox(taskId, complete) {
-  console.log("renderCheckbox", taskId);
   const checkboxWrapper = $("<div>").addClass("flex h-6 items-center");
   const checkboxImg = $("<img>")
     .attr({
@@ -291,7 +277,6 @@ function renderCheckbox(taskId, complete) {
 
 // 엑스 버튼을 렌더링하는 함수
 function renderDeleteButton(taskId) {
-  console.log("renderTaskButton", taskId);
   const deleteBtn = $("<button>")
     .attr("data-task-id", taskId)
     .addClass(`delete-btn ml-auto`)
@@ -309,8 +294,6 @@ function renderDeleteButton(taskId) {
 //delete 버튼 클릭하면 삭제됨
 $(document).on("click", ".delete-btn", function () {
   const taskId = $(this).attr("data-task-id");
-
-  console.log(taskId, "번 태스트 삭제 요청");
 
   deleteTask(taskId); // ajax delete 요청
   $(this).closest("ul").remove();
