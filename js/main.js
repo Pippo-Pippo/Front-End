@@ -237,7 +237,7 @@ function displayCategoryData(category) {
 function createHTMLString(item) {
   return `
       <!--메인 박스-->
-      <div class="bg-white rounded-md shadow-md w-80 mt-5 p-4 text-lg font-bold text-start">
+      <div class="bg-white rounded-md shadow-md w-80 mt-3 p-4 text-lg font-bold text-start">
         <div class="flex items-center justify-between py-2">
           <div>${item.from}</div>
           <div class="text-grey-600 font-medium text-sm ml-4">${item.time}</div>
