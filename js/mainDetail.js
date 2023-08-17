@@ -110,7 +110,7 @@ function getCommentData(postId) {
     .success(function (data) {
       console.log(data.comment.length);
       displayComment(data);
-      $("#comment_number").val(data.comment.length);
+      $("#comment_number").innerHTML(data.comment.length);
     })
     .error(function (jqXHR, textStatus, errorThrown) {
       console.log("댓글 데이터 불러오기 실패");
