@@ -179,7 +179,7 @@ function updateSelectedChecklist(checklistId) {
   $checklistContent.empty();
 
   $.each(checklist.task, function (taskIndex, task) {
-    renderTask(task.content, taskIndex, task.complete);
+    renderTask(task.content, task.task_id, task.complete);
   });
 }
 
@@ -325,6 +325,7 @@ $(document).on("click", ".delete-btn", function () {
   console.log(targetChecklist);
 
   console.log(targetChecklist.task);
+
   // console.log(targetChecklist[0].task_id);
   // const taskId = targetChecklist[0].task_id;
   // console.log(taskId, "번 태스트 삭제 요청");
