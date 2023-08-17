@@ -94,16 +94,21 @@ $("#verifyButton").on("click", function (e) {
     type: "POST",
     data: JSON.stringify(data),
     xhrFields: {
-      withCredentials: true, 
+      withCredentials: true,
     },
     contentType: "application/json; charset=utf-8",
     success: function (response) {
-      $("#verificationConfirm").show();
-     
+      console.log(response); 
+      if (response.success) {
+        $("#verificationConfirm").show();
+      } else {
+        $("#verificationConfirm").hide();
+        alert("인증번호가 일치하지 않습니다. 다시 입력해주세요.");
+      }
     },
     error: function (req, status, err) {
       console.log(req);
-      alert("인증번호가 일치하지 않습니다. 다시 입력해주세요.");
+      alert("인증번호 확인 중에 문제가 발생했습니다. 다시 시도해주세요.");
       $("#verificationConfirm").hide();
     },
   });
