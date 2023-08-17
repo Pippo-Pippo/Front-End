@@ -22,9 +22,13 @@ $(document).ready(function() {
             alert('비밀번호가 성공적으로 변경되었습니다.');
             window.location.href = "/main.html";
 
-        }, error: function(){    
-            alert('서버 요청 실패: 서버에 문제가 발생하였습니다.'); 
-        }
+        },  error: function(xhr, status, error) {
+            if (xhr.status === 403) {
+              alert('권한 없는 유저입니다.'); 
+            } else {
+              alert('서버 요청 실패: 서버에 문제가 발생하였습니다.');
+            }
+          }
     })
   });
 });
