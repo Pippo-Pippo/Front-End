@@ -312,36 +312,12 @@ function renderDeleteButton(taskId) {
 
 //delete 버튼 클릭하면 삭제됨
 $(document).on("click", ".delete-btn", function () {
-  console.log($(this).attr("data-task-id"));
-  //const taskId = $(this).attr("data-task-id");
+  const taskId = $(this).attr("data-task-id");
 
-  const currentChecklistId = localStorage.getItem("currentChecklistId");
-  const storedChecklistData = JSON.parse(localStorage.getItem("checklistData"));
+  console.log(taskId, "번 태스트 삭제 요청");
 
-  const targetChecklist = storedChecklistData.find(
-    (item) => item.check_list_id == currentChecklistId
-  );
-
-  console.log(targetChecklist);
-
-  console.log(targetChecklist.task);
-
-  // console.log(targetChecklist[0].task_id);
-  // const taskId = targetChecklist[0].task_id;
-  // console.log(taskId, "번 태스트 삭제 요청");
-
-  // if (targetChecklist) {
-  //   const targetTaskIndex = targetChecklist.task.findIndex(
-  //     (task) => task.taskId == taskId
-  //   );
-  //   targetChecklist.task.splice(targetTaskIndex, 1);
-  // }
-
-  // // 변경된 데이터를 다시 localStorage에 저장
-  // localStorage.setItem("checklistData", JSON.stringify(storedChecklistData));
-
-  // deleteTask(taskId); // ajax delete 요청
-  // $(this).closest("ul").remove();
+  deleteTask(taskId); // ajax delete 요청
+  $(this).closest("ul").remove();
 });
 
 // 플러스 네비버튼 추가
