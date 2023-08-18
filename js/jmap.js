@@ -47,7 +47,7 @@ $(document).ready(function () {
       locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 
       // 마커와 인포윈도우를 표시합니다
-      displayMarker(locPosition);
+      displayMarker(map, locPosition);
       cosnsole.log(locPosition);
       getShelterData(lat, lon);
     });
@@ -57,12 +57,12 @@ $(document).ready(function () {
     var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
       message = "geolocation을 사용할수 없어요..";
 
-    displayMarker(locPosition);
+    displayMarker(map, locPosition);
   }
 });
 
 // 지도에 현위치 표시하는 함수
-function displayMarker(locPosition) {
+function displayMarker(map, locPosition) {
   var image = "/img/svg/location.svg",
     image_Size = new kakao.maps.Size(30, 40), // 마커이미지의 크기입니다
     image_Option = { offset: new kakao.maps.Point(27, 69) };
