@@ -42,7 +42,7 @@ $('#logout_btn').click(function () {
 function logout() {
     
         $.ajax({
-        url: "https://ppiyong.shop/api/logout",
+        url: "https://ppiyong.shop/api/user/logout",
         type: "GET",
         async: false,
         xhrFields: {
