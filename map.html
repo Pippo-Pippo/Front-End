@@ -218,21 +218,21 @@
           </div>
           <div class="choice flex mb-2 mt-2 mb-1">
             <button
-              id="all"
+              id="all" onclick="go()"
               class="h-8 bg-gray-600 item-center rounded-full text-xs px-4 p-2 text-white font-bold"
     
             >
               전체
             </button>
             <button
-              id="earth"
+              id="earth" onclick="earthquake()"
               class="h-8 bg-yellow-600 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold"
               
             >
               지진/해일
             </button>
             <button
-              id="civil"
+              id="civil" onclick="civil()"
               class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold"
               
             >
@@ -299,6 +299,6 @@
    
     <script src="../js/isLoggedin.js"></script>
     <!-- <script src="../js/ymap.js"></script> -->
-    <script src="../js/jmap.js"></script>
+    <script src="../js/mmap.js"></script>
   </body>
 </html>
