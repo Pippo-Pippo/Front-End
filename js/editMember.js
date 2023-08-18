@@ -14,7 +14,7 @@ $(document).ready(function () {
     const { email, nickName, region } = data;
     $("#id").val(email);
     $("#nickname").val(nickName);
-    $("#regionDisplay").text(region || "지역을 선택하세요");
+    $("#regionDisplay").val(region);
     $("#locationSelect").val(region);
   
   }
