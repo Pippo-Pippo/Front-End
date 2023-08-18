@@ -272,43 +272,41 @@ function makeCivilMaker(map) {
   console.log("민방위 마커 생성 완");
 }
 
-function showMarkersByCategory(markerArray, customOverlayArray, selectedCategory) {
-    for (var i = 0; i < markerArray.length; i++) {
-      if (markerArray[i].category === selectedCategory) {
-        markerArray[i].setMap(map);
-        customOverlayArray[i].setMap(map);
-      } else {
-        markerArray[i].setMap(null);
-        customOverlayArray[i].setMap(null);
-      }
-    }
+$("#earth").click(function () {
+    earthquake();
+  });
+  
+  $("#civil").click(function () {
+    civil();
+  });
+  
+  $("#all").click(function () {
+    go();
+  });
+  
+  // Function to show earthquake markers and hide civil markers
+  function earthquake() {
+    hideMarkers(civil_marker, map);
+    hideMarkers(civil_custom, map);
+    
+    showMarkers(earthquake_marker, map);
+    showMarkers(earthquake_custom, map);
   }
   
-  function toggleCategory(category, map) {
-    if (category === "전체") {
-      showMarkersByCategory(all_marker, all_custom, category);
-    } else if (category === "지진/해일 대피시설") {
-      showMarkersByCategory(earthquake_marker, earthquake_custom, category);
-      hideMarkers(civil_marker);
-      hideMarkers(civil_custom);
-    } else if (category === "민방위 대피시설") {
-      showMarkersByCategory(civil_marker, civil_custom, category);
-      hideMarkers(earthquake_marker);
-      hideMarkers(earthquake_custom);
-    }
+  // Function to show civil markers and hide earthquake markers
+  function civil() {
+    hideMarkers(earthquake_marker, map);
+    hideMarkers(earthquake_custom, map);
+  
+    showMarkers(civil_marker, map);
+    showMarkers(civil_custom, map);
   }
   
-  $('#all').click(function () {
-    toggleCategory("전체", map);
-  });
-  
-  $('#earthquake').click(function () {
-    toggleCategory("지진/해일 대피시설", map);
-  });
-  
-  $('#civil').click(function () {
-    toggleCategory("민방위 대피시설", map);
-  });
+  // Function to show all markers
+  function go() {
+    showMarkers(all_marker, map);
+    showMarkers(all_custom, map);
+  }
   
 
 /********************마커 정보창 뜨게 하기******************/
