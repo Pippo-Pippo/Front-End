@@ -25,11 +25,14 @@ $(document).ready(function () {
                 $('#toastMsg').show();
                 setTimeout(function () {
                     $('#toastMsg').hide();
+                    window.location.href = "https://page.ppiyong.shop/main.html";
+
                 }, 3000);
 
                 var dataToSend = {
                     "region": selectedButton
                 };
+                
                 var region_kr=$('#'+selectedButton).text();
                 console.log(dataToSend);
                 console.log(selectedButton);
