@@ -90,6 +90,11 @@ function logout() {
             window.location.href = "/map.html"; //로그인 페이지로
         },
         error: function (jqXHR, textStatus, errorThrown) {
+          document.cookie = "JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; //쿠키삭제
+            console.log(document.cookie);
+            alert("로그아웃 성공");
+            isLoggedin=false;
+            window.location.href = "/map.html";
           alert("통신 실패");
           console.error(textStatus, errorThrown);
         },
