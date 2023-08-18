@@ -47,8 +47,8 @@ $(document).ready(function () {
       locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 
       // 마커와 인포윈도우를 표시합니다
-      //displayMarker(locPosition);
-      //cosnsole.log(locPosition);
+      displayMarker(locPosition);
+      cosnsole.log(locPosition);
       getShelterData(lat, lon);
     });
   } else {
@@ -63,7 +63,10 @@ $(document).ready(function () {
 
 // 지도에 현위치 표시하는 함수
 function displayMarker(locPosition) {
-  var image = "/img/svg/location.svg";
+  var image = "/img/svg/location.svg",
+    image_Size = new kakao.maps.Size(30, 40), // 마커이미지의 크기입니다
+    image_Option = { offset: new kakao.maps.Point(27, 69) };
+
   var markerImage = new kakao.maps.MarkerImage(image, image_Size, image_Option);
   // 마커를 생성합니다
   var marker = new kakao.maps.Marker({
@@ -159,10 +162,6 @@ var civil_custom = [],
 var civil_marker = [],
   earthquake_marker = [],
   all_marker = [];
-
-var image = "/img/svg/location.svg",
-  image_Size = new kakao.maps.Size(30, 40), // 마커이미지의 크기입니다
-  image_Option = { offset: new kakao.maps.Point(27, 69) };
 
 //지진 마커 생성
 function makeEarthMarker() {
