@@ -8,11 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB12bgQnvBrc0Hwuztjrqpxvv7vEHvcf0U"
-    ></script>
 
 
     <title>삐용</title>
@@ -25,178 +20,86 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=122a12ac53dfd9ece5eb472180241e53"></script>
     <!--header-->
     <div class="relative content bg-gray-50 border-white">
-        <div class="bg-white border-gray-200 shadow">
-            <nav class="bg-white border-gray-200">
-              <div
-                class="max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto p-4 h-15"
+      <div class="bg-white border-gray-200 shadow">
+        <nav class="bg-white border-gray-200">
+          <div
+            class="max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto p-4 h-15"
+          >
+            <!-- 로고 이미지 삽입 -->
+            <div class="flex items-center justify-center">
+              <a
+                href="https://page.ppiyong.shop/main.html"
+                class="flex items-center"
               >
-                <!-- 로고 이미지 삽입 -->
-                <div class="flex items-center justify-center">
-                  <a href="https://page.ppiyong.shop/main.html" class="flex items-center">
-                    <img src="../img/logo.png" class="w-24 h-9 mr-10" />
+                <img src="../img/logo.png" class="w-24 h-9 mr-10" />
+              </a>
+            </div>
+            <div class="main-nav-items">
+              <div
+                id="login-nav"
+                class="flex items-center justify-end text-end"
+              >
+                <a href="https://page.ppiyong.shop/alarm/alarm.html"
+                  ><img src="../img/icon/알림.png" class="w-6 h-6 mt-3 mr-3"
+                /></a>
+                <div class="username-text font-medium text-lg mt-1 mr-6">
+                  강윤진님
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    data-drawer-target="drawer-navigation"
+                    data-drawer-show="drawer-navigation"
+                    aria-controls="drawer-navigation"
+                  >
+                    <img
+                      src="../img/icon/햄버거바.png"
+                      alt="menu"
+                      class="w-6 h-5 mt-3"
+                    />
+                  </button>
+                </div>
+              </div>
+
+              <div id="non-login-nav" class="flex justify-end">
+                <div class="w-20 h-8 text-center p-1 ml-14">
+                  <a href="https://page.ppiyong.shop/account/login.html">
+                    <button>로그인</button>
                   </a>
                 </div>
-                <div class="main-nav-items">
-                  <div
-                    id="login-nav"
-                    class="flex items-center justify-end text-end"
-                  >
-                    <a href="https://page.ppiyong.shop/alarm/alarm.html"
-                      ><img src="../img/icon/알림.png" class="w-6 h-6 mt-3 mr-3"
-                    /></a>
-                    <div class="username-text font-medium text-lg mt-1 mr-6">
-                      강윤진님
-                    </div>
-                    <div class="text-center">
-                      <button
-                        type="button"
-                        data-drawer-target="drawer-navigation"
-                        data-drawer-show="drawer-navigation"
-                        aria-controls="drawer-navigation"
-                      >
-                        <img
-                          src="../img/icon/햄버거바.png"
-                          alt="menu"
-                          class="w-6 h-5 mt-3"
-                        />
-                      </button>
-                    </div>
-                  </div>
-    
-                  <div id="non-login-nav" class="flex justify-end">
-                    <div class="w-20 h-8 text-center p-1 ml-14">
-                      <a href="https://page.ppiyong.shop/account/login.html">
-                        <button>로그인</button>
-                      </a>
-                    </div>
-                    <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
-                      <a href="https://page.ppiyong.shop/account/signup.html">
-                        <button>회원가입</button>
-                      </a>
-                    </div>
-                  </div>
+                <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
+                  <a href="https://page.ppiyong.shop/account/signup.html">
+                    <button>회원가입</button>
+                  </a>
                 </div>
               </div>
-            </nav>
-            <nav>
-              <div
-                id="searchNav-item"
-                class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-3 pb-0"
-              >
-                <button id="home-href">
-                  <a href="https://page.ppiyong.shop/main.html">홈</a>
-                  <div
-                    class="bg-mySky p-1 h-3"
-                  ></div>
-                </button>
-                <button id="shelter-href"  class="font-bold"> 
-                  <a href="https://page.ppiyong.shop/map.html">주변 대피소</a>
-                  <div class="under-nav bg-mySky p-1 h-3 border-b-4 border-yellow-300 border-7"></div>
-                </button>
-                <button id="checklist-href">
-                  <a href="https://page.ppiyong.shop/checklist.html">체크리스트</a>
-                  <div class="bg-mySky p-1 h-3"></div>
-                </button>
-              </div>
-    
-              <div class="searchMain_nav_underline"></div>
-            </nav>
+            </div>
           </div>
-          <!-- drawer component -->
+        </nav>
+        <nav>
           <div
-            id="drawer-navigation"
-            class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"
-            tabindex="-1"
-            aria-labelledby="drawer-navigation-label"
+            id="searchNav-item"
+            class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-3 pb-0"
           >
-            <button
-              type="button"
-              data-drawer-hide="drawer-navigation"
-              aria-controls="drawer-navigation"
-              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              <svg
-                aria-hidden="true"
-                class="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <svg
-                  class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 22 21"
-                ></svg>
-                <span class="username-text mt-10 font-bold text-2xl"
-                  >강윤진</span
-                >
-                <span class="mt-10 font-medium text-2xl">님</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://page.ppiyong.shop/myChecklist.html"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 18 18"
-                ></svg>
-                <span class="flex-1 ml-3 whitespace-nowrap">MY 체크리스트</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://page.ppiyong.shop/alarm/select_other.html"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                ></svg>
-                <span class="flex-1 ml-3 whitespace-nowrap"
-                  >다른 지역 확인하기</span
-                >
-              </a>
-            </li>
-            <li class="logout_btn">
-              <a
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 18 20"
-                ></svg>
-                <div class="flex-1 ml-3 whitespace-nowrap">로그아웃</div>
-              </a>
-            </li>
-            <li class="logout_btn">
-              <a
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 18 20"
-                ></svg>
-                <div class="flex-1 ml-3 whitespace-nowrap">로그아웃</div>
-              </a>
-            </li>
-          </ul>
-        </div>
+            <button id="home-href">
+              <a href="https://page.ppiyong.shop/main.html">홈</a>
+              <div class="bg-mySky p-1 h-3"></div>
+            </button>
+            <button id="shelter-href">
+              <a href="https://page.ppiyong.shop/map.html">주변 대피소</a>
+              <div class="bg-mySky p-1 h-3"></div>
+            </button>
+            <button id="checklist-href " class="font-bold">
+              <a href="https://page.ppiyong.shop/checklist.html">체크리스트</a>
+              <div
+                class="under-nav bg-mySky p-1 h-3 border-b-4 border-yellow-300 border-7"
+              ></div>
+            </button>
+          </div>
+
+          <div class="searchMain_nav_underline"></div>
+        </nav>
+      </div>
             <!--main-->
             <div class="bg-gray-50" id="main">
                 <div class="ml-5 mr-5 mb-5 mt-2">
@@ -243,6 +146,11 @@
 
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB12bgQnvBrc0Hwuztjrqpxvv7vEHvcf0U"
+    ></script>
     <script src="../js/map.js"></script>
     <script src="../js/isLoggedin.js"></script>
     
