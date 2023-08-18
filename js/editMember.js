@@ -14,8 +14,9 @@ $(document).ready(function () {
     const { email, nickName, region } = data;
     $("#id").val(email);
     $("#nickname").val(nickName);
-    $("#regionDisplay").text(region || "지역을 선택하세요");
+    $("#regionDisplay").val(region);
     $("#locationSelect").val(region);
+  
   }
 
   getMemberData()
@@ -50,7 +51,7 @@ $(document).ready(function () {
         console.log(data);
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        console.log("변경 실패");
+       
       },
     });
   });
@@ -98,7 +99,7 @@ $(document).ready(function () {
         console.log(data);
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        console.log("수정실패", errorThrown);
+        
       },
     });
   });

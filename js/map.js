@@ -47,8 +47,8 @@ function displayMarker(locPosition) {
 
 }
 // /************현재 위치 생성************/
-var lat=null,
-    lon=null;
+var lat="",
+    lon="";
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
 
@@ -112,12 +112,11 @@ $(document).ready(function () {
         // console.log(longitude_start);
         // console.log(latitude_end);
         // console.log(longitude_end);
+        var  latitude_start = Number(lat)-0.02,
+        latitude_end = Number(lat)+0.02,
 
-        var  latitude_start = lat-0.02,
-        latitude_end = lat+0.02,
-
-        longitude_start = lon+0.01,
-        longitude_end = lon-0.01;
+        longitude_start = Number(lon)+0.01,
+        longitude_end = Number(lon)-0.01;
 
         // var lat=null,
         //     lon=null;
