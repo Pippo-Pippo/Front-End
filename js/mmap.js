@@ -139,7 +139,7 @@ setTimeout(function () {
     });
     
 
-}, 3000);
+}, 10000);
 // $(document).ready(function () {
     
 //     var bounds = map.getBounds();
