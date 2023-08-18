@@ -48,7 +48,7 @@ $(document).ready(function () {
 
       // 마커와 인포윈도우를 표시합니다
       displayMarker(map, locPosition);
-      cosnsole.log(locPosition);
+      console.log(locPosition);
       getShelterData(lat, lon);
     });
   } else {
