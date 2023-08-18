@@ -351,7 +351,7 @@ $(document).on("click", ".checkbox", function () {
 
   if (targetChecklist) {
     const targetTaskIndex = targetChecklist.task.findIndex(
-      (task) => task.taskId == taskId
+      (task) => task.task_id == taskId
     );
     targetChecklist.task[targetTaskIndex].complete = nowComplete;
     console.log("체크박스 화긴", targetChecklist, nowComplete);
