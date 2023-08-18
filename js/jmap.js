@@ -268,52 +268,62 @@ function setMarkers(map, list) {
     list[i].setMap(map);
   }
 }
-$("#all").css("color", "black");
-$("#earth").css("color", "black");
-$("#civil").css("color", "black");
-$("#all").css("color", "white");
-$("#earth").css("color", "white");
-$("#civil").css("color", "white");
+
 //마커 보이기 함수
 function showMarkers(map,list) {
-  setMarkers(map, list);
+  setMarkers(map,list);
 }
 //마커 감추기 함수
 function hideMarkers(map,list) {
   setMarkers(null, list);
 }
-function earthquake() {
+function earthquake(map) {
+  $("#earth").css("color", "white");
+
+  $("#all").css("color", "#64748b");
+  $("#civil").css("color", "#fca5a5");
+
   hideMarkers(map,civil_marker);
   showMarkers(map,earthquake_marker);
 
   hideMarkers(map,civil_custom);
   showMarkers(map,earthquake_custom);
 
-  $("#earth").css("color", "white");
+  
+}
+function civil(map) {
+  $("#civil").css("color", "white");
 
   $("#all").css("color", "#64748b");
-  $("#civil").css("color", "#fca5a5");
-}
-function civil() {
+  $("#earth").css("color", "#eab308");
+
   hideMarkers(map,earthquake_marker);
   showMarkers(map,civil_marker);
 
   hideMarkers(map,earthquake_custom);
   showMarkers(map,civil_custom);
 
-  $("#civil").css("color", "white");
-
-  $("#all").css("color", "#64748b");
-  $("#earth").css("color", "#eab308");
+  
 }
-function go() {
-  showMarkers(map,all_marker);
-  showMarkers(map,all_custom);
+function go(map) {
   $("#all").css("color", "white");
 
   $("#earth").css("color", "#eab308");
   $("#civil").css("color", "#fca5a5");
+
+  showMarkers(map,all_marker);
+  showMarkers(map,all_custom);
+  
 }
+// $('#all').click(function (map,) {
+  
+// });
+// $('#earth').click(function (map) {
+  
+// });
+// $('#civil').click(function (map) {
+  
+// });
 
 /********************마커 정보창 뜨게 하기******************/
 function openModal(marker) {
