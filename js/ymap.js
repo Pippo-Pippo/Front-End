@@ -274,7 +274,7 @@ function makeCivilMaker(map) {
 
 function showMarkersByCategory(markerArray, customOverlayArray, selectedCategory) {
     for (var i = 0; i < markerArray.length; i++) {
-      if (markerArray[i].category === selectedCategory || selectedCategory === "전체") {
+      if (markerArray[i].category === selectedCategory) {
         markerArray[i].setMap(map);
         customOverlayArray[i].setMap(map);
       } else {
@@ -284,32 +284,32 @@ function showMarkersByCategory(markerArray, customOverlayArray, selectedCategory
     }
   }
   
-  function go() {
-    showMarkersByCategory(all_marker, all_custom, "전체");
+  function toggleCategory(category, map) {
+    if (category === "전체") {
+      showMarkersByCategory(all_marker, all_custom, category);
+    } else if (category === "지진/해일 대피시설") {
+      showMarkersByCategory(earthquake_marker, earthquake_custom, category);
+      hideMarkers(civil_marker);
+      hideMarkers(civil_custom);
+    } else if (category === "민방위 대피시설") {
+      showMarkersByCategory(civil_marker, civil_custom, category);
+      hideMarkers(earthquake_marker);
+      hideMarkers(earthquake_custom);
+    }
   }
   
-  function earthquake() {
-    showMarkersByCategory(earthquake_marker, earthquake_custom, "지진/해일 대피시설");
-  }
-  
-  function civil() {
-    showMarkersByCategory(civil_marker, civil_custom, "민방위 대피시설");
-  }
   $('#all').click(function () {
-    go();
+    toggleCategory("전체", map);
   });
   
-  $('#earth').click(function () {
-    earthquake();
+  $('#earthquake').click(function () {
+    toggleCategory("지진/해일 대피시설", map);
   });
   
   $('#civil').click(function () {
-    civil();
-  });  
-
-  $('#all').click(go);
-$('#earth').click(earthquake);
-$('#civil').click(civil);
+    toggleCategory("민방위 대피시설", map);
+  });
+  
 
 /********************마커 정보창 뜨게 하기******************/
 function openModal(marker) {
