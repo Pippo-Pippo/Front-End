@@ -94,8 +94,8 @@ function logout() {
             console.log(document.cookie);
             alert("로그아웃 성공");
             isLoggedin=false;
-            window.location.href = "/map.html";
-          alert("통신 실패");
+            window.location.href = "https://page.ppiyong.shop/main.html";
+          
           console.error(textStatus, errorThrown);
         },
       }); 
