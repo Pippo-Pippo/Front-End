@@ -22,6 +22,30 @@ $(document).ready(function () {
     
 });
 
+// /************현재 위치 생성************/
+// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+if (navigator.geolocation) {
+
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function (position) {
+
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+
+        var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+
+        // 마커와 인포윈도우를 표시합니다
+        displayMarker(locPosition);
+
+    });
+
+} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+        message = 'geolocation을 사용할수 없어요..'
+
+    displayMarker(locPosition);
+}
 /************지도 생성************/
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -45,33 +69,6 @@ function displayMarker(locPosition) {
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);
 
-}
-// /************현재 위치 생성************/
-var lat="",
-    lon="";
-// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-if (navigator.geolocation) {
-
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function (position) {
-
-        lat = position.coords.latitude; // 위도
-        lon = position.coords.longitude; // 경도
-        console.log(lat);
-        console.log(lon);
-        locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-
-        // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition);
-        console.log(locPosition);
-    });
-
-} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-        message = 'geolocation을 사용할수 없어요..'
-
-    displayMarker(locPosition);
 }
 
 // // 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
@@ -98,44 +95,21 @@ const CIVIL = [];
 //     makeEarthMarker();
 
 // });
-
-$(document).ready(function () {
-    
-    // var bounds = map.getBounds();
-    // bounds.toString();
+setTimeout(function () {
+    var bounds = map.getBounds();
+    bounds.toString();
         //살짝 바꾸기
-        // var  latitude_start = bounds.qa,
-        // latitude_end = bounds.pa,
-        // longitude_start = bounds.oa,
-        // longitude_end = bounds.ha;
-        // console.log(latitude_start);
-        // console.log(longitude_start);
-        // console.log(latitude_end);
-        // console.log(longitude_end);
-        var  latitude_start = Number(lat)-0.02,
-        latitude_end = Number(lat)+0.02,
+        var  latitude_start = bounds.qa,
+        latitude_end = bounds.pa,
 
-        longitude_start = Number(lon)+0.01,
-        longitude_end = Number(lon)-0.01;
-
-        // var lat=null,
-        //     lon=null;
-        // navigator.geolocation.getCurrentPosition(function (position) {
-        //     lat = position.coords.latitude;
-        //     lon = position.coords.longitude;
-        // });
+        longitude_start = bounds.oa,
+        longitude_end = bounds.ha;
         
-        // var  latitude_start = lat-0.02,
-        // latitude_end = lat+0.02,
-
-        // longitude_start = lon+0.01,
-        // longitude_end = lon-0.01;
-
-
         console.log(latitude_start);
-        console.log(latitude_end);
         console.log(longitude_start);
+        console.log(latitude_end);
         console.log(longitude_end);
+
 
     $.ajax({
         type: "GET",
@@ -163,7 +137,52 @@ $(document).ready(function () {
             console.log(message);
         }
     });
-});
+    
+
+}, 10000);
+// $(document).ready(function () {
+    
+//     var bounds = map.getBounds();
+//     bounds.toString();
+//         //살짝 바꾸기
+//         var  latitude_start = bounds.qa,
+//         latitude_end = bounds.pa,
+
+//         longitude_start = bounds.oa,
+//         longitude_end = bounds.ha;
+//         console.log(latitude_start);
+//         console.log(longitude_start);
+//         console.log(latitude_end);
+//         console.log(longitude_end);
+
+
+//     $.ajax({
+//         type: "GET",
+//         url: `https://ppiyong.shop/api/shelter?latitude_start=${latitude_start}&latitude_end=${latitude_end}&longitude_start=${longitude_end}&longitude_end=${longitude_start}`,
+//         contentType: "application/json",
+//         success: function (data) {
+//             // data.forEach(item => {
+//             //     categorizedData[item.category].push(item);
+//             // });
+//             // console.log(categorizedData)
+//             console.log(`https://ppiyong.shop/api/shelter?latitude_start=${latitude_start}&latitude_end=${latitude_end}&longitude_start=${longitude_end}&longitude_end=${longitude_start}`);
+//             data.forEach(item => {
+//                 categorizedData[item.category].push(item);
+//             });
+//             console.log(categorizedData);
+//             organize();
+            
+            
+//         },
+//         error: function (request, status, error) {
+//             console.log("통신실패");
+//             console.log(request);
+//             console.log(status);
+//             console.log(error);
+//             console.log(message);
+//         }
+//     });
+// });
 
 //받아온 거 쓸 수 있게 정리
 function organize() {
@@ -246,10 +265,8 @@ function makeEarthMarker () {
             });
 
             customOverlay.setMap(map);
-
             earthquake_custom.push(customOverlay);
             all_custom.push(customOverlay);
-
             console.log(customOverlay);
             kakao.maps.event.addListener(marker, 'click', function () {
                 openModal(marker);
@@ -292,7 +309,6 @@ function makeCivilMaker() {
             });
 
             customOverlay.setMap(map);
-            
             civil_custom.push(customOverlay);
             all_custom.push(customOverlay);
 
@@ -318,7 +334,6 @@ $('#civil').css('color', 'black');
 $('#all').css('color', 'white');
 $('#earth').css('color', 'white');
 $('#civil').css('color', 'white');
-
 //마커 보이기 함수
 function showMarkers(list) {
     setMarkers(map, list)
