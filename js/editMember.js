@@ -16,7 +16,7 @@ $(document).ready(function () {
     $("#nickname").val(nickName);
     $("#regionDisplay").text(region || "지역을 선택하세요");
     $("#locationSelect").val(region);
-    $("#locationSelect option[value='" + region + "']").attr("label", region);
+  
   }
 
   getMemberData()
