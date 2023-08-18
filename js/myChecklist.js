@@ -354,6 +354,7 @@ $(document).on("click", ".checkbox", function () {
       (task) => task.taskId == taskId
     );
     targetChecklist.task[targetTaskIndex + 1].complete = nowComplete;
+    console.log("체크박스 화긴", targetChecklist, nowComplete);
     changeChecklistTitle(targetChecklist);
   }
   // 변경된 데이터를 다시 localStorage에 저장
