@@ -83,8 +83,8 @@ function logout() {
           withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
         },
         success: function (data) {
-            // document.cookie = "JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; //쿠키삭제
-            // console.log(document.cookie);
+            document.cookie = "JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; //쿠키삭제
+            console.log(document.cookie);
             alert("로그아웃 성공");
             isLoggedin=false;
             window.location.href = "/map.html"; //로그인 페이지로
