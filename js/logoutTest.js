@@ -53,7 +53,7 @@ function logout() {
             // console.log(document.cookie);
             alert("로그아웃 성공");
             isLoggedin=false;
-            window.location.href = "/main.html"; //로그인 페이지로
+            window.location.href = "/map.html"; //로그인 페이지로
         },
         error: function (jqXHR, textStatus, errorThrown) {
           alert("통신 실패");
