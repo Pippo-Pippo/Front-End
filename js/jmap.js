@@ -59,6 +59,43 @@ $(document).ready(function () {
 
     displayMarker(map, locPosition);
   }
+  $('#all').click(function (map) {
+    $("#all").css("color", "white");
+
+  $("#earth").css("color", "#eab308");
+  $("#civil").css("color", "#fca5a5");
+
+  showMarkers(all_marker,map);
+  showMarkers(all_custom,map);
+  
+});
+$('#earth').click(function (map) {
+    $("#earth").css("color", "white");
+
+  $("#all").css("color", "#64748b");
+  $("#civil").css("color", "#fca5a5");
+
+  hideMarkers(civil_marker,map);
+  hideMarkers(civil_custom,map);
+
+  showMarkers(earthquake_marker,map);
+  showMarkers(earthquake_custom,map);
+  
+});
+$('#civil').click(function (map) {
+    $("#civil").css("color", "white");
+
+  $("#all").css("color", "#64748b");
+  $("#earth").css("color", "#eab308");
+
+  hideMarkers(earthquake_marker,map);
+  hideMarkers(earthquake_custom,map);
+  showMarkers(civil_marker,map);
+  showMarkers(civil_custom,map);
+  
+});
+
+
 });
 
 // 지도에 현위치 표시하는 함수
@@ -311,41 +348,7 @@ function hideMarkers(list,map) {
 //   showMarkers(all_marker,map);
 //   showMarkers(all_custom,map);
 // }
-$('#all').click(function (map) {
-    $("#all").css("color", "white");
 
-  $("#earth").css("color", "#eab308");
-  $("#civil").css("color", "#fca5a5");
-
-  showMarkers(all_marker,map);
-  showMarkers(all_custom,map);
-  
-});
-$('#earth').click(function (map) {
-    $("#earth").css("color", "white");
-
-  $("#all").css("color", "#64748b");
-  $("#civil").css("color", "#fca5a5");
-
-  hideMarkers(civil_marker,map);
-  hideMarkers(civil_custom,map);
-
-  showMarkers(earthquake_marker,map);
-  showMarkers(earthquake_custom,map);
-  
-});
-$('#civil').click(function (map) {
-    $("#civil").css("color", "white");
-
-  $("#all").css("color", "#64748b");
-  $("#earth").css("color", "#eab308");
-
-  hideMarkers(earthquake_marker,map);
-  hideMarkers(earthquake_custom,map);
-  showMarkers(civil_marker,map);
-  showMarkers(civil_custom,map);
-  
-});
 
 /********************마커 정보창 뜨게 하기******************/
 function openModal(marker) {
