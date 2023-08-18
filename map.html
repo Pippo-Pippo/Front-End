@@ -216,25 +216,25 @@
             <div class="font-bold text-2xl" id="current_city">현재 지역</div>
             <div class="text-lg mt-1">주변 대피소를 확인해보세요.</div>
           </div>
-          <div class="flex mb-2 mt-2 mb-1">
+          <div class="choice flex mb-2 mt-2 mb-1">
             <button
               id="all"
               class="h-8 bg-gray-600 item-center rounded-full text-xs px-4 p-2 text-white font-bold"
-              onclick="go()"
+    
             >
               전체
             </button>
             <button
               id="earth"
               class="h-8 bg-yellow-600 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold"
-              onclick="earthquake()"
+              
             >
               지진/해일
             </button>
             <button
               id="civil"
               class="h-8 bg-red-400 item-center rounded-full text-xs ml-5 px-4 p-2 text-white font-bold"
-              onclick="civil()"
+              
             >
               민방위
             </button>
@@ -245,7 +245,7 @@
         <div id="modal" class="bg-white">
           <div class="content_map">
             <div class="ml-auto">
-              <button onclick="out()" class="p-2">
+              <button  class="p-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
@@ -298,6 +298,7 @@
     ></script>
    
     <script src="../js/isLoggedin.js"></script>
-    <script src="../js/ymap.js"></script>
+    <!-- <script src="../js/ymap.js"></script> -->
+    <script src="../js/jmap.js"></script>
   </body>
 </html>
