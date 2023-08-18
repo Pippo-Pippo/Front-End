@@ -112,24 +112,24 @@ $(document).ready(function () {
         // console.log(latitude_end);
         // console.log(longitude_end);
 
-        // var  latitude_start = locPosition.Ma-0.02,
-        // latitude_end = locPosition.Ma+0.02,
+        var  latitude_start = locPosition.Ma-0.02,
+        latitude_end = locPosition.Ma+0.02,
 
-        // longitude_start = locPosition.La+0.01,
-        // longitude_end = locPosition.La-0.01;
+        longitude_start = locPosition.La+0.01,
+        longitude_end = locPosition.La-0.01;
 
-        var lat=null,
-            lon=null;
-        navigator.geolocation.getCurrentPosition(function (position) {
-            lat = position.coords.latitude;
-            lon = position.coords.longitude;
-        });
+        // var lat=null,
+        //     lon=null;
+        // navigator.geolocation.getCurrentPosition(function (position) {
+        //     lat = position.coords.latitude;
+        //     lon = position.coords.longitude;
+        // });
         
-        var  latitude_start = lat-0.02,
-        latitude_end = lat+0.02,
+        // var  latitude_start = lat-0.02,
+        // latitude_end = lat+0.02,
 
-        longitude_start = lon+0.01,
-        longitude_end = lon-0.01;
+        // longitude_start = lon+0.01,
+        // longitude_end = lon-0.01;
 
 
         console.log(latitude_start);
