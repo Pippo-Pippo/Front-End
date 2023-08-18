@@ -246,8 +246,10 @@ function makeEarthMarker () {
             });
 
             customOverlay.setMap(map);
+
             earthquake_custom.push(customOverlay);
             all_custom.push(customOverlay);
+
             console.log(customOverlay);
             kakao.maps.event.addListener(marker, 'click', function () {
                 openModal(marker);
@@ -290,6 +292,7 @@ function makeCivilMaker() {
             });
 
             customOverlay.setMap(map);
+            
             civil_custom.push(customOverlay);
             all_custom.push(customOverlay);
 
@@ -315,6 +318,7 @@ $('#civil').css('color', 'black');
 $('#all').css('color', 'white');
 $('#earth').css('color', 'white');
 $('#civil').css('color', 'white');
+
 //마커 보이기 함수
 function showMarkers(list) {
     setMarkers(map, list)
