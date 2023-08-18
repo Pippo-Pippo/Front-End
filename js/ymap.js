@@ -284,39 +284,45 @@ $("#earth").click(function () {
     go();
   });
   
-  function hideMarkers(markers, map) {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
+  function re(){
+    for(i=0; i<100; i++){
+        function hideMarkers(markers, map) {
+            for (var i = 0; i < markers.length; i++) {
+              markers[i].setMap(null);
+            }
+          }
+          function showMarkers(markers, map) {
+          for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+          }
+        }
+          // Function to show earthquake markers and hide civil markers
+          function earthquake() {
+            hideMarkers(civil_marker, map);
+            hideMarkers(civil_custom, map);
+            
+            showMarkers(earthquake_marker, map);
+            showMarkers(earthquake_custom, map);
+          }
+          
+          // Function to show civil markers and hide earthquake markers
+          function civil() {
+            hideMarkers(earthquake_marker, map);
+            hideMarkers(earthquake_custom, map);
+          
+            showMarkers(civil_marker, map);
+            showMarkers(civil_custom, map);
+          }
+          
+          // Function to show all markers
+          function go() {
+            showMarkers(all_marker, map);
+            showMarkers(all_custom, map);
+          }
+          
     }
   }
-  function showMarkers(markers, map) {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
-  }
-}
-  // Function to show earthquake markers and hide civil markers
-  function earthquake() {
-    hideMarkers(civil_marker, map);
-    hideMarkers(civil_custom, map);
-    
-    showMarkers(earthquake_marker, map);
-    showMarkers(earthquake_custom, map);
-  }
   
-  // Function to show civil markers and hide earthquake markers
-  function civil() {
-    hideMarkers(earthquake_marker, map);
-    hideMarkers(earthquake_custom, map);
-  
-    showMarkers(civil_marker, map);
-    showMarkers(civil_custom, map);
-  }
-  
-  // Function to show all markers
-  function go() {
-    showMarkers(all_marker, map);
-    showMarkers(all_custom, map);
-  }
   
 
 /********************마커 정보창 뜨게 하기******************/
