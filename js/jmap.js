@@ -49,7 +49,7 @@ $(document).ready(function () {
       // 마커와 인포윈도우를 표시합니다
       displayMarker(map, locPosition);
       console.log(locPosition);
-      getShelterData(lat, lon);
+      getShelterData(map, lat, lon);
     });
   } else {
     // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -81,7 +81,7 @@ function displayMarker(map, locPosition) {
 
 /********************대피소 데이터 불러오기******************/
 
-function getShelterData(lat, lon) {
+function getShelterData(map, lat, lon) {
   var latitude_start = lat - 0.02,
     latitude_end = lat + 0.02,
     longitude_start = lon + 0.01,
@@ -104,7 +104,7 @@ function getShelterData(lat, lon) {
         categorizedData[item.category].push(item);
       });
       console.log(categorizedData);
-      organize();
+      organize(map);
     },
     error: function (request, status, error) {
       console.log("통신실패");
@@ -117,7 +117,7 @@ function getShelterData(lat, lon) {
 }
 
 //받아온 거 쓸 수 있게 정리
-function organize() {
+function organize(map) {
   for (var i = 0; i < categorizedData.EARTHQUAKE.length; i++) {
     EARTHQUAKE.push({
       content:
@@ -150,8 +150,8 @@ function organize() {
       category: categorizedData.CIVIL[i].category,
     });
   }
-  makeCivilMaker();
-  makeEarthMarker();
+  makeCivilMaker(map);
+  makeEarthMarker(map);
 }
 
 //maker list
@@ -164,7 +164,7 @@ var civil_marker = [],
   all_marker = [];
 
 //지진 마커 생성
-function makeEarthMarker() {
+function makeEarthMarker(map) {
   for (var i = 0; i < EARTHQUAKE.length; i++) {
     (function (index) {
       var imageYellow = "/img/svg/yellow_marker.svg", // 마커이미지의 주소입니다
@@ -213,7 +213,7 @@ function makeEarthMarker() {
 }
 
 //민방위 마커 생성
-function makeCivilMaker() {
+function makeCivilMaker(map) {
   for (var i = 0; i < CIVIL.length; i++) {
     (function (index) {
       var imageRed = "/img/svg/red_marker.svg", // 마커이미지의 주소입니다
