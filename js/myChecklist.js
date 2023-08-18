@@ -353,7 +353,7 @@ $(document).on("click", ".checkbox", function () {
     const targetTaskIndex = targetChecklist.task.findIndex(
       (task) => task.taskId == taskId
     );
-    targetChecklist.task[targetTaskIndex + 1].complete = nowComplete;
+    targetChecklist.task[targetTaskIndex].complete = nowComplete;
     console.log("체크박스 화긴", targetChecklist, nowComplete);
     changeChecklistTitle(targetChecklist);
   }
