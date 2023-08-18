@@ -10,6 +10,7 @@ $(document).ready(function () {
       return;
     }
 
+    console.log(password);
     $.ajax({
       type: "PUT",
       url: "https://ppiyong.shop/api/user/pw",
