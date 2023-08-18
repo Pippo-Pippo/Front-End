@@ -61,6 +61,18 @@ $(document).ready(function () {
   }
 });
 
+$('#earth').click(function () {
+    earthquake(map);
+  });
+  
+  $('#civil').click(function () {
+    civil(map);
+  });
+  
+  $('#all').click(function () {
+    go(map);
+  });
+
 // 지도에 현위치 표시하는 함수
 function displayMarker(map, locPosition) {
   var image = "/img/svg/location.svg",
@@ -278,30 +290,28 @@ function hideMarkers(map,list) {
   setMarkers(null, list);
 }
 function earthquake(map) {
-  $("#earth").css("color", "white");
-
-  $("#all").css("color", "#64748b");
-  $("#civil").css("color", "#fca5a5");
-
-  hideMarkers(map,civil_marker);
-  showMarkers(map,earthquake_marker);
-
-  hideMarkers(map,civil_custom);
-  showMarkers(map,earthquake_custom);
+    $("#earth").css("color", "white");
+    $("#all").css("color", "#64748b");
+    $("#civil").css("color", "#fca5a5");
+  
+    hideMarkers(map, civil_marker);
+    hideMarkers(map, civil_custom);
+  
+    showMarkers(map, earthquake_marker);
+    showMarkers(map, earthquake_custom);
 
   
 }
 function civil(map) {
   $("#civil").css("color", "white");
-
   $("#all").css("color", "#64748b");
   $("#earth").css("color", "#eab308");
 
-  hideMarkers(map,earthquake_marker);
-  showMarkers(map,civil_marker);
+  hideMarkers(map, earthquake_marker);
+  hideMarkers(map, earthquake_custom);
 
-  hideMarkers(map,earthquake_custom);
-  showMarkers(map,civil_custom);
+  showMarkers(map, civil_marker);
+  showMarkers(map, civil_custom);
 
   
 }
