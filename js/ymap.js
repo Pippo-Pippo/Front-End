@@ -307,6 +307,10 @@ function showMarkersByCategory(markerArray, customOverlayArray, selectedCategory
     civil();
   });  
 
+  $('#all').click(go);
+$('#earth').click(earthquake);
+$('#civil').click(civil);
+
 /********************마커 정보창 뜨게 하기******************/
 function openModal(marker) {
   // the first inner div
