@@ -87,6 +87,7 @@ function logout() {
             console.log(document.cookie);
             alert("로그아웃 성공");
             isLoggedin=false;
+            localStorage.clear();
             window.location.href = "https://page.ppiyong.shop/main.html"; //로그인 페이지로
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -94,6 +95,7 @@ function logout() {
             console.log(document.cookie);
             alert("로그아웃 성공");
             isLoggedin=false;
+            localStorage.clear();
             window.location.href = "https://page.ppiyong.shop/main.html";
           
           console.error(textStatus, errorThrown);
