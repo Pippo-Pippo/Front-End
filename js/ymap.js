@@ -283,9 +283,10 @@ $("#earth").click(function () {
   $("#all").click(function () {
     go();
   });
+  
   function hideMarkers(markers, map) {
     for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(null);
+      markers[i].setMap(map);
     }
   }
   function showMarkers(markers, map) {
