@@ -312,27 +312,23 @@ function makeCivilMaker(map) {
 //   showMarkers(all_marker,map);
 //   showMarkers(all_custom,map);
 // }
-//마커 표시 or 삭제하는 함수
-function setMarkers(map, list) {
+function showMarkers(map, list) {
   for (var i = 0; i < list.length; i++) {
-      list[i].setMap(map);
+    list[i].setMap(map);
   }
 }
 
-//마커 보이기 함수
-function showMarkers(list) {
-  setMarkers(map, list)
+function hideMarkers(map, list) {
+  for (var i = 0; i < list.length; i++) {
+    list[i].setMap(null);
+  }
 }
-//마커 감추기 함수
-function hideMarkers(list) {
-  setMarkers(null, list);
-}
-function earthquake(map) {
-  hideMarkers(civil_marker);
-  showMarkers(earthquake_marker);
 
-  hideMarkers(civil_custom);
-  showMarkers(earthquake_custom);
+function earthquake(map) {
+  hideMarkers(map, civil_marker);
+  hideMarkers(map, civil_custom);
+  showMarkers(map, earthquake_marker);
+  showMarkers(map, earthquake_custom);
 
   $('#earth').css('color', 'white');
 
@@ -340,11 +336,10 @@ function earthquake(map) {
   $('#civil').css('color', '#fca5a5');
 }
 function civil(map) {
-  hideMarkers(earthquake_marker);
-  showMarkers(civil_marker);
-
-  hideMarkers(earthquake_custom);
-  showMarkers(civil_custom);
+  hideMarkers(map, earthquake_marker);
+  hideMarkers(map, earthquake_custom);
+  showMarkers(map, civil_marker);
+  showMarkers(map, civil_custom);
 
   $('#civil').css('color', 'white');
 
@@ -354,8 +349,8 @@ function civil(map) {
 
 }
 function go(map) {
-  showMarkers(all_marker);
-  showMarkers(all_custom);
+  showMarkers(map, all_marker);
+  showMarkers(map, all_custom);
   $('#all').css('color', 'white');
 
   $('#earth').css('color', '#eab308');
