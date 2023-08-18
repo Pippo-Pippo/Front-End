@@ -272,71 +272,40 @@ function makeCivilMaker(map) {
   console.log("민방위 마커 생성 완");
 }
 
-/********************카테고리따라 마커 보이기 숨기기******************/
-//마커 표시 or 삭제하는 함수
-function setMarkers(map, list) {
-    for (var i = 0; i < list.length; i++) {
-        list[i].setMap(map);
+function showMarkersByCategory(markerArray, customOverlayArray, selectedCategory) {
+    for (var i = 0; i < markerArray.length; i++) {
+      if (markerArray[i].category === selectedCategory || selectedCategory === "전체") {
+        markerArray[i].setMap(map);
+        customOverlayArray[i].setMap(map);
+      } else {
+        markerArray[i].setMap(null);
+        customOverlayArray[i].setMap(null);
+      }
     }
-}
-$('#all').css('color', 'black');
-$('#earth').css('color', 'black');
-$('#civil').css('color', 'black');
-$('#all').css('color', 'white');
-$('#earth').css('color', 'white');
-$('#civil').css('color', 'white');
-//마커 보이기 함수
-function showMarkers(list) {
-    setMarkers(map, list)
-}
-//마커 감추기 함수
-function hideMarkers(list) {
-    setMarkers(null, list);
-}
-function earthquake() {
-    hideMarkers(civil_marker);
-    showMarkers(earthquake_marker);
-
-    hideMarkers(civil_custom);
-    showMarkers(earthquake_custom);
-
-    $('#earth').css('color', 'white');
-
-    $('#all').css('color', '#64748b');
-    $('#civil').css('color', '#fca5a5');
-}
-function civil() {
-    hideMarkers(earthquake_marker);
-    showMarkers(civil_marker);
-
-    hideMarkers(earthquake_custom);
-    showMarkers(civil_custom);
-
-    $('#civil').css('color', 'white');
-
-    $('#all').css('color', '#64748b');
-    $('#earth').css('color', '#eab308');
-
-
-}
-function go() {
-    showMarkers(all_marker);
-    showMarkers(all_custom);
-    $('#all').css('color', 'white');
-
-    $('#earth').css('color', '#eab308');
-    $('#civil').css('color', '#fca5a5');
-}
-
-// $('#all').click(function (map,) {
+  }
   
-// });
-// $('#earth').click(function (map) {
+  function go() {
+    showMarkersByCategory(all_marker, all_custom, "전체");
+  }
   
-// });
-// $('#civil').click(function (map) {
+  function earthquake() {
+    showMarkersByCategory(earthquake_marker, earthquake_custom, "지진/해일 대피시설");
+  }
   
-// });
+  function civil() {
+    showMarkersByCategory(civil_marker, civil_custom, "민방위 대피시설");
+  }
+  $('#all').click(function () {
+    go();
+  });
+  
+  $('#earth').click(function () {
+    earthquake();
+  });
+  
+  $('#civil').click(function () {
+    civil();
+  });  
 
 /********************마커 정보창 뜨게 하기******************/
 function openModal(marker) {
