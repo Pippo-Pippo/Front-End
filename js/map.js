@@ -47,15 +47,16 @@ function displayMarker(locPosition) {
 
 }
 // /************현재 위치 생성************/
-var locPosition=null;
+var lat=null,
+    lon=null;
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
 
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function (position) {
 
-        var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
+        lat = position.coords.latitude; // 위도
+        lon = position.coords.longitude; // 경도
         console.log(lat);
         console.log(lon);
         locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
@@ -112,24 +113,24 @@ $(document).ready(function () {
         // console.log(latitude_end);
         // console.log(longitude_end);
 
-        // var  latitude_start = locPosition.Ma-0.02,
-        // latitude_end = locPosition.Ma+0.02,
-
-        // longitude_start = locPosition.La+0.01,
-        // longitude_end = locPosition.La-0.01;
-
-        var lat=null,
-            lon=null;
-        navigator.geolocation.getCurrentPosition(function (position) {
-            lat = position.coords.latitude;
-            lon = position.coords.longitude;
-        });
-        
         var  latitude_start = lat-0.02,
         latitude_end = lat+0.02,
 
         longitude_start = lon+0.01,
         longitude_end = lon-0.01;
+
+        // var lat=null,
+        //     lon=null;
+        // navigator.geolocation.getCurrentPosition(function (position) {
+        //     lat = position.coords.latitude;
+        //     lon = position.coords.longitude;
+        // });
+        
+        // var  latitude_start = lat-0.02,
+        // latitude_end = lat+0.02,
+
+        // longitude_start = lon+0.01,
+        // longitude_end = lon-0.01;
 
 
         console.log(latitude_start);

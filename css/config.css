@@ -16,9 +16,11 @@ html {
 
 body {
   display: flex;
-  width: 360px;
 }
 
 .content {
   margin: auto;
+  width: 360px;
+  min-height: 800px;
+  border: 1px solid black;
 }
