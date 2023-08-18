@@ -48,3 +48,37 @@ function checkJSessionID() {
 
   return jsessionExists;
 }
+
+$('.logout_btn').click(function () {
+  console.log("로그아웃 버튼 클릭");
+  logout();
+});
+function logout() {
+    
+        $.ajax({
+        url: "https://ppiyong.shop/api/user/logout",
+        type: "GET",
+        async: false,
+        xhrFields: {
+          withCredentials: true, // 클라이언트와 서버가 통신할때 쿠키 값을 공유하겠다는 설정
+        },
+        success: function (data) {
+            document.cookie = "JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; //쿠키삭제
+            console.log(document.cookie);
+            alert("로그아웃 성공");
+            isLoggedin=false;
+            localStorage.clear();
+            window.location.href = "https://page.ppiyong.shop/main.html"; //로그인 페이지로
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          document.cookie = "JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; //쿠키삭제
+            console.log(document.cookie);
+            alert("로그아웃 성공");
+            isLoggedin=false;
+            localStorage.clear(); //로컬스토리지 비우기
+            window.location.href = "https://page.ppiyong.shop/main.html";
+          
+          console.error(textStatus, errorThrown);
+        },
+      }); 
+    }
