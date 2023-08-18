@@ -49,7 +49,7 @@ $(document).ready(function () {
       // 마커와 인포윈도우를 표시합니다
       //displayMarker(locPosition);
       //cosnsole.log(locPosition);
-      getShelterData();
+      getShelterData(lat, lon);
     });
   } else {
     // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -78,7 +78,7 @@ function displayMarker(locPosition) {
 
 /********************대피소 데이터 불러오기******************/
 
-function getShelterData() {
+function getShelterData(lat, lon) {
   var latitude_start = lat - 0.02,
     latitude_end = lat + 0.02,
     longitude_start = lon + 0.01,
