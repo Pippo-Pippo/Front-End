@@ -288,6 +288,11 @@ $("#earth").click(function () {
       markers[i].setMap(null);
     }
   }
+  function showMarkers(markers, map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
   // Function to show earthquake markers and hide civil markers
   function earthquake() {
     hideMarkers(civil_marker, map);
