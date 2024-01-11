@@ -9,51 +9,207 @@
 
     <title>main</title>
     <link rel="stylesheet" href="../css/config.css" />
+    
   </head>
 
   <body>
     <div class="relative content bg-gray-50 border-white">
       <div class="bg-white border-gray-200 shadow">
-        <nav>
+        <nav class="bg-white border-gray-200">
           <div
-            class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-15"
+            class="max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto p-4 h-15"
           >
-            <a href="#" class="flex items-center">
-              <img src="../img/logo.png" class="w-24 h-9 mr-3" />
-            </a>
-            <div class="flex justify-end items-center">
-              <div class="w-20 h-8 text-center p-1">
-                <button>로그인</button>
+            <!-- 로고 이미지 삽입 -->
+            <div class="flex items-center justify-center">
+              <a
+                href="https://page.ppiyong.shop/main.html"
+                class="flex items-center"
+              >
+                <img src="../img/logo.png" class="w-24 h-9 mr-10" />
+              </a>
+            </div>
+            <div class="main-nav-items">
+              <div
+                id="login-nav"
+                class="flex items-center justify-end text-end"
+              >
+                <a href="https://page.ppiyong.shop/alarm/alarm.html"
+                  ><img src="../img/icon/알림.png" class="w-6 h-6 mt-3 mr-3"
+                /></a>
+                <div class="username-text font-medium text-lg mt-1 mr-6">
+                  강윤진님
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    data-drawer-target="drawer-navigation"
+                    data-drawer-show="drawer-navigation"
+                    aria-controls="drawer-navigation"
+                  >
+                    <img
+                      src="../img/icon/햄버거바.png"
+                      alt="menu"
+                      class="w-6 h-5 mt-3"
+                    />
+                  </button>
+                </div>
               </div>
-              <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
-                <button>회원가입</button>
+
+              <div id="non-login-nav" class="flex justify-end">
+                <div class="w-20 h-8 text-center p-1 ml-14">
+                  <a href="https://page.ppiyong.shop/account/login.html">
+                    <button>로그인</button>
+                  </a>
+                </div>
+                <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
+                  <a href="https://page.ppiyong.shop/account/signup.html">
+                    <button>회원가입</button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </nav>
-
         <nav>
           <div
+            id="searchNav-item"
             class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-3 pb-0"
           >
-            <div>
-              <a href="#">홈</a>
+            <button id="home-href">
+              <a href="https://page.ppiyong.shop/main.html">홈</a>
               <div class="bg-mySky p-1 h-3"></div>
-            </div>
-            <div>
-              <a href="#">주변 대피소</a>
+            </button>
+            <button id="shelter-href">
+              <a href="https://page.ppiyong.shop/map.html">주변 대피소</a>
               <div class="bg-mySky p-1 h-3"></div>
-            </div>
-            <div>
-              <a href="#">체크리스트</a>
-              <div class="bg-mySky p-1 h-3"></div>
-            </div>
+            </button>
+            <button id="checklist-href " class="font-bold">
+              <a href="https://page.ppiyong.shop/checklist.html">체크리스트</a>
+              <div
+                class="under-nav bg-mySky p-1 h-3 border-b-4 border-yellow-300 border-7"
+              ></div>
+            </button>
           </div>
+
+          <div class="searchMain_nav_underline"></div>
         </nav>
+      </div>
+      <!-- drawer component -->
+      <div
+        id="drawer-navigation"
+        class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"
+        tabindex="-1"
+        aria-labelledby="drawer-navigation-label"
+      >
+        <button
+          type="button"
+          data-drawer-hide="drawer-navigation"
+          aria-controls="drawer-navigation"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          <span class="sr-only">Close menu</span>
+        </button>
+        <div class="py-4 overflow-y-auto">
+          <ul class="space-y-2">
+            <li>
+              <a
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 22 21"
+                ></svg>
+                <span class="username-text mt-10 font-bold text-2xl"
+                  >강윤진</span
+                >
+                <span class="mt-10 font-medium text-2xl">님</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://page.ppiyong.shop/myChecklist.html"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 18 18"
+                ></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">MY 체크리스트</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://page.ppiyong.shop/alarm/select_other.html"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                ></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap"
+                  >다른 지역 확인하기</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://page.ppiyong.shop/account/editMember.html"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 18"
+                ></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap"
+                  >회원정보 수정하기</span
+                >
+              </a>
+            </li>
+            <li class="logout_btn">
+              <a
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 18 20"
+                ></svg>
+                <div class="flex-1 ml-3 whitespace-nowrap">로그아웃</div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="cehcklist-content p-5">
-        <div class="content-title flex justify-between">
+        <div class="content-title flex justify-between mb-5">
           <div>
             <p class="text-2xl">
               <span class="font-bold">태풍/강풍</span> <br />
@@ -62,22 +218,24 @@
           </div>
         </div>
 
-        <div class="main-article pt-4">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+        <div class="main-article pt-4 mb-5">
+          ✔ 태풍의 진로 및 도달 시간을 파악해서 어떻게 대피할지를 생각한다. <br>
+          ✔ 산간·계곡, 하천, 방파제 등 위험지역에서는 주변에 있는 사람들과 함께 안전한 곳으로 이동한다.<br>
+          ✔ 주택이나 차량, 시설물 등의 보호를 위해 가족이나 지역주민과 함께 미리 준비하고 신속한 대피를 위해 응급용품은 미리 배낭에 넣어둔다.<br>
+          ✔ 강풍으로 인해 피해를 입지 않도록 가급적 욕실과 같이 창문이 없는 방이나 집안의 제일 안쪽으로 이동하고 건물의 출입문, 창문에서 최대한 멀리 떨어지도록 한다.<br>
+          ✔  가스 누출로 2차 피해가 발생할 수 있으므로 미리 차단하고, 감전 위험이 있는 집 안팎의 전기시설은 만지지 않고 정전이 발생한 경우 양초를 사용하지 말고 휴대용 랜턴, 휴대폰 등을 사용한다.<br>
+          ✔ 이 빠져나가고 있을 때에는 기름이나 동물 사체 등 오염된 경우가 많으므로 물에서 멀리 떨어져 있도록 한다.<br>
+          ✔ 태풍으로 피해를 입은 주택 등은 가스가 누출될 수 있으므로 창문을 열어 충분히 환기하고, 성냥불이나 라이터는 환기 전까지 사용하지 않는다.<br>
+          ✔ 고립된 지역에서는 무리하게 물을 건너지 말고, 119에 신고하거나 주변에 도움을 요청한다.<br>
+          ✔ 족과 지인에게 연락하여 안전 여부를 확인하고, 연락이 되지 않고 실종이 의심될 경우에는 가까운 경찰서에 신고한다.<br>
+          ✔ 파손된 시설물(주택, 상하수도, 축대, 도로 등)은 가까운 시·군·구청이나 행정복지센터(주민센터)에 신고한다.<br>
+
         </div>
 
         <div class="youtube-div py-3">
           <iframe
             class="w-80 h-40 border-none"
-            src="https://www.youtube.com/embed/H4iIv-WY7Og"
+            src="https://www.youtube.com/embed/4frsWCTDHxQ" 
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -117,6 +275,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="../js/checklist_detail.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/isLoggedin.js"></script>
+    <script src="../js/logoutTest.js"></script> 
     <script>
       Kakao.init("84006249f39045b05f2da9f99f8320ca");
     </script>

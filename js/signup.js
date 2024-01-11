@@ -1,12 +1,11 @@
 function goNext() {
-  
   const signupWarp = document.getElementById("signup-wrap");
   const signupTitle = document.getElementById("signup-title");
   const nextButton = document.getElementById("nextButton");
   // "회원가입" 내용이 사라진 후에 실행
   signupWarp.style.display = "none"; //없어지기
   signupTitle.innerHTML = "회원정보 입력"; //innerText 수정
-  
+
   document.getElementById("nextButton").style.display = "none";
   document.getElementById("member").style.display = "block";
   // 닉네임, 지역 정보 보여주기
@@ -15,8 +14,7 @@ function goNext() {
 }
 document.getElementById("member").addEventListener("click", function () {
   signup();
-})
-
+});
 
 function signup() {
   var email = $("#email").val();
@@ -30,13 +28,12 @@ function signup() {
     data: JSON.stringify({
       email: email,
       password: password,
-      nickname: nickname,
+      nickName: nickname,
       region: region,
     }),
     success: function (data) {
       alert("성공");
       console.log("success");
-     
     },
     error: function (request, status, error) {
       alert("잘못된 요청입니다.");
@@ -47,7 +44,12 @@ function signup() {
 document.getElementById("nextButton").addEventListener("click", function () {
   var password = $("#password").val();
   var confirmPassword = $("#confirmPassword").val();
-  
+
+  if (password !== confirmPassword) {
+    alert("비밀번호가 일치하지 않습니다.");
+    return;
+  }
+
   if (password !== confirmPassword) {
     alert("비밀번호가 일치하지 않습니다.");
     return;
@@ -98,11 +100,10 @@ $("#verifyButton").on("click", function (e) {
     },
     contentType: "application/json; charset=utf-8",
     success: function (response) {
-      console.log(response); 
-      
-        $("#verificationConfirm").show();
-        alert("인증번호가 일치하지 않습니다. 다시 입력해주세요.");
+      console.log(response);
 
+      $("#verificationConfirm").show();
+      alert("인증되었습니다.");
     },
     error: function (req, status, err) {
       console.log(req);

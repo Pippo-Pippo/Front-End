@@ -12,7 +12,7 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB12bgQnvBrc0Hwuztjrqpxvv7vEHvcf0U"
     ></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="./js/isLoggedin.js"></script>
+  
 
     <title>삐용</title>
     <link rel="stylesheet" href="../css/config.css" />
@@ -45,7 +45,10 @@
           >
             <!-- 로고 이미지 삽입 -->
             <div class="flex items-center justify-center">
-              <a href="main.html" class="flex items-center">
+              <a
+                href="https://page.ppiyong.shop/main.html"
+                class="flex items-center"
+              >
                 <img src="../img/logo.png" class="w-24 h-9 mr-10" />
               </a>
             </div>
@@ -54,7 +57,7 @@
                 id="login-nav"
                 class="flex items-center justify-end text-end"
               >
-                <a href="alarm/alarm.html"
+                <a href="https://page.ppiyong.shop/alarm/alarm.html"
                   ><img src="../img/icon/알림.png" class="w-6 h-6 mt-3 mr-3"
                 /></a>
                 <div class="username-text font-medium text-lg mt-1 mr-6">
@@ -78,12 +81,12 @@
 
               <div id="non-login-nav" class="flex justify-end">
                 <div class="w-20 h-8 text-center p-1 ml-14">
-                  <a href="account/login.html">
+                  <a href="https://page.ppiyong.shop/account/login.html">
                     <button>로그인</button>
                   </a>
                 </div>
                 <div class="bg-yellow-300 w-20 h-8 rounded text-center p-1">
-                  <a href="account/signup.html">
+                  <a href="https://page.ppiyong.shop/account/signup.html">
                     <button>회원가입</button>
                   </a>
                 </div>
@@ -97,17 +100,17 @@
             class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-3 pb-0"
           >
             <button id="home-href" class="font-bold">
-              <a href="main.html">홈</a>
+              <a href="https://page.ppiyong.shop/main.html">홈</a>
               <div
                 class="under-nav bg-mySky p-1 h-3 border-b-4 border-yellow-300 border-7"
               ></div>
             </button>
             <button id="shelter-href">
-              <a href="map.html">주변 대피소</a>
+              <a href="https://page.ppiyong.shop/map.html">주변 대피소</a>
               <div class="bg-mySky p-1 h-3"></div>
             </button>
             <button id="checklist-href">
-              <a href="checklist.html">체크리스트</a>
+              <a href="https://page.ppiyong.shop/checklist.html">체크리스트</a>
               <div class="bg-mySky p-1 h-3"></div>
             </button>
           </div>
@@ -164,7 +167,7 @@
             </li>
             <li>
               <a
-                href="myChecklist.html"
+                href="https://page.ppiyong.shop/myChecklist.html"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -179,7 +182,7 @@
             </li>
             <li>
               <a
-                href="/account/select_region.html"
+                href="https://page.ppiyong.shop/alarm/select_other.html"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -196,7 +199,7 @@
             </li>
             <li>
               <a
-                href="account/editMember.html"
+                href="https://page.ppiyong.shop/account/editMember.html"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -211,9 +214,8 @@
                 >
               </a>
             </li>
-            <li>
+            <li class="logout_btn">
               <a
-                href="#"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -223,7 +225,7 @@
                   fill="currentColor"
                   viewBox="0 0 18 20"
                 ></svg>
-                <span class="flex-1 ml-3 whitespace-nowrap">로그아웃</span>
+                <div class="flex-1 ml-3 whitespace-nowrap">로그아웃</div>
               </a>
             </li>
           </ul>
@@ -273,66 +275,71 @@
           </div>
         </div>
       </div>
-      <div id="Button" class="flex items-center justify-center mt-3">
-        <!--날씨 버튼-->
-        <div
-          id="weatherButton"
-          class="bg-white border-gray-200 shadow-md rounded-md block justify-center w-20 h-20 items-center mr-1"
-        >
-          <div class="flex justify-center items-center">
-            <img
-              class="flex justify-center items-center w-10 h-11 mb-3"
-              src="../img/icon/날씨.png"
-            />
+
+      <div class="flex flex-col items-center justify-center">
+        <div id="Button" class="flex items-center justify-center mt-3 w-80">
+          <!--날씨 버튼-->
+          <div
+            id="weatherButton"
+            class="bg-white border-gray-200 shadow-md rounded-md block justify-center w-20 h-20 items-center mr-1"
+          >
+            <div class="flex justify-center items-center">
+              <img
+                class="flex justify-center items-center w-10 h-11 mb-3"
+                src="../img/icon/날씨.png"
+              />
+            </div>
+            <p class="text-sm text-center">날씨</p>
           </div>
-          <p class="text-sm text-center">날씨</p>
+
+          <!-- 지진/해일 버튼 -->
+          <div
+            id="earthquakeButton"
+            class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1"
+          >
+            <div class="flex justify-center items-center">
+              <img
+                class="flex justify-center items-center w-10 h-11 mb-3"
+                src="../img/icon/earthquake_icon.png"
+              />
+            </div>
+            <p class="text-sm text-center">지진/해일</p>
+          </div>
+          <!--민방위 버튼-->
+          <div
+            id="civilButton"
+            class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1"
+          >
+            <div class="flex justify-center items-center">
+              <img
+                class="flex justify-center items-center w-10 h-11 mb-3"
+                src="../img/icon/민방위.png"
+              />
+            </div>
+            <p class="text-sm text-center">민방위</p>
+          </div>
+          <!-- 실종자 버튼 -->
+          <div
+            id="lostButton"
+            class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20"
+          >
+            <div class="flex justify-center items-center">
+              <img
+                class="flex justify-center items-center w-10 h-11 mb-3"
+                src="../img/icon/실종자.png"
+              />
+            </div>
+            <p class="text-sm text-center">실종자</p>
+          </div>
         </div>
 
-        <!-- 지진/해일 버튼 -->
-        <div
-          id="earthquakeButton"
-          class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1"
-        >
-          <div class="flex justify-center items-center">
-            <img
-              class="flex justify-center items-center w-10 h-11 mb-3"
-              src="../img/icon/earthquake_icon.png"
-            />
-          </div>
-          <p class="text-sm text-center">지진/해일</p>
-        </div>
-        <!--민방위 버튼-->
-        <div
-          id="civilButton"
-          class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20 mr-1"
-        >
-          <div class="flex justify-center items-center">
-            <img
-              class="flex justify-center items-center w-10 h-11 mb-3"
-              src="../img/icon/민방위.png"
-            />
-          </div>
-          <p class="text-sm text-center">민방위</p>
-        </div>
-        <!-- 실종자 버튼 -->
-        <div
-          id="lostButton"
-          class="bg-white border-gray-200 shadow-md rounded-md block justify-center items-center w-20 h-20"
-        >
-          <div class="flex justify-center items-center">
-            <img
-              class="flex justify-center items-center w-10 h-11 mb-3"
-              src="../img/icon/실종자.png"
-            />
-          </div>
-          <p class="text-sm text-center">실종자</p>
-        </div>
+        <!--메인 박스-->
+        <div id="main" class="text-start"></div>
       </div>
-
-      <!--메인 박스-->
-      <div id="main" class="ml-5 text-start"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="./js/isLoggedin.js"></script>
+    <script src="../js/logoutTest.js"></script> 
+    <script src="../js/main.js"></script> 
   </body>
 </html>
